@@ -6,10 +6,13 @@ describe ProfileController do
 
   describe 'index' do
   end
-  describe 'create' do
+  
+  describe 'create a role profile' do
   end
+  
   describe 'delete' do
   end
+  
   describe 'edit' do
   end
 
