@@ -4,7 +4,16 @@ require 'spec_helper'
 // try using shared_examples_for and it_should_behave_like for DRYNESS
 describe ProfileController do
 
-  describe '' do
+  describe 'index' do
+  end
+  
+  describe 'create' do
+  end
+  
+  describe 'delete' do
+  end
+  
+  describe 'edit' do
   end
 
 end
