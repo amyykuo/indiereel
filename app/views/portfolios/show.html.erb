@@ -1,0 +1,6 @@
+<% if current_user.uid == @user.uid %>
+    <h1>This is your portfolio for your <%= @role %> role, <%= current_user.first_name %>!</h1>
+<% else %>
+    <h1>You're on <%= @user.name %>'s <%= @role %> portfolio!</h1>
+<% end %>
+<%= link_to "Logout", logout_path %>
