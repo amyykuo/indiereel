@@ -9,6 +9,9 @@ Indiereel::Application.routes.draw do
   match "/auth/facebook/callback" => "sessions#create"
   match "/logout" => "sessions#destroy", :as => 'logout'
 
+  match "/:uid/:role/projects(/:action)" => "projects"
+  match "/:uid/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}
+  match "/:uid/:role(/:action)" => "roles", :defaults => {:action => "show"}
   match "/:uid" => "users#show", :as => 'home'
 
   # Sample of regular route:
