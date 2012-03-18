@@ -8,6 +8,8 @@ Indiereel::Application.routes.draw do
   match "/auth/facebook/callback" => "sessions#create"
   match "/logout" => "sessions#destroy", :as => 'logout'
 
+  resources :roles
+
   # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects"
   match "/:identifier/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}

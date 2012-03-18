@@ -1,11 +1,14 @@
 <% if current_user.uid == @user.uid %>
     <h1>Welcome to IndieReel, <%= current_user.first_name %>!</h1>
     <% if @roles.empty? %>
-        <p>You have no roles.</p>
+        <p>You have no roles. <%= link_to "Create one?", new_role_path(:user => current_user.identifier) %></p>
     <% else %>
-        <% for role in @roles do %>
-            <%= link_to "Your profile as a(n) #{role.type}", :controller => "roles", :role => role.type, :identifier => current_user.identifier %>
-        <% end %>
+        <ul>
+            <% for role in @roles do %>
+                <%= link_to "Your profile as a(n) #{role.type}", :controller => "roles", :role => role.type, :identifier => current_user.identifier %>
+            <% end %>
+            <li><%= link_to "Add a role", new_role_path(:user => current_user.identifier) %></li>
+        </ul>
     <% end %>
 <% else %>
     <h1>You're on <%= @user.name %>'s Profile!</h1>
