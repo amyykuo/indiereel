@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :roles, :dependent => :destroy
+
   def self.create_with_omniauth(auth)
     create do |user|
       user.uid = auth["uid"]
