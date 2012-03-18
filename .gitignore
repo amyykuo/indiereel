@@ -16,3 +16,6 @@
 
 # Ignore the IDEA file
 .idea
+
+# Ignore the Schema file
+schema.rb
