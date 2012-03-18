@@ -1,0 +1,9 @@
+require 'spec_helper'
+
+describe ApplicationController do
+
+  describe 'authenticate user / make sure there is a user logged in' do
+    
+  end
+
+end
