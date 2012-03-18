@@ -4,11 +4,11 @@ Indiereel::Application.routes.draw do
 
   root :to => "index#index"
 
-  #match "/welcome" => "index#welcome", :as => 'welcome'
-
+  # Authentication related routes
   match "/auth/facebook/callback" => "sessions#create"
   match "/logout" => "sessions#destroy", :as => 'logout'
 
+  # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects"
   match "/:identifier/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}
   match "/:identifier/:role(/:action)" => "roles", :defaults => {:action => "show"}
