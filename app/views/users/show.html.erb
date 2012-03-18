@@ -1,0 +1,6 @@
+<% if current_user.uid == @user.uid %>
+    <h1>Welcome to IndieReel, <%= current_user.first_name %>!</h1>
+<% else %>
+    <h1>You're on <%= @user.name %>'s Profile!</h1>
+<% end %>
+<%= link_to "Logout", logout_path %>
