@@ -3,6 +3,7 @@ Indiereel::Application.routes.draw do
   # first created -> highest priority.
 
   match "/auth/facebook/callback" => "sessions#create"
+  match "/logout" => "sessions#destroy", :as => 'logout'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
