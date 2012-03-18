@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
   def identifier
     self.username || self.uid
   end
+
+  def self.find_by_identifier(identifier)
+    User.find_by_username(identifier) || User.find_by_uid(identifier)
+  end
 end

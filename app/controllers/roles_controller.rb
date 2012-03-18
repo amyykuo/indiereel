@@ -1,5 +1,6 @@
 class RolesController < ApplicationController
   def show
-    render :nothing => true
+    @user = User.find_by_identifier(params[:identifier])
+    @role = params[:role]
   end
 end
