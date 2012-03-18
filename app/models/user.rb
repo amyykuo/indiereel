@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
     self.gender = auth["extra"]["raw_info"]["gender"]
     self.save!
   end
+
+  def identifier
+    self.username || self.uid
+  end
 end
