@@ -4,6 +4,7 @@
         <li><%= link_to "Your portfolio as a(n) #{@role.name}", :controller => "portfolios", :role => @role.name, :identifier => current_user.identifier %></li>
         <li><%= link_to "Projects you've worked on as a(n) #{@role.name}", :controller => "projects", :role => @role.name, :identifier => current_user.identifier %></li>
     </ul>
+	<%= button_to 'Delete this Role', role_path(@role), :method => :delete, :confirm => 'Are you sure you want to delete this role?' %>
 <% else %>
     <h1>You're on <%= @user.name %>'s <%= @role %> page!</h1>
     <ul>

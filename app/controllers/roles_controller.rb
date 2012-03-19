@@ -22,4 +22,14 @@ class RolesController < ApplicationController
       redirect_to "/#{current_user.identifier}"
     end
   end
+  
+  def destroy
+    role = Role.find(params[:id])
+    if current_user.identifier == role.user.identifier
+      role.destroy
+    else
+      flash[:error] = "You cannot delete this role."
+    end
+    redirect_to "/#{current_user.identifier}"
+  end
 end
