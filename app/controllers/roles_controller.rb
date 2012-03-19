@@ -20,5 +20,6 @@ class RolesController < ApplicationController
     else
       flash[:error] = "You cannot create that role type."
       redirect_to "/#{current_user.identifier}"
+    end
   end
 end
