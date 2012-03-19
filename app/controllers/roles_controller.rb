@@ -14,7 +14,11 @@ class RolesController < ApplicationController
   
   def create
     name = params[:name]
-    Role.create!(:user => current_user, :name => name)
-    redirect_to "/#{current_user.identifier}/#{name}"
+    if Role.options.include?(name)
+      Role.create!(:user => current_user, :name => name)
+      redirect_to "/#{current_user.identifier}/#{name}"
+    else
+      flash[:error] = "You cannot create that role type."
+      redirect_to "/#{current_user.identifier}"
   end
 end
