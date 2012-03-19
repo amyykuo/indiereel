@@ -5,7 +5,7 @@
     <% else %>
         <ul>
             <% for role in @roles do %>
-                <li><%= link_to "Your profile as a(n) #{role.name}", role_route(role) %></li>
+                <li><%= link_to "Your #{role.name} profile", role_route(role) %></li>
             <% end %>
             <li><%= link_to "Add a role", new_role_path %></li>
         </ul>
