@@ -1,4 +1,8 @@
 <%= form_tag roles_path do %>
-	<input type="text" name="name" placeholder="Role Type">
+	<select name="name">
+		<% for option in @options do %>
+			<option value="<%= option %>"><%= option %></option>
+		<% end %>
+	</select>
 	<input type="submit" value="Create role.">
 <% end %>

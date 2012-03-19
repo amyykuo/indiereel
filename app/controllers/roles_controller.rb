@@ -9,6 +9,7 @@ class RolesController < ApplicationController
 
   def new
     @user = User.find_by_identifier(params[:identifier])
+    @options = Role.options
   end
   
   def create
