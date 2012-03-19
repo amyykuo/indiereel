@@ -5,7 +5,7 @@
     <% else %>
         <ul>
             <% for role in @roles do %>
-                <%= link_to "Your profile as a(n) #{role.type}", :controller => "roles", :role => role.type, :identifier => current_user.identifier %>
+                <%= link_to "Your profile as a(n) #{role.name}", :controller => "roles", :role => role.name, :identifier => current_user.identifier %>
             <% end %>
             <li><%= link_to "Add a role", new_role_path %></li>
         </ul>
