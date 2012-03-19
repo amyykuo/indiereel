@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   
   # Custom route helper methods
   helper_method :role_route
+  helper_method :portfolio_route
+  helper_method :projects_route
   
   helper_method :current_user
   before_filter :authentication_required
@@ -23,6 +25,18 @@ class ApplicationController < ActionController::Base
   def role_route(role, action="show")
     route = "/#{role.user.identifier}/#{role.name}"
     route += "/#{action}" if action != "show"
+    return route
+  end
+  
+  def portfolio_route(role, action="show")
+    route= "/#{role.user.identifier}/#{role.name}/portfolio"
+    route += "/#{action}" if action != "show"
+    return route
+  end
+  
+  def projects_route(role, action="index")
+    route= "/#{role.user.identifier}/#{role.name}/projects"
+    route += "/#{action}" if action != "index"
     return route
   end
 
