@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  
+  # Custom route helper methods
+  helper_method :role_route
+  
   helper_method :current_user
   before_filter :authentication_required
 
@@ -14,6 +17,13 @@ class ApplicationController < ActionController::Base
     if current_user.nil?
       redirect_to "/welcome"
     end
+  end
+  
+  # Custom route method definitions
+  def role_route(role, action="show")
+    route = "/#{role.user.identifier}/#{role.name}"
+    route += "/#{action}" if action != "show"
+    return route
   end
 
 
