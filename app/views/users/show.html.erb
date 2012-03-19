@@ -1,13 +1,13 @@
 <% if current_user.uid == @user.uid %>
     <h1>Welcome to IndieReel, <%= current_user.first_name %>!</h1>
     <% if @roles.empty? %>
-        <p>You have no roles. <%= link_to "Create one?", new_role_path(:user => current_user.identifier) %></p>
+        <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
     <% else %>
         <ul>
             <% for role in @roles do %>
                 <%= link_to "Your profile as a(n) #{role.type}", :controller => "roles", :role => role.type, :identifier => current_user.identifier %>
             <% end %>
-            <li><%= link_to "Add a role", new_role_path(:user => current_user.identifier) %></li>
+            <li><%= link_to "Add a role", new_role_path %></li>
         </ul>
     <% end %>
 <% else %>
