@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
     user = User.find_by_uid(auth["uid"]) || User.create_with_omniauth(auth)
     user.update_with_omniauth(auth)
     session[:user_id] = user.uid
-    redirect_to home_path(user.identifier)
+    redirect_to root_url
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to '/welcome'
+    redirect_to root_url
   end
 end

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :role_route
   helper_method :portfolio_route
   helper_method :projects_route
+  helper_method :home_route
   
   helper_method :current_user
   before_filter :authentication_required
@@ -17,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def authentication_required
     if current_user.nil?
-      redirect_to "/welcome"
+      redirect_to root_url
     end
   end
   
@@ -38,6 +39,10 @@ class ApplicationController < ActionController::Base
     route= "/#{role.user.identifier}/#{role.name}/projects"
     route += "/#{action}" if action != "index"
     return route
+  end
+  
+  def home_route(user)
+    return "/#{user.identifier}"
   end
 
 
