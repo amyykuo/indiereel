@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
       user.access_token = auth["credentials"]["token"] rescue nil
       user.email = auth["info"]["email"]
       user.gender = auth["extra"]["raw_info"]["gender"]
+      user.image = auth["info"]["image"] rescue nil
     end
   end
 
@@ -26,6 +27,7 @@ class User < ActiveRecord::Base
     self.access_token = auth["credentials"]["token"] rescue nil
     self.email = auth["info"]["email"]
     self.gender = auth["extra"]["raw_info"]["gender"]
+    self.image = auth["info"]["image"] rescue nil
     self.save!
   end
 

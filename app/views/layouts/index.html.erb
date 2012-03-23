@@ -2,22 +2,12 @@
 <html>
 <head>
   <title>Indiereel</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "index" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
 </head>
 <body>
-	
-<div id="navbar">
-	<ul>
-		<li><img src="<%= current_user.image %>">
-		<li><%= current_user.name %></li>
-		<li><a href="#">Search</a></li>
-	</ul>			
-</div>
-
 <%= yield %>
-
 </body>
 </html>
