@@ -5,3 +5,22 @@
  *= require_self
  *= require_tree . 
 */
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+#navbar-container {
+	width:100%;
+	background: #ccc;
+}
+
+#navbar {
+	padding:15px;
+	background: #ccc;
+}
+
+#navbar #right {
+	float: right;
+}
