@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe SessionsController do
   
+  # TODO
   it 'should skip the authentication requirement'
   
   
@@ -34,21 +35,31 @@ describe SessionsController do
     
     # If a user already exists
     describe 'user exists' do
-      it 'should find the user using the Facebook authentication info' do
+      
+      before :each do
         User.stub!(:find_by_uid).with("1234").and_return(@kunal)
+      end
+      
+      it 'should find the user using the Facebook authentication info' do
         User.should_receive(:find_by_uid).with("1234").and_return(@kunal)
         post :create
       end
+      
       it_behaves_like "the rest of the method"
     end
     
     # If a user does not exist
     describe "user doesn't exist" do
-      it 'should create the user using the create_with_omniauth model method' do
+      
+      before :each do
         User.stub!(:create_with_omniauth).and_return(@kunal)
+      end
+      
+      it 'should create the user using the create_with_omniauth model method' do
         User.should_receive(:create_with_omniauth).and_return(@kunal)
         post :create
       end
+      
       it_behaves_like "the rest of the method"
     end
   end
