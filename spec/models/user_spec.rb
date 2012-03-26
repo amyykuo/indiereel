@@ -41,14 +41,31 @@ describe User do
       @kunal.access_token.should == nil
     end
     
-    # TODO
-    it 'should fail to create a user if any other fields are left as nil'
+    # TODO - fill in the rest of the shit
+    it 'should fail to create a user if any other fields are left as nil' do
+      # name
+      no_name = duplicate(params)["info"]
+      no_name["info"].delete("name")
+      User.create_with_omniauth(no_name).should == nil 
+    end
     
-    # TODO
-    it 'should fail to create a user if uid is not unique'
+    it 'should fail to create a user if uid is not unique' do
+      User.create_with_omniauth(params).should_not == nil
+      
+      newish_params = duplicate(params)
+      newish_params["info"]["nickname"] = "somethingelse"
+      
+      User.create_with_omniauth(newish_params).should == nil
+    end
     
-    # TODO
-    it 'should fail to create a user if username is not unique'
+    it 'should fail to create a user if username is not unique' do
+      User.create_with_omniauth(params).should_not == nil
+      
+      newish_params = duplicate(params)
+      newish_params["uid"] = "somethingelse"
+      
+      User.create_with_omniauth(newish_params).should == nil
+    end
     
     it 'should return the username as an identifier if it has one, or the uid otherwise' do
       @kunal = User.create_with_omniauth(params)
@@ -60,6 +77,7 @@ describe User do
     
   end
   
+  # These will be basically the same as the above
   describe 'updating a user' do
   end
   
