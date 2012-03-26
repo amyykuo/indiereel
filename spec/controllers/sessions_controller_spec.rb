@@ -1,11 +1,7 @@
 require 'spec_helper'
 
 describe SessionsController do
-  
-  # TODO
-  it 'should skip the authentication requirement'
-  
-  
+    
   # Testing the create action
   describe 'create user with omniauth or find registered user' do
     
@@ -22,12 +18,12 @@ describe SessionsController do
         post :create
       end
 
-      it 'should set the establish the correct user is logged in' do
+      it 'should set uid in the session to that of the just-logged-in user' do
         post :create
         session[:user_id].should == "1234"
       end
 
-      it 'should redirect to the correct home page' do
+      it 'should redirect to the index URL' do
         post :create
         response.should redirect_to root_url
       end
@@ -46,6 +42,7 @@ describe SessionsController do
       end
       
       it_behaves_like "the rest of the method"
+      
     end
     
     # If a user does not exist
@@ -61,13 +58,24 @@ describe SessionsController do
       end
       
       it_behaves_like "the rest of the method"
+      
     end
   end
   
   
   # Testing the destroy action
   describe 'logging out a user' do
-    it 'should set the session to nil'
-    it 'should redirect user to the welcome page'
+    
+    it 'should set the session to nil' do
+      session[:user_id] = "1234"
+      post :destroy
+      session[:user_id].should == nil
+    end
+  
+    it 'should redirect user to the welcome page' do
+      post :destroy
+      response.should redirect_to root_url
+    end
   end
+  
 end
