@@ -4,6 +4,14 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+OmniAuth.config.test_mode = true
+OmniAuth.config.add_mock(:facebook, {  :provider    => "facebook", 
+                                  :uid         => "1234", 
+                                  :user_info   => {   :name       => "Kunal Mehta",
+                                                      :nickname   => "K-Breezy",
+                                                      :urls       => {:Facebook => "www.facebook.com/kbreezy"}},
+                                  :credentials => {   :auth_token => "lk2j3lkjasldkjflk3ljsdf"} })
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
