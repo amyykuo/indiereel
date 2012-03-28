@@ -3,24 +3,27 @@
 <head>
   <title>Indiereel</title>
   <%= stylesheet_link_tag    "application" %>
+  <style>body { padding-top: 70px}</style>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
 </head>
 <body>
 	
-	<div class="navbar">
+	<div class="navbar navbar-fixed-top">
 	    <div class="navbar-inner">
 	      <div class="container">
-				<a class="brand" href="#">IndieReel</a>
+				<%= link_to "IndieReel", home_route(current_user), :class => "brand"%>
 				<ul class="nav">
 					<li><img src="<%= current_user.image %>" height="40" width="40"></li>
 				  <li class="active dropdown">
-				  		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b>&nbsp;<strong><%= (@role.nil? ? current_user.roles[0].name : @role.name).capitalize %>:</strong></a>
+				  		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b>&nbsp;<strong><%= (@role.nil? ? current_user.roles[0].role_type : @role.role_type).capitalize %>:</strong></a>
 						<ul class="dropdown-menu">
 							<% for role in current_user.roles %>
-								<li><%= link_to role.name.capitalize, role_route(role) %></li>
+								<li><%= link_to role.role_type.capitalize, role_route(role) %></li>
 							<% end %>
+							<li class="divider"></li>
+							<li><%= link_to "Add a new role", new_role_path %></li>
 						</ul>
 				  </li>
 				  <li><%= link_to "Edit", role_route((@role.nil? ? current_user.roles[0] : @role), "edit") %></li>

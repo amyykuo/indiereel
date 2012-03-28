@@ -24,19 +24,19 @@ class ApplicationController < ActionController::Base
   
   # Custom route method definitions
   def role_route(role, action="show")
-    route = "/#{role.user.identifier}/#{role.name}"
+    route = "/#{role.user.identifier}/#{role.role_type}"
     route += "/#{action}" if action != "show"
     return route
   end
   
   def portfolio_route(role, action="show")
-    route= "/#{role.user.identifier}/#{role.name}/portfolio"
+    route= "/#{role.user.identifier}/#{role.role_type}/portfolio"
     route += "/#{action}" if action != "show"
     return route
   end
   
   def projects_route(role, action="index")
-    route= "/#{role.user.identifier}/#{role.name}/projects"
+    route= "/#{role.user.identifier}/#{role.role_type}/projects"
     route += "/#{action}" if action != "index"
     return route
   end

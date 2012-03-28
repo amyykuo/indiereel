@@ -4,8 +4,8 @@
     <% if !@roles.empty? %>
         <ul>
             <% for role in @roles do %>
-                <li class=role>
-                  <%= link_to "#{role.role_name}", role_route(role) %>
+                <li class="role">
+                  <%= link_to "#{role.role_type}", role_route(role) %>
                   <%= link_to "#{role.profile_pic}", role_route(role) %> <!-- enlarge instead of redirecting -->
                   <%= link_to "role projects", "#" %>
                   <%= link_to "role portfolio", "#" %>
