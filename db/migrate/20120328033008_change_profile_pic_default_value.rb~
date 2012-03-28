@@ -1,5 +1,0 @@
-class ChangeProfilePicDefaultValue < ActiveRecord::Migration
-  def change
-    
-  end
-end
