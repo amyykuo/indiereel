@@ -6,9 +6,11 @@
             <% for role in @roles do %>
                 <li class="role">
                   <%= link_to "#{role.role_type}", role_route(role) %>
-                  <%= link_to "#{role.profile_pic}", role_route(role) %> <!-- enlarge instead of redirecting -->
-                  <%= link_to "role projects", "#" %>
-                  <%= link_to "role portfolio", "#" %>
+                  <%= link_to "#{role.role_name}", role_route(role) %>
+                  <%= link_to image_tag("#{role.profile_pic}"), role_route(role) %> <!-- enlarge instead of redirecting -->
+                  <%= link_to "Edit", role_route(role, edit) %>
+                  <%= link_to "Projects", projects_route(role) %>
+                  <%= link_to "Portfolio", portfolio_route(role) %>
                 </li>
             <% end %>
             <li><%= link_to "Add a role", new_role_path %></li>
@@ -19,4 +21,3 @@
 <% else %>
     <h1>You're on <%= @user.name %>'s Profile!</h1>
 <% end %>
-<%= link_to "Logout", logout_path %>
