@@ -17,8 +17,28 @@
 }
 
 #navbar {
-	padding:15px;
+	padding:10px;
+	width: 960px;
+	margin: 0px auto;
 	background: #ccc;
+}
+
+#logo {
+	float: left;
+	padding-right: 20px;
+}
+
+#navbar ul {
+	list-style: none;
+}
+
+#navbar li {
+	display:inline;
+	margin-left: 10px;
+}
+
+#navbar li#role-link {
+	margin-right: 5px;
 }
 
 #navbar #right {

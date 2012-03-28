@@ -9,16 +9,20 @@
 </head>
 <body>
 <div id="navbar-container">	
-<div id="navbar">
-	<div id="right">
-		<%= link_to "Logout", logout_path %>
+	<div id="navbar">
+		<div id="right">
+			<%= link_to "Logout", logout_path %>
+		</div>	
+		<div id="logo">
+			<h2>INDIEREEL</h2>
+		</div>
+		<ul>
+			<li id="role-link"><%= current_user.roles[0].name %>:</li>
+			<li><%= link_to "Edit", role_route(current_user.roles[0], "edit") %></li>
+			<li><%= link_to "Portfolio", portfolio_route(current_user.roles[0]) %></li>
+			<li><%= link_to "Projects", projects_route(current_user.roles[0]) %></li>
+		</ul>		
 	</div>
-	<ul>
-		<li><img src="<%= current_user.image %>">
-		<li><%= current_user.name %></li>
-		<li><a href="#">Search</a></li>
-	</ul>			
-</div>
 </div>
 
 <%= yield %>
