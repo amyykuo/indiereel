@@ -1,5 +1,5 @@
 <%= form_tag roles_path do %>
-	<select name="name">
+	<select name="role_type">
 		<% for option in @options do %>
 			<option value="<%= option %>"><%= option %></option>
 		<% end %>

@@ -16,9 +16,9 @@ class RolesController < ApplicationController
   
   
   def create
-    name = params[:name]
+    name = params[:role_type]
     if Role.options.include?(name)
-      role = Role.create(:user => current_user, :name => name)
+      role = Role.create(:user => current_user, :role_type => name)
       if role.nil?
         redirect_to home_route(current_user)
       else
