@@ -2,6 +2,14 @@
     <h1>Welcome to IndieReel, <%= current_user.first_name %>!</h1>
     <h2>Roles</h2>    
     <% if !@roles.empty? %>
+        <%= form_tag user_path(current_user.id) do %>
+	        <select name="role_type">
+		        <% for role in @roles do %>
+			        <option value="<%= role.role_type %>"><%= role.role_type %></option>
+		        <% end %>
+	        </select>
+	        <input type="submit" value="Update Default Role">
+        <% end %>
         <ul>
             <% for role in @roles do %>
                 <li class="role">

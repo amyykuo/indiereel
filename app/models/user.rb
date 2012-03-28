@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :roles, :dependent => :destroy
+  has_one :default_role, :class_name => "Role", :foreign_key => "default_role_id"
 
   def self.create_with_omniauth(auth)
     create do |user|
