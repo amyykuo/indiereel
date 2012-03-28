@@ -17,10 +17,10 @@
 				<ul class="nav">
 					<li><img src="<%= current_user.image %>" height="40" width="40"></li>
 				  <li class="active dropdown">
-				  		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b>&nbsp;<strong><%= (@role.nil? ? current_user.roles[0].name : @role.name).capitalize %>:</strong></a>
+				  		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b>&nbsp;<strong><%= (@role.nil? ? current_user.roles[0].role_type : @role.role_type).capitalize %>:</strong></a>
 						<ul class="dropdown-menu">
 							<% for role in current_user.roles %>
-								<li><%= link_to role.name.capitalize, role_route(role) %></li>
+								<li><%= link_to role.role_type.capitalize, role_route(role) %></li>
 							<% end %>
 						</ul>
 				  </li>
