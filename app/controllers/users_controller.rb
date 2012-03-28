@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find_by_identifier(params[:identifier])
-    @user.default_role = Role.find_by_user_id_and_role_type(@user.id, params[:role_type]) unless params[:role_type].nil? 
-    redirect_to home_root(@user)
+    user = User.find_by_identifier(params[:identifier])
+    user.default_role = Role.find_by_user_id_and_role_type(@user.id, params[:role_type]) unless params[:role_type].nil?
+    user.save 
+    redirect_to home_route(@user)
   end
 end
