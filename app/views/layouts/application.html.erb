@@ -15,16 +15,16 @@
 				<a class="brand" href="#">IndieReel</a>
 				<ul class="nav">
 				  <li class="active dropdown">
-				  		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.roles[0].name %>: <b class="caret"></b></a>
+				  		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @role.nil? ? current_user.roles[0].name : @role.name %>: <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<% for role in current_user.roles %>
 								<li><%= link_to role.name, role_route(role) %></li>
 							<% end %>
 						</ul>
 				  </li>
-				  <li><%= link_to "Edit", role_route(current_user.roles[0], "edit") %></li>
-				  <li><%= link_to "Portfolio", portfolio_route(current_user.roles[0]) %></li>
-				  <li><%= link_to "Projects", projects_route(current_user.roles[0]) %></li>
+				  <li><%= link_to "Edit", role_route((@role.nil? ? current_user.roles[0] : @role), "edit") %></li>
+				  <li><%= link_to "Portfolio", portfolio_route((@role.nil? ? current_user.roles[0] : @role)) %></li>
+				  <li><%= link_to "Projects", projects_route((@role.nil? ? current_user.roles[0] : @role)) %></li>
 				</ul>
 				<ul class="nav pull-right">
 					<li><%= link_to "Logout", logout_path %></li>
