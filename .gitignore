@@ -19,3 +19,6 @@
 
 # Ignore the Schema file
 schema.rb
+
+# Ignore DS_Store
+.DS_Store

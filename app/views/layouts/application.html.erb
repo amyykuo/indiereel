@@ -8,22 +8,30 @@
   <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
 </head>
 <body>
-<div id="navbar-container">	
-	<div id="navbar">
-		<div id="right">
-			<%= link_to "Logout", logout_path %>
-		</div>	
-		<div id="logo">
-			<h2>INDIEREEL</h2>
-		</div>
-		<ul>
-			<li id="role-link"><%= current_user.roles[0].name %>:</li>
-			<li><%= link_to "Edit", role_route(current_user.roles[0], "edit") %></li>
-			<li><%= link_to "Portfolio", portfolio_route(current_user.roles[0]) %></li>
-			<li><%= link_to "Projects", projects_route(current_user.roles[0]) %></li>
-		</ul>		
+	
+	<div class="navbar">
+	    <div class="navbar-inner">
+	      <div class="container">
+				<a class="brand" href="#">IndieReel</a>
+				<ul class="nav">
+				  <li class="active dropdown">
+				  		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.roles[0].name %>: <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<% for role in current_user.roles %>
+								<li><%= link_to role.name, role_route(role) %></li>
+							<% end %>
+						</ul>
+				  </li>
+				  <li><%= link_to "Edit", role_route(current_user.roles[0], "edit") %></li>
+				  <li><%= link_to "Portfolio", portfolio_route(current_user.roles[0]) %></li>
+				  <li><%= link_to "Projects", projects_route(current_user.roles[0]) %></li>
+				</ul>
+				<ul class="nav pull-right">
+					<li><%= link_to "Logout", logout_path %></li>
+				</ul>
+	      </div>
+	    </div>
 	</div>
-</div>
 
 <%= yield %>
 
