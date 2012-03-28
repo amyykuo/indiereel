@@ -27,18 +27,17 @@
 				  <li><%= link_to "Portfolio", portfolio_route((@role.nil? ? current_user.roles[0] : @role)) %></li>
 				  <li><%= link_to "Projects", projects_route((@role.nil? ? current_user.roles[0] : @role)) %></li>
 				<li class="divider-vertical"></li>
+				<li><a href="#">Search for People</a></li>
 				</ul>
 				<ul class="nav pull-right">
 					<li><%= link_to "Logout", logout_path %></li>
 				</ul>
-				<form class="navbar-search pull-left">
-				  <input type="text" class="search-query span3" placeholder="Search for users">
-				</form>
 	      </div>
 	    </div>
 	</div>
-
+<div class="container">
 <%= yield %>
+</div>
 
 </body>
 </html>
