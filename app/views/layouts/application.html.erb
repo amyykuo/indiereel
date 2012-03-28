@@ -13,7 +13,7 @@
 	<div class="navbar navbar-fixed-top">
 	    <div class="navbar-inner">
 	      <div class="container">
-				<a class="brand" href="#">IndieReel</a>
+				<%= link_to "IndieReel", home_route(current_user), :class => "brand"%>
 				<ul class="nav">
 					<li><img src="<%= current_user.image %>" height="40" width="40"></li>
 				  <li class="active dropdown">
