@@ -13,16 +13,15 @@
         <ul>
             <% for role in @roles do %>
                 <li class="role">
-                  <%= link_to "#{role.role_type}", role_route(role) %>
-                  <%= link_to "#{role.role_name}", role_route(role) %>
-                  <%= link_to image_tag("#{role.profile_pic}"), role_route(role) %> <!-- enlarge instead of redirecting -->
+                  <%= link_to "#{role.role_type}: #{role.role_name}", role_route(role) %>
+                  <%= link_to image_tag("default_role_pic.jpg"), role_route(role) %> <!-- enlarge instead of redirecting -->
                   <%= link_to "Edit", role_route(role, "edit") %>
                   <%= link_to "Projects", projects_route(role) %>
                   <%= link_to "Portfolio", portfolio_route(role) %>
                 </li>
             <% end %>
-            <li><%= link_to "Add a role", new_role_path %></li>
         </ul>
+        <%= link_to "Add a role", new_role_path %>
     <% else %>
         <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
     <% end %>
