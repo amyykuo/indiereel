@@ -8,7 +8,7 @@
                   <%= link_to "#{role.role_type}", role_route(role) %>
                   <%= link_to "#{role.role_name}", role_route(role) %>
                   <%= link_to image_tag("#{role.profile_pic}"), role_route(role) %> <!-- enlarge instead of redirecting -->
-                  <%= link_to "Edit", role_route(role, edit) %>
+                  <%= link_to "Edit", role_route(role, "edit") %>
                   <%= link_to "Projects", projects_route(role) %>
                   <%= link_to "Portfolio", portfolio_route(role) %>
                 </li>
