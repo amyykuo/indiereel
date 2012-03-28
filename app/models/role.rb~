@@ -8,10 +8,16 @@ class Role < ActiveRecord::Base
   belongs_to :user
   validates_with RoleValidator
   
+  before_create :set_profile_pic_to_default_pic
+  
   
   def self.options
     ['Talent', 'Director', 'Producer', 'Crew']
   end
   
+  #TODO - specify a default profile picture
+  def set_profile_pic_to_default_pic
+    self.profile_pic = "path to default role pic"
+  end
   
 end
