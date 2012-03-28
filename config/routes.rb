@@ -9,6 +9,7 @@ Indiereel::Application.routes.draw do
   match "/logout" => "sessions#destroy", :as => 'logout'
 
   resources :roles
+  resources :users
 
   # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects"
