@@ -3,15 +3,14 @@ class RolesController < ApplicationController
   def show
     @user = User.find_by_identifier(params[:identifier])
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
-    if @role.nil?
-      render_not_found
-    end
+    render_not_found if @role.nil?
   end
   
   
   def new
     @user = User.find_by_identifier(params[:identifier])
     @options = Role.options
+    render_not_found if @user.nil?
   end
   
   
