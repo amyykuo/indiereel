@@ -88,13 +88,28 @@ describe RolesController do
   end
   
   describe 'destroy' do
-    it 'should set role'
-    'after each one, it should redirect to home_route of current_user'
+    
     describe 'if you are the user of the role profile' do
-      it 'should delete the role by calling the Role model method destroy'
+      it 'should delete the role by calling the Role model method destroy' do
+        Role.should_receive(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil))
+        @role.should_receive(:destroy)
+        post :destroy, {:id => 1}
+      end
     end
+    
     describe 'if you are not the user of the role profile' do
-      it 'should flash error _You cannot delete this role._'
+      it 'should flash error _You cannot delete this role._' do
+        Role.should_receive(:find).and_return(@role = mock("Role", :user => mock("User", :identifier => "homie"), :destroy => nil))
+        @role.should_not_receive(:destroy)
+        post :destroy, {:id => 1}
+        flash[:error].should == "You cannot delete this role."
+      end
+    end
+    
+    it 'should redirect to the home route of the current user' do
+      Role.should_receive(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil))
+      post :destroy, {:id => 1}
+      response.should redirect_to home_path(@current_user.identifier)
     end
   end
   
