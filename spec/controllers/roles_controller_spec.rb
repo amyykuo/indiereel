@@ -1,61 +1,67 @@
 require 'spec_helper'
 
 describe RolesController do
-  describe 'create new role' do
+  describe 'show' do
+    #it 'should set @user and @role'
     
-    before :each do 
-      @fake_role = mock('Role', :name => 'actor')
-    end
-    
-    describe 'a role was selected to be created' do
-      it 'should call the model method that creates a new role' do
-        Role.stub(:find_by_user_id).and_return(mock('Role', :name => 'director'))
-        Role.should_receive(:create).with('actor').and_return(@fake_role)
-      end
-    end
-    
-    describe 'a role was selected and created successfuly' do
-      before :each do
-        Role.stub(:find_by_user_id).and_return(mock('Role', :name => 'director'))
-        Role.stub(:create).with('actor').and_return(@fake_role)
-        get :edit_role
-      end
-      
-      it 'should select the Edit Role template for rendering' do
-        response.should render_template('edit_role')
-      end
-    end
-    
-    describe 'a role was selected and but already exists' do
-      before :each do
-        Role.stub(:find_by_user_id).and_return(mock('Role', :name => 'director'))
-        Role.stub(:create).with('director')
-      end
-      
-      it 'should select a role that already exists and return nil because no new role was created' do
-        assigns(:create).should == nil
-      end
-      
-      it 'should redirect to the home page' do
-        response.should redirect_to home_page
-      end     
-    end
-  end
-  
-  describe 'edit current role' do
     before :each do
-      Role.stub(:find_by_user_id).and_return(mock('Role', :name => 'director'))
+      @user = mock("User", :id => 1)
+      @role = mock("Role")
+      #User.stub!(:find_by_identifier).with("dude").and_return(@user = mock("User", :id => 1))
+      #Role.stub!(:find_by_role_type_and_user_id).with("talent", 1).and_return(@role = mock("Role"))
     end
     
-    
-    it 'should call the model method that saves the new information' do
-      Role.should_receive(:update)
+    describe 'if @role is nil' do
+      it 'should render public/404' do
+        User.should_receive(:find_by_identifier).with("dude").and_return(@user)
+        Role.should_receive(:find_by_role_type_and_user_id).with("dancer", 1).and_return(nil)
+        get :show, {:identifier => "dude", :role => "dancer"}
+        #response.should render_template('public/404')
+      end
     end
-    
-    it 'should produce the flash message saying edit was successful' do
-      flash[:notice].should == "'director' updated successfully"
+    describe 'if @role is not nil' do
+      it 'should render show' do
+        User.should_receive(:find_by_identifier).with("dude").and_return(@user)
+        Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(@role)
+        get :show, {:identifier => "dude", :role => "dancer"}
+        #response.should render_template("show")
+      end
     end
   end
   
+  describe 'new' do
+    it 'should set @user and @options'
+  end
+  
+  describe 'create new role' do
+    it 'should set name to the parameter role_type'
+    describe 'if role_type (aka name) is one of the options' do
+      it 'should create role'
+      describe 'if role is nil' do
+        it 'should redirect to home_route of current user'
+      end
+      describe 'if role is not nil' do
+        it 'should redirect to the role_route of the newly created role'
+      end
+    end
+    describe 'if role_type (aka name) is not one of the options' do
+      it 'should have a flash error _You cannot create that role type_ and redirects to home_route of that user'
+    end
+  end
+  
+  describe 'edit role' do
+    # We are not testing this yet... We need to figure out how we are going to edit the role first
+  end
+  
+  describe 'destroy' do
+    it 'should set role'
+    'after each one, it should redirect to home_route of current_user'
+    describe 'if you are the user of the role profile' do
+      it 'should delete the role by calling the Role model method destroy'
+    end
+    describe 'if you are not the user of the role profile' do
+      it 'should flash error _You cannot delete this role._'
+    end
+  end
   
 end
