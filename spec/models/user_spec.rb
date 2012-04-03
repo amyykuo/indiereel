@@ -70,5 +70,32 @@ describe User do
   
   # These will be basically the same as the above
   describe 'updating a user' do
+    params = {"uid" => "1234", 
+      "info" => {"nickname" => "kbreezy", "name" => "Kunal Mehta", "first_name" => "Kunal", "last_name" => "Mehta", "email" => "kunal@lol.com", "image" => "http://lol.com/kunal.png"}, 
+      "extra" => {"raw_info" => {"timezone" => -7, "gender" => "male"}},
+      "credentials" => {"token" => "hi_i'm_a_token_lol_sup"}}
+    
+    params2 = {"uid" => "12341", 
+      "info" => {"nickname" => "kbreezy1", "name" => "Kunal1 Mehta1", "first_name" => "Kunal1", "last_name" => "Mehta1", "email" => "kunal@lol.com1", "image" => "http://lol.com/kunal.png1"}, 
+      "extra" => {"raw_info" => {"timezone" => -71, "gender" => "male1"}},
+      "credentials" => {"token" => "hi_i'm_a_token_lol_sup1"}}
+    
+    it 'should successfully update information if the parameters differ from the time of creation' do
+      @user1 = User.create_with_omniauth(params)
+      @user1.update_with_omniauth(params2)
+      @user1.should_not == nil
+      @user1.uid.should == "1234"
+      @user1.username.should == "kbreezy1"
+      @user1.name.should == "Kunal1 Mehta1"
+      @user1.first_name.should == "Kunal1"
+      @user1.last_name.should == "Mehta1"
+      @user1.email.should == "kunal@lol.com1"
+      @user1.image.should == "http://lol.com/kunal.png1"
+      @user1.gender.should == "male1"
+      @user1.timezone.should == -71
+      @user1.access_token.should == "hi_i'm_a_token_lol_sup1"
+      
+    end
+  
   end
 end
