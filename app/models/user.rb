@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
       user.email = auth["info"]["email"]
       user.gender = auth["extra"]["raw_info"]["gender"]
       user.image = auth["info"]["image"] rescue nil
+      user.identifier = user.username || user.uid
     end
   end
 
@@ -29,14 +30,7 @@ class User < ActiveRecord::Base
     self.email = auth["info"]["email"]
     self.gender = auth["extra"]["raw_info"]["gender"]
     self.image = auth["info"]["image"] rescue nil
+    self.identifier = self.username || self.uid
     self.save!
-  end
-
-  def identifier
-    self.username || self.uid
-  end
-
-  def self.find_by_identifier(identifier)
-    User.find_by_username(identifier) || User.find_by_uid(identifier)
   end
 end

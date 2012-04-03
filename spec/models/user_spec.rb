@@ -66,7 +66,13 @@ describe User do
       
       User.create_with_omniauth(newish_params).should == nil
     end
-    
+  end
+  
+  # These will be basically the same as the above
+  describe 'updating a user' do
+  end
+  
+  describe 'identifiers' do
     it 'should return the username as an identifier if it has one, or the uid otherwise' do
       @kunal = User.create_with_omniauth(params)
       @kunal.identifier.should == "kbreezy"
@@ -74,11 +80,6 @@ describe User do
       @kunal.save
       @kunal.identifier.should == "1234"
     end
-    
-  end
-  
-  # These will be basically the same as the above
-  describe 'updating a user' do
   end
   
 end
