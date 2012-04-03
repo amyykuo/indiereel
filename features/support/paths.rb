@@ -21,6 +21,9 @@ module NavigationHelpers
       
     when /^"([^"]*)" Edit Role page$/
       '/'
+      
+    when /^the "([^"]*)" Edit Role Profile page for the "([^"]*)" role$/ #edit role page
+      '/$1/$2/edit'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
