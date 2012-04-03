@@ -44,7 +44,7 @@ describe User do
     # TODO - fill in the rest of the shit
     it 'should fail to create a user if any other fields are left as nil' do
       # name
-      no_name = duplicate(params)["info"]
+      no_name = duplicate(params)
       no_name["info"].delete("name")
       User.create_with_omniauth(no_name).should == nil 
     end

@@ -6,13 +6,13 @@ Feature: Edit Role Profile page
 
 Background:
 
-  Given that I am on the Edit Role Profile page for the Director role 
+  Given I am on the "cookie" Edit Role Profile page for the "director" role 
   And I have a RottenPotatoes project
   And my name is "Cookie"
   And my description is "I eat cookies like a monster in blue paint"
   
 Scenario: Editing basic information successfully - change name
-  When I type "My name is now pie" in the Name text box
+  When I fill in "Name" with "My name is now pie"
   And I select Save Changes
   Then I should be on the Edit Role page
   And I should see "Updated successfully"
