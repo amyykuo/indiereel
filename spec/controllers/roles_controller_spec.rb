@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RolesController do
   describe 'show' do
     #it 'should set @user and @role'
-    
+=begin    
     before :each do
       @user = mock("User", :id => 1)
       @role = mock("Role")
@@ -27,6 +27,7 @@ describe RolesController do
         #response.should render_template("show")
       end
     end
+=end
   end
   
   describe 'new' do
