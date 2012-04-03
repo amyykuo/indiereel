@@ -3,12 +3,12 @@ require 'spec_helper'
 describe RolesController do
   describe 'show' do
     #it 'should set @user and @role'
-=begin    
+   
     before :each do
       @user = mock("User", :id => 1)
       @role = mock("Role")
-      #User.stub!(:find_by_identifier).with("dude").and_return(@user = mock("User", :id => 1))
-      #Role.stub!(:find_by_role_type_and_user_id).with("talent", 1).and_return(@role = mock("Role"))
+      User.stub(:find_by_uid).with("123").and_return(mock("User"))
+      session[:user_id] = "123"
     end
     
     describe 'if @role is nil' do
@@ -16,18 +16,18 @@ describe RolesController do
         User.should_receive(:find_by_identifier).with("dude").and_return(@user)
         Role.should_receive(:find_by_role_type_and_user_id).with("dancer", 1).and_return(nil)
         get :show, {:identifier => "dude", :role => "dancer"}
-        #response.should render_template('public/404')
+        response.response_code.should == 404
       end
     end
     describe 'if @role is not nil' do
       it 'should render show' do
         User.should_receive(:find_by_identifier).with("dude").and_return(@user)
         Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(@role)
-        get :show, {:identifier => "dude", :role => "dancer"}
-        #response.should render_template("show")
+        get :show, {:identifier => "dude", :role => "talent"}
+        response.should render_template("show")
       end
     end
-=end
+
   end
   
   describe 'new' do
