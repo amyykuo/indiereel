@@ -19,11 +19,6 @@ class RolesController < ApplicationController
     if Role.options.include?(name)
       role = Role.create(:user => current_user, :role_type => name)
       redirect_to (role.valid? ? role_route(role) : home_route(current_user))
-      #if role.nil?
-      #  redirect_to home_route(current_user)
-      #else
-      #  redirect_to role_route(role)
-      #end
     else
       flash[:error] = "You cannot create that role type."
       redirect_to home_route(current_user)
