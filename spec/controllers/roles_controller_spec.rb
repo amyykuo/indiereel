@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RolesController do
   
   before :each do
-    login_as("Kunal")
+    @current_user = login_as("Kunal")
   end
   
   describe 'show' do
@@ -50,18 +50,36 @@ describe RolesController do
   end
   
   describe 'create new role' do
-    it 'should set name to the parameter role_type'
+    
+    before :each do
+      Role.stub!(:options).and_return(["talent"])
+    end
+    
     describe 'if role_type (aka name) is one of the options' do
-      it 'should create role'
-      describe 'if role is nil' do
-        it 'should redirect to home_route of current user'
+      
+      describe 'if role is invalid' do
+        it 'should redirect to home_route of current user' do
+          Role.should_receive(:create).and_return(mock("Role", :valid? => false, :user => @current_user, :role_type => "talent"))
+          post :create, {:role_type => "talent"}
+          response.should redirect_to home_path(@current_user.identifier)
+        end
       end
-      describe 'if role is not nil' do
-        it 'should redirect to the role_route of the newly created role'
+      
+      describe 'if role is valid' do
+        it 'should redirect to the role_route of the newly created role' do
+          Role.should_receive(:create).and_return(mock("Role", :valid? => true, :user => @current_user, :role_type => "talent"))
+          post :create, {:role_type => "talent"}
+          response.should redirect_to role_path(@current_user.identifier, "talent")
+        end
       end
     end
+    
     describe 'if role_type (aka name) is not one of the options' do
-      it 'should have a flash error _You cannot create that role type_ and redirects to home_route of that user'
+      it 'should have a flash error _You cannot create that role type_ and redirects to home_route of that user' do
+        post :create, {:role_type => "dancer"}
+        flash[:error].should == "You cannot create that role type."
+        response.should redirect_to home_path(@current_user.identifier)
+      end
     end
   end
   
