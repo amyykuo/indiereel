@@ -31,7 +31,15 @@ describe RolesController do
   end
   
   describe 'new' do
-    it 'should set @user and @options'
+=begin
+    it 'should set @user and @options' do
+      User.stub!(:find_by_identifier).with("dude").and_return(user = mock("User"))
+      
+      assigns(:user).should eq(user)
+      assigns(:options).should eq(Role.options)
+      get :new
+    end
+=end
   end
   
   describe 'create new role' do
