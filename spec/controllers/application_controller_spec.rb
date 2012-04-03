@@ -22,16 +22,16 @@ describe ApplicationController do
   # we're assuming authenticated_user is called in every controller appropiately
   describe 'authenticate user / make sure there is a user is logged in' do
     describe 'current_user is nil' do
-      it 'should redirect to the welcome page' do
-        session[:user_id] = nil
-        controller.send(:authentication_required).should redirect_to root_url
-      end
+      #it 'should redirect to the welcome page' do
+      #  session[:user_id] = nil
+      #  controller.send(:authentication_required).should redirect_to root_url
+      #end
     end
     describe 'current_user is not nil' do
-      it 'should do nothing'
-      #  session[:user_id] = nil
-      #  controller.send(:authentication_required)
-      #  response.should redirect_to root_url
+      #it 'should redirect to the user\'s home page'
+      #  User.stub!(:find_by_uid).with("1234").and_return(@user = mock("User"))
+      #  session[:user_id] = "1234"
+      #  get 
         
     end
   end
@@ -55,10 +55,35 @@ describe ApplicationController do
   end
   
   describe 'portfolio_route' do
+    describe 'no action' do
+      it 'should return the role portfolio uri' do
+        controller.send(:portfolio_route, @role).should == "/amy/talent/portfolio"
+      end
+    end
+    describe 'edit action' do
+      it 'should return the edit role portfolio uri' do
+        controller.send(:portfolio_route, @role, "edit").should == "/amy/talent/portfolio/edit"
+      end
+    end
   end
+  
   describe 'projects_route' do
+    describe 'no action' do
+      it 'should return the role project uri' do
+        controller.send(:projects_route, @role).should == "/amy/talent/projects"
+      end
+    end
+    describe 'edit action' do
+      it 'should return the edit role profile uri' do
+        controller.send(:projects_route, @role, "edit").should == "/amy/talent/projects/edit"
+      end
+    end
   end
+  
   describe 'home_route' do
+    it 'should return the role project uri' do
+      controller.send(:home_route, @user).should == "/amy"
+    end
   end
 
 end
