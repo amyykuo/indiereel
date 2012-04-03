@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 
   has_many :roles, :dependent => :destroy
   has_one :default_role, :class_name => "Role", :foreign_key => "default_role_id"
+  validates :name, :presence => true, :length => { :maximum => 50 }
+  validates :uid, :uniqueness => true
+  validates :username, :uniqueness => true
 
   def self.create_with_omniauth(auth)
     create do |user|

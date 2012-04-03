@@ -46,7 +46,11 @@ describe User do
       # name
       no_name = duplicate(params)
       no_name["info"].delete("name")
-      User.create_with_omniauth(no_name).should == nil 
+      #User.create_with_omniauth(no_name).should == nil 
+      
+      no_name_user = User.create_with_omniauth(no_name)#params.merge(:name => nil))
+      no_name_user.should_not be_valid
+    
     end
     
     it 'should fail to create a user if uid is not unique' do
@@ -55,7 +59,10 @@ describe User do
       newish_params = duplicate(params)
       newish_params["info"]["nickname"] = "somethingelse"
       
-      User.create_with_omniauth(newish_params).should == nil
+      same_id_user = User.create_with_omniauth(newish_params)     
+      same_id_user.should_not be_valid     
+      
+
     end
     
     it 'should fail to create a user if username is not unique' do
@@ -64,7 +71,8 @@ describe User do
       newish_params = duplicate(params)
       newish_params["uid"] = "somethingelse"
       
-      User.create_with_omniauth(newish_params).should == nil
+      same_username_user = User.create_with_omniauth(newish_params)
+      same_username_user.should_not be_valid            
     end
   end
   
