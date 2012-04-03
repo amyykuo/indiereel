@@ -6,7 +6,7 @@ Feature: Add a role profile
 
 Background:
 
-  Given that I am on "Helen" home page
+  Given I am on the "amyykuo" home page
   And I have a director role profile
   And I have an actor role profile
   And my name is "Helen"
