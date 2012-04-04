@@ -27,7 +27,7 @@
 			</ul>
 		</div>
 		
-        <%= link_to "Add a role", new_role_path %>
+        <%= link_to "Add a role", new_role_path, :id => :add_role %>
     <% else %>
         <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
     <% end %>

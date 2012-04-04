@@ -6,27 +6,28 @@ Feature: Add a role profile
 
 Background:
 
-  Given I am on my "amyykuo" home page
+  Given I am signed in with provider "facebook"
+  And I am on my "tester" home page
+  And I should see "Add a Role"
 #  And I have a director role profile
 #  And I have an actor role profile
 
 # not implemented (does not guarantee it works)
-  
+
 Scenario: Adding a Producer role successfully
 #  need to put a table
-#  When I click on the New Profile button
+  When I follow "Add a Role"
   Then I should be on the Create Role Page
 #  When I click on the Role dropdown button
 #  And I should see "producer"
 #  But I should not see "actor"
 #  And I click on the producer option  
-#  And I put "HelenBoss" in the name text box
   And I click on "submit"
   Then I should be on my "amyykuo talent" profile page
 
 Scenario: Trying to create a Role Profile with no role type selected
 #  need to put a table
-#  When I click on the New Profile button
+  When I press "Add a Role"
   Then I should be on the Create Role Page
 #  When I do not select a role
   And I click on "submit"
@@ -76,13 +77,3 @@ Scenario: On the Create Role Page, input data, and cancel
 #  And I should not see "whatever role I selected"
   
 
-# don't need this?  
-#Scenario: Try creating a role profile without filling out the name text field
-#  When I click on the New Profile button
-#  Then I should be on the Create Role Page
-#  When I click on the Role dropdown button
-#  And I click on the crew option
-#  And I click on "submit"
-#  Then I should be on the Create Role Page
-#  And I should see "need to fill out the name field"
-  
