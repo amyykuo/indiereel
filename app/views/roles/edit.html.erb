@@ -1,2 +1,38 @@
+<p>
 lol you can't edit your <%= @role.role_type %> role yet!
 <img src="http://i.imgur.com/0xGUt.gif">
+</p>
+<p>
+<%= form_for(:picture, 
+             :url => {:action => 'save'}, 
+             :html => { :multipart => true }) do |form| %>
+  
+
+     Upload your picture: <%= form.file_field("uploaded_picture") %><br/>
+  
+     <%= submit_tag("Upload file") %>
+<% end %>
+</p>
+<%= form_for(@user) do |f| %>
+
+  <div class="field">
+    <%= f.label "Stage Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label "Contact" %><br />
+    <%= f.text_field :email %>
+  </div>
+    <div class="field">
+    <%= f.label "Role Type Description" %><br />
+    <input type="text" name="Role Type Description" />
+  </div>
+  
+<% end %>
+<%= form_tag roles_path do %>
+	<select name="age_range">
+		<% for age in @ages do %>
+			<option value="<%= age %>"><%= age %></age>
+		<% end %>
+	</select>
+<% end %>

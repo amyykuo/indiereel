@@ -13,5 +13,8 @@ class Role < ActiveRecord::Base
     ['Talent', 'Director', 'Producer', 'Crew']
   end
   
+  def self.ages
+    ['0-7', '8-15', '16-23', '24-31', '32-39', '40-47', '48-55', '55+']
+  end
   
 end

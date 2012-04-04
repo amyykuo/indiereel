@@ -40,6 +40,7 @@ class RolesController < ApplicationController
   def edit
     @user = User.find_by_identifier(params[:identifier])
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
+    @ages = Role.ages
     if @role.nil?
       render 'public/404'
     end
