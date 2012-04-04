@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   before_filter :authentication_required
+  
+  def render_not_found
+    render 'public/404', :status => 404
+  end
 
   private
 
