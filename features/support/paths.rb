@@ -13,17 +13,22 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the "([^"]*)" home\s?page$/ # user's home page
+    when /^my "([^"]*)" home\s?page$/ # user's home page
       home_path($1)
       
     when /^the welcome page$/
       '/' # need to change this eventually
       
-    when /^"([^"]*)" Edit Role page$/
-      '/'
-      
     when /^the "([^"]*)" Edit Role Profile page for the "([^"]*)" role$/ #edit role page
       '/$1/$2/edit'
+      
+    when /^the Create Role Page/
+      '/role/new'
+      
+    when /^my "([^"]*)" profile page/
+      user = $1.split[0]
+      role = $1.split[1]
+      '/#{user}/#{role}'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
