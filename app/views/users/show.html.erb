@@ -10,21 +10,28 @@
 	        </select>
 	        <input type="submit" value="Update Default Role">
         <% end %>-->
-        <ul>
-            <% for role in @roles do %>
-                <li class="role">
-                  <%= link_to "#{role.role_type}: #{role.role_name}", role_route(role) %><br />
-                  <%= link_to image_tag("default_role_pic.jpg"), role_route(role) %> <!-- enlarge instead of redirecting -->
-                  <%= link_to "Edit", role_route(role, "edit") %><br />
-                  <%= link_to "Projects", projects_route(role) %><br />
-                  <%= link_to "Portfolio", portfolio_route(role) %><br />
-                </li>
-            <% end %>
-        </ul>
+		<div class="container-fluid">
+			<ul>
+				<% for role in @roles do %>
+					<div class="row-fluid">
+						<li class="role">
+							<!-- need to tag image so that it is on the left and all the text is on the right -->
+							<%= link_to image_tag("default_role_pic.jpg"), role_route(role) %><br />
+							<%= link_to "#{role.role_type}: #{role.role_name}", role_route(role) %><br />
+							<%= link_to "Edit", role_route(role, "edit") %><br />
+							<%= link_to "Projects", projects_route(role) %><br />
+							<%= link_to "Portfolio", portfolio_route(role) %><br />
+						</li>
+					</div>
+				<% end %>
+			</ul>
+		</div>
+		
         <%= link_to "Add a role", new_role_path %>
     <% else %>
         <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
     <% end %>
 <% else %>
     <h1>You're on <%= @user.name %>'s Profile!</h1>
+	<!-- link to default profile here, or if there's a parameter to a specific profile, do that instead -->
 <% end %>
