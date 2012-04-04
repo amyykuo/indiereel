@@ -16,11 +16,12 @@
 					<div class="row-fluid">
 						<li class="role">
 							<!-- need to tag image so that it is on the left and all the text is on the right -->
-							<%= link_to image_tag("default_role_pic.jpg"), role_route(role) %><br />
-							<%= link_to "#{role.role_type}: #{role.role_name}", role_route(role) %><br />
-							<%= link_to "Edit", role_route(role, "edit") %><br />
-							<%= link_to "Projects", projects_route(role) %><br />
-							<%= link_to "Portfolio", portfolio_route(role) %><br />
+							<!-- <%= link_to image_tag("default_role_pic.jpg", {:class => "pull-left"}), role_route(role) %><br /> -->
+							<%= link_to image_tag("#{role.default_pic}", {:class => "pull-left"}), role_route(role) %><br />
+							<%= link_to "#{role.role_type}: #{role.role_name}", role_route(role), {:class => "pull-right"} %><br />
+							<%= link_to "Edit", role_route(role, "edit"), {:class => "pull-right"} %><br />
+							<%= link_to "Projects", projects_route(role), {:class => "pull-right"} %><br />
+							<%= link_to "Portfolio", portfolio_route(role), {:class => "pull-right"} %><br />
 						</li>
 					</div>
 				<% end %>
