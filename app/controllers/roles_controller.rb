@@ -19,15 +19,15 @@ class RolesController < ApplicationController
   
   
   def create
-    #name = params[:role_type]
-    #if Role.options.include?(name)
-      #role = Role.create(:user => current_user, :role_type => name)
-      role = Role.create(params[:role])
-      redirect_to (role.valid? ? role_route(role) : home_route(current_user))
-    #else
-    #  flash[:error] = "You cannot create that role type."
-    #  redirect_to home_route(current_user)
-    #end
+    role = Role.create(params[:role])
+    if role.valid?
+      role.media_collections << MediaCollection.create_default
+      role.save
+      redirect_to role_route(role)
+    else
+      # TODO add validation error messages
+      redirect_to home_route(current_user)
+    end
   end
   
   

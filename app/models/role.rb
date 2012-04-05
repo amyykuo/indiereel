@@ -6,6 +6,7 @@ end
 
 class Role < ActiveRecord::Base
   belongs_to :user
+  has_many :media_collections, :dependent => :destroy
   #validates_with RoleValidator
   
   
