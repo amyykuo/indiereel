@@ -32,6 +32,7 @@ describe RolesController do
     end
   end
   
+  # TODO Update new
   describe 'new' do
     
     it 'should render a 404 if user does not exist' do
@@ -49,6 +50,7 @@ describe RolesController do
     end
   end
   
+  # TODO Update create
   describe 'create new role' do
     
     before :each do
@@ -82,11 +84,13 @@ describe RolesController do
       end
     end
   end
-  
+
+  # TODO Update edit
   describe 'edit role' do
     # We are not testing this yet... We need to figure out how we are going to edit the role first
   end
   
+  # TODO Update destroy
   describe 'destroy' do
     
     describe 'if you are the user of the role profile' do
