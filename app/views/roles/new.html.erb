@@ -4,6 +4,19 @@
 			<option value="<%= option %>"><%= option %></option>
 		<% end %>
 	</select>
+	<%= label_tag :role_name, "Stage Name: " %> <br />
+	<%= text_field_tag :role_name, :placeholder=>"Enter your Role Stage Name" %>
+	<%= label_tag :role_type_description, "Role Description: " %> <br />
+	<%= text_field_tag :role_type_description, :placeholder=>"What exactly do you do?" %>
+	<%= label_tag :email, "Email: " %>  <br />
+	<%= text_field_tag :email, :placeholder=>"Enter your email" %>
+	<%= label_tag :phone_number, "Phone Number: " %> <br />
+	<%= text_field_tag :phone_number, :placeholder=>"Enter your number" %>
+	<%= label_tag :role_experience, "Experience: " %> <br />
+	<%= text_field_tag :role_experience, :placeholder=>"Describe your experience in this role" %>
+	<%= label_tag :role_skills, "Skills: " %> <br />
+	<%= text_field_tag :role_skills, :placeholder=>"What are your skills?" %>
+	
 	<input type="submit" value="Create role.">
 <% end %>
 <%= link_to "Cancel", home_path(@user.username) %>
