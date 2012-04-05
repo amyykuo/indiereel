@@ -9,6 +9,7 @@ class RolesController < ApplicationController
   
   def new
     @user = User.find_by_identifier(current_user.identifier)
+    @ages = Role.ages
     @options = []
     for option in Role.options do
       @options << option unless Role.find_by_role_type_and_user_id(option, @user.id) != nil
@@ -18,14 +19,15 @@ class RolesController < ApplicationController
   
   
   def create
-    name = params[:role_type]
-    if Role.options.include?(name)
-      role = Role.create(:user => current_user, :role_type => name)
+    #name = params[:role_type]
+    #if Role.options.include?(name)
+      #role = Role.create(:user => current_user, :role_type => name)
+      role = Role.create(params[:role])
       redirect_to (role.valid? ? role_route(role) : home_route(current_user))
-    else
-      flash[:error] = "You cannot create that role type."
-      redirect_to home_route(current_user)
-    end
+    #else
+    #  flash[:error] = "You cannot create that role type."
+    #  redirect_to home_route(current_user)
+    #end
   end
   
   
