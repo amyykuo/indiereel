@@ -33,19 +33,11 @@ describe RolesController do
   end
   
   # TODO Update new
-  describe 'new' do
-    
-    it 'should render a 404 if user does not exist' do
-      User.should_receive(:find_by_identifier).with("dude").and_return(nil)
-      Role.should_receive(:options).and_return(["talent"])
-      get :new, {:identifier => "dude"}
-      response.response_code.should == 404
-    end
-    
+  describe 'new' do       
     it 'should set @user and @options' do
-      User.should_receive(:find_by_identifier).with("dude").and_return(user = mock("User"))
+      User.should_receive(:find_by_identifier).with("kunal").and_return(user = mock("User"))
       Role.should_receive(:options).and_return(["talent"])
-      get :new, {:identifier => "dude"}
+      get :new
       response.should render_template("new")
     end
   end
