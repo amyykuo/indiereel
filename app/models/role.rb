@@ -6,7 +6,7 @@ end
 
 class Role < ActiveRecord::Base
   belongs_to :user
-  validates_with RoleValidator
+  #validates_with RoleValidator
   
   
   def self.options
