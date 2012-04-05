@@ -10,7 +10,7 @@ class Role < ActiveRecord::Base
   
   
   def self.options
-    ['Talent', 'Director', 'Producer', 'Crew']
+    ['talent', 'director', 'producer', 'crew']
   end
   
   def self.ages
