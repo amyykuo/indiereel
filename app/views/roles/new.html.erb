@@ -23,6 +23,8 @@
 	<%= text_field_tag "role[role_experience]", nil, :placeholder=>"Describe your experience in this role" %>
 	<%= label_tag :role_skills, "Skills: " %>
 	<%= text_field_tag "role[role_skills]", nil, :placeholder=>"What are your skills?" %>
+	<%= label_tag :physique, "Physique: " %>
+	<%= text_field_tag "role[physique]", nil, :placeholder=>"Are you my brown eyed girl?" %>
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	<input type="submit" value="Create role.">
 <% end %>
