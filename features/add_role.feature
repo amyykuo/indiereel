@@ -7,7 +7,10 @@ Feature: Add a role profile
 Background:
 
 #  Given I am on the welcome page
-  Given I am signed in with provider "facebook"
+  #Then I debug
+  #Given I am signed in with provider "facebook"
+  #Then what
+  #Then I debug
 #  And I am on my "tester" home page
 #  And I should see "Add a Role"
 #  And I have a director role profile
@@ -17,8 +20,11 @@ Background:
 
 Scenario: Adding a Producer role successfully
 #  need to put a table
-  When I am on my "tester" home page
+  Given I am signed in with provider "facebook"
+#  When I am on my "tester" home page
+  Then I debug
   And I should see "Add a Role"
+  #Then I debug
   When I follow "Add a Role"
   Then I should be on the Create Role Page
 #  When I click on the Role dropdown button

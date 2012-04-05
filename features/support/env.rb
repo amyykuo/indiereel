@@ -60,6 +60,10 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+# debugger
+require 'ruby-debug'
+#require 'cucumber_rails_debug/steps'
+
 # Test login/out and such for Cucumber
 
 OmniAuth.config.test_mode = true
