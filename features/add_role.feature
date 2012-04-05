@@ -6,8 +6,8 @@ Feature: Add a role profile
 
 Background:
 
-  Given I am on the welcome page
-  And I am signed in with provider "facebook"
+#  Given I am on the welcome page
+  Given I am signed in with provider "facebook"
 #  And I am on my "tester" home page
 #  And I should see "Add a Role"
 #  And I have a director role profile

@@ -61,20 +61,26 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 # Test login/out and such for Cucumber
+
 OmniAuth.config.test_mode = true
 OmniAuth.config.add_mock(:facebook, {
       "provider"=>"facebook",
-      #"uid"=>"http://xxxx.com/openid?id=118181138998978630963",
       "uid"=>"12345",
-      "user_info"=>{
-        "username"=>"tester", 
+      "info"=>{
+        "nickname"=>"tester", 
         "name"=>"Test User", 
         "first_name"=>"Test", 
         "last_name"=>"User", 
-        "timezone"=>"0",
-        "access_token"=>"token",
         "email"=>"test@xxxx.com",
-        "gender"=>"neutral",
         "image"=>"http://hi.com/user.png"
+      },
+      "extra" => {
+        "raw_info" => {
+          "timezone" => 0,
+          "gender" => "male"
+        }
+      },
+      "credentials" => {
+        "token" => "token12345"
       }  
 })
