@@ -69,7 +69,7 @@ describe RolesController do
         it 'should redirect to the role_route of the newly created role' do
           Role.should_receive(:create).and_return(mock("Role", :valid? => true, :user => @current_user, :role_type => "talent"))
           post :create, {:role_type => "talent"}
-          response.should redirect_to role_path(@current_user.identifier, "talent")
+          response.should redirect_to custom_role_path(@current_user.identifier, "talent")
         end
       end
     end
