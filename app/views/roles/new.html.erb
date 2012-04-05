@@ -6,11 +6,11 @@
 		<% end %>
 	</select>
 	<%= label_tag :role_name, "Stage Name: " %>
-	<%= text_field_tag "role[role_name]", nil, :placeholder=>"Enter your Role Stage Name" %>
+	<%= text_field_tag "role[role_name]", @user.name, :placeholder=>"Enter your Role Stage Name" %>
 	<%= label_tag :role_type_description, "Role Description: " %>
 	<%= text_field_tag "role[role_type_description]", nil, :placeholder=>"What exactly do you do?" %>
 	<%= label_tag :email, "Email: " %>
-	<%= text_field_tag "role[email]", nil, :placeholder=>"Enter your email" %>
+	<%= text_field_tag "role[email]", @user.email, :placeholder=>"Enter your email" %>
 	<%= label_tag :phone_number, "Phone Number: " %>
 	<%= text_field_tag "role[phone_number]", nil, :placeholder=>"Enter your number" %> <br/>
   Age:
