@@ -14,7 +14,7 @@ Indiereel::Application.routes.draw do
   # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects"
   match "/:identifier/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}
-  match "/:identifier/:role(/:action)" => "roles", :defaults => {:action => "show"}, :as => 'role'
+  match "/:identifier/:role(/:action)" => "roles", :defaults => {:action => "show"}, :as => 'custom_role'
   match "/:identifier" => "users#show", :as => 'home'
 
   # Sample of regular route:
