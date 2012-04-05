@@ -6,9 +6,10 @@ Feature: Add a role profile
 
 Background:
 
-  Given I am signed in with provider "facebook"
-  And I am on my "tester" home page
-  And I should see "Add a Role"
+  Given I am on the welcome page
+  And I am signed in with provider "facebook"
+#  And I am on my "tester" home page
+#  And I should see "Add a Role"
 #  And I have a director role profile
 #  And I have an actor role profile
 
@@ -16,6 +17,8 @@ Background:
 
 Scenario: Adding a Producer role successfully
 #  need to put a table
+  When I am on my "tester" home page
+  And I should see "Add a Role"
   When I follow "Add a Role"
   Then I should be on the Create Role Page
 #  When I click on the Role dropdown button
