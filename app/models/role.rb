@@ -14,6 +14,10 @@ class Role < ActiveRecord::Base
     ['talent', 'director', 'producer', 'crew']
   end
   
+  def self.legacy_options
+    ['Talent', 'Director', 'Producer', 'Crew', 'Actor']
+  end
+  
   def self.ages
     ['0-7', '8-15', '16-23', '24-31', '32-39', '40-47', '48-55', '55+']
   end
