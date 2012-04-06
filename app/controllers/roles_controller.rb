@@ -44,6 +44,13 @@ class RolesController < ApplicationController
     end
   end
   
+  def update
+    @role = Role.find params[:id]
+    @role.update_attributes!(params[:role])
+    flash[:notice] = "#{@role.role_type} was successfully updated."
+    redirect_to role_route(@role)
+  end
+  
   def destroy
     role = Role.find(params[:id])
     if current_user.identifier == role.user.identifier

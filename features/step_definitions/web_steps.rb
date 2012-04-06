@@ -32,9 +32,9 @@ end
 World(WithinHelpers)
 
 # Single-line step scoper
-When /^(.*) within (.*[^:])$/ do |step, parent|
-  with_scope(parent) { When step }
-end
+#When /^(.*) within (.*[^:])$/ do |step, parent|
+#  with_scope(parent) { When step }
+#end
 
 # Multi-line step scoper
 When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
@@ -248,6 +248,7 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
     assert_equal expected_params, actual_params
   end
 end
+
 
 Then /^show me the page$/ do
   save_and_open_page

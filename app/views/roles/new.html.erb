@@ -1,6 +1,6 @@
 <%= form_tag roles_path do %>
-	Select a Role:
-	<select name="role[role_type]">
+	<%= label_tag :role_type, "Choose a Role Type" %>
+	<select id="role_type" name="role[role_type]">
 		<% for option in @options do %>
 			<option value="<%= option %>"><%= option %></option>
 		<% end %>
