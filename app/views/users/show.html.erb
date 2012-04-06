@@ -35,10 +35,10 @@
 			    </div>
 		    </div>
 		  <% end %>
-		  <h4><%= link_to "+ Add a role", new_role_path, {:id => :add_role, :class => "btn btn-info btn-small"} %></h4>
+		  <h4><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %></h4>
 		  <hr />
     <% else %>
-      <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
+      <p>You have no roles. <%= link_to "Create one?", new_role_path, :class => "btn btn-info btn-small" %></p>
     <% end %>
 <% else %>
   <h1>You're on <%= @user.name %>'s Profile!</h1>
