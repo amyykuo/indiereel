@@ -20,7 +20,7 @@
 								      <li><%= link_to "Portfolio", portfolio_route(role), {:class => "pull-right"} %><br /></li>
 								      <li><%= link_to "Projects", projects_route(role), {:class => "pull-right"} %><br /></li>
 							      </ul>
-							      <%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", {:class => "btn btn-mini btn-danger"} %>
+							      <%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", :class => "btn btn-mini btn-danger" %>
       						</div>
 					      </div>
 					    <% end %>
