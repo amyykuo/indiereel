@@ -1,34 +1,30 @@
 <% if current_user.uid == @user.uid %>
-    <h1>Welcome to IndieReel, <%= current_user.first_name %>!</h1>
-    <h2>Roles</h2>    
+    <h4 class="page-header">Welcome to IndieReel, <%= current_user.first_name %>! <small>This is your control panel: You can manage your roles and account here.</small></h4>
     <% if !@roles.empty? %>
-        <!--<%= form_tag user_path(current_user.id) do %>
-	        <select name="role_type">
-		        <% for role in @roles do %>
-			        <option value="<%= role.role_type %>"><%= role.role_type %></option>
-		        <% end %>
-	        </select>
-	        <input type="submit" value="Update Default Role">
-        <% end %>-->
-		<div class="container-fluid">
-			<ul>
-				<% for role in @roles do %>
-					<div class="row-fluid">
-						<li class="role">
-							<!-- need to tag image so that it is on the left and all the text is on the right -->
-							<!-- <%= link_to image_tag("default_role_pic.jpg", {:class => "pull-left"}), role_route(role) %><br /> -->
-							<%= link_to image_tag("#{role.profile_pic}", {:class => "pull-left"}), role_route(role) %><br />
-							<%= link_to "#{role.role_type}: #{role.role_name}", role_route(role), {:class => "pull-right"} %><br />
-							<%= link_to "Edit", role_route(role, "edit"), {:class => "pull-right"} %><br />
-							<%= link_to "Projects", projects_route(role), {:class => "pull-right"} %><br />
-							<%= link_to "Portfolio", portfolio_route(role), {:class => "pull-right"} %><br />
-						</li>
+		<% for group in @grouped_roles %>
+		<div class="row">
+			<div class="span12">
+				<div class="row-fluid">
+					<% for role in group %>
+					<div class="span4">
+						<div class="well">
+							<h3><%= role.role_type.capitalize %><small> as <%= role.role_name%></small></h3>
+							<hr style="margin:5px 0px 10px 0px"/>
+							<ul class="nav">
+								<li><%= link_to "View this Role", role_route(role) %></li>
+								<li><%= link_to "Edit this Role", role_route(role, "edit") %></li>
+								<li><%= link_to "Portfolio", portfolio_route(role) %></li>
+								<li><%= link_to "Projects", projects_route(role) %></li>
+							</ul>
+						</div>
 					</div>
-				<% end %>
-			</ul>
+					<% end %>
+				</div>
+			</div>
 		</div>
-		
-        <%= link_to "Add a role", new_role_path, :id => :add_role %>
+		<% end %>
+		<h4><%= link_to "+ Add a role", new_role_path, :id => :add_role %></h4>
+		<hr />
     <% else %>
         <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
     <% end %>
