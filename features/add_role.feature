@@ -6,32 +6,23 @@ Feature: Add a role profile
 
 Background:
 
-  Given I am on my "amyykuo" home page
-#  And I have a director role profile
-#  And I have an actor role profile
+  Given I am signed in with provider "facebook"
+  And I have the following roles:
+  | role_type  | user_id | role_name | profile_pic            | email         | role_type_description | role_experience | role_skills |
+  |  director  |  1      |  John     | http://hi.com/user.png | test@xxxx.com | I am awesome!         | everything      | none        |
+  |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
+    
+  And I am on my "tester" home page
 
-# not implemented (does not guarantee it works)
-  
 Scenario: Adding a Producer role successfully
-#  need to put a table
-#  When I click on the New Profile button
+  When I follow "Add a role"
   Then I should be on the Create Role Page
-#  When I click on the Role dropdown button
-#  And I should see "producer"
-#  But I should not see "actor"
-#  And I click on the producer option  
-#  And I put "HelenBoss" in the name text box
-  And I click on "submit"
-  Then I should be on my "amyykuo talent" profile page
-
-Scenario: Trying to create a Role Profile with no role type selected
-#  need to put a table
-#  When I click on the New Profile button
-  Then I should be on the Create Role Page
-#  When I do not select a role
-  And I click on "submit"
-  Then I should be on the Create Role Page
-  And the "Select a Role" field should have the error "You need to select a role"
+#  And the "role_type" dropdown should contain: producer, crew
+#  And the "role_type" field should contain "producer"#  And the "role_type" field should contain "crew" FIX THIS
+  When I select "producer" from "role_type"
+#  And I should see "Create Role."
+  When I press "Create role."
+  Then I should be on my "tester producer" profile page
   
 Scenario: Trying to create a Role Profile when all roles have already been created
 #  need to put a table
@@ -76,13 +67,3 @@ Scenario: On the Create Role Page, input data, and cancel
 #  And I should not see "whatever role I selected"
   
 
-# don't need this?  
-#Scenario: Try creating a role profile without filling out the name text field
-#  When I click on the New Profile button
-#  Then I should be on the Create Role Page
-#  When I click on the Role dropdown button
-#  And I click on the crew option
-#  And I click on "submit"
-#  Then I should be on the Create Role Page
-#  And I should see "need to fill out the name field"
-  

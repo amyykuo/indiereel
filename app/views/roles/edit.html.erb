@@ -1,2 +1,81 @@
-lol you can't edit your <%= @role.role_type %> role yet!
-<img src="http://i.imgur.com/0xGUt.gif">
+<!--
+<%= form_for(:picture, 
+             :url => {:action => 'save'}, 
+             :html => { :multipart => true }) do |form| %>
+             
+     Upload your picture: <%= form.file_field("uploaded_picture") %><%= submit_tag("Upload Picture") %><br/>
+<% end %>
+-->
+
+<%= form_tag role_path(@role.id), :method => 'put' do %>
+<!--
+	Select a Role:<br/>
+
+	<select name="role[role_type]">
+		<% for option in @options do %>
+			<option selected="<%= @role.role_type %>" value="<%= option %>"><%= option %></option>
+		<% end %>
+	</select>
+-->
+	
+	<%= label_tag :role_name, "Stage Name:" %>
+	<%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Who do you go as?"} %>
+	
+	<%= label_tag :role_type_description, "Role Description:" %>
+	<%= text_field_tag "role[role_type_description]", @role.role_type_description, :placeholder=>"What exactly do you do?" %>
+	
+	<%= label_tag :email, "Email:" %>
+	<%= text_field_tag "role[email]", @role.email, {:placeholder => "What's your email?"} %>
+	
+	<%= label_tag :phone_number, "Phone Number: " %>
+	<%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "What's your number?"} %><br/>
+  
+  Age:<br/>
+  <select name="role[age_range]">
+		<% for age in @ages do %>
+			<option value="<%= age %>"><%= age %></age>
+		<% end %>
+	</select>
+	
+	<%= label_tag :role_experience, "Experience: " %>
+	<%= text_field_tag "role[role_experience]", @role.role_experience, {:placeholder => "What's your experience in this role?"} %>
+	
+	<%= label_tag :role_skills, "Skills: " %>
+	<%= text_field_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %><br/><br/>
+	
+	<%= hidden_field_tag "role[user_id]", current_user.id %>
+	
+	
+	<input type="submit" value="Update Role">
+<% end %>
+<%= link_to "Cancel", home_path(@user.username) %>
+
+
+
+
+<!--
+<%= form_for(@user) do |f| %>
+
+  <div class="field">
+    <%= f.label "Stage Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label "Contact" %><br />
+    <%= f.text_field :email %>
+  </div>
+    <div class="field">
+    <%= f.label "Role Type Description" %><br />
+    <input type="text" name="Role Type Description" />
+  </div>
+  
+<% end %>
+<%= form_tag roles_path do %>
+	<select name="age_range">
+		<% for age in @ages do %>
+			<option value="<%= age %>"><%= age %></age>
+		<% end %>
+	</select>
+<% end %>
+ <input name="commit" type="submit" value="Update Role" />
+-->

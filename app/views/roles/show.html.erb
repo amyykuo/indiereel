@@ -1,13 +1,14 @@
 <% if current_user.uid == @user.uid %>
     <h1>This is your <%= @role.role_type %> page, <%= current_user.first_name %>!</h1>
     <ul>
+        <li><%= link_to "Edit your profile", role_route(@role, "edit") %></li>
         <li><%= link_to "Your portfolio as #{@role.role_type}", portfolio_route(@role) %></li>
         <li><%= link_to "Projects you've worked on as #{@role.role_type}", projects_route(@role) %></li>
-		<li><%= link_to "Back to home", home_path(@role.user.identifier) %>
+		    <li><%= link_to "Back to home", home_route(current_user) %>
     </ul>
 	<%= button_to 'Delete this Role', role_path(@role), :method => :delete, :confirm => 'Are you sure you want to delete this role?' %>
 <% else %>
-    <h1>You're on <%= @user.name %>'s <%= @role %> page!</h1>
+    <h1>You're on <%= @user.name %>'s <%= @role.role_type %> page!</h1>
     <ul>
     <li><%= link_to "#{@user.name}'s' portfolio as a(n) #{@role.role_type}", portfolio_route(@role) %></li>
     <li><%= link_to "Projects #{@user.name} has worked on as a(n) #{@role.role_type}", projects_route(@role) %></li>

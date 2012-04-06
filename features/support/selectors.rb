@@ -10,10 +10,10 @@ module HtmlSelectorsHelpers
   #
   # step definitions in web_steps.rb
   #
-  def selector_for(locator)
-    case locator
+  def selector_for(scope)
+    case scope
 
-    when "the page"
+    when /the body/
       "html > body"
 
     # Add more mappings here.
@@ -33,9 +33,12 @@ module HtmlSelectorsHelpers
     # web steps:
     when /^"(.+)"$/
       $1
+      
+    when /(Talent|Director|Producer|Crew)/
+      "DIV.span4##{$1}"
 
     else
-      raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
+      raise "Can't find mapping from \"#{scope}\" to a selector.\n" +
         "Now, go and add a mapping in #{__FILE__}"
     end
   end

@@ -7,12 +7,10 @@ describe RolesController do
   end
   
   describe 'show' do
-    
     before :each do
       @user = mock("User", :id => 1)
       @role = mock("Role")
     end
-    
     describe 'if @role is nil' do
       it 'should render public/404' do
         User.should_receive(:find_by_identifier).with("dude").and_return(@user)
@@ -21,7 +19,6 @@ describe RolesController do
         response.response_code.should == 404
       end
     end
-    
     describe 'if @role is not nil' do
       it 'should render show' do
         User.should_receive(:find_by_identifier).with("dude").and_return(@user)
@@ -32,29 +29,76 @@ describe RolesController do
     end
   end
   
+  
   describe 'new' do
-    
-    it 'should render a 404 if user does not exist' do
-      User.should_receive(:find_by_identifier).with("dude").and_return(nil)
-      Role.should_receive(:options).and_return(["talent"])
-      get :new, {:identifier => "dude"}
-      response.response_code.should == 404
+    # TODO scenario we did not test
+    describe '@user is not nil' do
+      # TODO it use to be: it 'should set @user and @options', update the code to the current task
+      it 'should set @user' do
+        User.should_receive(:find_by_identifier).with("kunal").and_return(user = mock("User"))
+        Role.should_receive(:options).and_return(["talent"])
+        get :new
+        response.should render_template("new")
+      end
+      # TODO
+      it 'should set @ages'
+      it 'should only set @options to roles the user does not have yet'
+        #is this two scenarios? (1) has some valid roles left; (2) no roles left and @options == nil
     end
-    
-    it 'should set @user and @options' do
-      User.should_receive(:find_by_identifier).with("dude").and_return(user = mock("User"))
-      Role.should_receive(:options).and_return(["talent"])
-      get :new, {:identifier => "dude"}
-      response.should render_template("new")
+    # TODO scenario we did not test
+    describe '@user is not nil' do
+      # TODO it use to be: it 'should set @user and @options', update the code to the current task
+      it 'should set @user' do
+        User.should_receive(:find_by_identifier).with("kunal").and_return(user = mock("User"))
+        Role.should_receive(:options).and_return(["talent"])
+        get :new
+        response.should render_template("new")
+      end
+      # TODO
+      it 'should set @ages'
+      it 'should only set @options to roles the user does not have yet'
+        #is this two scenarios? (1) has some valid roles left; (2) no roles left and @options == nil
+      it 'should do render_not_found'
     end
   end
   
+  # TODO Update create
   describe 'create new role' do
     
     before :each do
       Role.stub!(:options).and_return(["talent"])
     end
     
+    # TODO some of these tests may need to be tested in the Role Model...
+    describe 'the new role is valid' do
+      describe 'no data inputted at all' do
+        it 'should create the new role'
+        it 'should call the MediaCollection create_default method and create the default MediaCollection'
+        it 'should save'
+        it 'should redirect to new role profile page'
+      end
+      describe 'data inputted' do
+        describe 'no stagename inputted'
+          it 'should create the new role'
+          it 'should call the MediaCollection create_default method and create the default MediaCollection'
+          it 'should save'
+          it 'should redirect to new role profile page'
+        end
+        describe 'stagename inputted'
+          it 'should create the new role'
+          it 'should call the MediaCollection create_default method and create the default MediaCollection'
+          it 'should save'
+          it 'should redirect to new role profile page'
+        end
+      end
+    end
+    describe 'the new role is not valid' do
+      it 'SHOULD NOT CREATE THE ROLE'
+      it 'should redirect the user back to the users home page'
+      it 'should flash an error message'
+    end
+    
+=begin old code that doesn't... really... apply anymore?
     describe 'if role_type (aka name) is one of the options' do
       
       describe 'if role is invalid' do
@@ -69,7 +113,7 @@ describe RolesController do
         it 'should redirect to the role_route of the newly created role' do
           Role.should_receive(:create).and_return(mock("Role", :valid? => true, :user => @current_user, :role_type => "talent"))
           post :create, {:role_type => "talent"}
-          response.should redirect_to role_path(@current_user.identifier, "talent")
+          response.should redirect_to custom_role_path(@current_user.identifier, "talent")
         end
       end
     end
@@ -81,10 +125,16 @@ describe RolesController do
         response.should redirect_to home_path(@current_user.identifier)
       end
     end
+=end
+  end
+
+  # TODO Update edit
+  describe 'edit role' do
+    # omg its almost the same as new...
   end
   
-  describe 'edit role' do
-    # We are not testing this yet... We need to figure out how we are going to edit the role first
+  # TODO will need to test this eventually... like... Iteration 2.2... shit dawg
+  describe 'update role' do
   end
   
   describe 'destroy' do
@@ -95,6 +145,8 @@ describe RolesController do
         @role.should_receive(:destroy)
         post :destroy, {:id => 1}
       end
+      # TODO i don't know if this belongs here... but we need to check if it does this
+      it 'should delete all MediaCollections associated with that role'
     end
     
     describe 'if you are not the user of the role profile' do

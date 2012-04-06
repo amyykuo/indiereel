@@ -1,3 +1,13 @@
+class RoleConstraint
+  def initialize
+    @options = Role.options + Role.legacy_options
+  end
+  
+  def matches?(request)
+    @options.include? request.params[:role]
+  end
+end
+
 Indiereel::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -14,7 +24,7 @@ Indiereel::Application.routes.draw do
   # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects"
   match "/:identifier/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}
-  match "/:identifier/:role(/:action)" => "roles", :defaults => {:action => "show"}, :as => 'role'
+  match "/:identifier/:role(/:action)" => "roles", :defaults => {:action => "show"}, :constraints => RoleConstraint.new, :as => 'custom_role'
   match "/:identifier" => "users#show", :as => 'home'
 
   # Sample of regular route:

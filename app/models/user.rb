@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
   validates :name, :presence => true, :length => { :maximum => 50 }
   validates :uid, :uniqueness => true
   validates :username, :uniqueness => true
+  
+  def roles_in_groups_of(size)
+    self.roles.each_slice(size).to_a
+  end
+  
+  
 
   def self.create_with_omniauth(auth)
     create do |user|

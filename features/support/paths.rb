@@ -19,16 +19,16 @@ module NavigationHelpers
     when /^the welcome page$/
       '/' # need to change this eventually
       
-    when /^the "([^"]*)" Edit Role Profile page for the "([^"]*)" role$/ #edit role page
-      '/$1/$2/edit'
+    when /^the "([^"]*)" "([^"]*)" page for the "([^"]*)" role$/ #edit role page
+      '/$1/$3/$2'
       
     when /^the Create Role Page/
-      '/role/new'
+      '/roles/new'
       
     when /^my "([^"]*)" profile page/
       user = $1.split[0]
       role = $1.split[1]
-      '/#{user}/#{role}'
+      custom_role_path(user, role)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

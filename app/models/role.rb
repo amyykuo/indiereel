@@ -6,12 +6,20 @@ end
 
 class Role < ActiveRecord::Base
   belongs_to :user
-  validates_with RoleValidator
+  has_many :media_collections, :dependent => :destroy
+  #validates_with RoleValidator
   
   
   def self.options
-    ['Talent', 'Director', 'Producer', 'Crew']
+    ['talent', 'director', 'producer', 'crew']
   end
   
+  def self.legacy_options
+    ['Talent', 'Director', 'Producer', 'Crew', 'Actor']
+  end
+  
+  def self.ages
+    ['0-7', '8-15', '16-23', '24-31', '32-39', '40-47', '48-55', '55+']
+  end
   
 end
