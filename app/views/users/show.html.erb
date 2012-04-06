@@ -1,39 +1,39 @@
 <% if current_user.uid == @user.uid %>
-	<div class="alert alert-info">
-    	<h4>Welcome to IndieReel, <%= current_user.first_name %>! <small>This is your control panel: You can manage your roles and account here.</small></h4>
+  <div class="alert alert-info">
+    <h4>Welcome to IndieReel, <%= current_user.first_name %>! <small>This is your control panel: You can manage your roles and account here.</small></h4>
 	</div>
 	<hr />
     <% if !@roles.empty? %>
-		<% for group in @grouped_roles %>
-		<div class="row">
-			<div class="span12">
-				<div class="row-fluid">
-					<% for role in group %>
-					<div class="span4">
-						<div class="well">
-							<h3><%= role.role_type.capitalize %><small> as <%= role.role_name %></small></h3>
-							<hr style="margin:5px 0px 10px 0px"/>
-							<ul class="nav">
-							  <li><%= image_tag "default_role_pic.jpg", {:width => 100, :height => 100, :class => "pull-left"} %></li>
-								<li><%= link_to "View this Role", role_route(role), {:class => "pull-right"} %><br /></li>
-								<li><%= link_to "Edit this Role", role_route(role, "edit"), :class => "pull-right" %><br /></li>
-								<li><%= link_to "Portfolio", portfolio_route(role), :class => "pull-right" %><br /></li>
-								<li><%= link_to "Projects", projects_route(role), :class => "pull-right" %><br /></li>
-							</ul>
-							<%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", :class => "btn btn-mini btn-danger" %>
-						</div>
-					</div>
-					<% end %>
-				</div>
-			</div>
-		</div>
-		<% end %>
-		<h4><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %></h4>
-		<hr />
+      <% for group in @grouped_roles %>
+		    <div class="row">
+			    <div class="span12">
+				    <div class="row-fluid">
+					    <% for role in group %>
+					      <div class="span4">
+						      <div class="well">
+							      <h3><%= role.role_type.capitalize %><small> as <%= role.role_name %></small></h3>
+							      <hr style="margin:5px 0px 10px 0px"/>
+							      <ul class="nav">
+							        <li><%= image_tag "default_role_pic.jpg", {:width => 100, :height => 100, :class => "pull-left"} %></li>
+								      <li><%= link_to "View this Role", role_route(role), {:class => "pull-right"} %><br /></li>
+								      <li><%= link_to "Edit this Role", role_route(role, "edit"), {:class => "pull-right"} %><br /></li>
+								      <li><%= link_to "Portfolio", portfolio_route(role), {:class => "pull-right"} %><br /></li>
+								      <li><%= link_to "Projects", projects_route(role), {:class => "pull-right"} %><br /></li>
+							      </ul>
+							      <%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", {:class => "btn btn-mini btn-danger"} %>
+      						</div>
+					      </div>
+					    <% end %>
+				    </div>
+			    </div>
+		    </div>
+		  <% end %>
+		  <h4><%= link_to "+ Add a role", new_role_path, {:id => :add_role, :class => "btn btn-info btn-small"} %></h4>
+		  <hr />
     <% else %>
-        <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
+      <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
     <% end %>
 <% else %>
-    <h1>You're on <%= @user.name %>'s Profile!</h1>
+  <h1>You're on <%= @user.name %>'s Profile!</h1>
 	<!-- link to default profile here, or if there's a parameter to a specific profile, do that instead -->
 <% end %>

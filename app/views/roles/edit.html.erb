@@ -7,7 +7,7 @@
 
 
 <%= form_tag roles_path do %>
-	
+  
 	Select a Role:<br/>
 	<select name="role[role_type]">
 		<% for option in @options do %>
@@ -38,7 +38,7 @@
 	<%= text_field_tag "role[role_experience]", nil, {:placeholder => "What's your experience in this role?"} %>
 	
 	<%= label_tag :role_skills, "Skills: " %>
-	<%= text_field_tag "role[role_skills]", nil, {:placeholder => "What are your skills?"} %>
+	<%= text_field_tag "role[role_skills]", nil, {:placeholder => "What are your skills?"} %><br/><br/>
 	
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	
@@ -74,4 +74,4 @@
 	</select>
 <% end %>
  <input name="commit" type="submit" value="Update Role" />
- -->
+-->
