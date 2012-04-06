@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @roles = @user.roles rescue nil
     @grouped_roles = @user.roles_in_groups_of(3)
     
-    render 'public/404' if @user.nil?
+    render 'public/404', :status => 404 if @user.nil?
   end
   
   # This is for the default role portion of the view, to be implemented later.
