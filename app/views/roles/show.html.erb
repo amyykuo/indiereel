@@ -1,7 +1,8 @@
 <% if current_user.uid == @user.uid %>
 	<div class="alert alert-info">
-	    <h4>You're on your <%= @role.role_type %> page <small class="pull-right"><%= link_to "Edit this role", role_route(@role, "edit") %></small></h4>
+	    <h4>You're on your <%= @role.role_type %> page as <%= @role.role_name %>.<small class="pull-right"><%= link_to "Edit this role", role_route(@role, "edit") %></small></h4>
 	</div>
+<% end %>
 	<hr />
 	<div class="row">
 		<div class="span3">
@@ -15,18 +16,29 @@
 		<div class="span9">
 			<section id="contact-info">
 					<h3>Contact Information</h3>
+					<ul class="unstyled">
+						<li><strong>Email:</strong> <%= @role.email %></li>
+						<li><strong>Phone:</strong> <%= @role.phone_number %></li>
+					</ul>
 					<hr />
 			</section>
 			<section id="description">
 					<h3>Description</h3>
+					<ul class="unstyled">
+						<li><strong>Role Description:</strong> <%= @role.role_type_description %>
+						<li><strong>Age Range:</strong> <%= @role.age_range%>
+						<li><strong>Physique:</strong> <%= @role.physique %></li>
+					</ul>
 					<hr />
 			</section>
 			<section id="experience">
 					<h3>Experience</h3>
+					<%= @role.role_experience %>
 					<hr />
 			</section>
 			<section id="skills">
 					<h3>Skills</h3>
+					<%= @role.role_skills %>
 					<hr />
 			</section>
 			<section id="portfolio">
@@ -39,21 +51,3 @@
 			</section>
 		</div>
 	</div>
-
-
-    <h1>This is your <%= @role.role_type %> page, <%= current_user.first_name %>!</h1>
-    <ul>
-        <li><%= link_to "Edit your profile", role_route(@role, "edit") %></li>
-        <li><%= link_to "Your portfolio as #{@role.role_type}", portfolio_route(@role) %></li>
-        <li><%= link_to "Projects you've worked on as #{@role.role_type}", projects_route(@role) %></li>
-		    <li><%= link_to "Back to home", home_route(current_user) %>
-    </ul>
-	<%= button_to 'Delete this Role', role_path(@role), :method => :delete, :confirm => 'Are you sure you want to delete this role?' %>
-<% else %>
-    <h1>You're on <%= @user.name %>'s <%= @role.role_type %> page!</h1>
-    <ul>
-    <li><%= link_to "#{@user.name}'s' portfolio as a(n) #{@role.role_type}", portfolio_route(@role) %></li>
-    <li><%= link_to "Projects #{@user.name} has worked on as a(n) #{@role.role_type}", projects_route(@role) %></li>
-    </ul>
-<% end %>
-<%= link_to "Logout", logout_path %>
