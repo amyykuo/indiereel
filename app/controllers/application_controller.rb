@@ -48,8 +48,4 @@ class ApplicationController < ActionController::Base
   def home_route(user)
     return "/#{user.identifier}"
   end
-
-
-
-
 end

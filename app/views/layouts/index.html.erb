@@ -8,6 +8,15 @@
   <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
 </head>
 <body>
-<%= yield %>
+  <div class="center">
+    <table class="table">
+      <tr>
+        <td class="indexpage">
+          <%= yield %>
+        </td>
+      </tr>   
+    </table>
+    <%= render "footer" %>
+  </div>
 </body>
 </html>
