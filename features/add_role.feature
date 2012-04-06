@@ -7,38 +7,22 @@ Feature: Add a role profile
 Background:
 
   Given I am signed in with provider "facebook"
-#  And I am on my "tester" home page
-#  And I should see "Add a Role"
-#  And I have a director role profile
-#  And I have an actor role profile
-
-# not implemented (does not guarantee it works)
+  And I have the following roles:
+  | role_type  | user_id | role_name | profile_pic            | email         | role_type_description | role_experience | role_skills |
+  |  director  |  1      |  John     | http://hi.com/user.png | test@xxxx.com | I am awesome!         | everything      | none        |
+  |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
+    
+  And I am on my "tester" home page
 
 Scenario: Adding a Producer role successfully
-#  need to put a table
-#  Given I am signed in with provider "facebook"  
-#  When I am on my "tester" home page
-#  Then I debug
-  
-  And I should see "Add a Role"
-#  Then I debug
-  When I follow "Add a Role"
+  When I follow "Add a role"
   Then I should be on the Create Role Page
-#  When I click on the Role dropdown button
-#  And I should see "producer"
-#  But I should not see "actor"
-#  And I click on the producer option  
-  And I click on "submit"
-  Then I should be on my "amyykuo talent" profile page
-
-Scenario: Trying to create a Role Profile with no role type selected
-#  need to put a table
-  When I press "Add a Role"
-  Then I should be on the Create Role Page
-#  When I do not select a role
-  And I click on "submit"
-  Then I should be on the Create Role Page
-  And the "Select a Role" field should have the error "You need to select a role"
+#  And the "role_type" dropdown should contain: producer, crew
+#  And the "role_type" field should contain "producer"#  And the "role_type" field should contain "crew" FIX THIS
+  When I select "producer" from "role_type"
+#  And I should see "Create Role."
+  When I press "Create role."
+  Then I should be on my "tester producer" profile page
   
 Scenario: Trying to create a Role Profile when all roles have already been created
 #  need to put a table
