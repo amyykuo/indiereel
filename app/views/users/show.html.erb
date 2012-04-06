@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<% end %>
-		<h4><%= link_to "+ Add a role", new_role_path, :id => :add_role %></h4>
+		<h4><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %></h4>
 		<hr />
     <% else %>
         <p>You have no roles. <%= link_to "Create one?", new_role_path %></p>
