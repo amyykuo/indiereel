@@ -30,20 +30,18 @@ Scenario: Delete all Roles one by one
 
 Scenario: Go to Role's Edit Page
   When I follow "Edit this Role" within the "Talent" section
-  Then I should be on the "tester" "edit" page for the "talent" role
+  Then I should be on my "tester talent" Edit Page
 
 Scenario: Go to Role's Profile Page
-  follow talent view link
-  When I follow "View this Role" within the "Talent" section
+  When I follow "View Profile" within the "Talent" section
   Then I should be on my "tester talent" profile page
 
 Scenario: Go to Role's Portfolio Page
   When I follow "Portfolio" within the "Director" section
-  Then I should be on the "tester" "portfolio" page for the "director" role
-  And I should see "Portfolio"
+  Then I should be on the "tester" Portfolio page for the "director" role
+  And I should see "portfolio"
 
 Scenario: Go to Role's Projects Page
   When I follow "Projects" within the "Talent" section
-  Then I should be on the "tester" "projects" page for the "talent" role
-  And I should see "Projects"
-
+  Then I should be on the "tester" Projects page for the "talent" role
+  And I should see "projects"
