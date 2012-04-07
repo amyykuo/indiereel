@@ -141,25 +141,26 @@ describe RolesController do
   
   describe 'destroy' do
     
-    describe 'if you are the user of the role profile' do
-      it 'should delete the role by calling the Role model method destroy' do
-        Role.should_receive(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil))
-        @role.should_receive(:destroy)
-        post :destroy, {:id => 1}
-      end
-      # TODO i don't know if this belongs here... but we need to check if it does this
-      it 'should delete all MediaCollections associated with that role'
+    before :each do
+      Role.stub!(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil, :user => @current_user))
     end
     
-    describe 'if you are not the user of the role profile' do
-      it 'should flash error _You cannot delete this role._' do
-        Role.should_receive(:find).and_return(@role = mock("Role", :user => mock("User", :identifier => "homie"), :destroy => nil))
-        @role.should_not_receive(:destroy)
-        post :destroy, {:id => 1}
-        flash[:error].should == "You cannot delete this role."
-      end
+    it 'should find the role by ID' do
+      Role.should_receive(:find).with("1")
+      post :destroy, {:id => 1}
     end
     
+    it 'should destroy the role if the user matches the current user' do
+      @role.should_receive(:destroy)
+      post :destroy, {:id => 1}
+    end
+    
+    it 'should set a flash error if the user does not match the current user' do
+      @role.should_receive(:user).and_return(mock("User", :identifier => "lawl"))
+      post :destroy, {:id => 1}
+      flash[:error].should == "You cannot delete this role."
+    end
+      
     it 'should redirect to the home route of the current user' do
       Role.should_receive(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil))
       post :destroy, {:id => 1}
