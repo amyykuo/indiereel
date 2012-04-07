@@ -1,13 +1,3 @@
-class RoleConstraint
-  def initialize
-    @options = Role.options + Role.legacy_options
-  end
-  
-  def matches?(request)
-    @options.include? request.params[:role]
-  end
-end
-
 Indiereel::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -24,7 +14,8 @@ Indiereel::Application.routes.draw do
   # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects"
   match "/:identifier/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}
-  match "/:identifier/:role(/:action)" => "roles", :defaults => {:action => "show"}, :constraints => RoleConstraint.new, :as => 'custom_role'
+  match "/:identifier/:role/edit" => "roles#edit", :as => 'custom_edit_role'
+  match "/:identifier/:role" => "roles#show", :constraints => RoleConstraint.new, :as => 'custom_role'
   match "/:identifier" => "users#show", :as => 'home'
 
   # Sample of regular route:
@@ -80,4 +71,14 @@ Indiereel::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+end
+
+class RoleConstraint
+  def initialize
+    @options = Role.options + Role.legacy_options
+  end
+  
+  def matches?(request)
+    @options.include? request.params[:role]
+  end
 end
