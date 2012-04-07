@@ -6,28 +6,46 @@ Feature: Add a role profile
 
 Background:
 
-  Given I am on my "tester" home page
+  Given I am signed in with provider "facebook"
+  And I have the following roles:
+  | role_type  | user_id | role_name | profile_pic            | email         | role_type_description | role_experience | role_skills |
+  |  director  |  1      |  John     | http://hi.com/user.png | test@xxxx.com | I am awesome!         | everything      | none        |
+  |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
+  |    crew    |  1      |  Apples   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
+  |  producer  |  1      |  Banana   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
+  
 
-Scenario: Trying to create a Role Profile when all roles have already been created
-#  need to put a table
-#  When I click on the New Profile button
-  Then I should be on the Create Role Page
-#  When I do not select a role
-  And I click on "submit"
-  Then I should be on the Create Role Page # or should it redirect to home page?
-  And the "Select a Role" field should have the error "You cannot create anymore roles"
-  # or
-  # Then I should be on my "amyykuo" home page
-  # And I should see "You cannot create anymore role profiles. Give your other roles more love :D"
+Scenario: There should not be an Add_a_Role option on the home page
+  When I am on my "tester" home page
+  Then I should see "Talent"
+  And I should see "Producer"
+  And I should see "Director"
+  And I should see "Crew"
+  But I should not see "Add a role"
 
-Scenario: On the Create Role Page, do not select a role, don't input data, and cancel
-#  When I click on the New Profile button
+Scenario: Check that roles in dropdown do not include already existing roles
+  When I am on my "tester" home page
+  Then I should see "Talent"
+  And I should see "Producer"
+  And I should see "Director"
+  And I should see "Crew"
+  But I should not see "Add a role"
+  When I press "Delete" within the "Director" section
+  Then I should be on my "tester" home page
+  And I should see "Producer"
+  And I should see "Crew"
+  And I should see "Talent"
+  But I should not see "Director"
+  When I follow "Add a role"
   Then I should be on the Create Role Page
+  And the "Choose a Role Type" dropdown should contain: director
+  And the "Choose a Role Type" dropdown should not contain: talent, producer, crew
+  
+# not necessary
+#Scenario: On the Create Role Page, do not select a role, don't input data, and cancel
+#  When I click on the New Profile button
+#  Then I should be on the Create Role Page
 #  And I click on "cancel"
-  Then I should be on my "amyykuo" home page
+#  Then I should be on my "amyykuo" home page
 #  And I should see my current roles
 
-Scenario: Create a role and create_role_options should update properly
-# When I create a producer profile
-# And I go to the Create Role Page
-# Then I should on see ...
