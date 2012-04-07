@@ -78,9 +78,33 @@ describe RolesController do
     end
   end
 
-  # TODO Update edit
   describe 'edit' do
-    # omg its almost the same as new...
+    
+    it 'should 404 if given an invalid user' do
+      User.should_receive(:find_by_identifier).with("lol").and_return(nil)
+      get :edit, :identifier => "lol", :role => "talent"
+      response.response_code.should == 404
+    end
+    
+    it 'should 404 if :identifier is not that of the current user' do
+      User.should_receive(:find_by_identifier).with("lol").and_return(mock("User", :id => 9001))
+      get :edit, :identifier => "lol", :role => "talent"
+      response.response_code.should == 404
+    end
+    
+    it 'should 404 if user does not have the given role' do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
+      get :edit, :identifier => "kunal", :role => "talent"
+      response.response_code.should == 404
+    end
+    
+    it 'should get the possible age options for a valid user and role' do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(mock("Role"))
+      Role.should_receive(:ages)
+      get :edit, :identifier => "kunal", :role => "talent"
+    end
   end
   
   # TODO will need to test this eventually... like... Iteration 2.2... shit dawg
