@@ -35,7 +35,9 @@
 			    </div>
 		    </div>
 		  <% end %>
+		  <% unless @roles.length == Role.options.length %>
 		  <h4><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %></h4>
+		  <% end %>
 		  <hr />
     <% else %>
       <p>You have no roles. <%= link_to "Create one?", new_role_path, :class => "btn btn-info btn-small" %></p>
