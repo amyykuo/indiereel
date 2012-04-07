@@ -31,39 +31,29 @@ describe RolesController do
   
   
   describe 'new' do
-    # TODO scenario we did not test
-    describe '@user is not nil' do
-      # TODO it use to be: it 'should set @user and @options', update the code to the current task
-      it 'should set @user' do
-        User.should_receive(:find_by_identifier).with("kunal").and_return(user = mock("User"))
-        Role.should_receive(:options).and_return(["talent"])
-        get :new
-        response.should render_template("new")
-      end
-      # TODO
-      it 'should set @ages'
-      it 'should only set @options to roles the user does not have yet'
-        #is this two scenarios? (1) has some valid roles left; (2) no roles left and @options == nil
+    
+    before :each do
+      User.stub!(:find_by_identifier).with("kunal").and_return(mock("User", :id => 1))
+      Role.stub!(:ages).and_return(["0-7"])
+      Role.stub!(:options).and_return(["talent", "crew"])
     end
-    # TODO scenario we did not test
-    describe '@user is not nil' do
-      # TODO it use to be: it 'should set @user and @options', update the code to the current task
-      it 'should set @user' do
-        User.should_receive(:find_by_identifier).with("kunal").and_return(user = mock("User"))
-        Role.should_receive(:options).and_return(["talent"])
-        get :new
-        response.should render_template("new")
-      end
-      # TODO
-      it 'should set @ages'
-      it 'should only set @options to roles the user does not have yet'
-        #is this two scenarios? (1) has some valid roles left; (2) no roles left and @options == nil
-      it 'should do render_not_found'
+    
+    it 'should find the current user and get the list of valid ages' do
+      User.should_receive(:find_by_identifier)
+      Role.should_receive(:ages)
+      get :new
+    end
+    
+    it 'should check to see if user has each option' do
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
+      Role.should_receive(:find_by_role_type_and_user_id).with("crew", 1).and_return(mock("Role"))
+      get :new
+      assigns(:options).should == ["talent"]
     end
   end
   
   # TODO Update create
-  describe 'create new role' do
+  describe 'create' do
     
     before :each do
       Role.stub!(:options).and_return(["talent"])
@@ -78,13 +68,13 @@ describe RolesController do
         it 'should redirect to new role profile page'
       end
       describe 'data inputted' do
-        describe 'no stagename inputted'
+        describe 'no stagename inputted' do
           it 'should create the new role'
           it 'should call the MediaCollection create_default method and create the default MediaCollection'
           it 'should save'
           it 'should redirect to new role profile page'
         end
-        describe 'stagename inputted'
+        describe 'stagename inputted' do
           it 'should create the new role'
           it 'should call the MediaCollection create_default method and create the default MediaCollection'
           it 'should save'
@@ -129,12 +119,12 @@ describe RolesController do
   end
 
   # TODO Update edit
-  describe 'edit role' do
+  describe 'edit' do
     # omg its almost the same as new...
   end
   
   # TODO will need to test this eventually... like... Iteration 2.2... shit dawg
-  describe 'update role' do
+  describe 'update' do
   end
   
   describe 'destroy' do

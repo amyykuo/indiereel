@@ -13,8 +13,6 @@ class RolesController < ApplicationController
 	for option in Role.options do
       @options << option unless Role.find_by_role_type_and_user_id(option, @user.id) != nil
     end
-    
-	render_not_found if @user.nil?
   end
   
   def create
