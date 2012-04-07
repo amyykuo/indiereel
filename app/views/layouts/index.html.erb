@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Indiereel</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
-</head>
-<body>
-  <div class="center">
-    <table class="table">
-      <tr>
-        <td class="indexpage">
-          <%= yield %>
-        </td>
-      </tr>   
-    </table>
-    <%= render "footer" %>
-  </div>
-</body>
+  <head>
+    <title>Indiereel</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
+  </head>
+  
+  <body>
+    <div class="center">
+      <table class="table">
+        <tr>
+          <td class="indexpage">
+            <%= yield %>
+          </td>
+        </tr>   
+      </table>
+      <%= render "footer" %>
+    </div>
+  </body>
 </html>
