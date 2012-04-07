@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     
     render 'public/404', :status => 404 if @user.nil?
   end
-  
+ 
+
   # This is for the default role portion of the view, to be implemented later.
   def update
     user = User.find_by_identifier(params[:identifier])
@@ -14,4 +15,5 @@ class UsersController < ApplicationController
     user.save 
     redirect_to home_route(@user)
   end
+
 end
