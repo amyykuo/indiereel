@@ -21,7 +21,7 @@ Scenario: Adding a Producer role successfully
   And the "Choose a Role Type" dropdown should contain: producer, crew
   And the "Choose a Role Type" dropdown should not contain: talent, director
   When I select "producer" from "Choose a Role Type"
-  When I press "Create role."
+  And I press "Create Role"
   Then I should be on my "tester producer" profile page
 
 Scenario: On the Create Role Page, select a role but don't input data, and cancel
@@ -37,8 +37,23 @@ Scenario: On the Create Role Page, select a role but don't input data, and cance
   But I should not see "Producer"
   And I should not see "Crew"
   
-Scenario: Check if Add a Role options updates, delete Crew on homepage, then check create role page
-  When I 
+Scenario: choose a role options should be correctly updating
+  When I follow "Add a role"
+  Then I should be on the Create Role Page
+  And the "Choose a Role Type" dropdown should contain: producer, crew
+  And the "Choose a Role Type" dropdown should not contain: talent, director
+  And I follow "Cancel"
+  Then I should be on my "tester" home page
+  When I press "Delete" within the "Director" section
+  Then I should be on my "tester" home page
+  And I should see "Talent"
+  But I should not see "Director"
+  And I should not see "Crew"
+  And I should not see "Producer"
+  When I follow "Add a role"
+  Then I should be on the Create Role Page
+  And the "Choose a Role Type" dropdown should contain: director, producer, crew
+  And the "Choose a Role Type" dropdown should not contain: talent
 
 # not necessary
 #Scenario: On the Create Role Page, input data, and cancel
