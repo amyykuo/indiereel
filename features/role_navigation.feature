@@ -17,15 +17,15 @@ Background:
   
 Scenario: Go to Role's Portfolio Page
   When I follow "View full portfolio" within the "Portfolio" section
-  Then I should be on the "tester" "portfolio" page for the "talent" role
+  Then I should be on the "tester" Portfolio page for the "talent" role
 
 Scenario: Go to Role's Projects Page
   When I follow "View all projects" within the "Projects" section  
-  Then I should be on the "tester" "projects" page for the "talent" role
+  Then I should be on the "tester" Projects page for the "talent" role
 
 Scenario: Go to Role's Edit this role Page
   When I follow "Edit this role"
-  Then I should be on the "tester" "edit" page for the "talent" role
+  Then I should be on my "tester talent" Edit Page
   
 Scenario: Delete this Role
   When I press "Delete this Role"

@@ -32,8 +32,8 @@ Indiereel::Application.routes.draw do
   resources :users
 
   # User and profile related routes
-  match "/:identifier/:role/projects(/:action)" => "projects"
-  match "/:identifier/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}
+  match "/:identifier/:role/projects(/:action)" => "projects", :as => 'projects'
+  match "/:identifier/:role/portfolio(/:action)" => "portfolios", :as => 'portfolio', :defaults => {:action => "show"}
   match "/:identifier/:role/edit" => "roles#edit", :as => 'custom_edit_role'
   match "/:identifier/:role" => "roles#show", :as => 'custom_role', :constraints => RoleConstraint.new
   match "/:identifier" => "users#show", :as => 'home', :constraints => UserConstraint.new
