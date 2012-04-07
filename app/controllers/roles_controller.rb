@@ -32,16 +32,9 @@ class RolesController < ApplicationController
   def edit
     @user = User.find_by_identifier(params[:identifier])
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
-    @ages = Role.ages
-    @options = []
-	
-    for option in Role.options do
-      @options << option unless Role.find_by_role_type_and_user_id(option, @user.id) != nil
-    end
+    render('public/404', :status => 404) and return if @user.nil? or @user.id != current_user.id or @role.nil?
     
-	if @role.nil?
-      render 'public/404'
-    end
+    @ages = Role.ages
   end
   
   def update
