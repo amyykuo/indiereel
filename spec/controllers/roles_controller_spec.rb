@@ -29,7 +29,6 @@ describe RolesController do
     end
   end
   
-  
   describe 'new' do
     
     before :each do
@@ -52,70 +51,31 @@ describe RolesController do
     end
   end
   
-  # TODO Update create
   describe 'create' do
     
     before :each do
-      Role.stub!(:options).and_return(["talent"])
+      @role = mock("Role", :role_type => "lol", :user => @current_user, :media_collections => [])
     end
     
-    # TODO some of these tests may need to be tested in the Role Model...
-    describe 'the new role is valid' do
-      describe 'no data inputted at all' do
-        it 'should create the new role'
-        it 'should call the MediaCollection create_default method and create the default MediaCollection'
-        it 'should save'
-        it 'should redirect to new role profile page'
-      end
-      describe 'data inputted' do
-        describe 'no stagename inputted' do
-          it 'should create the new role'
-          it 'should call the MediaCollection create_default method and create the default MediaCollection'
-          it 'should save'
-          it 'should redirect to new role profile page'
-        end
-        describe 'stagename inputted' do
-          it 'should create the new role'
-          it 'should call the MediaCollection create_default method and create the default MediaCollection'
-          it 'should save'
-          it 'should redirect to new role profile page'
-        end
+    describe 'the new role is valid' do 
+      it 'should create the role and test its validity' do
+        Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
+        @role.should_receive(:valid?).and_return(true)
+        MediaCollection.should_receive(:create_default).and_return(mock("MediaCollection"))
+        @role.should_receive(:save)
+        post :create, {:role => {:role_type => "lol"}}
+        response.should redirect_to custom_role_path("kunal", "lol")
       end
     end
+    
     describe 'the new role is not valid' do
-      it 'SHOULD NOT CREATE THE ROLE'
-      it 'should redirect the user back to the users home page'
-      it 'should flash an error message'
-    end
-    
-=begin old code that doesn't... really... apply anymore?
-    describe 'if role_type (aka name) is one of the options' do
-      
-      describe 'if role is invalid' do
-        it 'should redirect to home_route of current user' do
-          Role.should_receive(:create).and_return(mock("Role", :valid? => false, :user => @current_user, :role_type => "talent"))
-          post :create, {:role_type => "talent"}
-          response.should redirect_to home_path(@current_user.identifier)
-        end
-      end
-      
-      describe 'if role is valid' do
-        it 'should redirect to the role_route of the newly created role' do
-          Role.should_receive(:create).and_return(mock("Role", :valid? => true, :user => @current_user, :role_type => "talent"))
-          post :create, {:role_type => "talent"}
-          response.should redirect_to custom_role_path(@current_user.identifier, "talent")
-        end
+      it 'should create the role, check validity, and then redirect to the home page' do
+        Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
+        @role.should_receive(:valid?).and_return(false)
+        post :create, {:role => {:role_type => "lol"}}
+        response.should redirect_to home_path("kunal")
       end
     end
-    
-    describe 'if role_type (aka name) is not one of the options' do
-      it 'should have a flash error _You cannot create that role type_ and redirects to home_route of that user' do
-        post :create, {:role_type => "dancer"}
-        flash[:error].should == "You cannot create that role type."
-        response.should redirect_to home_path(@current_user.identifier)
-      end
-    end
-=end
   end
 
   # TODO Update edit
