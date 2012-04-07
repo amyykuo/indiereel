@@ -1,3 +1,13 @@
+class UserConstraint
+  def initialize
+    @reserved_terms = ["search", "logout"]
+  end
+  
+  def matches?(request)
+    not @reserved_terms.include? request.params[:identifier]
+  end
+end
+
 class RoleConstraint
   def initialize
     @options = Role.options + Role.legacy_options
@@ -24,8 +34,9 @@ Indiereel::Application.routes.draw do
   # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects"
   match "/:identifier/:role/portfolio(/:action)" => "portfolios", :defaults => {:action => "show"}
-  match "/:identifier/:role(/:action)" => "roles", :defaults => {:action => "show"}, :constraints => RoleConstraint.new, :as => 'custom_role'
-  match "/:identifier" => "users#show", :as => 'home'
+  match "/:identifier/:role/edit" => "roles#edit", :as => 'custom_edit_role'
+  match "/:identifier/:role" => "roles#show", :as => 'custom_role', :constraints => RoleConstraint.new
+  match "/:identifier" => "users#show", :as => 'home', :constraints => UserConstraint.new
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

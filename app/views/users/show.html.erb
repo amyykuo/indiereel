@@ -19,7 +19,7 @@
 								  </div>
 								  <div class="span7">
 							      <ul class="nav">
-								      <li><%= link_to "View this Role", role_route(role) %></li>
+								      <li><%= link_to "View Profile", role_route(role) %></li>
 								      <li><%= link_to "Edit this Role", role_route(role, "edit") %></li>
 								      <li><%= link_to "Portfolio", portfolio_route(role) %></li>
 								      <li><%= link_to "Projects", projects_route(role)%></li>
@@ -35,7 +35,9 @@
 			    </div>
 		    </div>
 		  <% end %>
+		  <% unless @roles.length == Role.options.length %>
 		  <h4><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %></h4>
+		  <% end %>
 		  <hr />
     <% else %>
       <p>You have no roles. <%= link_to "Create one?", new_role_path, :class => "btn btn-info btn-small" %></p>

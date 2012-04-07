@@ -4,6 +4,7 @@
 			<%= link_to "IndieReel", home_route(current_user), :class => "brand"%>
 			<ul class="nav">
 				<li class="divider-vertical"></li>
+				<li><%= link_to "All Roles", home_route(current_user) %><li>
 				<% for role in current_user.roles %>
 				<li><%= link_to role.role_type.capitalize, role_route(role), :class => "ir-#{role.role_type}-profile-link"%>
 				<% end %>
