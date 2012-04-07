@@ -27,7 +27,7 @@
 	<%= label_tag :email, "Email:" %>
 	<%= text_field_tag "role[email]", @role.email, {:placeholder => "What's your email?"} %>
 	
-	<%= label_tag :phone_number, "Phone Number: " %>
+	<%= label_tag :phone_number, "Phone Number:" %>
 	<%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "What's your number?"} %><br/>
   
   Age:<br/>
@@ -37,20 +37,16 @@
 		<% end %>
 	</select>
 	
-	<%= label_tag :role_experience, "Experience: " %>
+	<%= label_tag :role_experience, "Experience:" %>
 	<%= text_field_tag "role[role_experience]", @role.role_experience, {:placeholder => "What's your experience in this role?"} %>
 	
-	<%= label_tag :role_skills, "Skills: " %>
+	<%= label_tag :role_skills, "Skills:" %>
 	<%= text_field_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %><br/><br/>
 	
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	
-	
-	<input type="submit" value="Update Role">
+	<br><input type="submit" value="Update Role"> <%= link_to "Cancel", home_path(@user.username) %>
 <% end %>
-<%= link_to "Cancel", home_path(@user.username) %>
-
-
 
 
 <!--

@@ -7,6 +7,7 @@ Feature: Add a role profile
 Background:
 
   Given I am signed in with provider "facebook"
+  
   And I have the following roles:
   | role_type  | user_id | role_name | profile_pic            | email         | role_type_description | role_experience | role_skills |
   |  director  |  1      |  John     | http://hi.com/user.png | test@xxxx.com | I am awesome!         | everything      | none        |

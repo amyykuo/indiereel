@@ -36,9 +36,9 @@ end
 #  end
 #end
 
-When /^(.*) within the "([^"]*)" section$/ do |step, scope|
+When /^(.*) within the "([^"]*)" section$/ do |step_def, scope|
   with_scope(scope) do
-    When step
+    step step_def
   end
 end
 
