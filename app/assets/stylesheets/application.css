@@ -6,8 +6,8 @@
  *= require_tree . 
 */
 
-.center {
-text-align:center;
-margin-left:auto;
-margin-right:auto;
+footer {
+	text-align: center;
+	margin: 0px auto;
+	width: 800px;
 }
