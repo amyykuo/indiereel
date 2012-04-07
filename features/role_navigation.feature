@@ -1,4 +1,4 @@
-Feature: Home page
+Feature: Role Profile page
 
 As a User
 I want to be able to access my Role's profile sections

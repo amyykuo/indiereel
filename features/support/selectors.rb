@@ -37,8 +37,8 @@ module HtmlSelectorsHelpers
     when /(Talent|Director|Producer|Crew|Projects|Portfolio)/
       "##{$1.downcase}"
       
-    #when /(Projects|Portfolio)/
-    #  "##{$1.downcase}"
+    when /Navigation Bar/
+      ".navbar-inner"
 
     else
       raise "Can't find mapping from \"#{scope}\" to a selector.\n" +
