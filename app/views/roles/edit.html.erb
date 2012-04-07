@@ -1,22 +1,4 @@
-<!--
-<%= form_for(:picture, 
-             :url => {:action => 'save'}, 
-             :html => { :multipart => true }) do |form| %>
-             
-     Upload your picture: <%= form.file_field("uploaded_picture") %><%= submit_tag("Upload Picture") %><br/>
-<% end %>
--->
-
 <%= form_tag role_path(@role.id), :method => 'put' do %>
-<!--
-	Select a Role:<br/>
-
-	<select name="role[role_type]">
-		<% for option in @options do %>
-			<option selected="<%= @role.role_type %>" value="<%= option %>"><%= option %></option>
-		<% end %>
-	</select>
--->
 	
 	<%= label_tag :role_name, "Stage Name:" %>
 	<%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Who do you go as?"} %>
