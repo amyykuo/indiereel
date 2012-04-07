@@ -107,8 +107,36 @@ describe RolesController do
     end
   end
   
-  # TODO will need to test this eventually... like... Iteration 2.2... shit dawg
   describe 'update' do
+    
+    before :each do
+      Role.stub!(:find).with("1").and_return(@role = mock("Role", :id => 1, :role_type => "talent", :user => @current_user, :valid? => false, :invalid? => true))
+      @role.stub!(:update_attributes).and_return(nil)
+    end
+    
+    it 'should update the attributes' do
+      @role.should_receive(:update_attributes)
+      post :update, :id => 1, :role => {}
+    end
+    
+    it 'should set a flash error if the resultant role is invalid' do
+      post :update, :id => 1, :role => {}
+      flash[:error].should == "There were some errors in updating your role..."
+      flash[:notice].should == nil
+    end
+    
+    it 'should not set a flash error if the resultant role is valid' do
+      @role.should_receive(:valid?).and_return(true)
+      @role.should_receive(:invalid?).and_return(false)
+      post :update, :id => 1, :role => {}
+      flash[:error].should == nil
+      flash[:notice].should == "talent was successfully updated."
+    end
+    
+    it 'should redirect to the role route' do
+      post :update, :id => 1, :role => {}
+      response.should redirect_to custom_role_path("kunal", "talent")
+    end
   end
   
   describe 'destroy' do
