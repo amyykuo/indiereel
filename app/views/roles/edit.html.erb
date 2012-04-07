@@ -1,59 +1,30 @@
 <%= form_tag role_path(@role.id), :method => 'put' do %>
+
+  <%= label_tag "role[role_name]", "Stage Name:" %>
+	<%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Enter your Role Stage Name"} %>
 	
-	<%= label_tag :role_name, "Stage Name:" %>
-	<%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Who do you go as?"} %>
+	<%= label_tag "role[role_type_description]", "Role Description:" %>
+	<%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "What exactly do you do?"} %>
 	
-	<%= label_tag :role_type_description, "Role Description:" %>
-	<%= text_field_tag "role[role_type_description]", @role.role_type_description, :placeholder=>"What exactly do you do?" %>
+	<%= label_tag "role[email]", "Email:" %>
+	<%= text_field_tag "role[email]", @role.email, {:placeholder => "Enter your email"} %>
 	
-	<%= label_tag :email, "Email:" %>
-	<%= text_field_tag "role[email]", @role.email, {:placeholder => "What's your email?"} %>
-	
-	<%= label_tag :phone_number, "Phone Number:" %>
-	<%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "What's your number?"} %><br/>
+	<%= label_tag "role[phone_number]", "Phone Number:" %>
+	<%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "Enter your number"} %> <br/>
   
-  Age:<br/>
-  <select name="role[age_range]">
-		<% for age in @ages do %>
-			<option value="<%= age %>"><%= age %></age>
-		<% end %>
-	</select>
+  <%= label_tag "role[age_range]", "Choose an Age Range" %>
+  <%= select_tag("role[age_range]", options_for_select(@ages)) %>
 	
-	<%= label_tag :role_experience, "Experience:" %>
-	<%= text_field_tag "role[role_experience]", @role.role_experience, {:placeholder => "What's your experience in this role?"} %>
+	<%= label_tag "role[role_experience]", "Experience:" %>
+	<%= text_field_tag "role[role_experience]", @role.role_experience, {:placeholder => "Describe your experience in this role"} %>
 	
-	<%= label_tag :role_skills, "Skills:" %>
-	<%= text_field_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %><br/><br/>
+	<%= label_tag "role[role_skills]", "Skills:" %>
+	<%= text_field_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %>
+	
+	<%= label_tag "role[physique]", "Physique:" %>
+	<%= text_field_tag "role[physique]", nil, {:placeholder => "Are you my brown eyed girl?"} %>
 	
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	
-	<br><input type="submit" value="Update Role"> <%= link_to "Cancel", home_path(@user.username) %>
+	<br><br><input type="submit" value="Update Role"> <%= link_to "Cancel", role_route(@role) %>
 <% end %>
-
-
-<!--
-<%= form_for(@user) do |f| %>
-
-  <div class="field">
-    <%= f.label "Stage Name" %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label "Contact" %><br />
-    <%= f.text_field :email %>
-  </div>
-    <div class="field">
-    <%= f.label "Role Type Description" %><br />
-    <input type="text" name="Role Type Description" />
-  </div>
-  
-<% end %>
-<%= form_tag roles_path do %>
-	<select name="age_range">
-		<% for age in @ages do %>
-			<option value="<%= age %>"><%= age %></age>
-		<% end %>
-	</select>
-<% end %>
- <input name="commit" type="submit" value="Update Role" />
--->
