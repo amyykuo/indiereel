@@ -2,15 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-td.indexpage {
-background-image:url(../assets/welcome_1.jpg);
-background-repeat:no-repeat;
-width:940px;
-height:600px;
-padding-top:300px;
-padding-bottom:300px;
-padding-right:405px;
-padding-left:145px;
+div#welcome {
+	width:940px;
+	height:600px;
+	margin: 0px auto 0px auto;
+	background: url(../assets/welcome_1.jpg) no-repeat;
 }
 
+#welcome #description {
+	width:400px;
+	height: 200px;
+	padding: 285px 0 0 45px;
+	text-align: center;
+	color: #666;	
+}
 
+#welcome #facebook-connect {
+	margin: 10px 0 5px 0;
+}
+
+#welcome #disclaimer {
+	font-size: 11px;
+	color: #888;
+	padding: 0 60px;
+}
