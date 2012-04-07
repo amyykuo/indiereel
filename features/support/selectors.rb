@@ -35,7 +35,7 @@ module HtmlSelectorsHelpers
       $1
       
     when /(Talent|Director|Producer|Crew)/
-      "DIV.span4##{$1}"
+      "##{$1.downcase}"
 
     else
       raise "Can't find mapping from \"#{scope}\" to a selector.\n" +

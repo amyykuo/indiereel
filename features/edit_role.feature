@@ -32,9 +32,10 @@ Scenario: write a description
   Then I should be on Edit Role page
   And I should see "I am apple pie" in the description field
   
-  #Scenario: Successful changes (check if: (1) new changes have been saved; (2) old changes are still there; (3) redirects to Role's profile_page
-  #Scenario: No new changes, cancel editing -- Check If: (1) User is redirected to Role's profile_page
-  #Scenario: New changes, cancel editing -- Check If: (1) User is redirected to Role's profile_page; (2) the new changes should not have been saved
-  #Scenario: On the Role's edit_page, make changes, follow a random link (didn't press the "save" button) -- Check If: (1) the new changes should not have been saved
-  #Scenario: Upload different sized pictures for the profile pic (tentative... on how to handle this...)
-  #Scenario: From homepage, select edit, should go to edit page
+  #TODO need to implement role page view
+  
+#Scenario: Successful changes (check if: (1) new changes have been saved; (2) old changes are still there; (3) redirects to Role's profile_page
+#Scenario: No new changes, cancel editing -- Check If: (1) User is redirected to Role's profile_page
+#Scenario: New changes, cancel editing -- Check If: (1) User is redirected to Role's profile_page; (2) the new changes should not have been saved
+#Scenario: On the Role's edit_page, make changes, follow a random link (didn't press the "save" button) -- Check If: (1) the new changes should not have been saved
+#Scenario: Upload different sized pictures for the profile pic (tentative... on how to handle this...)

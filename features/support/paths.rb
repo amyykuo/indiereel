@@ -20,7 +20,7 @@ module NavigationHelpers
       '/' # need to change this eventually
       
     when /^the "([^"]*)" "([^"]*)" page for the "([^"]*)" role$/ #edit role page
-      '/$1/$3/$2'
+      custom_role_path($1, $3, $2)
       
     when /^the Create Role Page/
       '/roles/new'

@@ -19,16 +19,19 @@ Scenario: Go to Add a Role
   When I follow "Add a role"
   Then I should be on the Create Role Page
     
-#Scenario: Delete the Director Role
+#Scenario: Delete the All Roles
 #  When I press "delete this role for director"
 #  Then I should be on my "tester" home page
 #  And I should not see "director"
 #  But I should see "talent"
+#  When I press "delete this role for talent"
+#  Then I should be on my "tester" home page
+#  And I should see "Create a role"
 
 Scenario: Go to Talent Edit Page
 #  Then I should see "Edit this Role"
 #  Then I should see "Edit this Role" in the "Talent" section
-  When I press "Edit this Role" within the "Talent" section
+  When I follow "Edit this Role" within the "Talent" section
 #  When I select the "Edit Role" button for the Director role
   Then I should be on the "tester" "edit" page for the "talent" role
 
