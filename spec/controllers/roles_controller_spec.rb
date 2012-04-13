@@ -29,135 +29,138 @@ describe RolesController do
     end
   end
   
-  
   describe 'new' do
-    # TODO scenario we did not test
-    describe '@user is not nil' do
-      # TODO it use to be: it 'should set @user and @options', update the code to the current task
-      it 'should set @user' do
-        User.should_receive(:find_by_identifier).with("kunal").and_return(user = mock("User"))
-        Role.should_receive(:options).and_return(["talent"])
-        get :new
-        response.should render_template("new")
-      end
-      # TODO
-      it 'should set @ages'
-      it 'should only set @options to roles the user does not have yet'
-        #is this two scenarios? (1) has some valid roles left; (2) no roles left and @options == nil
-    end
-    # TODO scenario we did not test
-    describe '@user is not nil' do
-      # TODO it use to be: it 'should set @user and @options', update the code to the current task
-      it 'should set @user' do
-        User.should_receive(:find_by_identifier).with("kunal").and_return(user = mock("User"))
-        Role.should_receive(:options).and_return(["talent"])
-        get :new
-        response.should render_template("new")
-      end
-      # TODO
-      it 'should set @ages'
-      it 'should only set @options to roles the user does not have yet'
-        #is this two scenarios? (1) has some valid roles left; (2) no roles left and @options == nil
-      it 'should do render_not_found'
-    end
-  end
-  
-  # TODO Update create
-  describe 'create new role' do
     
     before :each do
-      Role.stub!(:options).and_return(["talent"])
+      User.stub!(:find_by_identifier).with("kunal").and_return(mock("User", :id => 1))
+      Role.stub!(:ages).and_return(["0-7"])
+      Role.stub!(:options).and_return(["talent", "crew"])
     end
     
-    # TODO some of these tests may need to be tested in the Role Model...
-    describe 'the new role is valid' do
-      describe 'no data inputted at all' do
-        it 'should create the new role'
-        it 'should call the MediaCollection create_default method and create the default MediaCollection'
-        it 'should save'
-        it 'should redirect to new role profile page'
-      end
-      describe 'data inputted' do
-        describe 'no stagename inputted'
-          it 'should create the new role'
-          it 'should call the MediaCollection create_default method and create the default MediaCollection'
-          it 'should save'
-          it 'should redirect to new role profile page'
-        end
-        describe 'stagename inputted'
-          it 'should create the new role'
-          it 'should call the MediaCollection create_default method and create the default MediaCollection'
-          it 'should save'
-          it 'should redirect to new role profile page'
-        end
-      end
-    end
-    describe 'the new role is not valid' do
-      it 'SHOULD NOT CREATE THE ROLE'
-      it 'should redirect the user back to the users home page'
-      it 'should flash an error message'
+    it 'should find the current user and get the list of valid ages' do
+      User.should_receive(:find_by_identifier)
+      Role.should_receive(:ages)
+      get :new
     end
     
-=begin old code that doesn't... really... apply anymore?
-    describe 'if role_type (aka name) is one of the options' do
-      
-      describe 'if role is invalid' do
-        it 'should redirect to home_route of current user' do
-          Role.should_receive(:create).and_return(mock("Role", :valid? => false, :user => @current_user, :role_type => "talent"))
-          post :create, {:role_type => "talent"}
-          response.should redirect_to home_path(@current_user.identifier)
-        end
-      end
-      
-      describe 'if role is valid' do
-        it 'should redirect to the role_route of the newly created role' do
-          Role.should_receive(:create).and_return(mock("Role", :valid? => true, :user => @current_user, :role_type => "talent"))
-          post :create, {:role_type => "talent"}
-          response.should redirect_to custom_role_path(@current_user.identifier, "talent")
-        end
-      end
+    it 'should check to see if user has each option' do
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
+      Role.should_receive(:find_by_role_type_and_user_id).with("crew", 1).and_return(mock("Role"))
+      get :new
+      assigns(:options).should == ["talent"]
     end
-    
-    describe 'if role_type (aka name) is not one of the options' do
-      it 'should have a flash error _You cannot create that role type_ and redirects to home_route of that user' do
-        post :create, {:role_type => "dancer"}
-        flash[:error].should == "You cannot create that role type."
-        response.should redirect_to home_path(@current_user.identifier)
-      end
-    end
-=end
-  end
-
-  # TODO Update edit
-  describe 'edit role' do
-    # omg its almost the same as new...
   end
   
-  # TODO will need to test this eventually... like... Iteration 2.2... shit dawg
-  describe 'update role' do
+  describe 'create' do
+    
+    before :each do
+      @role = mock("Role", :role_type => "lol", :user => @current_user, :media_collections => [])
+    end
+    
+    describe 'the new role is valid' do 
+      it 'should create the role and test its validity' do
+        Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
+        @role.should_receive(:valid?).and_return(true)
+        MediaCollection.should_receive(:create_default).and_return(mock("MediaCollection"))
+        @role.should_receive(:save)
+        post :create, {:role => {:role_type => "lol"}}
+        response.should redirect_to custom_role_path("kunal", "lol")
+      end
+    end
+    
+    describe 'the new role is not valid' do
+      it 'should create the role, check validity, and then redirect to the home page' do
+        Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
+        @role.should_receive(:valid?).and_return(false)
+        post :create, {:role => {:role_type => "lol"}}
+        response.should redirect_to home_path("kunal")
+      end
+    end
+  end
+
+  describe 'edit' do
+    
+    it 'should 404 if given an invalid user' do
+      User.should_receive(:find_by_identifier).with("lol").and_return(nil)
+      get :edit, :identifier => "lol", :role => "talent"
+      response.response_code.should == 404
+    end
+    
+    it 'should 404 if :identifier is not that of the current user' do
+      User.should_receive(:find_by_identifier).with("lol").and_return(mock("User", :id => 9001))
+      get :edit, :identifier => "lol", :role => "talent"
+      response.response_code.should == 404
+    end
+    
+    it 'should 404 if user does not have the given role' do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
+      get :edit, :identifier => "kunal", :role => "talent"
+      response.response_code.should == 404
+    end
+    
+    it 'should get the possible age options for a valid user and role' do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(mock("Role"))
+      Role.should_receive(:ages)
+      get :edit, :identifier => "kunal", :role => "talent"
+    end
+  end
+  
+  describe 'update' do
+    
+    before :each do
+      Role.stub!(:find).with("1").and_return(@role = mock("Role", :id => 1, :role_type => "talent", :user => @current_user, :valid? => false, :invalid? => true))
+      @role.stub!(:update_attributes).and_return(nil)
+    end
+    
+    it 'should update the attributes' do
+      @role.should_receive(:update_attributes)
+      post :update, :id => 1, :role => {}
+    end
+    
+    it 'should set a flash error if the resultant role is invalid' do
+      post :update, :id => 1, :role => {}
+      flash[:error].should == "There were some errors in updating your role..."
+      flash[:notice].should == nil
+    end
+    
+    it 'should not set a flash error if the resultant role is valid' do
+      @role.should_receive(:valid?).and_return(true)
+      @role.should_receive(:invalid?).and_return(false)
+      post :update, :id => 1, :role => {}
+      flash[:error].should == nil
+      flash[:notice].should == "talent was successfully updated."
+    end
+    
+    it 'should redirect to the role route' do
+      post :update, :id => 1, :role => {}
+      response.should redirect_to custom_role_path("kunal", "talent")
+    end
   end
   
   describe 'destroy' do
     
-    describe 'if you are the user of the role profile' do
-      it 'should delete the role by calling the Role model method destroy' do
-        Role.should_receive(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil))
-        @role.should_receive(:destroy)
-        post :destroy, {:id => 1}
-      end
-      # TODO i don't know if this belongs here... but we need to check if it does this
-      it 'should delete all MediaCollections associated with that role'
+    before :each do
+      Role.stub!(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil, :user => @current_user))
     end
     
-    describe 'if you are not the user of the role profile' do
-      it 'should flash error _You cannot delete this role._' do
-        Role.should_receive(:find).and_return(@role = mock("Role", :user => mock("User", :identifier => "homie"), :destroy => nil))
-        @role.should_not_receive(:destroy)
-        post :destroy, {:id => 1}
-        flash[:error].should == "You cannot delete this role."
-      end
+    it 'should find the role by ID' do
+      Role.should_receive(:find).with("1")
+      post :destroy, {:id => 1}
     end
     
+    it 'should destroy the role if the user matches the current user' do
+      @role.should_receive(:destroy)
+      post :destroy, {:id => 1}
+    end
+    
+    it 'should set a flash error if the user does not match the current user' do
+      @role.should_receive(:user).and_return(mock("User", :identifier => "lawl"))
+      post :destroy, {:id => 1}
+      flash[:error].should == "You cannot delete this role."
+    end
+      
     it 'should redirect to the home route of the current user' do
       Role.should_receive(:find).and_return(@role = mock("Role", :user => @current_user, :destroy => nil))
       post :destroy, {:id => 1}

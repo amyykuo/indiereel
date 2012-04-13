@@ -34,8 +34,11 @@ module HtmlSelectorsHelpers
     when /^"(.+)"$/
       $1
       
-    when /(Talent|Director|Producer|Crew)/
-      "DIV.span4##{$1}"
+    when /(Talent|Director|Producer|Crew|Projects|Portfolio)/
+      "##{$1.downcase}"
+      
+    when /Navigation Bar/
+      ".navbar-inner"
 
     else
       raise "Can't find mapping from \"#{scope}\" to a selector.\n" +

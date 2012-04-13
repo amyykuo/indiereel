@@ -8,7 +8,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 
 def login_as(name)
-  kunal = mock("Kunal", {:name => name, :uid => "123", :identifier => "kunal"})
+  kunal = mock("Kunal", {:name => name, :uid => "123", :identifier => "kunal", :id => 1})
   User.stub(:find_by_uid).with("123").and_return(kunal)
   session[:user_id] = "123"
   return kunal

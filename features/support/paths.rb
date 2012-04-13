@@ -19,8 +19,16 @@ module NavigationHelpers
     when /^the welcome page$/
       '/' # need to change this eventually
       
-    when /^the "([^"]*)" "([^"]*)" page for the "([^"]*)" role$/ #edit role page
-      '/$1/$3/$2'
+    when /^the "([^"]*)" Projects page for the "([^"]*)" role$/
+      projects_path($1, $2)
+      
+    when /^the "([^"]*)" Portfolio page for the "([^"]*)" role$/
+      portfolio_path($1, $2)
+    
+    when /my "([^"]*)" Edit Page/
+      user = $1.split[0]
+      role = $1.split[1]
+      custom_edit_role_path(user, role)
       
     when /^the Create Role Page/
       '/roles/new'

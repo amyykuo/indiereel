@@ -1,13 +1,7 @@
-class RoleValidator < ActiveModel::Validator
-  def validate(record)
-    record.errors[:base] << "You cannot have more than one of any given role." unless Role.find_by_role_type_and_user_id(record.role_type, record.user.id).nil?
-  end
-end
-
 class Role < ActiveRecord::Base
   belongs_to :user
   has_many :media_collections, :dependent => :destroy
-  #validates_with RoleValidator
+  # TODO - validation
   
   
   def self.options
