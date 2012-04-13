@@ -1,7 +1,8 @@
 class MediaCollection < ActiveRecord::Base
   belongs_to :role
   
-  def self.create_default
+  def self.create_quickshow
     MediaCollection.create(:title => "QuickShow", :description => "Show off your best work in this album!")
   end
+  
 end
