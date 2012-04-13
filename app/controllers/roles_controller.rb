@@ -46,11 +46,13 @@ class RolesController < ApplicationController
     
     if @role.valid?
       flash[:notice] = "#{@role.role_type} was successfully updated."
+      redirect_to role_route(@role)
     else
-      flash[:error] = "There were some errors in updating your role..."
+      flash[:error] = "There were some errors in updating your role."
+      redirect_to role_route(@role, 'edit')
     end
     
-    redirect_to role_route(@role)
+    
   end
   
   def destroy
