@@ -1,0 +1,53 @@
+<% if current_user.uid == @user.uid %>
+	<div class="alert alert-info">
+	    <h4>You're on your <%= @role.role_type %> page as <%= @role.role_name %>.<small class="pull-right"><%= link_to "Edit this role", role_route(@role, "edit") %></small></h4>
+	</div>
+<% end %>
+	<hr />
+	<div class="row">
+		<div class="span3">
+			<h3><%= @role.role_name %><small class="pull-right"><%= @role.role_type %></small></h3>
+			<div class="well">
+				<%= image_tag "default_role_pic.jpg", :width => 180, :height => 180 %>
+				<hr />
+				<%= button_to 'Delete this Role', role_path(@role), :method => :delete, :confirm => 'Are you sure you want to delete this role?', :class => "btn btn-mini btn-danger" %>
+			</div>
+		</div>
+		<div class="span9">
+			<section id="contact-info">
+					<h3>Contact Information</h3>
+					<ul class="unstyled">
+						<li><strong>Email:</strong> <%= @role.email %></li>
+						<li><strong>Phone:</strong> <%= @role.phone_number %></li>
+					</ul>
+					<hr />
+			</section>
+			<section id="description">
+					<h3>Description</h3>
+					<ul class="unstyled">
+						<li><strong>Role Description:</strong> <%= @role.role_type_description %>
+						<li><strong>Age Range:</strong> <%= @role.age_range %>
+						<li><strong>Physique:</strong> <%= @role.physique %></li>
+					</ul>
+					<hr />
+			</section>
+			<section id="experience">
+					<h3>Experience</h3>
+					<%= @role.role_experience %>
+					<hr />
+			</section>
+			<section id="skills">
+					<h3>Skills</h3>
+					<%= @role.role_skills %>
+					<hr />
+			</section>
+			<section id="portfolio">
+					<h3>Portfolio<small class="pull-right"><%= link_to "View full portfolio", portfolio_route(@role) %></small></h3>
+					<hr />
+			</section>
+			<section id="projects">
+					<h3>Projects<small class="pull-right"><%= link_to "View all projects", projects_route(@role) %></small></h3>
+					<hr />
+			</section>
+		</div>
+	</div>
