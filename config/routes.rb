@@ -30,6 +30,7 @@ Indiereel::Application.routes.draw do
 
   resources :roles
   resources :users
+  resources :media_collections
 
   # User and profile related routes
   match "/:identifier/:role/projects(/:action)" => "projects", :as => 'projects'
@@ -37,8 +38,12 @@ Indiereel::Application.routes.draw do
   match "/:identifier/:role/edit" => "roles#edit", :as => 'custom_edit_role'
   match "/:identifier/:role" => "roles#show", :as => 'custom_role', :constraints => RoleConstraint.new
   match "/:identifier" => "users#show", :as => 'home', :constraints => UserConstraint.new
-  match "/:identifier/:role/:media_collection(/:action)" => "media_collections", :as => 'media_collection', :defaults => {:action => "show"}
-
+  
+  # media collection relate routes
+  match "/:identifier/:role/album/:media_collection" => "media_collections#show", :as => 'custom_mc', :constraints => RoleConstraint.new
+  match "/:identifier/:role/album/:media_collection/edit" => "media_collections#edit", :as => 'custom_edit_mc', :constraints => RoleConstraint.new
+  match "/:identifier/:role/album/new" => "media_collections#new", :as => 'custom_new_mc', :constraints => RoleConstraint.new
+  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

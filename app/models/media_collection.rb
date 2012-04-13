@@ -5,4 +5,8 @@ class MediaCollection < ActiveRecord::Base
     MediaCollection.create(:title => "QuickShow", :description => "Show off your best work in this album!")
   end
   
+  def self.create_headshots #TODO FIX
+    MediaCollection.create(:title => "QuickShow", :description => "Show off your best work in this album!")
+  end
+  
 end

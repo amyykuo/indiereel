@@ -21,7 +21,10 @@ class RolesController < ApplicationController
     
 	  if @role_being_created.nil?
 	    role = Role.create params[:role]
-      role.quickshow_id << MediaCollection.create_quickshow
+	    quickshow = MediaCollection.create_quickshow
+      role.quickshow_id = quickshow.id
+      role.media_collections << quickshow
+      #TODO also create a headshot MC
       role.save
       
       flash[:notice] = "Role created."
