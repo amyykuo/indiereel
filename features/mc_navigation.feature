@@ -20,7 +20,7 @@ Scenario: Go back to portfolio page #A user should be able to access portfolio p
   When I follow "Go back to Portfolio" # not implemented yet
   Then I should be on my portfolio page # not implemented yet
 
-Scenario: #A user should be able to access the edit page for a media collection
+Scenario: Go to a media collection edit page #A user should be able to access the edit page for a media collection
   When I follow "Edit this MC"  # not implemented yet
   Then I should be on my "talent" edit media collection "photos" page  # not implemented yet
   

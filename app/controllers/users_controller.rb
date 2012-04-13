@@ -4,10 +4,9 @@ class UsersController < ApplicationController
     @roles = @user.roles rescue nil
     @grouped_roles = @user.roles_in_groups_of(3)
     
-    render 'public/404', :status => 404 if @user.nil?
+    render_not_found if @user.nil?
   end
  
-
   # This is for the default role portion of the view, to be implemented later.
   def update
     user = User.find_by_identifier(params[:identifier])
