@@ -18,14 +18,21 @@
 	                <div class="row-fluid">
 	                  <div class="span12">
 	                    <div class="nav">
-	                    <li><%= link_to "View Collection", new_role_path %></li>
+	                    
+	                    <h3><%= link_to "View Collection", new_role_path %></h3>
 	                    </div>
 	                  </div>
 	                </div>
+	                <hr style="margin:10px 0px 10px 0px" />
+	                <div class="btn-group">
+                    <%= link_to "Edit", role_route(@role, "edit"), :class => "btn btn-small" %>
+                    <%= link_to "Delete", role_route(@role), :class => "btn btn-small" %>
+							    </div> 
 	            </div>
 	          </div>
 	        </div>
 	      </div>
+	      <%= button_to "Add Collection?", role_route(@role) %>
   <!-- same as above
 	    end 
 	 end 
