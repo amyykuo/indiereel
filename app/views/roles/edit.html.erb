@@ -1,10 +1,9 @@
 <%= form_tag role_path(@role.id), :method => 'put' do %>
-
   <%= label_tag "role[role_name]", "Stage Name:" %>
 	<%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Enter your Role Stage Name"} %>
 	
-	<%= label_tag "role[role_type_description]", "Role Description:" %>
-	<%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "What exactly do you do?"} %>
+	<%= label_tag "role[role_type_description]", "Role Description: What exactly do you do?" %>
+	<%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "i.e. Actor, Camera-op, etc"} %>
 	
 	<%= label_tag "role[email]", "Email:" %>
 	<%= text_field_tag "role[email]", @role.email, {:placeholder => "Enter your email"} %>
@@ -13,16 +12,16 @@
 	<%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "Enter your number"} %> <br/>
   
   <%= label_tag "role[age_range]", "Choose an Age Range" %>
-  <%= select_tag("role[age_range]", options_for_select(@ages)) %>
+  <%= select_tag("role[age_range]", options_for_select(@ages), :prompt => "Select one or Leave as is") %>
 	
 	<%= label_tag "role[role_experience]", "Experience:" %>
-	<%= text_field_tag "role[role_experience]", @role.role_experience, {:placeholder => "Describe your experience in this role"} %>
+	<%= text_area_tag "role[role_experience]", @role.role_experience, {:placeholder => "Describe your experience in this role"} %>
 	
 	<%= label_tag "role[role_skills]", "Skills:" %>
-	<%= text_field_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %>
+	<%= text_area_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %>
 	
 	<%= label_tag "role[physique]", "Physique:" %>
-	<%= text_field_tag "role[physique]", nil, {:placeholder => "Are you my brown eyed girl?"} %>
+	<%= text_area_tag "role[physique]", nil, {:placeholder => "Are you my brown eyed girl?"} %>
 	
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	
