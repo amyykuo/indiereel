@@ -1,12 +1,12 @@
-<%= form_tag roles_path do %>
-	<%= label_tag "role[role_type]", "Choose a Role Type" %>
-	<%= select_tag("role[role_type]", options_for_select(@options)) %>
+<%= form_tag media_collections_path do %>
+	<%= label_tag "mc[title]", "Tile:" %>
+	<%= text_field_tag "mc[title]", nil, {:placeholder => "Enter the title of your Album"} %>
 
-	<%= label_tag "role[role_name]", "Stage Name:" %>
-	<%= text_field_tag "role[role_name]", @user.name, {:placeholder => "Enter your Role Stage Name"} %>
+	<%= label_tag "mc[description]", "Description:" %>
+	<%= text_field_tag "mc[description]", nil, {:placeholder => "Describe this Album"} %>
 	
-	<%= hidden_field_tag "role[user_id]", current_user.id %>
+	<%= hidden_field_tag "mc[role_id]", @role.id %>
 	
-	<br><br><input type="submit" value="Create Role"> <%= link_to "Cancel", home_path(@user.username) %>
+	<br><br><input type="submit" value="Create Album"> <%= link_to "Cancel", portfolio_path(@user.identifier, @role.role_type) %>
 <% end %>
 

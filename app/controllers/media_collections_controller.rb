@@ -13,12 +13,16 @@ class MediaCollectionsController < ApplicationController
   
   def create
     #create a new media collection
-    @user = User.find_by_identifier(current_user.identifier)
-    @role_being_created = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
+    #@album = MediaCollection.find_by_id(params[:mc])
     
-	  if @role_being_created.nil?
-	    role = Role.create params[:role]
-	  end
+	  if !params[:mc][:title].nil?
+	    mc = MediaCollection.create(params[:mc])
+	    flash[:notice] = "Album created."
+      redirect_to custom_mc(mc)
+	  else
+	    flash[:error] = "Album needs a title"
+	    redirect_to custom_new_mc(current_user.identifier, params[:mc][role_id].role_type)
+    end
   end
   
   def update

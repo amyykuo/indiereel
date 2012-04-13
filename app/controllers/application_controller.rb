@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :authentication_required
   
   def render_not_found
+    raise "here here here"
     render 'public/404', :status => 404
   end
 

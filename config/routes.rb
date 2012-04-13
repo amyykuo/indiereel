@@ -39,10 +39,11 @@ Indiereel::Application.routes.draw do
   match "/:identifier/:role" => "roles#show", :as => 'custom_role', :constraints => RoleConstraint.new
   match "/:identifier" => "users#show", :as => 'home', :constraints => UserConstraint.new
   
-  # media collection relate routes
+  # media collection relate routes TODO fix ambiguity, new has to be at top or else show is rendered instead of new
+  match "/:identifier/:role/album/new" => "media_collections#new", :as => 'custom_new_mc', :constraints => RoleConstraint.new
   match "/:identifier/:role/album/:media_collection" => "media_collections#show", :as => 'custom_mc', :constraints => RoleConstraint.new
   match "/:identifier/:role/album/:media_collection/edit" => "media_collections#edit", :as => 'custom_edit_mc', :constraints => RoleConstraint.new
-  match "/:identifier/:role/album/new" => "media_collections#new", :as => 'custom_new_mc', :constraints => RoleConstraint.new
+
   
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
