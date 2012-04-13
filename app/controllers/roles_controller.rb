@@ -17,16 +17,17 @@ class RolesController < ApplicationController
   
   def create
     @user = User.find_by_identifier(current_user.identifier)
-    @prev_role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
+    @role_being_created = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     
-	  if @prev_role.nil?
+	  if @role_being_created.nil?
 	    role = Role.create(params[:role])
       role.media_collections << MediaCollection.create_default
       role.save
+      
       flash[:notice] = "Role created."
       redirect_to role_route(role)
     else
-      flash[:notice] = "There already was a role of that kind."
+      flash[:error] = "There already was a role of that kind."
       redirect_to home_route(current_user)
     end
   end
@@ -40,11 +41,14 @@ class RolesController < ApplicationController
   end
   
   def update
-    @role = Role.find params[:id]
+    @role = Role.find(params[:id])
     @role.update_attributes(params[:role])
     
-    flash[:notice] = "#{@role.role_type} was successfully updated." if @role.valid?
-    flash[:error] = "There were some errors in updating your role..." if @role.invalid?
+    if @role.valid?
+      flash[:notice] = "#{@role.role_type} was successfully updated."
+    else
+      flash[:error] = "There were some errors in updating your role..."
+    end
     
     redirect_to role_route(@role)
   end
@@ -54,11 +58,11 @@ class RolesController < ApplicationController
     
 	  if current_user.identifier == role.user.identifier
       role.destroy
+      flash[:notice] = "Role deleted."
     else
       flash[:error] = "You cannot delete this role."
     end
 	  
-	  flash[:notice] = "Role deleted."
     redirect_to home_route(current_user)
   end
 end
