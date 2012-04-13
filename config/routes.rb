@@ -37,6 +37,7 @@ Indiereel::Application.routes.draw do
   match "/:identifier/:role/edit" => "roles#edit", :as => 'custom_edit_role'
   match "/:identifier/:role" => "roles#show", :as => 'custom_role', :constraints => RoleConstraint.new
   match "/:identifier" => "users#show", :as => 'home', :constraints => UserConstraint.new
+  match "/:identifier/:role/:media_collection(/:action)" => "media_collections", :as => 'media_collection', :defaults => {:action => "show"}
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
