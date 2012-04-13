@@ -1,8 +1,8 @@
 class Role < ActiveRecord::Base
   belongs_to :user
   has_many :media_collections, :dependent => :destroy
-  # TODO - validation
   
+  # TODO - validation
   validates :role_name, :presence => true
   validates :role_type, :presence => true
   

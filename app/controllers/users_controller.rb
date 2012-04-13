@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     render_not_found if @user.nil?
   end
  
-
   # This is for the default role portion of the view, to be implemented later.
   def update
     user = User.find_by_identifier(params[:identifier])

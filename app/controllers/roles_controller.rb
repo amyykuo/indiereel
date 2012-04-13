@@ -19,14 +19,14 @@ class RolesController < ApplicationController
     @user = User.find_by_identifier(current_user.identifier)
     @prev_role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     
-	  if not @prev_role.nil?
+	  if @prev_role.nil?
 	    role = Role.create(params[:role])
       role.media_collections << MediaCollection.create_default
       role.save
       flash[:notice] = "Role created."
       redirect_to role_route(role)
     else
-      flash[:error] = "There already was a role of that kind."
+      flash[:notice] = "There already was a role of that kind."
       redirect_to home_route(current_user)
     end
   end
