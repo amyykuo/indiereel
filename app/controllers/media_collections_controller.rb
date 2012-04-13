@@ -1,0 +1,2 @@
+class MediaCollectionsController < ApplicationController
+end

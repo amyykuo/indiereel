@@ -20,8 +20,13 @@ Scenario: Click on Talent NavBar Link
   Then I should be on my "tester talent" profile page
   And I should see "Nguyen"
   
-Scenario: Click on Home NavBar Link
+Scenario: Click on IndieReel NavBar Link
   When I follow "IndieReel" within the "Navigation Bar" section
+  Then I should be on my "tester" home page
+  And I should see "John"
+  
+  Scenario: Click on Home NavBar Link
+  When I follow "Home" within the "Navigation Bar" section
   Then I should be on my "tester" home page
   And I should see "John"
   

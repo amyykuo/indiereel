@@ -10,20 +10,23 @@ class RolesController < ApplicationController
     @ages = Role.ages
     @options = []
     
-	for option in Role.options do
+	  for option in Role.options do
       @options << option unless Role.find_by_role_type_and_user_id(option, @user.id) != nil
     end
   end
   
   def create
-    role = Role.create(params[:role])
+    @user = User.find_by_identifier(current_user.identifier)
+    @prev_role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     
-	  if role.valid?
+	  if @prev_role.nil?
+	    role = Role.create(params[:role])
       role.media_collections << MediaCollection.create_default
       role.save
+      flash[:notice] = "Role created."
       redirect_to role_route(role)
     else
-      # TODO add validation error messages
+      flash[:notice] = "There already was a role of that kind."
       redirect_to home_route(current_user)
     end
   end
@@ -33,7 +36,7 @@ class RolesController < ApplicationController
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     @ages = Role.ages
     
-    render('public/404', :status => 404) if @user.nil? or @user.id != current_user.id or @role.nil?
+    render_not_found if @user.nil? or @user.id != current_user.id or @role.nil?
   end
   
   def update
@@ -54,7 +57,8 @@ class RolesController < ApplicationController
     else
       flash[:error] = "You cannot delete this role."
     end
-	
+	  
+	  flash[:notice] = "Role deleted."
     redirect_to home_route(current_user)
   end
 end

@@ -14,6 +14,11 @@
   <body>
     <%= render "navbar" %>
     <div class="container">
+      <% if flash[:notice] %>
+        <div class="alert flash">
+          <div class="notice"><%= flash[:notice] %></div>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
     <%= render "footer" %>
