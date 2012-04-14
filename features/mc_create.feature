@@ -24,7 +24,7 @@ Scenario: Successfully create a MC #A user should be able to access portfolio pa
   When I fill in "mc_title" with "photoshoot"
   And I fill in "mc_description" with "this was awesome"
   And I press "Create Album"
-  Then I should be on my "tester" "3" media collection page for the "talent" role
+  Then I should be on my "tester" "3" media collection page for the "talent" role #need to make this... more general?
   And I should see "photoshoot"
   And I should see "this was awesome"
 
@@ -36,6 +36,6 @@ Scenario: Successfully cancel
 Scenario: Get redirected when user doesn't fill in title field
   When I fill in "mc_description" with "this is not awesome"
   And I press "Create Album"
-  Then I should be on my "talent" media collection create page
-  And I should see the error "you need to give the MC a title"
-  
+  Then I should see "Title"
+  And I should see "Album needs a title"
+  And I should be on my "talent" media collection create page #TODO for some reason THIS WILL NOT PASS

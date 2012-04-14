@@ -12,28 +12,37 @@ Background:
   |  director  |    1    |   John    | test@xxxx.com |  1234567890  |     I am awesome!     |    everything   |     0     |     none    |  pretty  |
   |   talent   |    1    |  Nguyen   | best@xxxx.com |  1234567890  |     I not awesome     |      nothing    |     1     |     same    |   ugly   |
   
-  And I have the following media collections:
-  # not implemented yet
-  And I am on the "talent" media collection "photos" edit page # not implemented yet
+  And I have the following albums:
+  | role_id | title | description          |
+  | 1       | What  | these are mine       |
+  | 2       | Who   | Where?               |
+  
+  And I am on the "tester" "director" media collection "1" edit page
+  #And I should see "these are mine" within the "mc_title" section
   
 Scenario: Edit the description of the MC successfullly
-  When I fill "description" with "these are my new photos" # not implemented yet
-  And I press "submit" # not implemented yet
-  Then I should be on the "talent" media collection "photos" page # not implemented yet
-  And I should see "these are my new photos" in the description section # not implemented yet
-  But I should not see "these are mine" in the description section # not implemented yet
+  When I fill in "mc_description" with "these are my new photos"
+  And I press "Update Album"
+  Then I should be on my "tester" "1" media collection page for the "director" role
+  And I should see "these are my new photos"
+  But I should not see "these are mine"
 
 Scenario: Edit the name of the MC, submit, see new title of the MC
-  When I fill "title" with "new photos" # not implemented yet
-  And I press "submit" # not implemented yet
-  Then I should be on the "talent" media collection "new photos" page # not implemented yet
-  And I should see "new photos" # not implemented yet
-  But I should not see "photos" # not implemented yet
-  And I should not be on the "talent" media collection "photos" page # not implemented yet
+  When I fill in "mc_title" with "new photos"
+  And I press "Update Album"
+  Then I should be on my "tester" "1" media collection page for the "director" role
+  And I should see "new photos"
+  But I should not see "What"
 
-Scenario: #User should be able to Cancel, redirects to MC page
-  When I fill "description" with "these are my new photos" # not implemented yet
-  And I press "cancel" # not implemented yet
-  Then I should be on the "talent" media collection "new photos" page # not implemented yet
+Scenario: User should be able to Cancel, redirects to MC page
+  When I fill in "mc_description" with "these are my new photos"
+  And I follow "Cancel"
+  Then I should be on my "tester" "1" media collection page for the "director" role
   And I should not see "these are my new photos"
-
+  But I should see "these are mine"
+  
+Scenario: unsuccessfully edit MC
+  When I fill in "mc_title" with ""
+  And I press "Update Album"
+  Then I should be on the "tester" "director" media collection "1" edit page
+  And I should see "You've got to give your album a name!"
