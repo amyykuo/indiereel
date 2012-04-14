@@ -1,15 +1,3 @@
-Given /^I am signed in with provider "([^"]*)"$/ do |provider|
-  visit "/auth/#{provider}"
-end
-
-Given /I have the following roles/ do |roles_table|
-  roles_table.hashes.each do |role|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-    Role.create!(role)
-  end
-end
-
 Then /^the "([^"]*)" dropdown should contain: (.*)$/ do |parent, role_list|
   roles = role_list.split(', ')
   roles.each do |value|
@@ -41,7 +29,3 @@ end
 #    step %Q{I press "#{action}"}
 #  end
 #end
-
-Then /^I debug$/ do
-  debugger
-end

@@ -37,6 +37,12 @@ module NavigationHelpers
       user = $1.split[0]
       role = $1.split[1]
       custom_role_path(user, role)
+      
+    when /my "([^"]*)" "([^"]*)" media collection page for the "([^"]*)" role/
+      custom_mc_path($1, $3, $2)
+    
+    when /my "([^"]*)" media collection create page/
+      new_media_collection_path(:role => $1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

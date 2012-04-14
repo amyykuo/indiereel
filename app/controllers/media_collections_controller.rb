@@ -21,7 +21,7 @@ class MediaCollectionsController < ApplicationController
       redirect_to mc_route(@mc)
 	  else
 	    flash[:error] = "Album needs a title"
-	    redirect_to new_media_collection_path
+	    redirect_to new_media_collection_path(:role => @role.role_type)
     end
   end
   
