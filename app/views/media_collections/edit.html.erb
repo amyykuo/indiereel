@@ -1,5 +1,5 @@
-<%= form_tag media_collection_path(@album) do %>
-	<%= label_tag "mc[title]", "Tile:" %>
+<%= form_tag media_collection_path(@album), :method => 'put' do %>
+	<%= label_tag "mc[title]", "Title:" %>
 	<%= text_field_tag "mc[title]", @album.title, {:placeholder => "Enter the title of your Album"} %>
 
 	<%= label_tag "mc[description]", "Description:" %>
@@ -7,5 +7,5 @@
 	
 	<%= hidden_field_tag "mc[role_id]", @role.id %>
 	
-	<br><br><input type="submit" value="Update Role"> <%= link_to "Cancel", media_collection_path(@mc) %>
+	<br><br><input type="submit" value="Update Album"> <%= link_to "Cancel", mc_route(@album) %>
 <% end %>

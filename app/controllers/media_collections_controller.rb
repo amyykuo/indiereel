@@ -7,7 +7,7 @@ class MediaCollectionsController < ApplicationController
   end
   
   def new
-    @user = User.find_by_identifier params[:identifier]
+    @user = current_user
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
   end
   
@@ -21,23 +21,26 @@ class MediaCollectionsController < ApplicationController
       redirect_to mc_route(@mc)
 	  else
 	    flash[:error] = "Album needs a title"
-	    redirect_to custom_new_mc_path(@role.user.identifier, @role.role_type)
+	    redirect_to new_media_collection_path
     end
   end
   
   def edit
-    @user = User.find_by_identifier params[:identifier]
+    @user = current_user
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     @album = MediaCollection.find_by_id(params[:media_collection]) rescue nil
   end
   
   def update
-    #edit media collection
-    @mc = MediaCollection.find params[:id]
-    #@mc.update_attributes params[:mc]
-    
-    
-    
+    @mc = MediaCollection.find_by_id(params[:id])
+    @mc.update_attributes(params[:mc])
+    if @mc.valid?
+      flash[:notice] = "#{@mc.title} album was successfully updated."
+      redirect_to mc_route(@mc)
+    else
+      flash[:error] = "You've got to give your album a name!"
+      redirect_to mc_route(@mc, "edit")
+    end
   end
   
   def destroy

@@ -7,6 +7,6 @@
 	
 	<%= hidden_field_tag "mc[role_id]", @role.id %>
 	
-	<br><br><input type="submit" value="Create Album"> <%= link_to "Cancel", media_collection_path(o_path(@user.identifier, @role.role_type) %>
+	<br><br><input type="submit" value="Create Album"> <%= link_to "Cancel", portfolio_route(@role) %>
 <% end %>
 
