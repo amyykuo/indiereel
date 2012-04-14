@@ -1,29 +1,11 @@
-<%= form_tag role_path(@role.id), :method => 'put' do %>
-  <%= label_tag "role[role_name]", "Stage Name:" %>
-	<%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Enter your Role Stage Name"} %>
+<%= form_tag media_collection_path(@album) do %>
+	<%= label_tag "mc[title]", "Tile:" %>
+	<%= text_field_tag "mc[title]", @album.title, {:placeholder => "Enter the title of your Album"} %>
+
+	<%= label_tag "mc[description]", "Description:" %>
+	<%= text_field_tag "mc[description]", @album.description, {:placeholder => "Describe this Album"} %>
 	
-	<%= label_tag "role[role_type_description]", "Role Description: What exactly do you do?" %>
-	<%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "i.e. Actor, Camera-op, etc"} %>
+	<%= hidden_field_tag "mc[role_id]", @role.id %>
 	
-	<%= label_tag "role[email]", "Email:" %>
-	<%= text_field_tag "role[email]", @role.email, {:placeholder => "Enter your email"} %>
-	
-	<%= label_tag "role[phone_number]", "Phone Number:" %>
-	<%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "Enter your number"} %> <br/>
-  
-  <%= label_tag "role[age_range]", "Choose an Age Range" %>
-  <%= select_tag("role[age_range]", options_for_select(@ages), :prompt => "Select one or Leave as is") %>
-	
-	<%= label_tag "role[role_experience]", "Experience:" %>
-	<%= text_area_tag "role[role_experience]", @role.role_experience, {:placeholder => "Describe your experience in this role"} %>
-	
-	<%= label_tag "role[role_skills]", "Skills:" %>
-	<%= text_area_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %>
-	
-	<%= label_tag "role[physique]", "Physique:" %>
-	<%= text_area_tag "role[physique]", nil, {:placeholder => "Are you my brown eyed girl?"} %>
-	
-	<%= hidden_field_tag "role[user_id]", current_user.id %>
-	
-	<br><br><input type="submit" value="Update Role"> <%= link_to "Cancel", role_route(@role) %>
+	<br><br><input type="submit" value="Update Role"> <%= link_to "Cancel", media_collection_path(@mc) %>
 <% end %>

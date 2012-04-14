@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :portfolio_route
   helper_method :projects_route
   helper_method :home_route
+  helper_method :mc_route
   
   helper_method :current_user
   before_filter :authentication_required
@@ -43,6 +44,13 @@ class ApplicationController < ActionController::Base
   def projects_route(role, action="index")
     route= "/#{role.user.identifier}/#{role.role_type}/projects"
     route += "/#{action}" if action != "index"
+    return route
+  end
+  
+  def mc_route(mc, action="show")
+    role = Role.find_by_id(mc.role_id)
+    route = "/#{role.user.identifier}/#{role.role_type}/album/#{mc.id}"
+    route += "/#{action}" if action != "show"
     return route
   end
   

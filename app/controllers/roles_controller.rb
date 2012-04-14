@@ -23,12 +23,11 @@ class RolesController < ApplicationController
 	    
 	    role = Role.create params[:role]
 	    if role.valid?
-	      quickshow = MediaCollection.create_quickshow
-	      headshot = MediaCollection.create_headshot
+	      quickshow = MediaCollection.create_quickshow(role)
+	      headshot = MediaCollection.create_headshot(role)
         role.quickshow_id = quickshow.id
         role.headshot_id = headshot.id
         role.media_collections << quickshow
-        #TODO also create a headshot MC
         role.save
         flash[:notice] = "Role created."
         redirect_to role_route(role)

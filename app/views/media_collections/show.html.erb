@@ -1,5 +1,10 @@
 <% if current_user.uid == @user.uid %>
 	<div class="alert alert-info">
-	    <h4>You're on your <%= @mediacollection.title %> page for <%= @role.role_type %>.<small class="pull-right"><%= link_to "Edit this Album", role_route(@role, "edit") %></small></h4>
+	    <h4>You're on your <%= @album.title %> page for <%= @role.role_type %>.<small class="pull-right"><%= link_to "Edit this Album", custom_edit_mc_path(@user.identifier, @role.role_type, @album.id)%></small></h4>
 	</div>
+	<h3> <%= @album.title %> </h3>
+	<h4> Description </h4>
+	<ul class="unstyled">
+		<li><%= @album.description %></li>
+	</ul>
 <% end %>
