@@ -21,6 +21,7 @@ Scenario: Editing basic information successfully - change name
   Then I should be on my "tester talent" profile page
   And I should see "My name is now pie"
   And I should see "I not awesome"
+  And I should see "talent was successfully updated."
   But I should not see "John"
 
 Scenario: cancel editing
@@ -35,12 +36,11 @@ Scenario: write a description and cancel editing
   And I should see "I not awesome"
   But I should not see "I am apple pie"
 
-Scenario: On the Create Role Page, do  not input stage name, submit, should get an error
+Scenario: On the Edit Role Page, do  not input stage name, submit, should get an error
   When I fill in "role_role_name" with ""
-  And I select "producer" from "Choose a Role Type"
   And I press "Update Role"
   Then I should be on my "tester talent" Edit Page
-  And I should see "you need to have a stage name"
+  And I should see "There were some errors in updating your role."
   
 # didn't test anything new  
 #Scenario: make changes, don't click update, instead follow to home page thru navbar, no changes should've been made
