@@ -15,7 +15,7 @@
 	<%= text_field_tag "role[phone_number]", nil, {:placeholder => "Enter your number"} %> <br/>
   
   <%= label_tag "role[age_range]", "Choose an Age Range" %>
-  <%= select_tag("role[age_range]", options_for_select(@ages), :prompt => "Select one or Leave as is") %>
+  <%= select_tag("role[age_range]", options_for_select(@ages), :prompt => "Select one") %>
 	
 	<%= label_tag "role[role_experience]", "Experience:" %>
 	<%= text_area_tag "role[role_experience]", nil, {:placeholder => "Describe your experience in this role"} %>
