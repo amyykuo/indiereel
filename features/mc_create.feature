@@ -35,7 +35,10 @@ Scenario: Successfully cancel
 
 Scenario: Get redirected when user doesn't fill in title field
   When I fill in "mc_description" with "this is not awesome"
+  When I fill in "mc_title" with ""
   And I press "Create Album"
   Then I should see "Title"
   And I should see "Album needs a title"
-  And I should be on my "talent" media collection create page #TODO for some reason THIS WILL NOT PASS
+  And I should be on my "talent" media collection create page #TODO this doesn't pass
+  # it's because in web_step line 233, URI.parse(blah.com).path gets rid of parameters
+  # so its comparing the wrong things :( this scenario should be passing but cuke is being a butt
