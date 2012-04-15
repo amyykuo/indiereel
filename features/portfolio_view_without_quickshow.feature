@@ -14,8 +14,10 @@ Background:
     
   And I have the following media collections:
   | description | title |
-  | 1            | quickshow   |
-  | 2            | headshots   |
+  | 1            | quickshow          |
+  | 2            | headshots          |
+  | 3            | Media Collection 1 |
+  | 4            | Media Collection 2 |
 
   And I am on the "tester" Portfolio page for the "talent" role
   And my "quickshow" album is empty #not implemented yet
