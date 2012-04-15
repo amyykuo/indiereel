@@ -28,6 +28,6 @@
 	
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	
-	<br><br><input type="submit" value="Create Role"> <%= link_to "Cancel", home_path(@user.identifier) %>
+	<br><br><input type="submit" value="Create Role" class="btn btn-primary"> <%= link_to "Cancel", home_path(@user.identifier), :class => "btn" %>
 <% end %>
 
