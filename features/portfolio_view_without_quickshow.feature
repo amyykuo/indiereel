@@ -13,8 +13,12 @@ Background:
   |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
     
   And I have the following media collections:
-  #have not implemented yet
-  And I am on my "talent" portfolio page # not implemented yet
+  | description | title |
+  | 1            | quickshow   |
+  | 2            | headshots   |
+
+  And I am on the "tester" Portfolio page for the "talent" role
+  And my "quickshow" album is empty #not implemented yet
 
 
 Scenario: Go create a MC
