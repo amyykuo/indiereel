@@ -43,6 +43,12 @@ Indiereel::Application.routes.draw do
 #  match "/:identifier/:role/album/new" => "media_collections#new", :as => 'custom_new_mc', :constraints => RoleConstraint.new
   match "/:identifier/:role/album/:media_collection" => "media_collections#show", :as => 'custom_mc', :constraints => RoleConstraint.new
   match "/:identifier/:role/album/:media_collection/edit" => "media_collections#edit", :as => 'custom_edit_mc', :constraints => RoleConstraint.new
+  
+  # Footer links related routes
+  match "/about" => "index#about"
+  match "/help" => "index#help"
+  match "/meet" => "index#meet"
+  match "/contact" => "index#contact"
 
   
   # Sample of regular route:

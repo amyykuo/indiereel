@@ -8,5 +8,17 @@ class IndexController < ApplicationController
 
   def welcome
   end
+  
+  def about
+  end
+  
+  def contact
+  end
+  
+  def meet
+  end
+  
+  def help
+  end
 
 end
