@@ -34,3 +34,7 @@ Scenario: Access Quickshow media file page
   When I follow "picture" within the "Quickshow" section #not yet implemented
   Then I should be on my "picture" view page #not yet implemented
 
+Scenario: Go back to role page #A user should be able to access portfolio page through the role it corresponds to
+  When I follow "Back to your talent page" #not implemented yet
+  Then I should be on my talent page #not implemented yet
+  And I should see my quickshow files in the portfolio section #not implemented yet

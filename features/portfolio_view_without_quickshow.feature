@@ -42,6 +42,6 @@ Scenario: Access an MC edit page
   Then I should be on my "talent" album "1" "edit" page #not yet implemented
 
 Scenario: Go back to role page #A user should be able to access portfolio page through the role it corresponds to
-  When I follow "Back to your talent page" # not implemented yet
-  Then I should be on my talent page # not implemented yet
-
+  When I follow "Back to your talent page" #not implemented yet
+  Then I should be on my talent page #not implemented yet
+  And I should see my media collections in the portfolio section #not implemented yet
