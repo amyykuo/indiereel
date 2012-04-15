@@ -25,5 +25,5 @@
 	
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	
-	<br><br><input type="submit" value="Update Role"> <%= link_to "Cancel", role_route(@role) %>
+	<br><br><input type="submit" value="Update Role" class="btn btn-primary"> <%= link_to "Cancel", role_route(@role), :class => "btn" %>
 <% end %>
