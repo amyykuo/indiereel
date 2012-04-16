@@ -25,6 +25,7 @@ Scenario: Adding a Producer role successfully
   And I press "Create Role"
   Then I should be on my "tester producer" profile page
   And I should see "Apples"
+  And I should see "Role created."
 
 Scenario: On the Create Role Page, select a role but don't input data, and cancel
   When I follow "Add a role"
@@ -63,7 +64,8 @@ Scenario: On the Create Role Page, do  not input stage name, submit, should get 
   And the "Choose a Role Type" dropdown should contain: producer, crew
   And the "Choose a Role Type" dropdown should not contain: talent, director
   When I select "producer" from "Choose a Role Type"
+  And I fill in "role_role_name" with ""
   And I press "Create Role"
   Then I should be on the Create Role Page
-  And I should see "you need to have a stage name"
+  And I should see "There are missing fields: stage name"
  

@@ -18,6 +18,13 @@ Given /I have the following albums/ do |albums_table|
   end
 end
 
+Given /I have the following media collections/ do |collections|
+  collections.hashes.each do |collection|
+    MediaCollection.create!(collection)
+  end
+end
+  
+
 Then /^I debug$/ do
   debugger
 end

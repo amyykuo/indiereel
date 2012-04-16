@@ -1,0 +1,10 @@
+
+<div class="alert alert-info">
+    <h4>Need help?</h4>
+</div>
+
+FAQ QUESTIONS HERE.
+
+<% if current_user.nil? %>
+  <h4><%= link_to "Back to Welcome Page", root, :class => "btn btn-info btn-small" %></h4>
+<% end %>

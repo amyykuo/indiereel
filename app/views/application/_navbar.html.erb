@@ -13,6 +13,9 @@
 			</ul>
 			<ul class="nav pull-right">
 				<li><img src="<%= current_user.image %>" height="28" width="28" style="margin-top: 6px"></li>
+				<li class="divider-vertical"></li>
+				<li><%= link_to "#{current_user.first_name} #{current_user.last_name}", home_route(current_user) %></a></li>
+				<li class="divider-vertical"></li>
 				<li><%= link_to "Logout", logout_path %></li>
 			</ul>
 		</div>

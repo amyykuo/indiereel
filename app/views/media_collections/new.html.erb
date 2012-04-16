@@ -6,10 +6,14 @@
 	<%= text_field_tag "mc[description]", nil, {:placeholder => "Describe this Album"} %>
 	
 	<%= hidden_field_tag "mc[role_id]", @role.id %>
-  <p>
-    Specify your files to upload to this album:<br>
-    <input type="file" name="datasize" size="30">
+
+	
+	<p>
+    Please specify a file, or a set of files to upload to this album:<br>
+    <input type="file" name="datafile" size="40">
   </p>
+	
+
 	<input type="submit" value="Create Album"> <%= link_to "Cancel", portfolio_route(@role) %>
 <% end %>
 

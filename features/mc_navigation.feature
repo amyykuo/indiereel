@@ -13,26 +13,31 @@ Background:
   |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
     
   And I have the following media collections:
-  #have not implemented yet
-  And I am on my "talent" media collection titled "photos" page # not implemented yet
+  | description | title |
+  | 1            | quickshow          |
+  | 2            | headshots          |
+  | 3            | Media Collection 1 |
+  | 4            | Media Collection 2 |
+  
+  And I am on my "talent" media collection "photos" page # not implemented yet
   
 Scenario: Go back to portfolio page #A user should be able to access portfolio page through any of its media collections
-  When I follow "Go back to Portfolio" # not implemented yet
-  Then I should be on my portfolio page # not implemented yet
+  When I follow "Go back to Portfolio" #not implemented yet
+  Then I should be on my portfolio page #not implemented yet
 
 Scenario: Go to a media collection edit page #A user should be able to access the edit page for a media collection
-  When I follow "Edit this MC"  # not implemented yet
+  When I follow "Edit this MC"  #not implemented yet
   Then I should be on my "talent" edit media collection "photos" page  # not implemented yet
   
-Scenario: #A User should be able to delete the media collection
-  When I press "delete"  # not implemented yet
-  Then I should be on my portfolio page  # not implemented yet
-  And I should not see media collection "Photos"  # not implemented yet
 
 Scenario: #User should be able to see all media files
-  # need to figure out if we want to test this in cuke or rspec...
+  #need to figure out if we want to test this in cuke or rspec...
+  When I am on my "talent" media collection "photos" page #not yet implemented
+  Then I should see "media" #not yet implemented
   
-Scenario: See a media file page # user should be able to see each media file individually
-  When I follow "photo1"  # not implemented yet
-  Then I should be on "photo1" view page  # not implemented yet
+Scenario: See a media file page #user should be able to see each media file individually
+  When I follow a media link "media" #not yet implemented
+  Then I should be on the media display page of the "photos" album #not yet implemented
+  And the "media.file" of "photos" should be "true" #not yet implemented
+  And the "media_file_size" of "photos" should not be blank #not yet implemented
   

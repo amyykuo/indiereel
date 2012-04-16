@@ -46,3 +46,7 @@ Scenario: unsuccessfully edit MC
   And I press "Update Album"
   Then I should be on the "tester" "director" media collection "1" edit page
   And I should see "You've got to give your album a name!"
+  
+Scenario: #A User should be able to delete the media collection
+  When I press "Delete Album"  #not implemented yet
+  Then I should be on my portfolio page  #not implemented yet
