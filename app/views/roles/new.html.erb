@@ -1,8 +1,11 @@
 <%= form_tag roles_path do %>
+  
+  <h4>A star (*) denotes a field that can't be left empty.</h4><br>
+  
 	<%= label_tag "role[role_type]", "Choose a Role Type" %>
-	<%= select_tag("role[role_type]", options_for_select(@options)) %>
+	<%= select_tag "role[role_type]", options_for_select(@options) %>
 
-	<%= label_tag "role[role_name]", "Stage Name:" %>
+	<%= label_tag "role[role_name]", "Stage Name: (*)" %>
 	<%= text_field_tag "role[role_name]", @user.name, {:placeholder => "Enter your Role Stage Name"} %>
 	
 	<%= label_tag "role[role_type_description]", "Role Description: What exactly do you do?" %>
@@ -14,8 +17,10 @@
 	<%= label_tag "role[phone_number]", "Phone Number:" %>
 	<%= text_field_tag "role[phone_number]", nil, {:placeholder => "Enter your number"} %> <br/>
   
+  <!-- agency -->
+  
   <%= label_tag "role[age_range]", "Choose an Age Range" %>
-  <%= select_tag("role[age_range]", options_for_select(@ages), :prompt => "Select one") %>
+  <%= select_tag "role[age_range]", options_for_select(@ages), :prompt => "Select one" %>
 	
 	<%= label_tag "role[role_experience]", "Experience:" %>
 	<%= text_area_tag "role[role_experience]", nil, {:placeholder => "Describe your experience in this role"} %>
