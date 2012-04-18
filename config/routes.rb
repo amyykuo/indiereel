@@ -34,7 +34,7 @@ Indiereel::Application.routes.draw do
   # User and profile routes
   match "/:identifier/:role/edit" => "roles#edit", :as => 'custom_edit_role'
   match "/:identifier/:role" => "roles#show", :as => 'custom_role', :constraints => RoleConstraint.new
-  match "/:identifier" => "users#show", :as => 'home', :constraints => UserConstraint
+  match "/:identifier" => "users#show", :as => 'home', :constraints => UserConstraint.new
   
   # Media Collection routes
   match "/:identifier/:role/portfolio" => "media_collections#index", :as => 'portfolio'
