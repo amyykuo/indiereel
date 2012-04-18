@@ -2,6 +2,7 @@ class RolesController < ApplicationController
   def show
     @user = User.find_by_identifier params[:identifier]
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
+    
     render_not_found if @role.nil?
   end
   
@@ -22,6 +23,7 @@ class RolesController < ApplicationController
 	  if @role_being_created.nil?
 	    
 	    role = Role.create params[:role]
+      
 	    if role.valid?
 	      quickshow = MediaCollection.create_quickshow(role)
 	      headshot = MediaCollection.create_headshot(role)
@@ -42,7 +44,7 @@ class RolesController < ApplicationController
   end
   
   def edit
-    @user = User.find_by_identifier(params[:identifier])
+    @user = User.find_by_identifier params[:identifier]
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     @ages = Role.ages
     
@@ -54,18 +56,16 @@ class RolesController < ApplicationController
     @role.update_attributes params[:role]
     
     if @role.valid?
-      flash[:notice] = "#{@role.role_type} was successfully updated."
+      flash[:notice] = "#{@role.role_type.capitalize} was successfully updated."
       redirect_to role_route(@role)
     else
       flash[:error] = "There were some errors in updating your role."
       redirect_to role_route(@role, 'edit')
     end
-    
-    
   end
   
   def destroy
-    role = Role.find(params[:id])
+    role = Role.find params[:id]
     
 	  if current_user.identifier == role.user.identifier
       role.destroy
@@ -75,5 +75,6 @@ class RolesController < ApplicationController
     end
 	  
     redirect_to home_route(current_user)
+    
   end
 end
