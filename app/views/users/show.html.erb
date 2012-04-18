@@ -1,9 +1,10 @@
 <% if current_user.uid == @user.uid %>
-  <div class="alert alert-info">
-    <h4>Welcome to IndieReel, <%= current_user.first_name %>! <small>This is your control panel: You can manage your roles and account here.</small></h4>
-	</div>
-	<hr />
+  <hr />
+  <h2>Welcome to IndieReel, <%= current_user.first_name %>!</h3>
+  <hr />
     <% if !@roles.empty? %>
+    	<h3>Your Roles</h3>
+    	<hr />
       <% for group in @grouped_roles %>
 		    <div class="row">
 			    <div class="span12">
@@ -36,7 +37,7 @@
 		    </div>
 		  <% end %>
 		  <% unless @roles.length == Role.options.length %>
-		  <h4><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %></h4>
+		    <h4><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %></h4>
 		  <% end %>
 		  <hr />
     <% else %>

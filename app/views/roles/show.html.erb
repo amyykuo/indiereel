@@ -16,15 +16,15 @@
         </small>
       <% elsif @user.roles.length > 1 %>
         <div class="btn-group">
-          <button class="btn">Other Roles</button>
-          <button class="btn dropdown-toggle" data-toggle="dropdown">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            Other Roles
             <span class="caret"></span>
-          </button>
-          <u1 class="dropdown-menu">
+          </a>
+          <ul class="dropdown-menu">
             <% for role in @user.roles %>
               <%= link_to "#{role.role_type.capitalize}", role_route(role) %>
             <% end %>
-          </u1>
+          </ul>
         </div>
       <% end %>  
     </div>
