@@ -1,5 +1,7 @@
 <%= form_tag role_path(@role.id), :method => 'put' do %>
-  
+  <hr />
+  <h3>Editing Your <%= @role.role_type.capitalize %> Profile</h3>
+  <hr />
   <h4>A star (*) denotes a field that can't be left empty.</h4><br>
   
   <%= label_tag "role[role_name]", "Stage Name: (*)" %>
