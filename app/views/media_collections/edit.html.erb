@@ -3,7 +3,7 @@
 	<%= text_field_tag "mc[title]", @album.title, {:placeholder => "Enter the title of your Album"} %>
 
 	<%= label_tag "mc[description]", "Description:" %>
-	<%= text_field_tag "mc[description]", @album.description, {:placeholder => "Describe this Album"} %>
+	<%= text_area_tag "mc[description]", @album.description, {:placeholder => "Describe this Album"} %>
 	
 	<%= hidden_field_tag "mc[role_id]", @role.id %>
 	
