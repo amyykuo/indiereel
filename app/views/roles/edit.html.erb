@@ -16,7 +16,20 @@
 	<%= label_tag "role[phone_number]", "Phone Number:" %>
 	<%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "Enter your number"} %> <br/>
   
-  <!-- agency -->
+  <%= label_tag "role[agency]", "Agency:" %>
+	<%= text_field_tag "role[agency]", @role.agency, {:placeholder => "Fill In"} %> <br/>
+  
+  <%= label_tag "role[hair]", "Hair Color:" %>
+	<%= text_field_tag "role[hair]", @role.hair, {:placeholder => "What color is your hair?"} %> <br/>
+	
+	<%= label_tag "role[height]", "Height:" %>
+	<%= text_field_tag "role[height]", @role.height, {:placeholder => "How tall are you?"} %> <br/>
+	
+	<%= label_tag "role[eyes]", "Eye Color:" %>
+	<%= text_field_tag "role[eyes]", @role.eyes, {:placeholder => "What color are your eyes?"} %> <br/>
+	
+	<%= label_tag "role[weight]", "Weight:" %>
+	<%= text_field_tag "role[weight]", @role.weight, {:placeholder => "How much do you weigh?"} %> <br/>
   
   <%= label_tag "role[age_range]", "Choose an Age Range" %>
   <%= select_tag "role[age_range]", options_for_select(@ages), :prompt => "Select one" %>
@@ -27,8 +40,10 @@
 	<%= label_tag "role[role_skills]", "Skills:" %>
 	<%= text_area_tag "role[role_skills]", @role.role_skills, {:placeholder => "What are your skills?"} %>
 	
+	<!--
 	<%= label_tag "role[physique]", "Physique:" %>
-	<%= text_area_tag "role[physique]", nil, {:placeholder => "Are you my brown eyed girl?"} %>
+	<%= text_area_tag "role[physique]", @role.physique, {:placeholder => "Are you my brown eyed girl?"} %>
+	-->
 	
 	<%= hidden_field_tag "role[user_id]", current_user.id %>
 	
