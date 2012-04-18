@@ -2861,13 +2861,15 @@ input[type="submit"].btn.btn-mini {
 .navbar .brand {
   float: left;
   display: block;
-  padding: 8px 20px 12px;
+  padding: 8px 45px 12px 20px;
   margin-left: -20px;
   font-size: 20px;
   font-weight: 200;
   line-height: 1;
   color: #ffffff;
+  background: url(/assets/reel.png) right no-repeat;
 }
+
 .navbar .navbar-text {
   margin-bottom: 0;
   line-height: 40px;
