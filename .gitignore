@@ -28,3 +28,6 @@ schema.rb
 
 # Ignore the coverage files
 coverage/*
+
+# Ignore the locally uploaded media files
+public/system
