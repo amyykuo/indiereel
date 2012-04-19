@@ -2,12 +2,13 @@
   <hr />
   <h3>Create a New Role</h3>
   <hr />
-  <h4>A star (*) denotes a field that can't be left empty.</h4><br>
-  
+  <small>* Required Field</small>
+  <br/>
+  <br/>
 	<%= label_tag "role[role_type]", "Choose a Role Type" %>
 	<%= select_tag "role[role_type]", options_for_select(@options) %>
 
-	<%= label_tag "role[role_name]", "Stage Name: (*)" %>
+	<%= label_tag "role[role_name]", "Stage Name: *" %>
 	<%= text_field_tag "role[role_name]", @user.name, {:placeholder => "Enter your Role Stage Name"} %>
 	
 	<%= label_tag "role[role_type_description]", "Role Description: What exactly do you do?" %>
