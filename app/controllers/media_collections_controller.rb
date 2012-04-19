@@ -3,7 +3,8 @@ class MediaCollectionsController < ApplicationController
   def show
     @user = User.find_by_identifier params[:identifier]
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
-    @album = MediaCollection.find_by_id(params[:media_collection]) rescue nil
+    @album = MediaCollection.find_by_slug(params[:media_collection]) rescue nil
+    @media_asset = MediaAsset.new(:media_collection => @album) 
     render_not_found if @role.nil? or @album.nil?
   end
   
@@ -22,7 +23,7 @@ class MediaCollectionsController < ApplicationController
   def create
     #create a new media collection
     #@album = MediaCollection.find_by_id(params[:mc])
-    @role = Role.find_by_id(params[:media_collection][:role_id])
+    @role = Role.find_by_slug(params[:media_collection][:role_id])
     @mc = MediaCollection.create(params[:media_collection])
 	  if @mc.valid?
 	    flash[:notice] = "Album created."
@@ -36,11 +37,11 @@ class MediaCollectionsController < ApplicationController
   def edit
     @user = current_user
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
-    @mc = MediaCollection.find_by_id(params[:media_collection]) rescue nil
+    @mc = MediaCollection.find_by_slug(params[:media_collection]) rescue nil
   end
   
   def update
-    @mc = MediaCollection.find_by_id(params[:id])
+    @mc = MediaCollection.find(params[:id])
     @mc.update_attributes(params[:media_collection])
     if @mc.valid?
       flash[:notice] = "#{@mc.title} album was successfully updated."
