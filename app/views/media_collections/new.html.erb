@@ -1,20 +1,2 @@
-<%= form_tag media_collections_path do %>
-	<%= label_tag "mc[title]", "Title:" %>
-	<%= text_field_tag "mc[title]", nil, {:placeholder => "Enter the title of your Album"} %>
-
-	<%= label_tag "mc[description]", "Description:" %>
-	<%= text_area_tag "mc[description]", nil, {:placeholder => "Describe this Album"} %>
-	
-	<%= hidden_field_tag "mc[role_id]", @role.id %>
-  <br>
-  <%= form_for :media_collections, :html => { :multipart => true } do |form| %>
-    <%= form.file_field :media %>
-  <% end %>
-
-	
-
-
-	<input type="submit" value="Create Album"> <%= link_to "Cancel", portfolio_route(@role) %>
-<% end %>
-
+<%= render "form" %>
 
