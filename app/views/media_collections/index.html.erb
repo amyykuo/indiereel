@@ -17,17 +17,17 @@
   <h4>Albums</h4>
   <hr />
 	
-	<!-- this is embedded code
+
 	
-	 if !@portfolio.empty? 
-	    for media_collect in @media_groups 
-  -->
-  <div class="span12">
+	 <% if !@role.media_collections.empty? %> 
+	    <% for media_collect in @role.media_collections %> 
+
+  <div class="span3">
     <div class="row-fluid">
-      <div class="span3">
+      <div class="span12">
         <div class="well">
           <div class="row-fluid">
-            <div class="span12">
+            <div class="span12" align="center">
               <div class="nav">
               
               <h3><%= link_to "View Collection", new_role_path %></h3>
@@ -35,7 +35,8 @@
             </div>
           </div>
             <hr style="margin:10px 0px 10px 0px" />
-            <div class="btn-group">
+            
+            <div class="btn-group" >
               <%= link_to "Edit", "#", :class => "btn btn-small" %>
               <%= link_to "Delete", "#", :class => "btn btn-small" %>
 				    </div> 
@@ -44,10 +45,10 @@
       </div>
     </div>
 	      
-  <!-- same as above
-	    end 
-	 end 
-	-->
+
+	    <% end %> 
+	 <% end %> 
+
 <% else %>
     <h1>You're on <%= @user.name %>'s <%= @role.role_type %> portfolio!</h1>
 	<%= link_to "Back to #{@user.name}'s #{@role.role_type} page", role_route(@role) %>
