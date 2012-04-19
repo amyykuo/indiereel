@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find_by_identifier(params[:identifier])
     @roles = @user.roles rescue nil
     @grouped_roles = @user.roles_in_groups_of(2)
-    
+    @default_role = Role.find_by_id(@user.default_role_id)
     render_not_found if @user.nil?
   end
  
