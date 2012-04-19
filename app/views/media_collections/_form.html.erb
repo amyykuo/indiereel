@@ -1,0 +1,13 @@
+<%= form_for @mc do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+	
+	<%= f.hidden_field :role_id %>
+	
+	<div class="actions">
+    	<%= f.submit %>
+  	</div>
+<% end %>
