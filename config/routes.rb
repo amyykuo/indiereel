@@ -26,6 +26,7 @@ Indiereel::Application.routes.draw do
   resources :roles, :only => [:new, :create, :update, :destroy]
   resources :users, :only => [:update]
   resources :media_collections, :path => "albums", :only => [:new, :create, :update, :destroy]
+  resources :media_assets, :path => "media", :only => [:create, :update, :destroy]
 
   # Authentication routes
   match "/auth/facebook/callback" => "sessions#create"
@@ -40,6 +41,7 @@ Indiereel::Application.routes.draw do
   match "/:identifier/:role/portfolio" => "media_collections#index", :as => 'portfolio'
   match "/:identifier/:role/album/:media_collection" => "media_collections#show", :as => 'custom_mc', :constraints => RoleConstraint.new
   match "/:identifier/:role/album/:media_collection/edit" => "media_collections#edit", :as => 'custom_edit_mc', :constraints => RoleConstraint.new
+  match "/:identifier/:role/album/:media_collection/:media_asset" => "media_assets#show", :as => 'custom_media', :constraints => {:media_asset => /d+[^.]/}
   
   # Project routes
   match "/:identifier/:role/projects(/:action)" => "projects", :as => 'projects'
