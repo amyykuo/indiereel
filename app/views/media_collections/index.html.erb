@@ -1,38 +1,49 @@
 <% if current_user.uid == @user.uid %>
-  <div class="alert alert-info">
-    <h4>This is your <%= @role.role_type %> portfolio , <%= current_user.first_name %>! <small>From here you can see your uploaded works</small></h4>
-	</div>
-    <h3>Portfolio</h3>
-	<%= link_to "Back to your #{@role.role_type} page", role_route(@role) %>
+  <hr />
+  <h3><%= @role.role_type.capitalize %> Portfolio
+  <small class="pull-right">
+    <%= link_to "Add Collection?", new_media_collection_path(:role => @role.role_type), :class => "btn" %>
+    <%= link_to "Back to #{@role.role_type.capitalize}", role_route(@role) %>
+  </small></h3>
+  <hr />
+  
+  <h4>QuickShow</h4>
+  <hr />
+  <% if true %>
+    Would you like to set a quickshow?
+  <% end %>
+  <br />
+  <br />
+  <h4>Albums</h4>
+  <hr />
+	
 	<!-- this is embedded code
 	
 	 if !@portfolio.empty? 
 	    for media_collect in @media_groups 
   -->
-	      <div class="span12">
-	        <div class="row-fluid">
-	          <div class="span3">
-	            <div class="well">
-	               <h3></h3>
-	                
-	                <div class="row-fluid">
-	                  <div class="span12">
-	                    <div class="nav">
-	                    
-	                    <h3><%= link_to "View Collection", new_role_path %></h3>
-	                    </div>
-	                  </div>
-	                </div>
-	                <hr style="margin:10px 0px 10px 0px" />
-	                <div class="btn-group">
-                    <%= link_to "Edit", "#", :class => "btn btn-small" %>
-                    <%= link_to "Delete", "#", :class => "btn btn-small" %>
-							    </div> 
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	      <%= link_to "Add Collection?", new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-small" %>
+  <div class="span12">
+    <div class="row-fluid">
+      <div class="span3">
+        <div class="well">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="nav">
+              
+              <h3><%= link_to "View Collection", new_role_path %></h3>
+              </div>
+            </div>
+          </div>
+            <hr style="margin:10px 0px 10px 0px" />
+            <div class="btn-group">
+              <%= link_to "Edit", "#", :class => "btn btn-small" %>
+              <%= link_to "Delete", "#", :class => "btn btn-small" %>
+				    </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+	      
   <!-- same as above
 	    end 
 	 end 
