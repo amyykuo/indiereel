@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_identifier(params[:identifier])
     @roles = @user.roles rescue nil
-    @grouped_roles = @user.roles_in_groups_of(3)
+    @grouped_roles = @user.roles_in_groups_of(2)
     
     render_not_found if @user.nil?
   end
