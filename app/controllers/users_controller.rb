@@ -6,6 +6,10 @@ class UsersController < ApplicationController
       @grouped_roles = @user.roles_in_groups_of(2)
       render_not_found if @user.nil?
     else
+      @user = User.find_by_identifier(params[:identifier])
+      default_role = Role.find_by_id(@user.default_role_id)
+      @role = Role.find_by_role_type_and_user_id(default_role.role_type, @user.id) rescue nil
+      render_not_found if @user.nil?
       redirect_to role_route(Role.find_by_id(@user.default_role_id))
     end
   end
