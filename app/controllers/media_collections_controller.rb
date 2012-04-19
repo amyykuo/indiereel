@@ -23,7 +23,7 @@ class MediaCollectionsController < ApplicationController
   def create
     #create a new media collection
     #@album = MediaCollection.find_by_id(params[:mc])
-    @role = Role.find_by_slug(params[:media_collection][:role_id])
+    @role = Role.find(params[:media_collection][:role_id])
     @mc = MediaCollection.create(params[:media_collection])
 	  if @mc.valid?
 	    flash[:notice] = "Album created."

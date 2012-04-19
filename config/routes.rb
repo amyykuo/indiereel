@@ -41,7 +41,7 @@ Indiereel::Application.routes.draw do
   match "/:identifier/:role/portfolio" => "media_collections#index", :as => 'portfolio'
   match "/:identifier/:role/album/:media_collection" => "media_collections#show", :as => 'custom_mc', :constraints => RoleConstraint.new
   match "/:identifier/:role/album/:media_collection/edit" => "media_collections#edit", :as => 'custom_edit_mc', :constraints => RoleConstraint.new
-  match "/:identifier/:role/album/:media_collection/:media_asset" => "media_assets#show", :as => 'custom_media', :constraints => {:media_asset => /d+[^.]/}
+  match "/:identifier/:role/album/:media_collection/:media_asset" => "media_assets#show", :as => 'custom_media'
   
   # Project routes
   match "/:identifier/:role/projects(/:action)" => "projects", :as => 'projects'
