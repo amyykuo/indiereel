@@ -31,6 +31,7 @@ class RolesController < ApplicationController
         role.headshot_id = headshot.id
         role.media_collections << quickshow
         role.save
+        @user.default_role_id = role.id if @user.roles.length <= 1
         flash[:notice] = "Role created."
         redirect_to role_route(role)
       else
