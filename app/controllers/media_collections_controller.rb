@@ -5,7 +5,11 @@ class MediaCollectionsController < ApplicationController
     @album = MediaCollection.find_by_id(params[:media_collection]) rescue nil
     render_not_found if @role.nil? or @album.nil?
   end
-  
+  def index
+    @user = User.find_by_identifier(params[:identifier])
+    @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
+    render_not_found if @role.nil?
+  end
   def new
     @user = current_user
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil

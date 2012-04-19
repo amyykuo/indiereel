@@ -2,6 +2,10 @@
 	<div class="alert alert-info">
 	    <h4>You're on your <%= @album.title %> page for <%= @role.role_type %>.<small class="pull-right"><%= link_to "Edit this Album", mc_route(@album, "edit")%></small></h4>
 	</div>
+	<%= image_tag @album.media.url %>
+  <%= image_tag @album.media.url(:medium) %>
+  <%= image_tag @album.media.url(:thumb) %>
+
 	<h3> <%= @album.title %> </h3>
 	<h4> Description </h4>
 	<ul class="unstyled">

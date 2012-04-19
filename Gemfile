@@ -44,3 +44,6 @@ gem 'haml'
 # for authentication through third-party service
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+#for paperclip
+gem "paperclip", "~> 3.0"
