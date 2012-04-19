@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       default_role = Role.find_by_id(@user.default_role_id)
       @role = Role.find_by_role_type_and_user_id(default_role.role_type, @user.id) rescue nil
       render_not_found if @user.nil?
-      redirect_to role_route(Role.find_by_id(@user.default_role_id))
+      redirect_to role_route(default_role)
     end
   end
  
