@@ -5,11 +5,26 @@
     <hr />
     <% if !@roles.empty? %>
       <div class="row-fluid">
-        <h3>Your Roles
-      	<% unless @roles.length == Role.options.length %>
-          <small class="pull-right"><%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn" %></small>
-        <% end %>
-        </h3>
+        <div class="span6">
+          <h3>Your Roles</h3>
+        </div>
+        <div class="span6">
+        	<small class="pull-right">
+            This Doesn't Work Yet
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Set Default Role<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% for role in @user.roles %>
+                  <li><%= link_to "#{role.role_type.capitalize}", role_route(role) %></li>
+                <% end %>
+              </ul>
+            
+            <% unless @roles.length == Role.options.length %>
+          	  <%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn" %>
+        	  <% end %>
+        	  </div>
+          </small>      	
+        </div>
       </div>
     
     	<hr />
