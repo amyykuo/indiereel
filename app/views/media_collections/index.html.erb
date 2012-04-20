@@ -20,8 +20,7 @@
 
 	
 	 <% if !@role.media_collections.empty? %> 
-	    <% for media_collect in @role.media_collections %> 
-        <!-- this doesn't quite work <% if !(media_collect.headshot == true or media_collect.quickshow == true) %> -->
+	    <% for album in @role.media_collections %> 
           <div class="span3">
             <div class="row-fluid">
               <div class="span12">
@@ -30,7 +29,7 @@
                     <div class="span12" align="center">
                       <div class="nav">
               
-                        <h3><%= link_to "View Collection", new_role_path %></h3>
+                        <h3><%= link_to album.title, mc_route(album) %></h3>
               
                       </div>
                     </div>
@@ -48,7 +47,6 @@
           </div>
     
 	      
-        <!-- goes with innermost if statement <% end %> -->
 	    <% end %>
 	 <% end %> 
 
