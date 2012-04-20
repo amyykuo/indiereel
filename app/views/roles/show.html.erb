@@ -54,7 +54,13 @@
     </div>
     
     <div class="span9">
-	    <h3><em>Basic Info</em><small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small></h3>
+	    <h3>
+	      <em>Basic Info</em>
+	      
+	      <% if current_user.uid == @user.uid && true %> <!-- add a "previewMode" variable to determine if user is in preview mode -->
+	        <small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small>
+        <% end %>
+      </h3>
 	    
 	    <hr>
       
@@ -64,18 +70,22 @@
         	  <h3>Attributes</h3>
         	  
 		        <ul class="unstyled">
-			        <li><strong>Age Range: </strong> <%= @role.age_range %>
-			        <li><strong>Eyes: </strong> <%= @role.eyes %></li>
-			        <li><strong>Hair: </strong> <%= @role.hair %></li>
-			        <li><strong>Height: </strong> <%= @role.height %></li>
-			        <li><strong>Weight: </strong> <%= @role.weight %></li>
+		          <% for symbolVar, varName in Role.physical_attributes %>
+		            <% unless @role[symbolVar].empty? %>
+  		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% end %>
+		          <% end %>
 		        </ul>
 	        </section>
 	        
 	        <section id="living">
 	          <h3>Living</h3>
 	            <ul class="unstyled">
-			          <li><strong>Location: </strong><%= @role.location %>
+	              <% for symbolVar, varName in Role.living_attributes %>
+		              <% unless @role[symbolVar].empty? %>
+  		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		              <% end %>
+		            <% end %>
 		          </ul>
 	        </section>
 	        
@@ -85,8 +95,11 @@
 	        <section id="contact-info">
 	          <h3>Contact Information</h3>
 	          <ul class="unstyled">
-          	  <li><strong>Email: </strong><%= @role.email %></li>
-		          <li><strong>Phone: </strong><%= @role.phone_number %></li>
+		          <% for symbolVar, varName in Role.contact_attributes %>
+		            <% unless @role[symbolVar].empty? %>
+  		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% end %>
+		          <% end %>
 	          </ul>
 	        </section>
 	        
@@ -94,9 +107,11 @@
 	          <h3>Agency Information</h3>
 	          
 	          <ul class="unstyled">
-	            <li><strong>Agency Name: </strong><%= @role.agency_name %></li>
-	            <li><strong>Agency Email: </strong><%= @role.agency_email %></li>
-	            <li><strong>Agency Phone: </strong><%= @role.agency_phone_number %></li>
+	            <% for symbolVar, varName in Role.agency_attributes %>
+		            <% unless @role[symbolVar].empty? %>
+  		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% end %>
+		          <% end %>
 	          </ul>
 	        </section>
 	      </div>
