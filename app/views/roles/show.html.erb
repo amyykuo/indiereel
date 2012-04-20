@@ -1,5 +1,5 @@
 <div class="container">
-  <hr />  
+  <hr />
   <div class="row-fluid">
     <div class="span3">
       <h1><%= @role.role_name %></h1>
@@ -30,7 +30,6 @@
       <% end %>  
     </div>
   </div>
-  
   <hr />
   
   <div class="row-fluid">
@@ -45,8 +44,8 @@
   	  <hr />
 	    <div class="row-fluid">
 	      <div class="span6">
-		      <section id="description">
-	      	  <h3>Description</h3>
+		      <section id="attributes">
+	      	  <h3>Attributes</h3>
 			      <ul class="unstyled">
 				      <li><strong>Age Range: </strong> <%= @role.age_range %>
 				      <li><strong>Eyes: </strong> <%= @role.eyes %></li>
@@ -54,6 +53,12 @@
 				      <li><strong>Height: </strong> <%= @role.height %></li>
 				      <li><strong>Weight: </strong> <%= @role.weight %></li>
 			      </ul>
+		      </section>
+		      <section id="living">
+		        <h3>Living</h3>
+		          <ul class="unstyled">
+				        <li><strong>Location: </strong> <%= @role.location %>
+			        </ul>
 		      </section>
 		    </div>
 		    <div class="span6">
