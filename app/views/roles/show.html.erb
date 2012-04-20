@@ -107,24 +107,24 @@
 	    <div class="row-fluid">
 	      <section id="experience">
 			      <h3><em>Experience</em><small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small></h3>
-			      
-			      <% if !@role.role_experience.empty? %>
+  			      <%= @role.role_experience %>
+			      <!--<% if !@role.role_experience.empty? %>
 			        <%= @role.role_experience %>
 			      <% else %>
 			        <p>You have no experience.</p>
-			      <% end %>
+			      <% end %> -->
 			      
 			      <hr>
 	      </section>
 	      
 	      <section id="skills">
 			      <h3><em>Skills</em><small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small></h3>
-			      
-			      <% if !@role.role_skills.empty? %>
+			        <%= @role.role_skills %>
+			      <!-- <% if !@role.role_skills.empty? %>
 			        <%= @role.role_skills %>
 			      <% else %>
 			        <p>You have no skills.</p>
-			      <% end %>
+			      <% end %> -->
 			      
 			      <hr>
 			      
