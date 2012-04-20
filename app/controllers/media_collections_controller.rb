@@ -11,7 +11,8 @@ class MediaCollectionsController < ApplicationController
   def index
     @user = User.find_by_identifier(params[:identifier])
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
-    render_not_found if @role.nil?
+    render_not_found and return if @role.nil?
+    @albums = @role.media_collections.sort_by{|album| [album.quickshow ? 1 : 0, album.headshot ? 1 : 0, album.updated_at]}.reverse
   end
   
   def new
