@@ -1,5 +1,7 @@
 class Role < ActiveRecord::Base
   belongs_to :user
+  belongs_to :headshot, :class_name => "MediaCollection", :foreign_key => "headshot_id"
+  belongs_to :quickshow, :class_name => "MediaCollection", :foreign_key => "quickshow_id"
   has_many :media_collections, :dependent => :destroy
   has_attached_file :profile_pic, :styles => {:profile => "180x180>"}
   
