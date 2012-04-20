@@ -12,7 +12,9 @@
 		<div class="row-fluid">
 			<% for asset in album.media_assets.first(6) %>
 				<div class="span2">
-					<%= asset.description %>
+					<div class="well ir-media-thumbnail">
+					<%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
+					</div>
 				</div>
 			<% end %>
 		</div>

@@ -9,7 +9,7 @@ class RolesController < ApplicationController
   def new
     @user = current_user
     @ages = Role.ages
-    @options = User.remaining_role_options.map{|role| [role.capitalize, role]}
+    @options = @user.remaining_role_options.map{|role| [role.capitalize, role]}
   end
   
   def create
