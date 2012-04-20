@@ -7,12 +7,12 @@ class MediaCollection < ActiveRecord::Base
   
   before_save :set_slug
   
-  def self.create_quickshow(role)
-    MediaCollection.create(:title => "QuickShow", :description => "Show off your best work in this album!", :headshot => false, :quickshow => true, :role_id => role.id)
+  def self.create_quickshow()
+    MediaCollection.create(:title => "QuickShow", :description => "Show off your best work in this album!", :headshot => false, :quickshow => true)
   end
   
-  def self.create_headshot(role)
-    MediaCollection.create(:title => "Headshots", :description => "Show off your head/or hottest looks!", :headshot => true, :quickshow => false, :role_id => role.id)
+  def self.create_headshot()
+    MediaCollection.create(:title => "Headshots", :description => "Show off your head/or hottest looks!", :headshot => true, :quickshow => false)
   end
   
   private

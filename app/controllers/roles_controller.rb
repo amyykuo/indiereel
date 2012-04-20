@@ -13,30 +13,18 @@ class RolesController < ApplicationController
   end
   
   def create
-    @user = current_user
-    @role_being_created = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
-    
-	  if @role_being_created.nil?
-	    
-	    role = Role.create params[:role]
-      
-	    if role.valid?
-	      quickshow = MediaCollection.create_quickshow(role)
-	      headshot = MediaCollection.create_headshot(role)
-        role.quickshow_id = quickshow.id
-        role.headshot_id = headshot.id
-        role.media_collections << quickshow
-        role.save
-        @user.default_role_id = role.id if @user.roles.length <= 1
-        flash[:notice] = "Role created."
-        redirect_to role_route(role)
-      else
-        flash[:error] = "There are missing fields: stage name"
-        redirect_to new_role_path
-      end
-    else
-      flash[:error] = "There already was a role of that kind."
+    if Role.where(:user_id => current_user.id, :role_type => params[:role][:role_type]).exists?
+      flash[:error] = "You already have a #{params[:role][:role_type].capitalize} role."
       redirect_to home_route(current_user)
+    elsif (role = Role.create params[:role]).invalid?
+      flash[:error] = "The role was invalid. Please try again."
+      redirect_to new_role_path
+    else
+      # TODO: default role
+      role.media_collections << MediaCollection.create_quickshow << MediaCollection.create_headshot
+      role.save
+      flash[:notice] = "Role created successfully."
+      redirect_to role_route(role)
     end
   end
   
