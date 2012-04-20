@@ -4,11 +4,11 @@
 	</div>
     <h3>Portfolio</h3>
 	<%= link_to "Back to your #{@role.role_type} page", role_route(@role) %>
-	<!-- this is embedded code
+
 	
-	 if !@portfolio.empty? 
-	    for media_collect in @media_groups 
-  -->
+	 <% if !@role.media_collections.empty? %> 
+	    <% for media_collect in @role.media_collections %>
+  
 	      <div class="span12">
 	        <div class="row-fluid">
 	          <div class="span3">
@@ -32,11 +32,12 @@
 	          </div>
 	        </div>
 	      </div>
+	      <% end %> 
+	  <% end %> 
 	      <%= link_to "Add Collection?", new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-small" %>
-  <!-- same as above
-	    end 
-	 end 
-	-->
+  
+	   
+	
 <% else %>
     <h1>You're on <%= @user.name %>'s <%= @role.role_type %> portfolio!</h1>
 	<%= link_to "Back to #{@user.name}'s #{@role.role_type} page", role_route(@role) %>

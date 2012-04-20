@@ -1,6 +1,7 @@
 class MediaAssetsController < ApplicationController
 	
 	def show
+		@media_asset = MediaAsset.find(params[:media_asset])
 	end
 	
 	def create
