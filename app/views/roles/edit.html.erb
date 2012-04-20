@@ -22,7 +22,7 @@ $(function(){
   <br/>
   <br/>
   
-  <div class="row-fluid">
+  <div class="row-fluid" id="edit-role">
     <div class="span3">
 		  <div class="well">
 			  <%= image_tag @role.profile_pic_url, :width => 180, :height => 180 %>
@@ -50,12 +50,11 @@ $(function(){
   		    <% end %>
 		    </div>
       </div>
-      
 	  </div>
   </div>
   
   <hr />
-    <h3>Basic Info</h3>
+    <h3 id="edit-basic">Basic Info</h3>
   <hr />
   <div class="row-fluid">
     <div class="span6">
@@ -103,7 +102,7 @@ $(function(){
   
   <div class="row-fluid">
     <hr />
-    <h3>Work Related</h3>
+    <h3 id="edit-work">Work Related</h3>
     <hr />
     <%= label_tag "role[role_experience]", "Experience:" %>
 	  <%= text_area_tag "role[role_experience]", @role.role_experience, {:placeholder => "Describe your experience in this role"} %>
