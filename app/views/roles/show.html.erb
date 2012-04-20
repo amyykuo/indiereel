@@ -71,10 +71,14 @@
         	  
 		        <ul class="unstyled">
 		          <% for symbolVar, varName in Role.physical_attributes %>
-		            <% unless @role[symbolVar].empty? %>
-  		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% if current_user.uid == @user.uid && true %>
+		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% else %>
+		              <% unless @role[symbolVar].empty? %>
+    		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		              <% end %>
 		            <% end %>
-		          <% end %>
+	            <% end %>
 		        </ul>
 	        </section>
 	        
@@ -82,10 +86,14 @@
 	          <h3>Living</h3>
 	            <ul class="unstyled">
 	              <% for symbolVar, varName in Role.living_attributes %>
-		              <% unless @role[symbolVar].empty? %>
-  		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                <% if current_user.uid == @user.uid && true %>
+		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		              <% else %>
+		                <% unless @role[symbolVar].empty? %>
+      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		                <% end %>
 		              <% end %>
-		            <% end %>
+	              <% end %>
 		          </ul>
 	        </section>
 	        
@@ -96,10 +104,14 @@
 	          <h3>Contact Information</h3>
 	          <ul class="unstyled">
 		          <% for symbolVar, varName in Role.contact_attributes %>
-		            <% unless @role[symbolVar].empty? %>
-  		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% if current_user.uid == @user.uid && true %>
+		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% else %>
+		              <% unless @role[symbolVar].empty? %>
+    		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		              <% end %>
 		            <% end %>
-		          <% end %>
+	            <% end %>
 	          </ul>
 	        </section>
 	        
@@ -108,10 +120,14 @@
 	          
 	          <ul class="unstyled">
 	            <% for symbolVar, varName in Role.agency_attributes %>
-		            <% unless @role[symbolVar].empty? %>
-  		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% if current_user.uid == @user.uid && true %>
+		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% else %>
+		              <% unless @role[symbolVar].empty? %>
+    		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		              <% end %>
 		            <% end %>
-		          <% end %>
+	            <% end %>
 	          </ul>
 	        </section>
 	      </div>
