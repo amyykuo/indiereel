@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
   validates :uid, :uniqueness => true
   validates :username, :uniqueness => true
   
+  def role_list
+    self.roles.map{|role| role.role_type }
+  end
+  
+  def remaining_role_options
+    Role.options.delete_if{|role| self.role_list.include?(role)}
+  end
+  
   def roles_in_groups_of(size)
     self.roles.each_slice(size).to_a
   end

@@ -1,6 +1,7 @@
 class Role < ActiveRecord::Base
   belongs_to :user
   has_many :media_collections, :dependent => :destroy
+  has_attached_file :profile_pic, :styles => {:profile => "180x180>"}
   
   validates :role_name, :presence => true
   validates :role_type, :presence => true

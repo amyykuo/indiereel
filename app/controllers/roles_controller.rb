@@ -7,17 +7,13 @@ class RolesController < ApplicationController
   end
   
   def new
-    @user = User.find_by_identifier(current_user.identifier)
+    @user = current_user
     @ages = Role.ages
-    @options = []
-    
-	  for option in Role.options do
-      @options << option unless Role.find_by_role_type_and_user_id(option, @user.id) != nil
-    end
+    @options = User.remaining_role_options.map{|role| [role.capitalize, role]}
   end
   
   def create
-    @user = User.find_by_identifier(current_user.identifier)
+    @user = current_user
     @role_being_created = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     
 	  if @role_being_created.nil?
@@ -61,7 +57,7 @@ class RolesController < ApplicationController
       redirect_to role_route(@role)
     else
       flash[:error] = "There were some errors in updating your role."
-      redirect_to role_route(@role, 'edit')
+      redirect_to edit_role_route(@role)
     end
   end
   
