@@ -35,7 +35,13 @@
   <div class="row-fluid">
     <div class="span3">
 		  <div class="well">
-			  <%= image_tag "default_role_pic.jpg", :width => 180, :height => 180 %>
+			  <%= image_tag @role.profile_pic_url, :width => 180, :height => 180 %>
+			  <hr />
+			  <%= form_for @role do |f| %>
+					<%= f.label "Upload a new profile picture" %>
+					<%= f.file_field :profile_pic %>
+					<%= f.submit "Upload" %>
+			  <% end %>
 		  </div>
 	  </div>
 	  

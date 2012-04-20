@@ -6,6 +6,10 @@ class Role < ActiveRecord::Base
   validates :role_name, :presence => true
   validates :role_type, :presence => true
   
+  def profile_pic_url
+    self.profile_pic.file? ? self.profile_pic.url(:profile) : "default_role_pic.jpg"
+  end
+  
   def self.options
     ['talent', 'director', 'producer', 'crew']
   end
