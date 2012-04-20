@@ -1,3 +1,10 @@
+<script type="text/javascript">
+$(function(){
+  $("#name").tooltip();
+  $("#roledescr").tooltip();
+})
+</script>
+
 <%= form_tag role_path(@role.id), :method => 'put' do %>
   <hr />
   <div class="row-fluid">
@@ -19,10 +26,12 @@
     <div class="span6">
       <%= label_tag "role[role_name]", "Stage Name: *" %>
 	    <%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Enter your Role Stage Name"} %>
+	    <a href="#" rel="tooltip" id="name" data-original-title="Have a nickname for this role?">[?]</a>
 	  </div>
 	  <div class="span6">
 	    <%= label_tag "role[role_type_description]", "Role Description:" %>
-	    <%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "i.e. Actor, Camera-op, etc"} %>
+	    <%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "Explain your role in a few words"} %>
+	    <a href="#" rel="tooltip" id="roledescr" data-original-title="i.e. Actor, Stunts, Camera Op, etc">[?]</a>
 	  </div>
   </div>
   
