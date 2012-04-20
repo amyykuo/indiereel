@@ -6,7 +6,7 @@ class Role < ActiveRecord::Base
   validates :role_name, :presence => true
   validates :role_type, :presence => true
   
-  before_create :nil_to_empty
+  #before_create :nil_to_empty
   
   
   def profile_pic_url
@@ -25,8 +25,8 @@ class Role < ActiveRecord::Base
     ['0-7', '8-15', '16-23', '24-31', '32-39', '40-47', '48-55', '55+']
   end
   
-  def nil_to_empty
-    self.role_experience = "" if self.role_experience.nil?
-    self.role_skills = "" if self.role_skills.nil?
+  #def nil_to_empty
+  #  self.role_experience = "" if self.role_experience.nil?
+  #  self.role_skills = "" if self.role_skills.nil?
   
 end
