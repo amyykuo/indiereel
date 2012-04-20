@@ -23,15 +23,34 @@ $(function(){
   <br/>
   
   <div class="row-fluid">
-    <div class="span6">
-      <%= label_tag "role[role_name]", "Stage Name: *" %>
-	    <%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Enter your Role Stage Name"} %>
-	    <a href="#" rel="tooltip" id="name" data-original-title="Have a nickname for this role?">[?]</a>
+    <div class="span3">
+		  <div class="well">
+			  <%= image_tag @role.profile_pic_url, :width => 180, :height => 180 %>
+		  </div>
 	  </div>
-	  <div class="span6">
-	    <%= label_tag "role[role_type_description]", "Role Description:" %>
-	    <%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "Explain your role in a few words"} %>
-	    <a href="#" rel="tooltip" id="roledescr" data-original-title="i.e. Actor, Stunts, Camera Op, etc">[?]</a>
+    <div class="span9">
+      <div class="row-fluid">
+        <div class="span6">
+          <%= label_tag "role[role_name]", "Stage Name: *" %>
+  	      <%= text_field_tag "role[role_name]", @role.role_name, {:placeholder => "Enter your Role Stage Name"} %>
+	        <a href="#" rel="tooltip" id="name" data-original-title="Have a nickname for this role?">[?]</a>
+        </div>
+        <div class="span6">
+          <%= label_tag "role[role_type_description]", "Role Description:" %>
+	        <%= text_field_tag "role[role_type_description]", @role.role_type_description, {:placeholder => "Explain your role in a few words"} %>
+  	      <a href="#" rel="tooltip" id="roledescr" data-original-title="i.e. Actor, Stunts, Camera Op, etc">[?]</a>        
+        </div>
+      </div>
+		  <div class="row-fluid">
+		    <div class="photo-upload">
+    		  <%= form_for @role do |f| %>
+				    <%= f.label "Upload a new profile picture" %>
+				    <%= f.file_field :profile_pic %>
+				    <%= f.submit "Upload" %>
+  		    <% end %>
+		    </div>
+      </div>
+      
 	  </div>
   </div>
   

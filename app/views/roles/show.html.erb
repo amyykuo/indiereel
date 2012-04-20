@@ -4,10 +4,12 @@
     <div class="span3">
       <h1><%= @role.role_name %></h1>
     </div>
+    
     <div class="span6">
       <h2><%= @role.role_type.capitalize %></h2>
       <dd><%= @role.role_type_description %></dd>
     </div>
+    
     <div class="span3">
       <% if current_user.uid == @user.uid %>
         <small class="pull-right">
@@ -17,20 +19,18 @@
         </small>
       <% elsif @user.roles.length > 1 %>
         <div class="btn-group">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-            Other Roles
-            <span class="caret"></span>
-          </a>
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Other Roles<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% for role in @user.roles %>
               <%= link_to "#{role.role_type.capitalize}", role_route(role) %>
             <% end %>
           </ul>
         </div>
-      <% end %>  
+      <% end %>
     </div>
   </div>
-  <hr />
+  
+  <hr>
   
   <div class="row-fluid">
     <div class="span3">
@@ -47,12 +47,14 @@
 	  
 	  <div class="span9">
   	  <h3><em>Basic Info</em><small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small></h3>
-  	  <hr />
+  	  <hr>
+	    
 	    <div class="row-fluid">
 	      <div class="span6">
 		      <section id="attributes">
 	      	  <h3>Attributes</h3>
 			      <ul class="unstyled">
+			      
 				      <li><strong>Age Range: </strong> <%= @role.age_range %>
 				      <li><strong>Eyes: </strong> <%= @role.eyes %></li>
 				      <li><strong>Hair: </strong> <%= @role.hair %></li>
@@ -67,6 +69,7 @@
 			        </ul>
 		      </section>
 		    </div>
+		    
 		    <div class="span6">
 		      <section id="contact-info">
 		        <h3>Contact Information</h3>
@@ -75,6 +78,7 @@
 			        <li><strong>Phone: </strong><%= @role.phone_number %></li>
 		        </ul>
 		      </section>
+		      
 		      <section id="agency-info">
 		        <h3>Agency Information</h3>
 		        <ul class="unstyled">
@@ -86,7 +90,8 @@
 		    </div>
 		  </div>
 		  
-		  <hr />
+		  <hr>
+		  
 		  <div class="row-fluid">
 		    <section id="experience">
 				    <h3><em>Experience</em><small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small></h3>
@@ -95,7 +100,7 @@
 				    <% else %>
 				      <p>You have no experience.</p>
 				    <% end %>
-				    <hr />
+				    <hr>
 		    </section>
 		    
 		    <section id="skills">
@@ -120,7 +125,6 @@
 			    <hr />
 		    </section>    
 		  </div>
-		      
     </div>
   </div>
 </div>
