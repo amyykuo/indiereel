@@ -6,9 +6,14 @@ class UsersController < ApplicationController
       @roles = @user.roles rescue nil
       @grouped_roles = @user.roles_in_groups_of(2)
     else
-      default_role = @user.default_role
-      render_not_found and return if default_role.nil?
-      redirect_to role_route(default_role)
+      if @user.default_role.nil?
+        user = current user
+        flash[:error] = "That user has no roles"
+        redirect_to home_route(user)
+      else
+        default_role = @user.default_role
+        redirect_to role_route(default_role)
+      end
     end
   end
  
