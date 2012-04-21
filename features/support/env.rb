@@ -67,24 +67,15 @@ require 'ruby-debug'
 # Test login/out and such for Cucumber
 
 OmniAuth.config.test_mode = true
-OmniAuth.config.add_mock(:facebook, {
-      "provider"=>"facebook",
-      "uid"=>"12345",
-      "info"=>{
-        "nickname"=>"tester", 
-        "name"=>"Test User", 
-        "first_name"=>"Test", 
-        "last_name"=>"User", 
-        "email"=>"test@xxxx.com",
-        "image"=>"http://hi.com/user.png"
-      },
-      "extra" => {
-        "raw_info" => {
-          "timezone" => 0,
-          "gender" => "male"
-        }
-      },
-      "credentials" => {
-        "token" => "token12345"
-      }  
-})
+OmniAuth.config.add_mock(:facebook,
+  {"provider" => "facebook",
+   "uid" => "12345",
+   "info" => {"nickname"=>"tester",
+              "name"=>"Test User",
+              "first_name"=>"Test",
+              "last_name"=>"User",
+              "email"=>"test@xxxx.com",
+              "image"=>"http://hi.com/user.png"},
+  "extra" => {"raw_info" => {"timezone" => 0,
+                             "gender" => "male"}},
+ "credentials" => {"token" => "token12345"}})

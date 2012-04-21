@@ -10,6 +10,7 @@ class Role < ActiveRecord::Base
   before_create :check_for_default_role
   after_destroy :transfer_default_role
   
+  
   def self.options
     ['talent', 'director', 'producer', 'crew']
   end
@@ -22,12 +23,36 @@ class Role < ActiveRecord::Base
     ['0-7', '8-15', '16-23', '24-31', '32-39', '40-47', '48-55', '55+']
   end
   
+  def self.physical_attributes
+    {:age_range => 'Age Range', :eyes => 'Eyes', :hair => 'Hair', :height => 'Height', :weight => 'Weight'}
+  end
+  
+  def self.contact_attributes
+    {:email => 'Email', :phone_number => 'Phone'}
+  end
+  
+  def self.living_attributes
+    {:location => 'Location'}
+  end
+  
+  def self.agency_attributes
+    {:agency_name => 'Agency Name', :agency_email => 'Agency Email', :agency_phone_number => 'Agency Phone'}
+  end
+  
+  def self.attribute_super_structure
+    {:physical => self.physical_attributes,
+     :contact => self.contact_attributes,
+     :living => self.living_attributes,
+     :agency => self.agency_attributes} #fill in later
+  end
+  
   
   # Attribute Wrappers
   
   def profile_pic_url
     self.profile_pic.file? ? self.profile_pic.url(:profile) : "default_role_pic.jpg"
   end
+  
   
   private 
   
@@ -42,10 +67,5 @@ class Role < ActiveRecord::Base
       user.default_role = new_role
       user.save
     end
-  end
-  
-  #def nil_to_empty
-  #  self.role_experience = "" if self.role_experience.nil?
-  #  self.role_skills = "" if self.role_skills.nil?
-  
+
 end

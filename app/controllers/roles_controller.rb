@@ -2,6 +2,7 @@ class RolesController < ApplicationController
   def show
     @user = User.find_by_identifier params[:identifier]
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
+    @preview = params[:preview] rescue false
     
     render_not_found if @role.nil?
   end

@@ -8,9 +8,13 @@ Background:
 
   Given I am signed in with provider "facebook"
   And I have the following roles:
-  | role_type  | user_id | role_name |     email     | phone_number | role_type_description | role_experience | age_range | role_skills | physique |
-  |  director  |    1    |   John    | test@xxxx.com |  1234567890  |     I am awesome!     |    everything   |     0     |     none    |  pretty  |
-  |   talent   |    1    |  Nguyen   | best@xxxx.com |  1234567890  |     I not awesome     |      nothing    |     1     |     same    |   ugly   |
+  #| role_type  | user_id | role_name |     email     | phone_number | role_type_description | role_experience | age_range | role_skills | physique |
+  #|  director  |    1    |   John    | test@xxxx.com |  1234567890  |     I am awesome!     |    everything   |     0     |     none    |  pretty  |
+  #|   talent   |    1    |  Nguyen   | best@xxxx.com |  1234567890  |     I not awesome     |      nothing    |     1     |     same    |   ugly   |
+  
+  | role_type  | user_id | role_name | email         | role_type_description | role_experience | role_skills |
+  |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        |
+  |   talent   |  1      |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
   
   And I am on my "tester talent" Edit Page
   And I should see "Stage Name:"
