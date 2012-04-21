@@ -2,7 +2,7 @@
 	<hr />
 	<h3><%= "#{@role.role_type.capitalize} Portfolio for #{@role.role_name}" %>
 		<small class="pull-right">
-		<%= link_to content_tag(:strong, "Add Collection?"), new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
+		<%= link_to content_tag(:strong, "+ Add Album?"), new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
 		<%= link_to "Back to #{@role.role_type.capitalize}", role_route(@role), :class => "btn btn-mini" %>
 		</small></h3>
 	<hr />

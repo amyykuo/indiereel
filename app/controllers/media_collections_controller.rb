@@ -16,9 +16,9 @@ class MediaCollectionsController < ApplicationController
   end
   
   def new
-    role = Role.find_by_role_type_and_user_id(params[:role], current_user.id) rescue nil
-    render_not_found and return if role.nil?
-    @mc = MediaCollection.new(:role => role)
+    @role = Role.find_by_role_type_and_user_id(params[:role], current_user.id) rescue nil
+    render_not_found and return if @role.nil?
+    @mc = MediaCollection.new(:role => @role)
   end
   
   def create

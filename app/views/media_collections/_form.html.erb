@@ -1,13 +1,14 @@
 <%= form_for @mc do |f| %>
 	<%= f.label :title %>
-	<%= f.text_field :title %>
+	<%= f.text_field :title, :placeholder => "The name of your album" %>
 	
 	<%= f.label :description %>
-	<%= f.text_area :description %>
+	<%= f.text_area :description, :placeholder => "Sum up your album in a few words", :rows => 5 %>
 	
 	<%= f.hidden_field :role_id %>
 	
 	<div class="actions">
-    	<%= f.submit %>
+    	<%= f.submit "Create Album", :class => "btn btn-primary" %>
+		<%= link_to "Cancel", portfolio_route(@mc.role), :class => "btn" %>
   	</div>
 <% end %>
