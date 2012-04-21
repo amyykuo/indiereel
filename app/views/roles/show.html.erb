@@ -1,3 +1,7 @@
+<% def private_mode_conditional %>
+  <% current_user.uid == @user.uid %>
+<% end %>
+
 <div class='container'>
   <hr>
   
@@ -11,12 +15,18 @@
       <dd><%= @role.role_type_description %></dd>
     </div>
     
-    <% if current_user.uid == @user.uid %>
+    <% if private_mode_conditional %>
       <div class='span3'>
         <small class='pull-right'>
           <%= link_to 'Edit', edit_role_route(@role) %> | 
           <%= link_to 'Delete', role_path(@role), {:method => :delete, :confirm => 'Are you sure you want to delete this role?'} %> | 
-          <%= link_to 'Preview', '#' %>
+          
+          <% if !@preview %>
+            <%= link_to 'Preview', role_route(@role) + '?preview=true' %>
+          <% else %>
+            <%= link_to 'View All Fields', role_route(@role) %>
+          <% end %>
+          
         </small>
       </div>
     <% else %>
@@ -43,12 +53,14 @@
 	    <div class="well">
 		    <%= image_tag @role.profile_pic_url, :width => 180, :height => 180 %>
 		    
-		    <hr>
-		    
-		    <%= form_for @role do |f| %>
-				  <%= f.label "Upload a new profile picture" %>
-				  <%= f.file_field :profile_pic %>
-				  <%= f.submit "Upload" %>
+		    <% if private_mode_conditional && !@preview %>
+		      <hr>
+		      
+		      <%= form_for @role do |f| %>
+				    <%= f.label "Upload a new profile picture" %>
+				    <%= f.file_field :profile_pic %>
+				    <%= f.submit "Upload" %>
+		      <% end %>
 		    <% end %>
 	    </div>
     </div>
@@ -57,7 +69,7 @@
 	    <h3>
 	      <em>Basic Info</em>
 	      
-	      <% if current_user.uid == @user.uid && true %> <!-- add a "previewMode" variable to determine if user is in preview mode -->
+	      <% if private_mode_conditional && !@preview %>
 	        <small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small>
         <% end %>
       </h3>
@@ -71,7 +83,7 @@
         	  
 		        <ul class="unstyled">
 		          <% for symbolVar, varName in Role.physical_attributes %>
-		            <% if current_user.uid == @user.uid && true %>
+		            <% if private_mode_conditional && !@preview %>
 		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
 		            <% else %>
 		              <% unless @role[symbolVar].empty? %>
@@ -86,8 +98,8 @@
 	          <h3>Living</h3>
 	            <ul class="unstyled">
 	              <% for symbolVar, varName in Role.living_attributes %>
-	                <% if current_user.uid == @user.uid && true %>
-		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                <% if private_mode_conditional && !@preview %>
+		                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
 		              <% else %>
 		                <% unless @role[symbolVar].empty? %>
       		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
@@ -104,7 +116,7 @@
 	          <h3>Contact Information</h3>
 	          <ul class="unstyled">
 		          <% for symbolVar, varName in Role.contact_attributes %>
-		            <% if current_user.uid == @user.uid && true %>
+		            <% if private_mode_conditional && !@preview %>
 		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
 		            <% else %>
 		              <% unless @role[symbolVar].empty? %>
@@ -120,7 +132,7 @@
 	          
 	          <ul class="unstyled">
 	            <% for symbolVar, varName in Role.agency_attributes %>
-		            <% if current_user.uid == @user.uid && true %>
+		            <% if private_mode_conditional && !@preview %>
 		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
 		            <% else %>
 		              <% unless @role[symbolVar].empty? %>
@@ -137,16 +149,29 @@
 	    
 	    <div class="row-fluid">
 	      <section id="experience">
-			      <h3><em>Experience</em><small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small></h3>
-  			      <%= @role.role_experience %>
-
+			      <h3>
+			        <em>Experience</em>
+			        
+			        <% if private_mode_conditional && !@preview %>
+			          <small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small>
+			        <% end %>
+		        </h3>
+			      
+			      <%= @role.role_experience %>
 			      
 			      <hr>
 	      </section>
 	      
 	      <section id="skills">
-			      <h3><em>Skills</em><small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small></h3>
-			        <%= @role.role_skills %>
+			      <h3>
+			        <em>Skills</em>
+			        
+			        <% if private_mode_conditional && !@preview %>
+			          <small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small>
+			        <% end %>
+		        </h3>
+			      
+			      <%= @role.role_skills %>
 
 			      <hr>
 			      
@@ -297,6 +322,4 @@
 		  </div>
     </div>
   </div>
-</div>
-
--->
+</div> -->
