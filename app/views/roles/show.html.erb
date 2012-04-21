@@ -31,20 +31,22 @@
     </div>
     
     <% if @user.roles.length > 1 %>
-      <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Other Roles <span class="caret" /></a>
-        
-        <ul class="dropdown-menu">
-          <% if @preview %>
-            <% for role in @user.roles %>
-              <%= link_to "#{role.role_type.capitalize}", role_route(role) + '?preview=true' %>
+      <div class='span3'>
+        <div class="btn-group">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Other Roles <span class="caret" /></a>
+          
+          <ul class="dropdown-menu">
+            <% if @preview %>
+              <% for role in @user.roles %>
+                <%= link_to "#{role.role_type.capitalize}", role_route(role) + '?preview=true' %>
+              <% end %>
+            <% else %>
+              <% for role in @user.roles %>
+                <%= link_to "#{role.role_type.capitalize}", role_route(role) %>
+              <% end %>
             <% end %>
-          <% else %>
-            <% for role in @user.roles %>
-              <%= link_to "#{role.role_type.capitalize}", role_route(role) %>
-            <% end %>
-          <% end %>
-        </ul>
+          </ul>
+        </div>
       </div>
     <% end %>
   </div>
