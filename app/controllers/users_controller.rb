@@ -14,15 +14,16 @@ class UsersController < ApplicationController
  
   # Only used to update Default Role
   def update
-    new_default_role = Role.find_by_id_and_user_id(params[:role_id], current_user.id)
+    user = current_user
+    new_default_role = Role.find_by_id_and_user_id(params[:role_id], user.id)
     if new_default_role.nil?
       flash[:error] = "There was an error in setting your default role."
     else
       user.default_role = new_default_role
       user.save
-      flash[:notice] = "Default role successfully updated to #{new_default_role.role_type.capitalize}"
+      flash[:notice] = "Default role successfully updated to #{new_default_role.role_type.capitalize}."
     end
-    redirect_to home_route(@user)
+    redirect_to home_route(user)
   end
 
 end

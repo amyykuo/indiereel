@@ -44,7 +44,7 @@
 				              </div>
 				            </div>
 				            <hr style="margin:10px 0px 10px 0px" />
-						<%= form_tag user_path(current_user), :style => "display:inline-block", :class => "pull-left" do %>
+						<%= form_tag user_path(current_user), :style => "display:inline-block", :class => "pull-left", :method => :put do %>
 							<%= hidden_field_tag "role_id", role.id %>
 							<%= (role.default_role_user.nil?) ? submit_tag("Set Default Role", :class => "btn btn-mini") : content_tag(:span, "Currently the default role", :class => "ir-default-role-indicator")%>
 						<% end %>
