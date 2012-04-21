@@ -18,6 +18,14 @@ Given /I have the following albums/ do |albums_table|
   end
 end
 
+Given /the following users exist/ do |users_table|
+  users_table.hashes.each do |user|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    User.create_with_omniauth_test_mode(user)
+  end
+end
+
 Given /I have the following media collections/ do |collections|
   collections.hashes.each do |collection|
     MediaCollection.create!(collection)
