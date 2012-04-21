@@ -44,6 +44,8 @@ describe ApplicationController do
   before :each do
     @user = mock('User', :identifier => 'amy')
     @role = mock('Role', :user => @user, :role_type => 'talent')
+    @mc = mock('MediaCollection', :slug => 'pics', :role => @role)
+    @media = mock('MediaAsset', :media_collection => @mc, :id => 1)
   end
   
   describe 'role_route' do
@@ -71,15 +73,21 @@ describe ApplicationController do
   end
   
   describe 'mc_route' do
-    it 'should return the media collection uri'
+    it 'should return the media collection uri' do
+      controller.send(:mc_route, @mc).should == "/amy/talent/album/pics"
+    end
   end
   
   describe 'edit_mc_route' do
-    it 'should return the edit media collection uri'
+    it 'should return the edit media collection uri' do
+      controller.send(:edit_mc_route, @mc).should == "/amy/talent/album/pics/edit"      
+    end
   end
   
   describe 'media_route' do
-    it 'should return the media page uri'
+    it 'should return the media page uri' do
+      controller.send(:media_route, @media).should == "/amy/talent/album/pics/1"    
+    end
   end  
   
   describe 'home_route' do
