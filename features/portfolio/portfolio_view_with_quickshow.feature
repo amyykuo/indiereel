@@ -1,8 +1,8 @@
-Feature: Portfolio Page
+Feature: portfolio view with quickshow
 
-As a User
-I want to have a portfolio page for each role
-So that I can see all of my media collections
+  As a user
+  I want to have a portfolio page for each role
+  So that I can see all of my media collections
 
 Background:
   Given I am signed in with provider "facebook"
@@ -14,10 +14,10 @@ Background:
     
   And I have the following media collections:
   | description | title |
-  | 1            | quickshow          |
-  | 2            | headshots          |
-  | 3            | Media Collection 1 |
-  | 4            | Media Collection 2 |
+  | 1           | quickshow          |
+  | 2           | headshots          |
+  | 3           | Media Collection 1 |
+  | 4           | Media Collection 2 |
 
   And I am on the "tester" Portfolio page for the "talent" role
   And my "quickshow" album is not empty #not implemented yet

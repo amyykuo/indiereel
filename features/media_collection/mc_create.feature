@@ -1,8 +1,8 @@
-Feature: Media Collection Create page
+Feature: media collection create page
 
-As a User
-I want to be able to create media collections
-So that I can show my new works
+  As a user
+  I want to be able to create media collections
+  So that I can show my new works
 
 Background:
   Given I am signed in with provider "facebook"
@@ -19,6 +19,7 @@ Background:
   
   And I am on my "talent" media collection create page
   And I should see "Title"
+  
   
 Scenario: Successfully create a MC #A user should be able to access portfolio page through any of its media collections
   When I fill in "mc_title" with "photoshoot"

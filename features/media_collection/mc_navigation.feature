@@ -1,8 +1,8 @@
-Feature: Media Collection page
+Feature: media collection page navigation
 
-As a User
-I want to be able to have full access all my media files in a media collection
-So I can see them
+  As a user
+  I want to be able to have full access all my media files in a media collection
+  So I can see them
 
 Background:
   Given I am signed in with provider "facebook"
@@ -14,10 +14,10 @@ Background:
     
   And I have the following media collections:
   | description | title |
-  | 1            | quickshow          |
-  | 2            | headshots          |
-  | 3            | Media Collection 1 |
-  | 4            | Media Collection 2 |
+  | 1           | quickshow          |
+  | 2           | headshots          |
+  | 3           | Media Collection 1 |
+  | 4           | Media Collection 2 |
   
   And I am on my "talent" media collection "photos" page # not implemented yet
   

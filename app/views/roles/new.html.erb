@@ -1,10 +1,16 @@
 <%= form_tag roles_path do %>
-  <hr />
+  <hr>
+  
   <h3>Create a New Role</h3>
-  <hr />
+  
+  <hr>
+  
   <small>* Required Field</small>
-  <br/>
-  <br/>
+  
+  <br>
+  
+  <br>
+  
 	<%= label_tag "role[role_type]", "Choose a Role Type" %> 
 	<%= select_tag "role[role_type]", options_for_select(@options) %> 
 	
@@ -22,11 +28,11 @@
     </div>
     
     <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal" >Close</a>
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
     </div>
   </div>
+  
   <a data-toggle="modal" href="#myModal"><i class="icon-question-sign"></i></a>
-	
 
 	<%= label_tag "role[role_name]", "Stage Name: *" %>
 	<%= text_field_tag "role[role_name]", @user.name, {:placeholder => "Enter your Role Stage Name"} %>

@@ -1,9 +1,9 @@
-Feature: Home page
-
-As a User
-I want to be able to have full access all my roles
-So I can see them
-
+Feature: home page role modifying links
+  
+  As a user
+  I want to be able to have full access all my roles
+  So I can see them
+  
 Background:
   Given I am signed in with provider "facebook"
   
@@ -14,7 +14,7 @@ Background:
     
   And I am on my "tester" home page
   
-
+  
 Scenario: Go to Add a Role
   When I follow "Add a role"
   Then I should be on the Create Role Page
