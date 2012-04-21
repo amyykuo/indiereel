@@ -1,12 +1,12 @@
-Feature: Media Collection page
+Feature: Media Collection page #needs change once page is more implemented
 
-  As a User
+  As a user
   I want to be able to see and add media files to my media collection
   So that I can organize it and stuff
 
 Background:
-
   Given I am signed in with provider "facebook"
+  
   And I have the following roles:
   | role_type  | user_id | role_name |     email     | phone_number | role_type_description | role_experience | age_range | role_skills | physique |
   |  director  |    1    |   John    | test@xxxx.com |  1234567890  |     I am awesome!     |    everything   |     0     |     none    |  pretty  |
@@ -14,12 +14,13 @@ Background:
   
   And I have the following media collections:
   | description | title |
-  | 1            | quickshow          |
-  | 2            | headshots          |
-  | 3            | Media Collection 1 |
-  | 4            | Media Collection 2 |
+  | 1           | quickshow          |
+  | 2           | headshots          |
+  | 3           | Media Collection 1 |
+  | 4           | Media Collection 2 |
   
   And I am on the "talent" media collection "photos" page #not implemented yet
+  
   
 Scenario: User should be able to upload a media file (picture, video, song, etc) #not quite sure how this will work yet
   When I upload a new picture #not implemented yet

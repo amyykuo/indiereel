@@ -1,12 +1,12 @@
-Feature: Edit Media Collection page
+Feature: media collection edit page
 
-  As a User
+  As a user
   I want to be able to edit my media collection
   So that I can organize it and stuff
 
 Background:
-
   Given I am signed in with provider "facebook"
+  
   And I have the following roles:
   | role_type  | user_id | role_name |     email     | phone_number | role_type_description | role_experience | age_range | role_skills | physique |
   |  director  |    1    |   John    | test@xxxx.com |  1234567890  |     I am awesome!     |    everything   |     0     |     none    |  pretty  |
@@ -19,6 +19,7 @@ Background:
   
   And I am on the "tester" "director" media collection "1" edit page
   #And I should see "these are mine" within the "mc_title" section
+  
   
 Scenario: Edit the description of the MC successfullly
   When I fill in "mc_description" with "these are my new photos"
