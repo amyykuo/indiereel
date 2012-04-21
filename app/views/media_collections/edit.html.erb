@@ -2,6 +2,7 @@
 	<h3>
 		Edit <%= @mc.title %>
 		<span class="pull-right">
+			<%= link_to content_tag(:strong, "Back to Album"), mc_route(@mc), :class => "btn btn-mini btn-info" %>
 			<%= link_to "Back to Portfolio", portfolio_route(@role), :class => "btn btn-mini"%>
 		</span>
 	</h3>
