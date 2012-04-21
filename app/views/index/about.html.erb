@@ -1,12 +1,13 @@
 <div class="container">
   <div class="alert alert-info">
-    <h4>What is IndieReel?</h4>
+    <h3>What is IndieReel?</h3>
+    <hr />
   </div>
 
   <p>This is how we do it.</p>
 
   <% if current_user.nil? %>
-    <h4><%= link_to "Back to Welcome Page", "/", :class => "btn btn-info btn-small" %></h4>
+    <h4><%= link_to "Back to Welcome Page", root_url, :class => "btn btn-info btn-small" %></h4>
   <% end %>
 
 </div>
