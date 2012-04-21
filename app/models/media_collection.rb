@@ -7,6 +7,10 @@ class MediaCollection < ActiveRecord::Base
   
   before_save :set_slug
   
+  def media_assets_in_groups_of(size)
+    self.media_assets.each_slice(size).to_a
+  end
+  
   def self.create_quickshow()
     MediaCollection.create(:title => "QuickShow", :description => "Show off your best work in this album!", :headshot => false, :quickshow => true)
   end

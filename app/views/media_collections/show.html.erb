@@ -1,22 +1,37 @@
 <% if current_user.uid == @user.uid %>
-	<div class="alert alert-info">
-	    <h4>You're on your <%= @album.title %> page for <%= @role.role_type %>.<small class="pull-right"><%= link_to "Edit this Album", edit_mc_route(@album)%></small></h4>
-	</div>
-	<h3> <%= @album.title %> </h3>
-	<h4> Description </h4>
-	<ul class="unstyled">
-		<li><%= @album.description %></li>
-	</ul>
 	<hr />
-	<%= form_for @media_asset do |f| %>
-		<%= f.label "Upload new media to this album." %>
-		<%= f.file_field :media %>
+		<h3> <%= @album.title %>
+			<span class="pull-right">
+				<%= link_to content_tag(:strong, "Edit this Album"), edit_mc_route(@album), :class => "btn btn-mini btn-info" %>
+				<%= link_to "Back to Portfolio", portfolio_route(@album.role), :class => "btn btn-mini" %>
+			</span>
+		</h3>
+	<hr />
+	
+	<h4> Description </h4>
+	<p><%= @album.description %></p>
+	<%= form_for @media_asset, :html => {:class => "form form-inline well"} do |f| %>
+		<%= f.label "Upload new media to this album: " %>
+		<%= f.file_field :media, :class=>"input-file" %>
 		
 		<%= f.label :description %>
 		<%= f.text_field :description %>
 		
 		<%= f.hidden_field :media_collection_id %>
-		<%= f.submit "Upload file" %>
+		<%= f.submit "Upload file", :class => "btn btn-mini" %>
 	<% end %>
+	<hr />
 	
+	<% for group in @grouped_media_assets %>
+		<div class="row-fluid">
+			<% for asset in group %>
+				<div class="span2">
+					<div class="well ir-media-thumbnail">
+					<%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+		
 <% end %>

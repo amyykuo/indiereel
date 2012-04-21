@@ -8,10 +8,9 @@ Background:
   Given I am signed in with provider "facebook"
   
   And I have the following roles:
-  | role_type  | user_id | role_name | email         | role_type_description | role_experience | role_skills |
-  |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        |
-  |   talent   |  1      |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
-  
+    | role_type  | user_id | role_name | email         | role_type_description | role_experience | role_skills |
+    |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        |
+    |   talent   |  1      |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
   And I am on my "tester talent" Edit Page
   And I should see "Stage Name:"
 
@@ -21,7 +20,7 @@ Scenario: editing basic information successfully - change name
   Then I should be on my "tester talent" profile page
   And I should see "My name is now pie"
   And I should see "I not awesome"
-  And I should see "talent was successfully updated."
+  And I should see "Talent was successfully updated."
   But I should not see "John"
 
 Scenario: cancel editing

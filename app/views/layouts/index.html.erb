@@ -9,13 +9,9 @@
     <script type="text/javascript">if (window.location.hash == '#_=_')window.location.hash = '';</script>
   </head>
   <body>
-    <% if !current_user.nil? %>
-      <%= render "navbar" %>
-    <% else %>
-      <%= render "noconnectnavbar" %>
-    <% end %>
-    
-    <%= yield %>
-    <%= render "footer" %>
+	<div class="container">
+    	<%= yield %>
+	</div>
+	<%= render "footer" %>
   </body>
 </html>
