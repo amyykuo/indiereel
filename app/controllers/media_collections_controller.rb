@@ -6,6 +6,7 @@ class MediaCollectionsController < ApplicationController
     @album = MediaCollection.find_by_slug_and_role_id(params[:media_collection], @role.id) rescue nil
     @media_asset = MediaAsset.new(:media_collection => @album) 
     render_not_found if @role.nil? or @album.nil?
+    @grouped_media_assets = @album.media_assets_in_groups_of(6)
   end
   
   def index

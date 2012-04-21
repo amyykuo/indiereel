@@ -18,7 +18,7 @@
 				</div>
 			<% end %>
 			<% if album.media_assets.count > 6 %>
-			  <%= link_to "See More", mc_route(album), :class => "btn" %>  
+			  <%= link_to content_tag(:strong, "See More..."), mc_route(album), :class => "btn btn-mini" %>  
 			<% end %>
 		</div>
 	<% end %>
