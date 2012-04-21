@@ -1,11 +1,10 @@
-Feature: Navigation Bar
+Feature: navigation bar links
 
-  As a User
+  As a user
   I want to be able to use the navigation bar
   So that I can access all my roles and each one of them with a click of a button
 
 Background:
-
   Given I am signed in with provider "facebook"
   
   And I have the following roles:
@@ -14,6 +13,7 @@ Background:
   |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
     
   And I am on my "tester" home page
+  
 
 Scenario: Click on Talent NavBar Link
   When I follow "Talent" within the "Navigation Bar" section
@@ -25,7 +25,7 @@ Scenario: Click on IndieReel NavBar Link
   Then I should be on my "tester" home page
   And I should see "John"
   
-  Scenario: Click on Home NavBar Link
+Scenario: Click on Home NavBar Link
   When I follow "Home" within the "Navigation Bar" section
   Then I should be on my "tester" home page
   And I should see "John"

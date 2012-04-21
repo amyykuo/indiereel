@@ -9,21 +9,13 @@
           <h3>Your Roles</h3>
         </div>
         <div class="span6">
-        	<small class="pull-right">
-            This Doesn't Work Yet
-            <div class="btn-group">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Set Default Role<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <% for role in @user.roles %>
-                  <li><%= link_to "#{role.role_type.capitalize}", role_route(role) %></li>
-                <% end %>
-              </ul>
-            
-            <% unless @roles.length == Role.options.length %>
-          	  <%= link_to "+ Add a role", new_role_path, :id => :add_role, :class => "btn" %>
-        	  <% end %>
-        	  </div>
-          </small>      	
+        	<div class="pull-right">
+            <% if @roles.length == Role.options.length %>
+          	  	<span class="label">You've added all the available roles.</span>
+			<% else %>
+				<%= link_to content_tag(:strong, "+ Add a Role"), new_role_path, :id => :add_role, :class => "btn btn-info btn-small" %>
+        	<% end %>
+          </div>      	
         </div>
       </div>
     
@@ -52,7 +44,11 @@
 				              </div>
 				            </div>
 				            <hr style="margin:10px 0px 10px 0px" />
-		                <%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", :class => "btn btn-mini pull-right" %>
+						<%= form_tag user_path(current_user), :style => "display:inline-block", :class => "pull-left", :method => :put do %>
+							<%= hidden_field_tag "role_id", role.id %>
+							<%= (role.default_role_user.nil?) ? submit_tag("Set Default Role", :class => "btn btn-mini") : content_tag(:span, "Currently the default role", :class => "ir-default-role-indicator")%>
+						<% end %>
+		                <%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", :class => "btn btn-mini btn-danger pull-right", :form => {:style => "display:inline-block"}%>
         					</div>
       					</div>
 		          </div>

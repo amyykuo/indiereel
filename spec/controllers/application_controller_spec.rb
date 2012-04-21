@@ -47,43 +47,40 @@ describe ApplicationController do
   end
   
   describe 'role_route' do
-    describe 'no action' do
-      it 'should return the role profile uri' do
-        controller.send(:role_route, @role).should == "/amy/talent"
-      end
-    end
-    describe 'edit action' do
-      it 'should return the edit role profile uri' do
-        controller.send(:role_route, @role, "edit").should == "/amy/talent/edit"
-      end
+    it 'should return the role profile uri' do
+      controller.send(:role_route, @role).should == "/amy/talent"
     end
   end
+  describe 'edit_role_route' do
+    it 'should return the edit role profile uri' do
+      controller.send(:edit_role_route, @role).should == "/amy/talent/edit"
+    end
+  end
+
   
   describe 'portfolio_route' do
-    describe 'no action' do
-      it 'should return the role portfolio uri' do
-        controller.send(:portfolio_route, @role).should == "/amy/talent/portfolio"
-      end
+    it 'should return the role portfolio uri' do
+      controller.send(:portfolio_route, @role).should == "/amy/talent/portfolio"
     end
-    describe 'edit action' do
-      it 'should return the edit role portfolio uri' do
-        controller.send(:portfolio_route, @role, "edit").should == "/amy/talent/portfolio/edit"
-      end
+  end
+      
+  describe 'projects_route' do
+    it 'should return the role project uri' do
+      controller.send(:projects_route, @role).should == "/amy/talent/projects"
     end
   end
   
-  describe 'projects_route' do
-    describe 'no action' do
-      it 'should return the role project uri' do
-        controller.send(:projects_route, @role).should == "/amy/talent/projects"
-      end
-    end
-    describe 'edit action' do
-      it 'should return the edit role profile uri' do
-        controller.send(:projects_route, @role, "edit").should == "/amy/talent/projects/edit"
-      end
-    end
+  describe 'mc_route' do
+    it 'should return the media collection uri'
   end
+  
+  describe 'edit_mc_route' do
+    it 'should return the edit media collection uri'
+  end
+  
+  describe 'media_route' do
+    it 'should return the media page uri'
+  end  
   
   describe 'home_route' do
     it 'should return the role project uri' do
