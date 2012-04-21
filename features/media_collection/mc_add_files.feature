@@ -6,18 +6,17 @@ Feature: Media Collection page #needs change once page is more implemented
 
 Background:
   Given I am signed in with provider "facebook"
-  
   And I have the following roles:
-  | role_type  | user_id | role_name |     email     | phone_number | role_type_description | role_experience | age_range | role_skills | physique |
-  |  director  |    1    |   John    | test@xxxx.com |  1234567890  |     I am awesome!     |    everything   |     0     |     none    |  pretty  |
-  |   talent   |    1    |  Nguyen   | best@xxxx.com |  1234567890  |     I not awesome     |      nothing    |     1     |     same    |   ugly   |
+    | role_type  | user_id | role_name |     email     | role_type_description | role_experience | age_range | role_skills | physique |
+    |  director  |    1    |   John    | test@xxxx.com |     I am awesome!     |    everything   |     0     |     none    |  pretty  |
+    |   talent   |    1    |  Nguyen   | best@xxxx.com |     I not awesome     |      nothing    |     1     |     same    |   ugly   |
   
   And I have the following media collections:
-  | description | title |
-  | 1           | quickshow          |
-  | 2           | headshots          |
-  | 3           | Media Collection 1 |
-  | 4           | Media Collection 2 |
+    | description | title |
+    | 1           | quickshow          |
+    | 2           | headshots          |
+    | 3           | Media Collection 1 |
+    | 4           | Media Collection 2 |
   
   And I am on the "talent" media collection "photos" page #not implemented yet
   

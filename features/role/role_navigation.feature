@@ -6,12 +6,10 @@ Feature: role profile view navigation
 
 Background:
   Given I am signed in with provider "facebook"
-  
   And I have the following roles:
-  | role_type  | user_id | role_name | profile_pic            | email         | role_type_description | role_experience | role_skills |
-  |  director  |  1      |  John     | http://hi.com/user.png | test@xxxx.com | I am awesome!         | everything      | none        |
-  |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
-    
+    | role_type  | user_id | role_name | profile_pic            | email         | role_type_description | role_experience | role_skills |
+    |  director  |  1      |  John     | http://hi.com/user.png | test@xxxx.com | I am awesome!         | everything      | none        |
+    |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
   And I am on my "tester talent" profile page
   
   

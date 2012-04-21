@@ -6,7 +6,7 @@
   <p>FAQ Questions Here</p>
 
   <% if current_user.nil? %>
-    <h4><%= link_to "Back to Welcome Page", "/", :class => "btn btn-info btn-small" %></h4>
+    <%= link_to "Back to Welcome Page", root_url %>
   <% end %>
 
 </div>
