@@ -67,5 +67,6 @@ class Role < ActiveRecord::Base
       user.default_role = new_role
       user.save
     end
+  end
 
 end
