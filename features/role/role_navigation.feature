@@ -1,11 +1,10 @@
-Feature: Role Profile page
+Feature: role profile view navigation
 
-As a User
-I want to be able to access my Role's profile sections
-So I can see how they look
+  As a user
+  I want to be able to access my Role's profile sections
+  So I can see how they look
 
 Background:
-
   Given I am signed in with provider "facebook"
   
   And I have the following roles:
@@ -14,6 +13,7 @@ Background:
   |   talent   |  1      |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
     
   And I am on my "tester talent" profile page
+  
   
 Scenario: Go to Role's Portfolio Page
   When I follow "View full portfolio" within the "Portfolio" section

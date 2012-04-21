@@ -1,8 +1,8 @@
-Feature: Portfolio Page
+Feature: portfolio view without quickshow
 
-As a User
-I want to have a portfolio page for each role
-So that I can see all of my media collections
+  As a user
+  I want to have a portfolio page for each role
+  So that I can see all of my media collections
 
 Background:
   Given I am signed in with provider "facebook"
@@ -14,14 +14,14 @@ Background:
     
   And I have the following media collections:
   | description | title |
-  | 1            | quickshow          |
-  | 2            | headshots          |
-  | 3            | Media Collection 1 |
-  | 4            | Media Collection 2 |
+  | 1           | quickshow          |
+  | 2           | headshots          |
+  | 3           | Media Collection 1 |
+  | 4           | Media Collection 2 |
 
   And I am on the "tester" Portfolio page for the "talent" role
   And my "quickshow" album is empty #not implemented yet
-
+  
 
 Scenario: Go create a MC
   When I press "Add Collection?" #not yet implemented
@@ -45,3 +45,4 @@ Scenario: Go back to role page #A user should be able to access portfolio page t
   When I follow "Back to your talent page" #not implemented yet
   Then I should be on my talent page #not implemented yet
   And I should see my media collections in the portfolio section #not implemented yet
+

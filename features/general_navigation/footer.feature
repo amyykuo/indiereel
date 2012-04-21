@@ -1,13 +1,11 @@
-Feature: Footer
-
+Feature: footer link navigation
+  
   As a newcomer
-  I want to be able check out the links in the footerto use the navigation bar
+  I want to be able check out the links in the footer
   So that I can see how awesome IndieReel is!
 
 Background:
-
-  #Given I am on the welcome page
-  #And I am not signed in with provider "facebook"
+  
   
 Scenario: Check About IndieReel when not signed in
   Given I am on the welcome page
