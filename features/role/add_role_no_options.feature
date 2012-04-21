@@ -20,7 +20,7 @@ Scenario: There should not be an Add_a_Role option on the home page
   And I should see "Producer"
   And I should see "Director"
   And I should see "Crew"
-  But I should not see "Add a role"
+  But I should not see "add_role"
 
 Scenario: Check that roles in dropdown do not include already existing roles
   When I am on my "tester" home page
@@ -28,14 +28,14 @@ Scenario: Check that roles in dropdown do not include already existing roles
   And I should see "Producer"
   And I should see "Director"
   And I should see "Crew"
-  But I should not see "Add a role"
+  But I should not see "add_role"
   When I press "Delete" within the "Director" section
   Then I should be on my "tester" home page
   And I should see "Producer"
   And I should see "Crew"
   And I should see "Talent"
   But I should not see "Director"
-  When I follow "Add a role"
+  When I follow "add_role"
   Then I should be on the Create Role Page
   And the "Choose a Role Type" dropdown should contain: Director
   And the "Choose a Role Type" dropdown should not contain: Talent, Producer, Crew
