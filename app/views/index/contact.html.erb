@@ -1,12 +1,19 @@
 <div class="container">
-  <div class="alert alert-info">
-    <h4>Contact Us!</h4>
+  <hr />
+  <h2>Contact Us!</h2>
+  <hr />
+  
+  <div id="centered">
+    <p>We value any feedback that you might have about IndieReel.
+      <br> 
+      Please contact us at support@indiereel.com
+      <br>
+      <br>
+      <img src="../assets/toucan.png" height="200" width="200">
+    </p>
   </div>
-
-  <p>You can reach us at bloop@blep.us</p>
-
   <% if current_user.nil? %>
-    <h4><%= link_to "Back to Welcome Page", "/", :class => "btn btn-info btn-small" %></h4>
+    <h4><%= link_to "Back to Welcome Page", root_url, :class => "btn btn-info btn-small" %></h4>
   <% end %>
 
 </div>
