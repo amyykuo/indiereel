@@ -38,7 +38,7 @@ class Role < ActiveRecord::Base
   end
   
   def self.agency_attributes
-    {:agency_name => 'Agency Name', :agency_email => 'Agency Email', :agency_phone_number => 'Agency Phone:'}
+    {:agency_name => 'Agency Name', :agency_email => 'Agency Email', :agency_phone_number => 'Agency Phone'}
   end
   
   def self.attribute_super_structure
