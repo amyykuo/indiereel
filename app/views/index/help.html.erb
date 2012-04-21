@@ -1,13 +1,10 @@
-<div class="container">
-  <div class="alert alert-info">
-    <h4>Need help?</h4>
-  </div>
-
-  <p>FAQ Questions Here</p>
-
-  <% if current_user.nil? %>
-    <%= link_to "Back to Welcome Page", root_url %>
-  <% end %>
-
+<div class="alert alert-info">
+	<h4>Need help?</h4>
 </div>
+
+<p>FAQ Questions Here</p>
+
+<% if current_user.nil? %>
+	<%= link_to "Back to Welcome Page", root_url %>
+<% end %>
 
