@@ -6,7 +6,7 @@
 		  <%= link_to content_tag(:strong, "+ Add Album?"), new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
 		  <%= link_to "Back to #{@role.role_type.capitalize}", role_route(@role), :class => "btn btn-mini" %>
 		<% else %>
-		  <%= link_to "Back to #{@role.role_name}'s @role.#{@role.role_type.capitalize} Page", role_route(@role), :class => "btn btn-mini" %>
+		  <%= link_to "Back to #{@role.role_name}'s #{@role.role_type.capitalize} Page", role_route(@role), :class => "btn btn-mini" %>
 		<% end %>
 		</small></h3>
 	<hr />
