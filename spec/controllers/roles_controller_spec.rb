@@ -37,13 +37,13 @@ describe RolesController do
       Role.stub!(:options).and_return(["talent", "crew"])
     end
     
-    it 'should find the current user and get the list of valid ages' do
+    it 'should find the current user and get the list of valid ages' do ###### ERROR ##### WHY
       User.should_receive(:find_by_identifier)
       Role.should_receive(:ages)
       get :new
     end
     
-    it 'should check to see if user has each option' do
+    it 'should check to see if user has each option' do ############# THIS SHOULD CHECK IF USER HAS CORRECT OPTIONS
       Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
       Role.should_receive(:find_by_role_type_and_user_id).with("crew", 1).and_return(mock("Role"))
       get :new
@@ -57,8 +57,21 @@ describe RolesController do
       @role = mock("Role", :role_type => "lol", :user => @current_user, :media_collections => [])
     end
     
+    describe 'if role already exists for current user' do
+      it 'should flash an error and redirect to home page of current_user'
+    end
+    
+    describe 'the new role is not valid' do
+      it 'should create the role, check validity, and then redirect to the create role page' do
+        Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
+        @role.should_receive(:valid?).and_return(false)
+        post :create, {:role => {:role_type => "lol"}}
+        response.should redirect_to new_role_path("kunal")
+      end
+    end
+    
     describe 'the new role is valid' do 
-      it 'should create the role and test its validity' do
+      it 'should create the role, test its validity, add quickshow and headshot media collections and save' do #######
         Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
         @role.should_receive(:valid?).and_return(true)
         MediaCollection.should_receive(:create_default).and_return(mock("MediaCollection"))
@@ -66,16 +79,12 @@ describe RolesController do
         post :create, {:role => {:role_type => "lol"}}
         response.should redirect_to custom_role_path("kunal", "lol")
       end
+      
+      it 'should flash successful creation message and redirect to new role page'  
+      
     end
     
-    describe 'the new role is not valid' do
-      it 'should create the role, check validity, and then redirect to the home page' do
-        Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
-        @role.should_receive(:valid?).and_return(false)
-        post :create, {:role => {:role_type => "lol"}}
-        response.should redirect_to home_path("kunal")
-      end
-    end
+
   end
 
   describe 'edit' do
@@ -119,13 +128,24 @@ describe RolesController do
       post :update, :id => 1, :role => {}
     end
     
-    it 'should set a flash error if the resultant role is invalid' do
+    describe 'if role is valid' do
+      it 'should update role'
+      it 'should flash successful update and redirect to updated role page'
+    end
+    
+    describe 'if role is not valid' do
+      it 'should not update role'
+      it 'should flash error and redirect to edit role page'
+    end
+    
+=begin
+    it 'should set a flash error if the resultant role is invalid' do ############
       post :update, :id => 1, :role => {}
       flash[:error].should == "There were some errors in updating your role..."
       flash[:notice].should == nil
     end
     
-    it 'should not set a flash error if the resultant role is valid' do
+    it 'should not set a flash error if the resultant role is valid' do ############
       @role.should_receive(:valid?).and_return(true)
       @role.should_receive(:invalid?).and_return(false)
       post :update, :id => 1, :role => {}
@@ -133,10 +153,11 @@ describe RolesController do
       flash[:notice].should == "talent was successfully updated."
     end
     
-    it 'should redirect to the role route' do
+    it 'should redirect to the role route' do #############
       post :update, :id => 1, :role => {}
       response.should redirect_to custom_role_path("kunal", "talent")
     end
+=end
   end
   
   describe 'destroy' do
