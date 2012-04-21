@@ -52,11 +52,8 @@ $(function(){
       
 		  <div class="row-fluid">
 		    <div class="photo-upload">
-    		  <%= form_for @role do |f| %>
-				    <%= f.label "Upload a new profile picture" %>
-				    <%= f.file_field :profile_pic %>
-				    <%= f.submit "Upload" %>
-  		    <% end %>
+<%= link_to "Upload a Profile Picture on your Talent Page", role_route(@role) %>
+<br><small>Careful, this will remove any data you have entered into fields on this page.</small>
 		    </div>
       </div>
 	  </div>
