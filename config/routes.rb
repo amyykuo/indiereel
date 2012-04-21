@@ -51,5 +51,6 @@ Indiereel::Application.routes.draw do
   match "/help" => "index#help", :as => "help"
   match "/meet" => "index#meet", :as => "meet"
   match "/contact" => "index#contact", :as => "contact"
+  # TODO : add routes for accessing specific parts of help page.
   
 end

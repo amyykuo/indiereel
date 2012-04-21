@@ -5,8 +5,28 @@
   <small>* Required Field</small>
   <br/>
   <br/>
-	<%= label_tag "role[role_type]", "Choose a Role Type" %>
-	<%= select_tag "role[role_type]", options_for_select(@options) %>
+	<%= label_tag "role[role_type]", "Choose a Role Type" %> 
+	<%= select_tag "role[role_type]", options_for_select(@options) %> 
+	
+	<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal" >&times;</a>
+      <h3>What are each of these roles?</h3>
+    </div>
+    
+    <div class="modal-body">
+      <h4>Director</h4>
+      <h4>Producer</h4>
+      <h4>Actor</h4>
+      <h4>Talent</h4>
+    </div>
+    
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal" >Close</a>
+    </div>
+  </div>
+  <a data-toggle="modal" href="#myModal"><i class="icon-question-sign"></i></a>
+	
 
 	<%= label_tag "role[role_name]", "Stage Name: *" %>
 	<%= text_field_tag "role[role_name]", @user.name, {:placeholder => "Enter your Role Stage Name"} %>

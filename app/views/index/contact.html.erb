@@ -1,10 +1,13 @@
-
-<div class="alert alert-info">
+<div class="container">
+  <div class="alert alert-info">
     <h4>Contact Us!</h4>
+  </div>
+
+  <p>You can reach us at bloop@blep.us</p>
+
+  <% if current_user.nil? %>
+    <h4><%= link_to "Back to Welcome Page", "/", :class => "btn btn-info btn-small" %></h4>
+  <% end %>
+
 </div>
 
-You can contact us at bloop@blep.us
-
-<% if current_user.nil? %>
-  <h4><%= link_to "Back to Welcome Page", root, :class => "btn btn-info btn-small" %></h4>
-<% end %>

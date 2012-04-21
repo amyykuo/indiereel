@@ -1,10 +1,13 @@
+<div class="container">
+  <div class="alert alert-info">
+    <h4>Meet the Team :]</h4>
+  </div>
 
-<div class="alert alert-info">
-    <h4>Meet the Team</h4>
+  <p>We are awesome people.</p>
+
+  <% if current_user.nil? %>
+    <h4><%= link_to "Back to Welcome Page", "/", :class => "btn btn-info btn-small" %></h4>
+  <% end %>
+
 </div>
 
-This is who we are :].
-
-<% if current_user.nil? %>
-  <h4><%= link_to "Back to Welcome Page", root, :class => "btn btn-info btn-small" %></h4>
-<% end %>
