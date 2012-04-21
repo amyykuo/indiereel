@@ -35,6 +35,15 @@ class User < ActiveRecord::Base
       user.identifier = auth["info"]["nickname"] || auth["uid"]
     end
   end
+  
+  def self.create_with_omniauth_test_mode(auth)
+    create do |user|
+      user.uid = auth[:uid]
+      user.provider = auth[:provider]
+      user.name = auth[:name]
+      user.access_token = auth[:token] rescue nil
+      user.identifier = auth[:uid]
+  end
 
   def update_with_omniauth(auth)
     self.username = auth["info"]["nickname"] rescue nil
