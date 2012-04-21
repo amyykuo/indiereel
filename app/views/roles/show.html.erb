@@ -3,6 +3,21 @@
 <% end %>
 
 <div class='container'>
+  <% if private_mode_conditional %>
+    <div class='row-fluid'>
+        <small class='pull-right'>
+          <%= link_to 'Edit', edit_role_route(@role) %> | 
+          <%= link_to 'Delete', role_path(@role), {:method => :delete, :confirm => 'Are you sure you want to delete this role?'} %> | 
+          
+          <% if !@preview %>
+            <%= link_to 'Preview', role_route(@role) + '?preview=true' %>
+          <% else %>
+            <%= link_to 'View All Fields', role_route(@role) %>
+          <% end %>
+        </small>
+    </div>
+  <% end %>
+  
   <hr>
   
   <div class='row-fluid'>
@@ -15,32 +30,22 @@
       <dd><%= @role.role_type_description %></dd>
     </div>
     
-    <% if private_mode_conditional %>
-      <div class='span3'>
-        <small class='pull-right'>
-          <%= link_to 'Edit', edit_role_route(@role) %> | 
-          <%= link_to 'Delete', role_path(@role), {:method => :delete, :confirm => 'Are you sure you want to delete this role?'} %> | 
-          
-          <% if !@preview %>
-            <%= link_to 'Preview', role_route(@role) + '?preview=true' %>
+    <% if @user.roles.length > 1 %>
+      <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Other Roles <span class="caret" /></a>
+        
+        <ul class="dropdown-menu">
+          <% if @preview %>
+            <% for role in @user.roles %>
+              <%= link_to "#{role.role_type.capitalize}", role_route(role) + '?preview=true' %>
+            <% end %>
           <% else %>
-            <%= link_to 'View All Fields', role_route(@role) %>
-          <% end %>
-          
-        </small>
-      </div>
-    <% else %>
-      <% if @user.roles.length > 1 %>
-        <div class="btn-group">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Other Roles<span class="caret" /></a>
-          
-          <ul class="dropdown-menu">
             <% for role in @user.roles %>
               <%= link_to "#{role.role_type.capitalize}", role_route(role) %>
             <% end %>
-          </ul>
-        </div>
-      <% end %>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
   </div>
   
