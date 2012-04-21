@@ -14,7 +14,7 @@ Background:
   
 
 Scenario: Adding a Producer role successfully
-  When I follow "Add a role"
+  When I follow "add_role"
   Then I should be on the Create Role Page
   And the "Choose a Role Type" dropdown should contain: Producer, Crew
   And the "Choose a Role Type" dropdown should not contain: Talent, Director
@@ -26,7 +26,7 @@ Scenario: Adding a Producer role successfully
   And I should see "Role created successfully."
 
 Scenario: On the Create Role Page, select a role but don't input data, and cancel
-  When I follow "Add a role"
+  When I follow "add_role"
   Then I should be on the Create Role Page
   And the "Choose a Role Type" dropdown should contain: Producer, Crew
   And the "Choose a Role Type" dropdown should not contain: Talent, Director
@@ -39,7 +39,7 @@ Scenario: On the Create Role Page, select a role but don't input data, and cance
   And I should not see "Crew"
   
 Scenario: choose a role options should be correctly updating
-  When I follow "Add a role"
+  When I follow "add_role"
   Then I should be on the Create Role Page
   And the "Choose a Role Type" dropdown should contain: Producer, Crew
   And the "Choose a Role Type" dropdown should not contain: Talent, Director
@@ -51,13 +51,13 @@ Scenario: choose a role options should be correctly updating
   But I should not see "Director"
   And I should not see "Crew"
   And I should not see "Producer"
-  When I follow "Add a role"
+  When I follow "add_role"
   Then I should be on the Create Role Page
   And the "Choose a Role Type" dropdown should contain: Director, Producer, Crew
   And the "Choose a Role Type" dropdown should not contain: Talent
 
 Scenario: On the Create Role Page, do not input stage name, submit, should get an error
-  When I follow "Add a role"
+  When I follow "add_role"
   Then I should be on the Create Role Page
   When I select "Producer" from "Choose a Role Type"
   And I fill in "role_role_name" with ""
