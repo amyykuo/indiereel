@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
       user.name = auth[:name]
       user.access_token = auth[:token] rescue nil
       user.identifier = auth[:nickname] || auth[:uid]
+    end
   end
 
   def update_with_omniauth(auth)
