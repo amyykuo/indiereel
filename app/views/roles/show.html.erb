@@ -157,7 +157,13 @@
 			        <% end %>
 		        </h3>
 			      
-			      <%= @role.role_experience %>
+			      <% if private_mode_conditional && !@preview %>
+			        <%= @role.role_experience %>
+		        <% else %>
+		          <% if @role.role_experience.empty? %>
+		            This user has not listed any experience.
+		          <% end %>
+	          <% end %>
 			      
 			      <hr>
 	      </section>
@@ -171,7 +177,14 @@
 			        <% end %>
 		        </h3>
 			      
-			      <%= @role.role_skills %>
+			      <% if private_mode_conditional && !@preview %>
+			        <%= @role.role_skills %>
+		        <% else %>
+		          <% if @role.role_skills.empty? %>
+		            This user has not listed any skills.
+		          <% end %>
+	          <% end %>
+			      
 
 			      <hr>
 			      
