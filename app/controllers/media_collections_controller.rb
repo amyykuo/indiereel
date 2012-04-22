@@ -53,5 +53,9 @@ class MediaCollectionsController < ApplicationController
   
   def destroy
     #delete media collection
+    collection = MediaCollection.find(params[:id])
+    collection.destroy
+    flash[:notice] = "Album deleted."
+    redirect_to portfolio_route(collection.role)
   end
 end
