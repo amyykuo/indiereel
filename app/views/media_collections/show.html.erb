@@ -7,19 +7,27 @@
 			</span>
 		</h3>
 	<hr />
+	<div class="row-fluid">
+		<div class="span6">
+			<h4> Description </h4>
+			<p><%= @album.description %></p>
+		</div>
+		<div class="span6">
+			<%= form_for @media_asset, :html => {:class => "form well"} do |f| %>
+				<%= f.label "Upload new media to this album: " %>
+				<%= f.file_field :media, :class=>"input-file" %>
+
+				<%= f.label :description %>
+				<%= f.text_field :description %>
+
+				<%= f.hidden_field :media_collection_id %>
+				<%= f.submit "Upload file", :class => "btn btn-mini" %>
+			<% end %>
+		</div>
+	</div>
+			
+
 	
-	<h4> Description </h4>
-	<p><%= @album.description %></p>
-	<%= form_for @media_asset, :html => {:class => "form form-inline well"} do |f| %>
-		<%= f.label "Upload new media to this album: " %>
-		<%= f.file_field :media, :class=>"input-file" %>
-		
-		<%= f.label :description %>
-		<%= f.text_field :description %>
-		
-		<%= f.hidden_field :media_collection_id %>
-		<%= f.submit "Upload file", :class => "btn btn-mini" %>
-	<% end %>
 	<hr />
 	
 	<% for group in @grouped_media_assets %>
