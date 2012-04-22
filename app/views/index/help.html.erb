@@ -1,6 +1,6 @@
 <div class="container">
   <hr />
-  <h2>Need help?</h2>
+  <h2><a name="top"></a>Need help?</h2>
   <hr />
   
   <p>This is our FAQ section. Here you can find anything and everything you need to know about IndieReel. (And if not, you can always <%= link_to "contact us", contact_path %> or take a look at our more extensive <%= link_to "user guide", "#" %>) </p>
@@ -17,28 +17,83 @@
   <br>
   
   <h3><a name="roles">What are Roles?</a></h3>
-  <ul class="unstyled">
-    <li>A role is blahblahblahblah. There are four different roles:</li>
-    <ul>
-      <li><b>Director:</b> Directs crew and actors during filmmaking</li>
-      <li><b>Producer:</b> Oversees and delivers film project to all relevant hosts; preserves integrity, voice, and vision of film</li>
-      <li><b>Talent:</b> Anyone in front of the camera</li>
-      <li><b>Crew:</b> Anyone behind the camera</li>
+  <div class="well">
+    <ul class="unstyled">
+      <li>Roles are different positions that a person might play in the production of an independent film. There are four different roles:</li>
+      <ul>
+        <li><b>Director:</b> Directs crew and actors during filmmaking</li>
+        <li><b>Producer:</b> Oversees and delivers film project to all relevant hosts; preserves integrity, voice, and vision of film</li>
+        <li><b>Talent:</b> Anyone in front of the camera</li>
+        <li><b>Crew:</b> Anyone behind the camera</li>
+      </ul>
     </ul>
-  </ul>
-  <br><br>
   
-  <h4>
+    <h4>Why can a user have multiple roles?</h4>
+      <p>As a talented individual, you just might be able to fill more than one role. Maybe you make a kickass pirate but you can also direct people to create a heartwrenching kitchen failure scene. People have a variety of skills, and thus we want you to be able to have multiple roles to display these skills.</p>
+
+    <div id="centered">
+      <%= link_to "Back to top of page", help_path(:anchor => "top") %> 
+    </div>
+  </div>
   
+    
   <h3><a name="profile">What are Profiles for?</a></h3>
+  <div class="well">
+    <p>Each role that a user has is associated with a profile. This profile is the page that other users can stalk you on. Here you display any information about a specific role, such as stage name, special skills, pictures, or projects. The profile page is essentially a resume to show other users how awesome you are.  </p>
+    
+    <h4>What is the headshot section? What makes it different from your profile picture?</h4>
+      <p>The headshot section is a collection of headshot pictures that you want immediately displayed on your profile page. They are placed in a row at the top of the profile to showcase the many faces of you. Your angry face. Your poker face. Your ice cream face. You get the point. This is different from your single profile picture, which is just you in your well-rounded beauty. The headshot sections is just there to supplement your profile picture in case you feel that seeing the 5 angles of your face is better than 1. </p>
+    
+    <h4>What does experience entail?</h4>
+      <p>What other films have you participated in before? Do you have 15 years of experience sewing nun costumes? The experience section is there for you to highlight projects or activities that you have participated in before that might be beneficial to an up-and-coming production.</p>
+    
+    <h4>What do I put under skills?</h4>
+      <p>Underwater basket-weaving. Twirling flaming batons. The skills section is for you to showcase any unique abilities that you might have. Silly or serious, awesome or random, you never know when a particular skill might come in handy so go ahead and list out all your dandy superpowers. We promise that we're not just collecting this information for ulterior purposes. You know, in case you have something that we need to make our plot to rule the world successful. </p>
+    
+    <h4>What if I don't want to include certain information?</h4>
+      <p>No worries! We understand that you want to keep some of your information private, and we totally respect that. If you don't include anything for a specific section, it just won't show up on the profile page that other users will see. Aside from your stage name for a given role, all other information is completely optional.</p>
+  
+    <div id="centered">
+      <%= link_to "Back to top of page", help_path(:anchor => "top") %> 
+    </div>
+  </div>
   
   <h3><a name="portfolio">What is a Portfolio?</a></h3>
+  <div class="well">
+    <p>On each profile page, there is Portfolio section which acts as your gallery to showcase whatever you want. Pictures, videos, and whatever other media files you might want to display should go here. On the Portfolio page you can create albums. You can upload media files in an album, then give it a title and description. </p>
+    
+    <h4>What is this quickshow thing I see?</h4>
+      <p>The quickshow section is special album that automatically displays your media files. This is for the media files you really want to showcase, and maybe catch other people's eyes like...right away. Just blow their minds. </p>
+      
+    <h4>Then why do we have albums?</h4>
+      <p>Maybe you're a superstar. You've got pictures and videos for your music career, your evil mastermind role, and whatever else. This way you can organize other media files that are still cool, but maybe just, ya know, not <i>as</i> important.</p>
+    
+    <div id="centered">
+      <%= link_to "Back to top of page", help_path(:anchor => "top") %> 
+    </div>
+  </div>
   
   <h3><a name="projects">What are Projects?</a></h3>
+  <div class="well">
+    <p>I'll have to get back to you on this. I promise I'll have answers. Eventually. I think something to do with things you've done before? It's supposed to help connect you with other people. In case they've worked on the same project. This site is supposed to promote collaboration after all. Something like that.</p>
+    
+    <div id="centered">
+      <%= link_to "Back to top of page", help_path(:anchor => "top") %> 
+    </div>
+  </div>
+  
+  <h3><a name="portfolio">What if I just really really want cake?</a></h3>
+  <div class="well">
+    <p>Shoot me an email. I may be able to work out a deal with you.</p>
+    
+    <div id="centered">
+      <%= link_to "Back to top of page", help_path(:anchor => "top") %> 
+    </div>
+  </div>
 
+  <div id="centered">
+    <img src="../assets/chinchilla.jpg" height="200" width="200">
+  </div>
 </div>
 
-<% if current_user.nil? %>
-	<%= link_to "Back to Welcome Page", root_url %>
-<% end %>
 
