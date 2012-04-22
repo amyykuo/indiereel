@@ -22,9 +22,24 @@
     
     <div class="modal-body">
       <h4>Director</h4>
+        <ul>
+          <li>Directs crew and actors during filmmaking</li>
+        </ul>
       <h4>Producer</h4>
-      <h4>Actor</h4>
+        <ul>
+          <li>Oversees and delivers film project to all relevant hosts</li>
+          <li>Preserves integrity, voice, and vision of film</li>
+        </ul>
+      <h4>Crew</h4>
+        <ul>
+          <li>Anyone behind the camera</li>
+        </ul>
       <h4>Talent</h4>
+        <ul>
+          <li>Anyone in front of the camera</li>
+        </ul>
+      <br>
+      <p>*Want to know more about roles? Visit our <%= link_to "help page", help_path(:anchor => "roles") %> for additional information. </p>
     </div>
     
     <div class="modal-footer">
@@ -32,7 +47,7 @@
     </div>
   </div>
   
-  <a data-toggle="modal" href="#myModal"><i class="icon-question-sign"></i></a>
+  <a data-toggle="modal" href="#myModal">[?]</a>
 
 	<%= label_tag "role[role_name]", "Stage Name: *" %>
 	<%= text_field_tag "role[role_name]", @user.name, {:placeholder => "Enter your Role Stage Name"} %>
