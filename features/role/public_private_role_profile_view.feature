@@ -18,8 +18,6 @@ Background:
     |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | true         |
     |   talent   |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | false        |
     |   talent   |  2      |  Amy      | best@xxxx.com | I not awesome         | nothing         | some        | true         |
-
-    
   
   
 Scenario: Viewing another person's role
