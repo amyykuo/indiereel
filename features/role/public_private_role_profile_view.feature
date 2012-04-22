@@ -5,7 +5,6 @@ Feature: Public/Private viewing of roles:
   So that it looks nice
   
 Background:
-  
   Given I am signed in with provider "facebook"
     
   And the following users exist:
@@ -18,16 +17,15 @@ Background:
     |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | true         |
     |   talent   |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | false        |
     |   talent   |  2      |  Amy      | best@xxxx.com | I not awesome         | nothing         | some        | true         |
-
-    
+    |    crew    |  3      |  Kunz     | kunz@xxxx.com | I suck dick literally | great           | a lot       | true         |
   
   
-Scenario: Viewing another person's role
-  
-
-Scenario: Viewing your own profile in all fields mode
+Scenario: Viewing another person's role (public view)
   
 
-Scenario: Viewing your own profile in preview mode
+Scenario: Viewing your own profile in all fields mode (private view)
+  
+
+Scenario: Viewing your own profile in preview mode (private view, preview mode)
   
 
