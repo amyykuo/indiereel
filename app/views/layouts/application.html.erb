@@ -12,7 +12,7 @@
 		</script>
 	</head>
 	<body>
-		<%= render "navbar" %>
+		<%= render (current_user ? "navbar" : "noconnectnavbar") %>
 		<div class="container">
 			<%= render "alerts" %>
 			<%= yield %>

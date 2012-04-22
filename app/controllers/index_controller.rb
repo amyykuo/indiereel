@@ -1,7 +1,7 @@
 class IndexController < ApplicationController
 
   skip_before_filter :authentication_required 
-  layout :determine_layout
+  layout "application"
 
   def index
       redirect_to home_route(current_user) unless current_user.nil?
