@@ -43,9 +43,9 @@ module NavigationHelpers
       role = $1.split[1]
       custom_role_path(user, role)
       
-    when /^the preview of my "([^"]*)" profile/
-      user = $1.split[0]
-      role = $1.split[1]
+    when /^the preview of my tester talent profile/
+      user = 'tester'
+      role = 'talent'
       custom_role_path(user, role) + '?preview=true'
       
     when /my "([^"]*)" "([^"]*)" media collection page for the "([^"]*)" role/
