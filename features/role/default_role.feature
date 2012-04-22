@@ -19,3 +19,10 @@ Background:
     |   talent   |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | false        |
     |   talent   |  2      |  Amy      | best@xxxx.com | I not awesome         | nothing         | some        | true         |
   
+Scenario: Current user goes to their homepage, they should be on their home page
+
+Scenario: Current user goes to other user's homepage, Current user should be redirected to other user's default role page
+
+
+
+
