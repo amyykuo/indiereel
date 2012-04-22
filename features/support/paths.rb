@@ -16,6 +16,9 @@ module NavigationHelpers
     when /^my "([^"]*)" home\s?page$/ # user's home page
       home_path($1)
       
+    when /^the "([^"]*)" home\s?page$/ # user's home page
+      home_path($1)
+      
     when /^the welcome page$/
       '/' # need to change this eventually
       
