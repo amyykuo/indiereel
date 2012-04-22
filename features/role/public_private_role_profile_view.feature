@@ -25,11 +25,21 @@ Scenario: Viewing another person's role (public view)
   Then I should see "Amy"
   And I should see "I not awesome"
   But I should not see "Edit"
-  
 
 Scenario: Viewing your own profile in all fields mode (private view)
-  
+  When I am on my "tester director" profile page
+  Then I should see "John"
+  And I should see "I am awesome!"
+  And I should see "Edit"
+  And I should see "Delete"
+  And I should see "Preview"
+  And I should see "Agency Name:"
 
 Scenario: Viewing your own profile in preview mode (private view, preview mode)
-  
+  When I am on my "tester director" profile page
+  Then I should see "Agency Name:"
+  Then I follow "Preview"
+  And I should not see "Agency Name:"
+  Then I follow "View All Fields"
+  And I should see "Agency Name:"
 
