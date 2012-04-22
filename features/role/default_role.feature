@@ -5,9 +5,7 @@ Feature: Default Role
   So that I can direct people to the role I want people to see the most?
   
 Background:
-  
   Given I am signed in with provider "facebook"
-    
   And the following users exist:
     | uid | provider | nickname | name | token |
     | 12  | facebook | amyykuo  | Amy  | 00000 |
@@ -19,3 +17,5 @@ Background:
     |   talent   |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | false        |
     |   talent   |  2      |  Amy      | best@xxxx.com | I not awesome         | nothing         | some        | true         |
   
+  
+Scenario: 
