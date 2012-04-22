@@ -1,8 +1,42 @@
-<div class="alert alert-info">
-	<h4>Need help?</h4>
-</div>
+<div class="container">
+  <hr />
+  <h2>Need help?</h2>
+  <hr />
+  
+  <p>This is our FAQ section. Here you can find anything and everything you need to know about IndieReel. (And if not, you can always <%= link_to "contact us", contact_path %> or take a look at our more extensive <%= link_to "user guide", "#" %>) </p>
+  
+  <br>
+  <div id="centered">
+    <h4>
+    <%= link_to "Roles", help_path(:anchor => "roles") %> | 
+    <%= link_to "Profile", help_path(:anchor => "profile") %> | 
+    <%= link_to "Portfolio", help_path(:anchor => "portfolio") %> | 
+    <%= link_to "Projects", help_path(:anchor => "projects") %>
+    </h4>
+  </div>
+  <br>
+  
+  <h3><a name="roles">What are Roles?</a></h3>
+  <ul class="unstyled">
+    <li>A role is blahblahblahblah. There are four different roles:</li>
+    <ul>
+      <li><b>Director:</b> Directs crew and actors during filmmaking</li>
+      <li><b>Producer:</b> Oversees and delivers film project to all relevant hosts; preserves integrity, voice, and vision of film</li>
+      <li><b>Talent:</b> Anyone in front of the camera</li>
+      <li><b>Crew:</b> Anyone behind the camera</li>
+    </ul>
+  </ul>
+  <br><br>
+  
+  <h4>
+  
+  <h3><a name="profile">What are Profiles for?</a></h3>
+  
+  <h3><a name="portfolio">What is a Portfolio?</a></h3>
+  
+  <h3><a name="projects">What are Projects?</a></h3>
 
-<p>FAQ Questions Here</p>
+</div>
 
 <% if current_user.nil? %>
 	<%= link_to "Back to Welcome Page", root_url %>

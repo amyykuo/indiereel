@@ -1,14 +1,22 @@
-<% if current_user.uid == @user.uid %>
+
 	<hr />
 	<h3><%= "#{@role.role_type.capitalize} Portfolio for #{@role.role_name}" %>
 		<small class="pull-right">
-		<%= link_to content_tag(:strong, "+ Add Album?"), new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
-		<%= link_to "Back to #{@role.role_type.capitalize}", role_route(@role), :class => "btn btn-mini" %>
+		<% if current_user.uid == @user.uid %>
+		  <%= link_to content_tag(:strong, "+ Add Album?"), new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
+		  <%= link_to "Back to #{@role.role_type.capitalize}", role_route(@role), :class => "btn btn-mini" %>
+		<% else %>
+		  <%= link_to "Back to #{@role.role_name}'s #{@role.role_type.capitalize} Page", role_route(@role), :class => "btn btn-mini" %>
+		<% end %>
 		</small></h3>
 	<hr />
 
 	<% for album in @albums %>
-		<h5 class="page-header ir-album-header"><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album", edit_mc_route(album), :class => "pull-right"%></h5>
+	  <% if current_user.uid == @user.uid %>
+		  <h5 class="page-header ir-album-header"><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album", edit_mc_route(album), :class => "pull-right"%></h5>
+		<% else %>
+		  <h5 class="page-header ir-album-header"><%= link_to album.title, mc_route(album) %></h5>
+		<% end %>
 		<div class="row-fluid">
 			<% for asset in album.media_assets.first(6) %>
 				<div class="span2">
@@ -22,9 +30,4 @@
 			<% end %>
 		</div>
 	<% end %>
-
-<% else %>
-    <h1>You're on <%= @user.name %>'s <%= @role.role_type %> portfolio!</h1>
-	<%= link_to "Back to #{@user.name}'s #{@role.role_type} page", role_route(@role) %>
-<% end %>
 
