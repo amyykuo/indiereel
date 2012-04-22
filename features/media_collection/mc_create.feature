@@ -8,9 +8,9 @@ Background:
   Given I am signed in with provider "facebook"
   
   And I have the following roles:
-  | role_type  | id | user_id | role_name | profile_pic            | email         | role_type_description | role_experience | role_skills |
-  |  director  | 1  | 1       |  John     | http://hi.com/user.png | test@xxxx.com | I am awesome!         | everything      | none        |
-  |   talent   | 2  | 1       |  Nguyen   | http://pi.com/user.png | best@xxxx.com | I not awesome         | nothing         | some        |
+  | role_type  | id | user_id | role_name | email         | role_type_description | role_experience | role_skills |
+  |  director  | 1  | 1       |  John     | test@xxxx.com | I am awesome!         | everything      | none        |
+  |   talent   | 2  | 1       |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
     
   And I have the following albums:
   | role_id | title | description |
@@ -40,6 +40,4 @@ Scenario: Get redirected when user doesn't fill in title field
   And I press "Create Album"
   Then I should see "Title"
   And I should see "Album needs a title"
-  And I should be on my "talent" media collection create page #TODO this doesn't pass
-  # it's because in web_step line 233, URI.parse(blah.com).path gets rid of parameters
-  # so its comparing the wrong things :( this scenario should be passing but cuke is being a butt
+  And I should be on my "talent" media collection create page
