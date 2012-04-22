@@ -21,6 +21,10 @@ Background:
   
   
 Scenario: Viewing another person's role (public view)
+  When I am on the "amyykuo talent" profile page
+  Then I should see "Amy"
+  And I should see "I not awesome"
+  But I should not see "Edit"
   
 
 Scenario: Viewing your own profile in all fields mode (private view)
