@@ -21,11 +21,11 @@ Background:
   And I am on my "talent" media collection "photos" page # not implemented yet
   
 Scenario: Go back to portfolio page #A user should be able to access portfolio page through any of its media collections
-  When I follow "Go back to Portfolio" #not implemented yet
+  When I follow "Back to Talent"
   Then I should be on my portfolio page #not implemented yet
 
 Scenario: Go to a media collection edit page #A user should be able to access the edit page for a media collection
-  When I follow "Edit this MC"  #not implemented yet
+  When I follow "Edit Album" in the "Media Collection 1"   #not implemented yet
   Then I should be on my "talent" edit media collection "photos" page  # not implemented yet
 
 Scenario: #User should be able to see all media files
@@ -38,4 +38,3 @@ Scenario: See a media file page #user should be able to see each media file indi
   Then I should be on the media display page of the "photos" album #not yet implemented
   And the "media.file" of "photos" should be "true" #not yet implemented
   And the "media_file_size" of "photos" should not be blank #not yet implemented
-  

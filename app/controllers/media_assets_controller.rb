@@ -12,13 +12,9 @@ class MediaAssetsController < ApplicationController
 	end
 	
 	def destroy
-    asset = MediaAsset.find(params[:media_asset])
-    collection = asset.media_collection    
-
+    asset = MediaAsset.find(params[:id])
     asset.destroy
     flash[:notice] = "Photo deleted."
-
-    redirect_to mc_route(collection)
-    
+    redirect_to mc_route(asset.media_collection)
   end
 end
