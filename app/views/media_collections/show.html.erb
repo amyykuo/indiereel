@@ -4,7 +4,10 @@
 			<span class="pull-right">
 				<%= link_to content_tag(:strong, "Edit this Album"), edit_mc_route(@album), :class => "btn btn-mini btn-info" %>
 				<%= link_to "Back to Portfolio", portfolio_route(@album.role), :class => "btn btn-mini btn-info" %>
-				<%= link_to("Delete", media_collection_path(@album), :method => :delete, :confirm => "Are you sure you want to delete this album?", :class => "btn btn-mini btn-danger") unless (@album.quickshow or @album.headshot) %>
+
+				<%= link_to("Delete", media_collection_path(@album), :method => :delete, :confirm => "Are you sure you want to delete this album?", :class => "btn btn-mini btn-danger") unless @album.quickshow or @album.headshot %>
+
+				
 			</span>
 		</h3>
 	<hr />
