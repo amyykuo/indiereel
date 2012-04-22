@@ -231,9 +231,9 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
 end
  
 Then /^(?:|I )should be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  puts current_path
-  puts path_to(page_name)
+  path = URI.parse(current_url).path
+  query = URI.parse(current_url).query
+  current_path = !query.nil? ? (path + '?' + query) : path
   if current_path.respond_to? :should
     current_path.should == path_to(page_name)
   else

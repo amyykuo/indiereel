@@ -24,15 +24,6 @@ When /^(.*) within the "([^"]*)" section$/ do |step_def, scope|
   end
 end
 
-Then /^(?:|I )should be in preview mode on "([^"]*)"$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    (current_path + '?preview=true').should == path_to("the preview of my #{page_name} profile")
-  else
-    assert_equal path_to(page_name), (current_path + '?preview=true')
-  end
-end
-
 
 #When /^I press "([^"]*)" within the "([^"]*)" section$/ do |action, scope|
 #  with_scope(selector_for(scope)) do
