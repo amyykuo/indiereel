@@ -1,10 +1,16 @@
 <hr>
-  <%= "#{@media_asset.media_collection}:" %>
-  <%= "#{@media_asset.description}" %>
+  <p>
+    <h3>
+    <%= "#{@media_asset.media_collection.title}:" %>
+    </h3>
+    <%= "#{@media_asset.description}" %>
+    <%= button_to "Delete", media_asset_path(@media_asset), :method => :delete, :confirm => "Are you sure you want to delete this file>", :class => "btn btn-mini btn-danger pull-right" %>
+  </p>
 </ hr>
-<%= button_to "Delete", media_asset_path(@media_asset), :method => :delete, :confirm => "Are you sure you want to delete this file>", :class => "btn btn-mini btn-danger pull-left" %>
+
+
 <div class="well">
 <%= image_tag @media_asset.media.url(:preview) %>
 </div> 
-<%= @media_asset.description %>
+
 
