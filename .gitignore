@@ -25,6 +25,7 @@ schema.rb
 
 # Ignore temporary files
 *.*~
+*~
 
 # Ignore the coverage files
 coverage/*
