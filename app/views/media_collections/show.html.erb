@@ -20,6 +20,9 @@
 			<%= form_for @media_asset, :html => {:class => "form well"} do |f| %>
 				<%= f.label "Upload new media to this album: " %>
 				<%= f.file_field :media, :class=>"input-file" %>
+				
+				<%= f.label "Or, paste a youtube link here: " %>
+				<%= f.text_field :youtube_id %>
 
 				<%= f.label :description %>
 				<%= f.text_field :description %>
@@ -39,7 +42,11 @@
 			<% for asset in group %>
 				<div class="span2">
 					<div class="well ir-media-thumbnail">
-					<%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
+					<% if asset.image? %>
+						<%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
+					<% elsif asset.video? %>
+						<%= link_to image_tag("video_thumb.png"), media_route(asset) %>
+					<% end %>
 					</div>
 				</div>
 			<% end %>
