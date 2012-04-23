@@ -16,6 +16,8 @@
             <%= link_to image_tag(@media_asset.media.url(:preview)), @media_asset.media.url %>
         <% elsif @media_asset.video? %>
             <%= content_tag(:iframe, nil, :width => 900, :height => 500, :src => "http://www.youtube.com/embed/#{@media_asset.youtube_id}", :frameborder => 0, :allowfullscreen => true) %>
+        <% elsif @media_asset.audio? %>
+            <%= content_tag(:iframe, nil, :width => 900, :height => 166, :scrolling => "no", :frameborder => "no", :src => @media_asset.soundcloud_embed_uri) %>
         <% end %>
     </div>
 </div>

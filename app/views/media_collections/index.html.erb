@@ -22,9 +22,11 @@
 				<div class="span2">
 					<div class="well ir-media-thumbnail">
 					<% if asset.image? %>
-						<%= link_to image_tag(asset.media.url(:preview)), asset.media.url %>
+						<%= link_to image_tag(asset.media.url(:preview)), media_route(asset) %>
 					<% elsif asset.video? %>
 						<%= link_to image_tag("video_thumb.png"), media_route(asset) %>
+					<% elsif asset.audio? %>
+					  <%= link_to image_tag("audio_tag.png"), media_route(asset) %>
 					<% end %>
 					</div>
 				</div>

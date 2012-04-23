@@ -23,6 +23,9 @@
 				
 				<%= f.label "Or, paste a youtube link here: " %>
 				<%= f.text_field :youtube_id %>
+				
+				<%= f.label "Or, paste a Soundcloud link here:" %>
+				<%= f.text_field :soundcloud_id %>
 
 				<%= f.label :description %>
 				<%= f.text_field :description %>
@@ -46,6 +49,8 @@
 						<%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
 					<% elsif asset.video? %>
 						<%= link_to image_tag("video_thumb.png"), media_route(asset) %>
+					<% elsif asset.audio? %>
+					  <%= link_to image_tag("audio_thumb.png"), media_route(asset) %>
 					<% end %>
 					</div>
 				</div>

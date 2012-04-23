@@ -47,3 +47,6 @@ gem 'omniauth-facebook'
 
 #for paperclip
 gem "paperclip", "~> 3.0"
+
+#for parsing souncloud scrapes
+gem 'httparty'

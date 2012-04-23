@@ -1,11 +1,24 @@
 include Rack::Utils
+
 require 'nokogiri'
+require 'httparty'
+require 'uri'
+
+# Helper class to scrape Soundcloud
+class SoundCloud
+  include HTTParty
+  def get_id(uri)
+    doc = self.class.get(uri)
+    Nokogiri::HTML(doc).css('.hidden.download-options.action-overlay').first.attributes['data-sc-track'].value
+  end
+end
 
 class MediaAsset < ActiveRecord::Base
 	belongs_to :media_collection
 	has_attached_file :media, :styles => {:normal => "300x300>", :thumb => "128x128#", :preview => "900x450>"}
 	
 	before_create :process_youtube_id
+	before_create :process_soundcloud_id
 	
 	def image?
 		not self.media_file_name.nil?
@@ -15,8 +28,17 @@ class MediaAsset < ActiveRecord::Base
 		not self.youtube_id.nil?
 	end
 	
-	def self.test_soundcloud_scrape(uri)
-	  Nokogiri::HTML(open(self.soundcloud_id)).css('.tracks-small .haudio.mode.player.small').first.attributes['data-sc-track']
+	def audio?
+	  not self.soundcloud_id.nil?
+	end
+	
+	def soundcloud_embed_uri
+	  inner_url = URI.escape("http://api.soundcloud.com/tracks/#{self.soundcloud_id}")
+	  "http://w.soundcloud.com/player/?url=#{inner_url}&show_artwork=true"
+	end
+	
+	def self.test_soundcloud(uri)
+	  SoundCloud.new.get_id(uri)
 	end
 	
 	private 
@@ -26,11 +48,6 @@ class MediaAsset < ActiveRecord::Base
 	end
 	
 	def process_soundcloud_id
-	  unless self.soundcloud_id.nil?
-	    page = Nokogiri::HTML(open(self.soundcloud_id))
-	    page.css('.tracks-small .haudio.mode.player.small').first do |div|
-	      div.attributes['data-sc-track']
-	    end
-	  end
+	  self.soundcloud_id = SoundCloud.new.get_id(self.soundcloud_id) unless self.soundcloud_id.empty?
 	end
 end

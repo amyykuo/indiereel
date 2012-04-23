@@ -16,7 +16,7 @@ Background:
   | 1       | What  | these are mine       |
   | 2       | Who   | Where?               |
   
-  And I am on the "tester" "director" media collection "1" edit page
+  And I am on the "tester" "director" media collection "What" edit page
   #And I should see "these are mine" within the "mc_title" section
   
   
