@@ -16,23 +16,23 @@ Background:
   | 1       | What  | these are mine       |
   | 2       | Who   | Where?               |
   
-  And I am on my "what" media collection page for the "talent" role
+  #And I am on my "tester" "What" media collection page for the "talent" role
   
-Scenario: Go back to portfolio page #A user should be able to access portfolio page through any of its media collections
-  When I follow "Back to Talent"
-  Then I should be on my portfolio page #not implemented yet
+#Scenario: Go back to portfolio page #A user should be able to access portfolio page through any of its media collections
+  #When I follow "Back to Talent"
+  #Then I should be on the "tester" Portfolio page for the "talent" role
 
-Scenario: Go to a media collection edit page #A user should be able to access the edit page for a media collection
-  When I follow "Edit Album" in the "Media Collection 1"   #not implemented yet
-  Then I should be on my "talent" edit media collection "photos" page  # not implemented yet
+#Scenario: Go to a media collection edit page #A user should be able to access the edit page for a media collection
+  #When I follow "Edit Album" in the "Media Collection 1"   #not implemented yet
+  #Then I should be on my "talent" edit media collection "photos" page  # not implemented yet
 
-Scenario: #User should be able to see all media files
+#Scenario: #User should be able to see all media files
   #need to figure out if we want to test this in cuke or rspec...
-  When I am on my "talent" media collection "photos" page #not yet implemented
-  Then I should see "media" #not yet implemented
+#  When I am on my "talent" media collection "photos" page #not yet implemented
+#  Then I should see "media" #not yet implemented
   
-Scenario: See a media file page #user should be able to see each media file individually
-  When I follow a media link "media" #not yet implemented
-  Then I should be on the media display page of the "photos" album #not yet implemented
-  And the "media.file" of "photos" should be "true" #not yet implemented
-  And the "media_file_size" of "photos" should not be blank #not yet implemented
+#Scenario: See a media file page #user should be able to see each media file individually
+#  When I follow a media link "media" #not yet implemented
+#  Then I should be on the media display page of the "photos" album #not yet implemented
+#  And the "media.file" of "photos" should be "true" #not yet implemented
+#  And the "media_file_size" of "photos" should not be blank #not yet implemented

@@ -64,6 +64,19 @@ module NavigationHelpers
     
     when /my "([^"]*)" media collection create page/
       new_media_collection_path(:role => $1)
+      
+    when /^the About page/
+      about_path
+      
+    when /^the Contact page/
+      contact_path
+      
+    when /^the FAQ page/
+      help_path
+    
+    when /^the Meet page/
+      meet_path
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
