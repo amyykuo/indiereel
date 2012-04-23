@@ -22,22 +22,22 @@ Background:
   
   
 Scenario: Successfully create a MC #A user should be able to access portfolio page through any of its media collections
-  When I fill in "mc_title" with "photoshoot"
-  And I fill in "mc_description" with "this was awesome"
-  And I press "Create Album"
-  Then I should be on my "tester" "3" media collection page for the "talent" role #need to make this... more general?
+  When I fill in "media_collection_title" with "photoshoot"
+  And I fill in "media_collection_description" with "this was awesome"
+  And I press "Create Media collection"
+  Then I should be on my "tester" "photoshoot" media collection page for the "talent" role
   And I should see "photoshoot"
   And I should see "this was awesome"
 
 Scenario: Successfully cancel
-  When I fill in "mc_title" with "photoshoot"
+  When I fill in "media_collection_title" with "photoshoot"
   And I follow "Cancel"
   Then I should be on the "tester" Portfolio page for the "talent" role
 
 Scenario: Get redirected when user doesn't fill in title field
-  When I fill in "mc_description" with "this is not awesome"
-  When I fill in "mc_title" with ""
-  And I press "Create Album"
+  When I fill in "media_collection_description" with "this is not awesome"
+  And I fill in "media_collection_title" with ""
+  And I press "Create Media collection"
   Then I should see "Title"
   And I should see "Album needs a title"
   And I should be on my "talent" media collection create page
