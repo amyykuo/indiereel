@@ -51,6 +51,11 @@ module NavigationHelpers
       role = $1.split[1]
       custom_role_path(user, role) + '?preview=true'
       
+    when /^my "([^"]*)" portfolio page/
+      user = $1.split[0]
+      role = $1.split[1]
+      portfolio_path(user, role)
+      
     when /my "([^"]*)" "([^"]*)" media collection page for the "([^"]*)" role/
       custom_mc_path($1, $3, $2)
       

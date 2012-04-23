@@ -47,7 +47,7 @@ class MediaCollectionsController < ApplicationController
       redirect_to mc_route(@mc)
     else
       flash[:error] = "You've got to give your album a name!"
-      redirect_to mc_route(@mc, "edit")
+      redirect_to edit_mc_route(@mc)
     end
   end
   
