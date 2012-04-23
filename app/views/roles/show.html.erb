@@ -169,6 +169,8 @@
 		        <% else %>
 		          <% if @role.role_experience.empty? %>
 		            This user has not listed any experience.
+		          <% else %>
+		            <%= @role.role_experience %>
 		          <% end %>
 	          <% end %>
 			      
@@ -189,6 +191,8 @@
 		        <% else %>
 		          <% if @role.role_skills.empty? %>
 		            This user has not listed any skills.
+		          <% else %>  
+		            <%= @role.role_skills %>
 		          <% end %>
 	          <% end %>
 			      
