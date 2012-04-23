@@ -220,6 +220,7 @@ DEPENDENCIES
   httparty
   jquery-rails
   launchy
+  nokogiri
   omniauth
   omniauth-facebook
   paperclip (~> 3.0)
