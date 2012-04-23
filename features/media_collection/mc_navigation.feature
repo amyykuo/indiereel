@@ -11,14 +11,12 @@ Background:
     |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        |
     |   talent   |  1      |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
     
-  And I have the following media collections:
-    | description | title |
-    | 1           | quickshow          |
-    | 2           | headshots          |
-    | 3           | Media Collection 1 |
-    | 4           | Media Collection 2 |
+  And I have the following albums:
+  | role_id | title | description          |
+  | 1       | What  | these are mine       |
+  | 2       | Who   | Where?               |
   
-  And I am on my "talent" media collection "photos" page # not implemented yet
+  And I am on my "what" media collection page for the "talent" role
   
 Scenario: Go back to portfolio page #A user should be able to access portfolio page through any of its media collections
   When I follow "Back to Talent"
