@@ -21,10 +21,10 @@
 			<% for asset in album.media_assets.first(6) %>
 				<div class="span2">
 					<div class="well ir-media-thumbnail">
-					<% if @media_asset.image? %>
-						<%= link_to image_tag(@media_asset.media.url(:preview)), @media_asset.media.url %>
-					<% elsif @media_asset.video? %>
-						<%= @media_asset.youtube_embed_frame %>
+					<% if asset.image? %>
+						<%= link_to image_tag(asset.media.url(:preview)), asset.media.url %>
+					<% elsif asset.video? %>
+						<%= link_to image_tag("video_thumb.png"), media_route(asset) %>
 					<% end %>
 					</div>
 				</div>
