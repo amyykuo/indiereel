@@ -205,6 +205,28 @@
 	      <section id="portfolio">
 			      <h3><em>Portfolio</em><small class="pull-right"><%= link_to "View full portfolio", portfolio_route(@role) %></small></h3>
 			      <hr>
+			      <% if @portfolio_album.nil? and private_mode_conditional %>
+			        You have no albums. <%= link_to "Create one?", new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
+			      <% elsif @portfolio_album.nil? %>
+			        This user doesn't have a portfolio yet.
+			      <% else %>
+			        <div class="row-fluid">
+			        <% @portfolio_album.media_assets.first(6) do |asset| %>
+			          <div class="span2">
+					        <div class="well ir-media-thumbnail">
+					          <% if asset.image? %>
+						          <%= link_to image_tag(asset.media.url(:preview)), media_route(asset) %>
+					          <% elsif asset.video? %>
+						          <%= link_to image_tag("video_thumb.png"), media_route(asset) %>
+					          <% elsif asset.audio? %>
+					            <%= link_to image_tag("audio_thumb.png"), media_route(asset) %>
+					          <% end %>
+					        </div>
+				        </div>
+			        <% end %>
+			        </div>
+			      <% end %>
+			      <hr />
 	      </section>
 	      
 	      <section id="projects">

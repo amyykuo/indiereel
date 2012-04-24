@@ -49,6 +49,11 @@ class Role < ActiveRecord::Base
   
   # Attribute Wrappers
   
+  def portfolio_album
+    # Remove those that are empty or headshots, then sort by quickshow and update_at and return the first one
+    self.media_collections.find_all{|album| (not album.headshot) and (not album.media_assets.empty?)}.sort_by{|album| [album.quickshow ? 1 : 0, album.updated_at]}.reverse.first
+  end
+  
   def profile_pic_url
     self.profile_pic.file? ? self.profile_pic.url(:profile) : "default_role_pic.jpg"
   end
