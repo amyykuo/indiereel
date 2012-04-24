@@ -28,7 +28,7 @@ class MediaCollectionsController < ApplicationController
 	    flash[:notice] = "Album created."
       redirect_to mc_route(@mc)
 	  else
-	    flash[:error] = "Album needs a title"
+	    flash[:error] = "There was an error in creating your album."
 	    redirect_to new_media_collection_path(:role => @mc.role.role_type)
     end
   end
@@ -37,6 +37,7 @@ class MediaCollectionsController < ApplicationController
     @user = current_user
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     @mc = MediaCollection.find_by_slug_and_role_id(params[:media_collection], @role.id) rescue nil
+    render_not_found and return if @role.nil? or @mc.nil?
   end
   
   def update
