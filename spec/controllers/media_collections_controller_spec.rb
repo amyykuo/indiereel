@@ -7,29 +7,46 @@ describe MediaCollectionsController do
   end
   
   describe 'show' do
-    # all of these should set variables @user, @role, @album and @media_asset
-    describe 'if role is nil' do
-      it 'should render public/404'
+    it "should 404 if the role doesn't exist" do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
+      get :show, :identifier => "kunal", :role => "talent", :media_collection => "lols"
+      response.response_code.should == 404
     end
-    describe 'if role is not nil' do
-      it 'should render show'
+    
+    it "should 404 if the album doesn't exist" do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(mock("Role", :id => 7))
+      MediaCollection.should_receive(:find_by_slug_and_role_id).with("lols", 7).and_return(nil)
+      get :show, :identifier => "kunal", :role => "talent", :media_collection => "lols"
+      response.response_code.should == 404
     end
-    describe 'if album is nil' do
-      it 'should render public/404'
-    end
-    describe 'if album is not nil' do
-      it 'should render show'
+    
+    it "should render the show page if all components exist" do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(mock("Role", :id => 7))
+      MediaCollection.should_receive(:find_by_slug_and_role_id).with("lols", 7).and_return(album = mock("Album"))
+      MediaAsset.should_receive(:new).with(:media_collection => album)
+      album.should_receive(:media_assets_in_groups_of).with(6)
+      get :show, :identifier => "kunal", :role => "talent", :media_collection => "lols"
+      response.should render_template("show")
     end
   end
   
   describe 'index' do
-    describe 'if role is nil' do
-      it 'should set @user, @role'
-      it 'should bring up 404 page'
+    it "should 404 if the role doesn't exist" do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
+      get :index, :identifier => "kunal", :role => "talent"
+      response.response_code.should == 404
     end
-    describe 'if role is not nil' do
-      it 'should set @user, @role and @albums'
-      it 'should sort albums in this order: quickshow, headshot, and most recently updated'
+    
+    it "should get and sort the albums and render the index page if the role exists" do
+      User.should_receive(:find_by_identifier).with("kunal").and_return(@current_user)
+      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(role = mock("Role"))
+      role.should_receive(:media_collections).and_return([mock("Album", :quickshow => false, :headshot => false, :updated_at => 0)])
+      get :index, :identifier => "kunal", :role => "talent"
+      response.should render_template("index")
     end
   end
   

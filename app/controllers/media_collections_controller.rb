@@ -5,7 +5,7 @@ class MediaCollectionsController < ApplicationController
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     @album = MediaCollection.find_by_slug_and_role_id(params[:media_collection], @role.id) rescue nil
     @media_asset = MediaAsset.new(:media_collection => @album) 
-    render_not_found if @role.nil? or @album.nil?
+    render_not_found and return if @role.nil? or @album.nil?
     @grouped_media_assets = @album.media_assets_in_groups_of(6)
   end
   
