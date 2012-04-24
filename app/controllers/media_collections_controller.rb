@@ -47,7 +47,7 @@ class MediaCollectionsController < ApplicationController
       flash[:notice] = "#{@mc.title} album was successfully updated."
       redirect_to mc_route(@mc)
     else
-      flash[:error] = "You've got to give your album a name!"
+      flash[:error] = "There was an error in updating your album."
       redirect_to edit_mc_route(@mc)
     end
   end

@@ -90,19 +90,33 @@ describe MediaCollectionsController do
       get :edit, :identifier => "kunal", :role => "talent", :media_collection => "lol"
       response.should render_template("edit")
     end
-    
   end
   
+  
   describe 'update' do
-    describe 'updated mediacollection is valid' do
-      it 'should find role and update valid mediacollection'
-      it 'should flash success message and render to updated mediacollection page'
+  
+    before :each do
+      @role = mock("Talent", :role_type => "talent", :user => @current_user)
     end
-    describe 'updated mediacollection is invalid' do
-      it 'should find role and not update invalid mediacollection'
-      it 'should flash error message and redirect to mediacollection edit page'
+    
+    it "should redirect to the media collection show page if the album successfully updated" do
+      MediaCollection.should_receive(:find).with("4").and_return(mc = mock("Album", :valid? => false, :role => @role, :slug => "lol"))
+      mc.should_receive(:update_attributes).with("title" => "lols")
+      put :update, :id => "4", :media_collection => {:title => "lols"}
+      flash[:error].should == "There was an error in updating your album."
+      response.should redirect_to custom_edit_mc_path("kunal", "talent", "lol")
+    end
+    
+    it "should flash error and redirect back to the edit page if the album didn't successfully update" do
+      MediaCollection.should_receive(:find).with("4").and_return(mc = mock("Album", :valid? => true, :role => @role, :slug => "lol"))
+      mc.should_receive(:update_attributes).with("title" => "lols")
+      mc.should_receive(:title).and_return("lols")
+      put :update, :id => "4", :media_collection => {:title => "lols"}
+      flash[:notice].should == "lols album was successfully updated."
+      response.should redirect_to custom_mc_path("kunal", "talent", "lol")
     end
   end
+  
   
   describe 'destroy' do
     it "should destroy the media collection and redirect to the current user's portfolio" do
