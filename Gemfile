@@ -46,8 +46,9 @@ gem 'haml'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-#for paperclip
+#for paperclip and storage on S3
 gem "paperclip", "~> 3.0"
+gem "aws-sdk"
 
 #for parsing souncloud scrapes
 gem 'httparty'

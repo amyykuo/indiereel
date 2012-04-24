@@ -2,7 +2,11 @@ class Role < ActiveRecord::Base
   belongs_to :user
   belongs_to :default_role_user, :class_name => "User", :foreign_key => "default_role_user_id"
   has_many :media_collections, :dependent => :destroy
-  has_attached_file :profile_pic, :styles => {:profile => "180x180#", :thumb => "100x100#"}
+  has_attached_file :profile_pic, 
+                    :styles => {:profile => "180x180#", :thumb => "100x100#"},
+                    :storage => :s3,
+	                  :s3_credentials => "#{Rails.root}/config/s3.yml",
+	                  :path => "/:style/:id/:filename"
   
   validates :role_name, :presence => true
   validates :role_type, :presence => true

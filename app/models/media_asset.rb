@@ -15,7 +15,11 @@ end
 
 class MediaAsset < ActiveRecord::Base
 	belongs_to :media_collection
-	has_attached_file :media, :styles => {:normal => "300x300>", :thumb => "128x128#", :preview => "900x450>"}
+	has_attached_file :media, 
+	                  :styles => {:normal => "300x300>", :thumb => "128x128#", :preview => "900x450>"},
+	                  :storage => :s3,
+	                  :s3_credentials => "#{Rails.root}/config/s3.yml",
+	                  :path => "/:style/:id/:filename"
 	
 	before_create :process_youtube_id
 	before_create :process_soundcloud_id
