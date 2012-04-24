@@ -1,18 +1,39 @@
 <div class="container">
 
+  <hr/>
+  <div class="row-fluid">
+    <div class="span6">
+        <h2>Meet the Team</h2>
+    </div>
+    <div class="span6">
+      <h4 class="pull-right">
+        <%= link_to "The Jay", meet_path(:anchor => "jay") %> | 
+        <%= link_to "Kanoli", meet_path(:anchor => "kunal") %> | 
+        <%= link_to "Bro-ster", meet_path(:anchor => "evan") %> | 
+        <%= link_to "SCRUM MASTER", meet_path(:anchor => "amy") %> |
+        <%= link_to "The Linsation", meet_path(:anchor => "sylvia") %>
+      </h4>
+    </div>
+  </div>
+  
+  <hr/>
+  
   <div class="row-fluid">
     <div class="span12">
       <img src="../assets/group2.jpg">
     </div>
   </div>
-
+  
   <div class="row-fluid">
     <hr />
-      <h2>Meet the Team :]</h2>
-    <hr />  
+      <h2>As a Team</h2>
+    <hr />
+    <p>We are awesome</p>  
   </div>
+  
+  <hr />
     
-  <div class="row-fluid">
+  <div class="row-fluid" id="evan">
     <div class="span4">
       <img src="../assets/evan.jpg" height="313" width="313">
     </div>
@@ -28,7 +49,7 @@
       
   <hr />
       
-  <div class="row-fluid">
+  <div class="row-fluid" id="jay">
     <div class="span8">
       <div class="row-fluid">
         <h3 class="pull-right">Jay Kim</h3>
@@ -44,7 +65,7 @@
   
   <hr />
 
-  <div class="row-fluid">
+  <div class="row-fluid" id="kunal">
     <div class="span4">
       <img src="../assets/kunal.jpg" height="313" width="313">
     </div>
@@ -60,7 +81,7 @@
   
   <hr />
 
-  <div class="row-fluid">
+  <div class="row-fluid" id="sylvia">
     <div class="span8">
       <div class="row-fluid">
         <h3 class="pull-right">Sylvia Lin</h3>
@@ -76,7 +97,7 @@
   
   <hr />
 
-  <div class="row-fluid">
+  <div class="row-fluid" id="amy">
     <div class="span4">
       <img src="../assets/amy.jpg" height="313" width="313">
     </div>
@@ -89,7 +110,5 @@
       </div>
     </div>
   </div>
-
-  <p>We are awesome people.</p>
 
 </div>
