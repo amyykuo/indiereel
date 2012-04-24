@@ -30,10 +30,8 @@ describe RolesController do
   end
   
   describe 'new' do
-    
-    
-    
-    it 'should find the current user and get the list of valid ages' do ###### ERROR ##### WHY
+      
+    it 'should find the current user and get the list of valid ages' do
       User.should_receive(:find_by_uid)
       Role.should_receive(:ages).and_return(["0-7"])
       @current_user.should_receive(:remaining_role_options).and_return(["talent", "crew"])
@@ -69,7 +67,7 @@ describe RolesController do
     end
     
     describe 'the new role is valid' do 
-      it 'should create the role, test its validity, add quickshow and headshot media collections and save' do #######
+      it 'should create the role, test its validity, add quickshow and headshot media collections and save' do
         Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
         @role.should_receive(:invalid?).and_return(false)
         MediaCollection.should_receive(:create_quickshow)
@@ -141,27 +139,6 @@ describe RolesController do
         response.should redirect_to custom_edit_role_path("kunal", "talent")
       end      
     end
-    
-=begin
-    it 'should set a flash error if the resultant role is invalid' do ############
-      post :update, :id => 1, :role => {}
-      flash[:error].should == "There were some errors in updating your role..."
-      flash[:notice].should == nil
-    end
-    
-    it 'should not set a flash error if the resultant role is valid' do ############
-      @role.should_receive(:valid?).and_return(true)
-      @role.should_receive(:invalid?).and_return(false)
-      post :update, :id => 1, :role => {}
-      flash[:error].should == nil
-      flash[:notice].should == "talent was successfully updated."
-    end
-    
-    it 'should redirect to the role route' do #############
-      post :update, :id => 1, :role => {}
-      response.should redirect_to custom_role_path("kunal", "talent")
-    end
-=end
   end
   
   describe 'destroy' do

@@ -5,16 +5,17 @@ class MediaAssetsController < ApplicationController
 	end
 	
 	def create
+	  mc = MediaCollection.find(params[:media_asset][:media_collection_id])
 		media_asset = MediaAsset.create(params[:media_asset])
 		flash[:error] = "There was an error in uploading your media." if media_asset.nil?
 		flash[:notice] = "Media successfully uploaded." unless media_asset.nil?
-		redirect_to mc_route(media_asset.media_collection)
+		redirect_to mc_route(mc)
 	end
 	
 	def destroy
     asset = MediaAsset.find(params[:id])
     asset.destroy
-    flash[:notice] = "Photo deleted."
+    flash[:notice] = "Media deleted."
     redirect_to mc_route(asset.media_collection)
   end
 end
