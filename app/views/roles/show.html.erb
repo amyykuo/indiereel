@@ -75,7 +75,7 @@
 	      <em>Basic Info</em>
 	      
 	      <% if private_mode_conditional && !@preview %>
-	        <small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small>
+	        <small class="pull-right"><%= link_to "Edit", edit_role_route(@role, "basic-info") %></small>
         <% end %>
       </h3>
 	    
@@ -160,7 +160,7 @@
 			        <em>Experience</em>
 			        
 			        <% if private_mode_conditional && !@preview %>
-			          <small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small>
+			          <small class="pull-right"><%= link_to "Edit", edit_role_route(@role, "work-related") %></small>
 			        <% end %>
 		        </h3>
 			      
@@ -182,7 +182,7 @@
 			        <em>Skills</em>
 			        
 			        <% if private_mode_conditional && !@preview %>
-			          <small class="pull-right"><%= link_to "Edit", edit_role_route(@role) %></small>
+			          <small class="pull-right"><%= link_to "Edit", edit_role_route(@role, "work-related") %></small>
 			        <% end %>
 		        </h3>
 			      

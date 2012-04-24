@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
     custom_role_path(role.user.identifier, role.role_type)
   end
   
-  def edit_role_route(role)
-    custom_edit_role_path(role.user.identifier, role.role_type)
+  def edit_role_route(role, anchor = nil)
+    custom_edit_role_path(role.user.identifier, role.role_type, :anchor => anchor)
   end
   
   def portfolio_route(role)
