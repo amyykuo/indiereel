@@ -211,8 +211,8 @@
 			        This user doesn't have a portfolio yet.
 			      <% else %>
 			        <div class="row-fluid">
-			        <% @portfolio_album.media_assets.first(6) do |asset| %>
-			          <div class="span2">
+			        <% for asset in @portfolio_album.media_assets.first(4) %>
+			          <div class="span3">
 					        <div class="well ir-media-thumbnail">
 					          <% if asset.image? %>
 						          <%= link_to image_tag(asset.media.url(:preview)), media_route(asset) %>
