@@ -15,6 +15,8 @@ end
 
 class MediaAsset < ActiveRecord::Base
 	belongs_to :media_collection
+	has_one :next, :class_name => "MediaAsset", :foreign_key => "previous_id"
+	belongs_to :previous, :class_name => "MediaAsset", :foreign_key => "previous_id"
 	has_attached_file :media, 
 	                  :styles => {:normal => "300x300>", :thumb => "128x128#", :preview => "900x450>"},
 	                  :storage => :s3,
