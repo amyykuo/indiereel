@@ -25,8 +25,8 @@ class MediaAsset < ActiveRecord::Base
 	
 	before_create :process_youtube_id
 	before_create :process_soundcloud_id
-	after_create :append_to_end
-	before_destroy :remove_from_list
+	after_create :append_to_list
+	after_destroy :remove_from_list
 	
 	def image?
 		not self.media_file_name.nil?
@@ -59,7 +59,7 @@ class MediaAsset < ActiveRecord::Base
 	  self.soundcloud_id = SoundCloud.new.get_id(self.soundcloud_id) unless self.soundcloud_id.empty?
 	end
 	
-	def append_to_end
+	def append_to_list
 	  unless self.media_collection.media_assets.length <= 1
 	    self.previous = self.media_collection.media_assets[-2]
 	    self.save
