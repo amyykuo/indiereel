@@ -52,3 +52,7 @@ gem "aws-sdk"
 
 #for parsing souncloud scrapes
 gem 'httparty'
+
+#for search
+gem 'sunspot_rails'
+gem 'sunspot_solr'
