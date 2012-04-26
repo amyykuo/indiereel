@@ -14,7 +14,7 @@
 	<% for album in @albums %>
 	  <div class="row-fluid" id="<%= album.title %>">
 	    <% if current_user.uid == @user.uid %>
-		    <h5 class="page-header ir-album-header" ><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album", edit_mc_route(album), :class => "pull-right"%></h5>
+		    <h5 class="page-header ir-album-header" ><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album Info", edit_mc_route(album), :class => "pull-right"%></h5>
 		  <% else %>
 		    <h5 class="page-header ir-album-header"><%= link_to album.title, mc_route(album) %></h5>
 		  <% end %>
