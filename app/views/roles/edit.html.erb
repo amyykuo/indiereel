@@ -50,6 +50,11 @@ $(function(){
         </div>
       </div>
       
+      <div class="row-fluid">
+        <%= label_tag "role[objective]", "Objective:" %>
+        <%= text_field_tag "role[objective]", @role.objective, {:placeholder => "Goals for this Role?"} %><br>
+      </div>
+      
 		  <div class="row-fluid">
 		    <div class="photo-upload">
 <%= link_to "Upload a Profile Picture on your Talent Page", role_route(@role) %>
@@ -99,6 +104,9 @@ $(function(){
 	    <%= label_tag "role[phone_number]", "Phone Number:" %>
 	    <%= text_field_tag "role[phone_number]", @role.phone_number, {:placeholder => "Enter your number"} %><br>
 	    
+	    <%= label_tag "role[website]", "Website:" %>
+	    <%= text_field_tag "role[website]", @role.website, {:placeholder => "Put link to your personal website here"} %><br>
+	    
 	    <h3>Agency Info</h3>
 	    
 	    <%= label_tag "role[agency_name]", "Agency Name:" %>
@@ -109,6 +117,7 @@ $(function(){
 	
 	    <%= label_tag "role[agency_phone_number]", "Agency Phone:" %>
 	    <%= text_field_tag "role[agency_phone_number]", @role.agency_phone_number, {:placeholder => "Enter agency's contact phone number"} %><br>
+	    
     </div>
   </div>
   

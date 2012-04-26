@@ -25,13 +25,25 @@
       <h1><%= @role.role_name %></h1>
     </div>
     
-    <div class='span6'>
+    <div class='span3'>
       <h2><%= @role.role_type.capitalize %></h2>
       <dd><%= @role.role_type_description %></dd>
     </div>
     
+    <div class='span4'>
+      <div class='objective'>
+        <% if private_mode_conditional && !@preview %>
+          <h4>Objective: <%= @role.objective %></h4>
+        <% else %>
+		      <% unless @role.objective.empty? %>
+            <h4>Objective: <%= @role.objective %></h4>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    
     <% if @user.roles.length > 1 %>
-      <div class='span3'>
+      <div class='span2'>
         <div class="btn-group pull-right">
           <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">Other Roles<span class="caret" /></a>
           
