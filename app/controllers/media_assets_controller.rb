@@ -16,6 +16,6 @@ class MediaAssetsController < ApplicationController
     asset = MediaAsset.find(params[:id])
     asset.destroy
     flash[:notice] = "Media deleted."
-    redirect_to mc_route(asset.media_collection)
+    redirect_to asset.previous.nil? ? mc_route(asset.media_collection) : media_route(asset.previous)
   end
 end

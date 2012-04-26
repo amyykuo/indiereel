@@ -1,4 +1,9 @@
-
+<script type="text/javascript">
+$(function(){
+  $("#quickhelp").tooltip();
+  $("#headhelp").tooltip();
+})
+</script>
 	<hr />
 	<h3><%= "#{@role.role_type.capitalize} Portfolio for #{@role.role_name}" %>
 		<small class="pull-right">
@@ -12,11 +17,21 @@
 	<hr />
 
 	<% for album in @albums %>
-	  <% if current_user.uid == @user.uid %>
-		  <h5 class="page-header ir-album-header"><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album", edit_mc_route(album), :class => "pull-right"%></h5>
-		<% else %>
-		  <h5 class="page-header ir-album-header"><%= link_to album.title, mc_route(album) %></h5>
-		<% end %>
+	  <div class="row-fluid" id="<%= album.title %>">
+	    <% if current_user.uid == @user.uid %>
+	      <% if album.quickshow == true && album.media_assets.empty? %> 
+		      <h5 class="page-header ir-album-header" ><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album Info", edit_mc_route(album), :class => "pull-right"%></h5>
+		      <a href="#" rel="tooltip" id="quickhelp" data-original-title="Your quickshow is the primary album for your role."> What is my quickshow?</a>		       
+	      <% elsif album.headshot == true && album.media_assets.empty? %>
+	        <h5 class="page-header ir-album-header" ><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album Info", edit_mc_route(album), :class => "pull-right"%></h5>
+	        <a href="#" rel="tooltip" id="headhelp" data-original-title="Your headshot folder displays headhsots"> What is my headshot?</a>
+	      <% else %> 
+		      <h5 class="page-header ir-album-header" ><%= link_to album.title, mc_route(album) %><%= link_to "Edit Album Info", edit_mc_route(album), :class => "pull-right"%></h5>
+		    <% end %>
+		  <% else %>
+		    <h5 class="page-header ir-album-header"><%= link_to album.title, mc_route(album) %></h5>
+		  <% end %>
+		</div>
 		<div class="row-fluid">
 			<% for asset in album.media_assets.first(6) %>
 				<div class="span2">

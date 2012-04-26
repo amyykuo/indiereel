@@ -62,7 +62,7 @@ module NavigationHelpers
     when /the "([^"]*)" "([^"]*)" media collection "([^"]*)" edit page/
       custom_edit_mc_path($1, $2, $3)
     
-    when /my "([^"]*)" media collection create page/
+    when /the "([^"]*)" media collection create page/
       new_media_collection_path(:role => $1)
       
     when /^the About page/

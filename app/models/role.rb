@@ -32,7 +32,7 @@ class Role < ActiveRecord::Base
   end
   
   def self.contact_attributes
-    {:email => 'Email', :phone_number => 'Phone'}
+    {:email => 'Email', :phone_number => 'Phone', :website => 'Website'}
   end
   
   def self.living_attributes
