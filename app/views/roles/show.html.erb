@@ -10,7 +10,7 @@
           <%= link_to 'Delete', role_path(@role), {:method => :delete, :confirm => 'Are you sure you want to delete this role?'} %> | 
           
           <% if !@preview %>
-            <%= link_to 'Preview', role_route(@role) + '?preview=true' %>
+            <%= link_to 'View as Public Profile', role_route(@role) + '?preview=true' %>
           <% else %>
             <%= link_to 'View All Fields', role_route(@role) %>
           <% end %>
