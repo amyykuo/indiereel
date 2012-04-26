@@ -21,11 +21,13 @@
 				<%= f.label "Upload new media to this album: " %>
 				<%= f.file_field :media, :class=>"input-file" %>
 				
+				<% unless @album.headshot %>
 				<%= f.label "Or, paste a youtube link here: " %>
 				<%= f.text_field :youtube_id %>
 				
 				<%= f.label "Or, paste a Soundcloud link here:" %>
 				<%= f.text_field :soundcloud_id %>
+				<% end %>
 
 				<%= f.label :description %>
 				<%= f.text_field :description %>
