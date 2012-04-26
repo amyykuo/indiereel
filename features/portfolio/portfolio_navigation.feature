@@ -19,4 +19,22 @@ Background:
     | 4           | Media Collection 2 |
 
   And I am on the "tester" Portfolio page for the "talent" role
-  #And my "quickshow" album is empty #not implemented yet
+
+Scenario: Go create a MC
+  When I follow "+ Add Album?"
+  Then I should be on the "talent" media collection create page
+  When I fill in "media_collection_title" with "fat"
+  And I press "Create Album"
+  Then I should be on my "tester" "fat" media collection page for the "talent" role
+  
+Scenario: Access an MC page
+  When I follow "What" within the "What" section
+  Then I should be on my "tester" "what" media collection page for the "director" role
+  
+Scenario: Access an MC edit page
+  When I follow "Edit Album" within the "What" section
+  And I am on the "tester" "talent" media collection "what" edit page
+
+Scenario: Go back to role page #A user should be able to access portfolio page through the role it corresponds to
+  When I follow "Back to Talent"
+  Then I should be on my "tester talent" profile page

@@ -33,6 +33,9 @@ module HtmlSelectorsHelpers
     # web steps:
     when /^"(.+)"$/
       $1
+    
+    when /^(.*)/
+      $1
       
     when /(Talent|Director|Producer|Crew|Projects|Portfolio)/
       "##{$1.downcase}"

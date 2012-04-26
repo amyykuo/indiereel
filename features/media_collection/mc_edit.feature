@@ -25,14 +25,14 @@ Background:
   
 Scenario: Edit the description of the MC successfullly
   When I fill in "media_collection_description" with "these are my new photos"
-  And I press "Update Media collection"
+  And I press "Update Album"
   Then I should be on my "tester" "what" media collection page for the "director" role
   And I should see "these are my new photos"
   But I should not see "these are mine"
 
 Scenario: Edit the name of the MC, submit, see new title of the MC
   When I fill in "media_collection_title" with "new photos"
-  And I press "Update Media collection"
+  And I press "Update Album"
   Then I should be on my "tester" "new-photos" media collection page for the "director" role
   And I should see "new photos"
   But I should not see "What"
@@ -40,13 +40,13 @@ Scenario: Edit the name of the MC, submit, see new title of the MC
 Scenario: User should be able to Cancel, redirects to portfolio page
   When I fill in "media_collection_description" with "these are my new photos"
   And I follow "Cancel"
-  Then I should be on my "tester director" portfolio page
+  Then I should be on my "tester" "what" media collection page for the "director" role
   
 Scenario: unsuccessfully edit MC
   When I fill in "media_collection_title" with ""
-  And I press "Update Media collection"
+  And I press "Update Album"
   Then I should be on the "tester" "director" media collection "what" edit page
-  And I should see "You've got to give your album a name!"
+  And I should see "There was an error in updating your album."
   
 #Scenario: A User should be able to delete the media collection
 #  And I should see "Delete"
