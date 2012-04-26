@@ -15,6 +15,8 @@ end
 
 class MediaAsset < ActiveRecord::Base
 	belongs_to :media_collection
+	has_one :next, :class_name => "MediaAsset", :foreign_key => "previous_id"
+	belongs_to :previous, :class_name => "MediaAsset", :foreign_key => "previous_id"
 	has_attached_file :media, 
 	                  :styles => {:normal => "300x300>", :thumb => "128x128#", :preview => "900x450>"},
 	                  :storage => :s3,
@@ -23,6 +25,8 @@ class MediaAsset < ActiveRecord::Base
 	
 	before_create :process_youtube_id
 	before_create :process_soundcloud_id
+	after_create :append_to_end
+	before_destroy :remove_from_list
 	
 	def image?
 		not self.media_file_name.nil?
@@ -54,4 +58,18 @@ class MediaAsset < ActiveRecord::Base
 	def process_soundcloud_id
 	  self.soundcloud_id = SoundCloud.new.get_id(self.soundcloud_id) unless self.soundcloud_id.empty?
 	end
+	
+	def append_to_end
+	  unless self.media_collection.media_assets.length <= 1
+	    self.previous = self.media_collection.media_assets[-2]
+	    self.save
+	  end
+  end
+  
+  def remove_from_list
+    unless self.previous.nil?
+      self.previous.next = self.next
+      self.previous.save
+    end
+  end
 end
