@@ -13,6 +13,9 @@
 
 <div class="row-fluid">
     <div class="well" style="text-align:center">
+		<%= link_to("Previous", media_route(@media_asset.previous), :class => "pull-left ir-media-nav") unless @media_asset.previous.nil? %>
+		<%= link_to("Next", media_route(@media_asset.next), :class => "pull-right ir-media-nav") unless @media_asset.next.nil? %>
+		<hr />
         <% if @media_asset.image? %>
             <%= link_to image_tag(@media_asset.media.url(:preview)), @media_asset.media.url %>
         <% elsif @media_asset.video? %>
