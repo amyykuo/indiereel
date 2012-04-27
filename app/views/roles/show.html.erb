@@ -85,11 +85,11 @@
     <div class="span9">
       <div class="row-fluid">
         <section id="headshots">
-			      
-			      <% if @headshot.nil? and private_mode_conditional %>
-			        <h3><em>Headshots</em><small class="pull-right"><%= link_to "Edit", edit_mc_route(@headshot) %></small>
+			      <h3><em>Headshots</em><small class="pull-right"><%= link_to "Edit", edit_mc_route(@headshot) %></small>
 			        </h3>
 			        <hr>
+			      <% if @headshot.nil? and private_mode_conditional and !@preview %>
+			        
 			        You have no headshots. <%= link_to "Add some?", mc_route(@headshot), :class => "btn btn-info btn-mini" %>
 			      <% elsif @headshot.nil? %>
 			        This user doesn't have a portfolio yet.
@@ -242,7 +242,7 @@
 	      <section id="portfolio">
 			      <h3><em>Portfolio</em><small class="pull-right"><%= link_to "View full portfolio", portfolio_route(@role) %></small></h3>
 			      <hr>
-			      <% if @portfolio_album.nil? and private_mode_conditional %>
+			      <% if @portfolio_album.nil? and private_mode_conditional and !@preview %>
 			        You have no albums. <%= link_to "Create one?", new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
 			      <% elsif @portfolio_album.nil? %>
 			        This user doesn't have a portfolio yet.
