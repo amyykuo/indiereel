@@ -1,17 +1,36 @@
 <div class="container">
 
   <div class="row-fluid">
-    <div class="span12">
-      <img src="../assets/group.jpg">
-    </div>
-  </div>
-
-  <div class="row-fluid">
     <hr />
       <h2>Meet the Team :]</h2>
     <hr />  
   </div>
-    
+  
+  <div class="row-fluid">
+    <div class="span12">
+      <img src="../assets/group.jpg">
+    </div>
+  </div>
+  
+  <hr/>
+  
+  <p>Close your eyes and click on a random link to learn more about any of our team members. If you like what you see, hit us up. We might be impressed with what you've got. Who knows?</p>
+  
+  <br/>
+  
+  <div id="centered">
+  <h4>
+  <%= link_to "The Bro", meet_path(:anchor => "evan") %> | 
+  <%= link_to "The Jay", meet_path(:anchor => "jay") %> | 
+  <%= link_to "Kanoli", meet_path(:anchor => "kunal") %> | 
+  <%= link_to "Gimpy", meet_path(:anchor => "sylvia") %> | 
+  <%= link_to "SCRUMMASTER", meet_path(:anchor => "amy") %>
+  </h4>
+</div>
+  
+  <br/>
+  
+  <a name="evan"></a>  
   <div class="row-fluid">
     <div class="span5">
       <img src="../assets/evan.jpg" height="391" width="391">
@@ -27,7 +46,8 @@
   </div>
       
   <hr />
-      
+  
+  <a name="jay"></a>      
   <div class="row-fluid">
     <div class="span7">
       <div class="row-fluid">
@@ -44,6 +64,7 @@
   
   <hr />
 
+  <a name="kunal"></a>  
   <div class="row-fluid">
     <div class="span5">
       <img src="../assets/kunal.jpg" height="391" width="391">
@@ -60,6 +81,7 @@
   
   <hr />
 
+  <a name="sylvia"></a>  
   <div class="row-fluid">
     <div class="span7">
       <div class="row-fluid">
@@ -76,6 +98,7 @@
   
   <hr />
 
+  <a name="amy"></a>  
   <div class="row-fluid">
     <div class="span5">
       <img src="../assets/amy.jpg" height="391" width="391">
