@@ -67,6 +67,47 @@ class Role < ActiveRecord::Base
      :agency => self.agency_attributes} #fill in later
   end
   
+  #temporary methods to just fix the issue with hiding sections. unoptimal and disgusting but functional. DISGUSTING.
+  def self.physical_attributes_filled?
+    for att, att_name in self.physical_attributes
+      if !self[att].empty?
+        return true
+      end
+    end
+    
+    return false
+  end
+  
+  def self.contact_attributes_filled?
+    for att, att_name in self.contact_attributes
+      if !self[att].empty?
+        return true
+      end
+    end
+    
+    return false
+  end
+  
+  def self.living_attributes_filled?
+    for att, att_name in self.living_attributes
+      if !self[att].empty?
+        return true
+      end
+    end
+    
+    return false
+  end
+  
+  def self.agency_attributes_filled?
+    for att, att_name in self.agency_attributes
+      if !self[att].empty?
+        return true
+      end
+    end
+    
+    return false
+  end
+  
   
   # Attribute Wrappers
   
