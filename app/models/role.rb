@@ -14,6 +14,22 @@ class Role < ActiveRecord::Base
   before_create :check_for_default_role
   after_destroy :transfer_default_role
   
+  # Search
+  
+  searchable do
+    string :role_type
+    string :role_name
+    string :email
+    string :age_range
+    string :eyes
+    string :hair
+    string :height
+    string :weight
+    string :location
+    string :agency_name
+  end
+  
+  # helper methods
   
   def self.options
     ['talent', 'director', 'producer', 'crew']

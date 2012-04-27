@@ -12,11 +12,11 @@ Background:
     |   talent   |  1      |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
     
   And I have the following media collections:
-    | description | title |
-    | 1           | quickshow          |
-    | 2           | headshots          |
-    | 3           | Media Collection 1 |
-    | 4           | Media Collection 2 |
+    | role_id | title      | description |
+    | 1       | QuickShow  | Wait?       |
+    | 2       | Headshots  | Where?      |
+    | 2       | What       | Wait?       |
+    | 2       | Who        | Where?      |
 
   And I am on the "tester" Portfolio page for the "talent" role
 
@@ -29,7 +29,7 @@ Scenario: Go create a MC
   
 Scenario: Access an MC page
   When I follow "What" within the "What" section
-  Then I should be on my "tester" "what" media collection page for the "director" role
+  Then I should be on my "tester" "what" media collection page for the "talent" role
   
 Scenario: Access an MC edit page
   When I follow "Edit Album" within the "What" section

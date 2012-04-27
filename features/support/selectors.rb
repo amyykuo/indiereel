@@ -35,7 +35,7 @@ module HtmlSelectorsHelpers
       $1
     
     when /^(.*)/
-      $1
+      "##{$1}"
       
     when /(Talent|Director|Producer|Crew|Projects|Portfolio)/
       "##{$1.downcase}"
