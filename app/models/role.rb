@@ -79,6 +79,9 @@ class Role < ActiveRecord::Base
     self.profile_pic.file? ? self.profile_pic.url(:profile) : "default_role_pic.jpg"
   end
   
+  def headshots
+    MediaCollection.find_by_role_id_and_headshot(self.id, true)
+  end
   
   private 
   

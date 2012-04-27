@@ -83,6 +83,31 @@
     </div>
     
     <div class="span9">
+      <div class="row-fluid">
+        <section id="headshots">
+			      
+			      <% if @headshot.nil? and private_mode_conditional %>
+			        <h3><em>Headshots</em><small class="pull-right"><%= link_to "Edit", edit_mc_route(@headshot) %></small>
+			        </h3>
+			        <hr>
+			        You have no headshots. <%= link_to "Add some?", mc_route(@headshot), :class => "btn btn-info btn-mini" %>
+			      <% elsif @headshot.nil? %>
+			        This user doesn't have a portfolio yet.
+			      <% else %>
+			        
+			      
+			        <div class="row-fluid">
+			        <% for asset in @headshot.media_assets.first(4) %>
+			          <div class="span3">
+			            <%= render "shared/thumbnail", :asset => asset %>
+			        	</div>
+			        <% end %>
+			        </div>
+			        
+			      <% end %>
+			      <hr />
+	      </section>
+      </div>
 	    <h3>
 	      <em>Basic Info</em>
 	      
