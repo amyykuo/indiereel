@@ -35,20 +35,18 @@
 					<hr style="margin:5px 0px 10px 0px"/>
 				</div>
 				
-				<% unless @album.headshot %>
-					<div id="ir-upload-video-field" class="ir-upload-field" style="display:none">
-						<hr style="margin:5px 0px 10px 0px"/>
-						<%= f.label "Paste a youtube link here: " %>
-						<%= f.text_field :youtube_id%>
-						<hr style="margin:5px 0px 10px 0px"/>
-					</div>
-					<div id="ir-upload-audio-field" class="ir-upload-field" style="display:none">
-						<hr style="margin:5px 0px 10px 0px"/>
-						<%= f.label "Paste a Soundcloud link here:" %>
-						<%= f.text_field :soundcloud_id %>
-						<hr style="margin:5px 0px 10px 0px"/>
-					</div>
-				<% end %>
+				<div id="ir-upload-video-field" class="ir-upload-field" style="display:none">
+					<hr style="margin:5px 0px 10px 0px"/>
+					<%= f.label "Paste a youtube link here: " %>
+					<%= f.text_field :youtube_id%>
+					<hr style="margin:5px 0px 10px 0px"/>
+				</div>
+				<div id="ir-upload-audio-field" class="ir-upload-field" style="display:none">
+					<hr style="margin:5px 0px 10px 0px"/>
+					<%= f.label "Paste a Soundcloud link here:" %>
+					<%= f.text_field :soundcloud_id %>
+					<hr style="margin:5px 0px 10px 0px"/>
+				</div>
 
 				<%= f.label :description %>
 				<%= f.text_field :description %>
