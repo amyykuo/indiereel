@@ -15,7 +15,7 @@ class Role < ActiveRecord::Base
   after_destroy :transfer_default_role
   
   # Search
-  
+=begin  
   searchable do
     string :role_type
     string :role_name
@@ -28,6 +28,7 @@ class Role < ActiveRecord::Base
     string :location
     string :agency_name
   end
+=end
   
   # helper methods
   

@@ -16,7 +16,7 @@ Background:
   | 1       | What  | these are mine       |
   | 2       | Who   | Where?               |
   
-  And I am on "tester" "what" media collection page for the "talent" role
+  And I am on my "tester" "what" media collection page for the "director" role
   
   
 #Scenario: User should be able to upload a media file (picture, video, song, etc) #not quite sure how this will work yet

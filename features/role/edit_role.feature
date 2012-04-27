@@ -16,7 +16,7 @@ Background:
 
 Scenario: editing basic information successfully - change name
   When I fill in "role_role_name" with "My name is now pie"
-  And I press "Update Role"
+  And I press "Update Profile"
   Then I should be on my "tester talent" profile page
   And I should see "My name is now pie"
   And I should see "I not awesome"
@@ -37,7 +37,7 @@ Scenario: write a description and cancel editing
 
 Scenario: On the Edit Role Page, do  not input stage name, submit, should get an error
   When I fill in "role_role_name" with ""
-  And I press "Update Role"
+  And I press "Update Profile"
   Then I should be on my "tester talent" Edit Page
   And I should see "There were some errors in updating your role."
 

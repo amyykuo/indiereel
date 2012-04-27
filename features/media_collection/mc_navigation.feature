@@ -25,7 +25,7 @@ Scenario: Go back to portfolio page #A user should be able to access portfolio p
   Then I should be on the "tester" Portfolio page for the "director" role
 
 Scenario: Go to a media collection edit page #A user should be able to access the edit page for a media collection
-  When I follow "Edit this Album"
+  When I follow "Edit Album Info"
   Then I should be on the "tester" "director" media collection "what" edit page
 
 Scenario: A User should be able to delete the media collection

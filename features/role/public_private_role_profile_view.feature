@@ -32,13 +32,13 @@ Scenario: Viewing your own profile in all fields mode (private view)
   And I should see "I am awesome!"
   And I should see "Edit"
   And I should see "Delete"
-  And I should see "Preview"
+  And I should see "View as Public Profile"
   And I should see "Agency Name:"
 
 Scenario: Viewing your own profile in preview mode (private view, preview mode)
   When I am on my "tester director" profile page
   Then I should see "Agency Name:"
-  Then I follow "Preview"
+  Then I follow "View as Public Profile"
   And I should not see "Agency Name:"
   Then I follow "View All Fields"
   And I should see "Agency Name:"

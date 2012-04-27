@@ -17,7 +17,7 @@ Background:
   | 1       | What  | Wait?       |
   | 2       | Who   | Where?      |
   
-  And I am on my "talent" media collection create page
+  And I am on the "talent" media collection create page
   And I should see "Title"
   
   
@@ -40,4 +40,4 @@ Scenario: Get redirected when user doesn't fill in title field
   And I press "Create Album"
   Then I should see "Title"
   And I should see "There was an error in creating your album."
-  And I should be on my "talent" media collection create page
+  And I should be on the "talent" media collection create page
