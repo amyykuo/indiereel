@@ -2,7 +2,7 @@
 	<hr />
 		<h3> <%= @album.title %>
 			<span class="pull-right">
-				<%= link_to content_tag(:strong, "Edit this Album"), edit_mc_route(@album), :class => "btn btn-mini btn-info" %>
+				<%= link_to content_tag(:strong, "Edit Album Info"), edit_mc_route(@album), :class => "btn btn-mini btn-info" %>
 				<%= link_to "Back to Portfolio", portfolio_route(@album.role), :class => "btn btn-mini btn-info" %>
 
 				<%= link_to("Delete", media_collection_path(@album), :method => :delete, :confirm => "Are you sure you want to delete this album?", :class => "btn btn-mini btn-danger") unless @album.quickshow or @album.headshot %>
@@ -12,27 +12,63 @@
 		</h3>
 	<hr />
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span8">
 			<h4> Description </h4>
 			<p><%= @album.description %></p>
 		</div>
-		<div class="span6">
+		<div class="span4">
 			<%= form_for @media_asset, :html => {:class => "form well"} do |f| %>
-				<%= f.label "Upload new media to this album: " %>
-				<%= f.file_field :media, :class=>"input-file" %>
+				<% unless @album.headshot %>
+				<h4>Upload New Media</h4>
+				<hr style="margin:5px 0px 10px 0px"/>
+				<label>Select media type:</label>
+				<select id="ir-upload-type-select">
+					<option name="ir-upload-image-field">Image</option>
+					<option name="ir-upload-video-field">Video</option>
+					<option name="ir-upload-audio-field">Audio</option>
+				</select>
+				<% end %>
+				<div id="ir-upload-image-field" class="ir-upload-field">
+					<hr style="margin:5px 0px 10px 0px"/>
+					<%= f.label "Upload an image to this album: " %>
+					<%= f.file_field :media, :class=>"input-file" %>
+					<hr style="margin:5px 0px 10px 0px"/>
+				</div>
 				
-				<%= f.label "Or, paste a youtube link here: " %>
-				<%= f.text_field :youtube_id %>
+				<% unless @album.headshot %>
+					<div id="ir-upload-video-field" class="ir-upload-field" style="display:none">
+						<hr style="margin:5px 0px 10px 0px"/>
+						<%= f.label "Paste a youtube link here: " %>
+						<%= f.text_field :youtube_id%>
+						<hr style="margin:5px 0px 10px 0px"/>
+					</div>
+					<div id="ir-upload-audio-field" class="ir-upload-field" style="display:none">
+						<hr style="margin:5px 0px 10px 0px"/>
+						<%= f.label "Paste a Soundcloud link here:" %>
+						<%= f.text_field :soundcloud_id %>
+						<hr style="margin:5px 0px 10px 0px"/>
+					</div>
+				<% end %>
 
 				<%= f.label :description %>
 				<%= f.text_field :description %>
 
 				<%= f.hidden_field :media_collection_id %>
-				<%= f.submit "Upload file", :class => "btn btn-mini" %>
+				<%= f.submit "Upload file", :class => "btn btn-mini btn-info" %>
 			<% end %>
 		</div>
 	</div>
-			
+	<script type="text/javascript">
+		$("#ir-upload-type-select").change(function(){
+			var selectedID = "#" + $(":selected", this).attr("name");
+			var currentID = "#" + $(".ir-upload-field:visible").attr("id");
+			if (selectedID !== currentID){
+				$(currentID).fadeOut(125, function(){
+					$(selectedID).fadeIn(125);
+				});
+			}
+		});
+	</script>		
 
 	
 	<hr />
@@ -41,13 +77,7 @@
 		<div class="row-fluid">
 			<% for asset in group %>
 				<div class="span2">
-					<div class="well ir-media-thumbnail">
-					<% if asset.image? %>
-						<%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
-					<% elsif asset.video? %>
-						<%= link_to image_tag("video_thumb.png"), media_route(asset) %>
-					<% end %>
-					</div>
+  				<%= render "shared/thumbnail", :asset => asset %>
 				</div>
 			<% end %>
 		</div>

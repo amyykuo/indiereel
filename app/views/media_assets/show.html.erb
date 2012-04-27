@@ -13,10 +13,15 @@
 
 <div class="row-fluid">
     <div class="well" style="text-align:center">
+		<%= link_to("Previous", media_route(@media_asset.previous), :class => "pull-left ir-media-nav") unless @media_asset.previous.nil? %>
+		<%= link_to("Next", media_route(@media_asset.next), :class => "pull-right ir-media-nav") unless @media_asset.next.nil? %>
+		<hr />
         <% if @media_asset.image? %>
             <%= link_to image_tag(@media_asset.media.url(:preview)), @media_asset.media.url %>
         <% elsif @media_asset.video? %>
             <%= content_tag(:iframe, nil, :width => 900, :height => 500, :src => "http://www.youtube.com/embed/#{@media_asset.youtube_id}", :frameborder => 0, :allowfullscreen => true) %>
+        <% elsif @media_asset.audio? %>
+            <%= content_tag(:iframe, nil, :width => 900, :height => 166, :scrolling => "no", :frameborder => "no", :src => @media_asset.soundcloud_embed_uri) %>
         <% end %>
     </div>
 </div>

@@ -2,7 +2,11 @@ class Role < ActiveRecord::Base
   belongs_to :user
   belongs_to :default_role_user, :class_name => "User", :foreign_key => "default_role_user_id"
   has_many :media_collections, :dependent => :destroy
-  has_attached_file :profile_pic, :styles => {:profile => "180x180#", :thumb => "100x100#"}
+  has_attached_file :profile_pic, 
+                    :styles => {:profile => "180x180#", :thumb => "100x100#"},
+                    :storage => :s3,
+	                  :s3_credentials => "#{Rails.root}/config/s3.yml",
+	                  :path => "/:style/:id/:filename"
   
   validates :role_name, :presence => true
   validates :role_type, :presence => true
@@ -10,6 +14,23 @@ class Role < ActiveRecord::Base
   before_create :check_for_default_role
   after_destroy :transfer_default_role
   
+  # Search
+=begin  
+  searchable do
+    string :role_type
+    string :role_name
+    string :email
+    string :age_range
+    string :eyes
+    string :hair
+    string :height
+    string :weight
+    string :location
+    string :agency_name
+  end
+=end
+  
+  # helper methods
   
   def self.options
     ['talent', 'director', 'producer', 'crew']
@@ -28,7 +49,7 @@ class Role < ActiveRecord::Base
   end
   
   def self.contact_attributes
-    {:email => 'Email', :phone_number => 'Phone'}
+    {:email => 'Email', :phone_number => 'Phone', :website => 'Website'}
   end
   
   def self.living_attributes
@@ -48,6 +69,11 @@ class Role < ActiveRecord::Base
   
   
   # Attribute Wrappers
+  
+  def portfolio_album
+    # Remove those that are empty or headshots, then sort by quickshow and update_at and return the first one
+    self.media_collections.find_all{|album| (not album.headshot) and (not album.media_assets.empty?)}.sort_by{|album| [album.quickshow ? 1 : 0, album.updated_at]}.reverse.first
+  end
   
   def profile_pic_url
     self.profile_pic.file? ? self.profile_pic.url(:profile) : "default_role_pic.jpg"

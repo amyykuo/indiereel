@@ -6,6 +6,10 @@
  *= require_tree . 
 */
 
+#footer-container {
+  width:100%;
+}
+
 footer {
 	font-size: 11px;
 	text-align: center;

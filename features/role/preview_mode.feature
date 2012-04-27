@@ -23,7 +23,7 @@ Background:
 Scenario: User is not on preview mode and goes to preview mode
   When I am on my "tester talent" profile page
   And I should see "Phone:"
-  And I follow "Preview"
+  And I follow "View as Public Profile"
   Then I should be on the preview of my "tester talent" profile # this line. its terrible. 
   And I should see "test@xxxx.com"
   But I should not see "Phone"

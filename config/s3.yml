@@ -1,0 +1,12 @@
+development:
+  bucket: indiereel-development
+  access_key_id: AKIAJMGSVEIAH6ZXHFAA
+  secret_access_key: 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
+test:
+  bucket: indiereel-test
+  access_key_id: AKIAJMGSVEIAH6ZXHFAA
+  secret_access_key: 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
+production:
+  bucket: indiereel-production
+  access_key_id: AKIAJMGSVEIAH6ZXHFAA
+  secret_access_key: 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

@@ -30,25 +30,16 @@ describe RolesController do
   end
   
   describe 'new' do
-    
-    before :each do
-      User.stub!(:find_by_identifier).with("kunal").and_return(mock("User", :id => 1))
-      Role.stub!(:ages).and_return(["0-7"])
-      Role.stub!(:options).and_return(["talent", "crew"])
-    end
-    
-    it 'should find the current user and get the list of valid ages' do ###### ERROR ##### WHY
-      User.should_receive(:find_by_identifier)
-      Role.should_receive(:ages)
+      
+    it 'should find the current user and get the list of valid ages' do
+      User.should_receive(:find_by_uid)
+      Role.should_receive(:ages).and_return(["0-7"])
+      @current_user.should_receive(:remaining_role_options).and_return(["talent", "crew"])
       get :new
+      assigns(:options).should == [["Talent", "talent"],["Crew", "crew"]]
     end
     
-    it 'should check to see if user has each option' do ############# THIS SHOULD CHECK IF USER HAS CORRECT OPTIONS
-      Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(nil)
-      Role.should_receive(:find_by_role_type_and_user_id).with("crew", 1).and_return(mock("Role"))
-      get :new
-      assigns(:options).should == ["talent"]
-    end
+    
   end
   
   describe 'create' do
@@ -58,29 +49,36 @@ describe RolesController do
     end
     
     describe 'if role already exists for current user' do
-      it 'should flash an error and redirect to home page of current_user'
+      it 'should flash an error and redirect to home page of current_user' do
+        Role.should_receive(:where).and_return(mock("Roles", :exists? => "true"))
+        post :create, {:role => {:role_type => "lol"}}
+        flash[:error].should == "You already have a Lol role."
+        response.should redirect_to home_path(@current_user.identifier)
+      end
     end
     
     describe 'the new role is not valid' do
       it 'should create the role, check validity, and then redirect to the create role page' do
         Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
-        @role.should_receive(:valid?).and_return(false)
+        @role.should_receive(:invalid?).and_return(true)
         post :create, {:role => {:role_type => "lol"}}
-        response.should redirect_to new_role_path("kunal")
+        response.should redirect_to new_role_path()
       end
     end
     
     describe 'the new role is valid' do 
-      it 'should create the role, test its validity, add quickshow and headshot media collections and save' do #######
+      it 'should create the role, test its validity, add quickshow and headshot media collections and save' do
         Role.should_receive(:create).with({"role_type" => "lol"}).and_return(@role)
-        @role.should_receive(:valid?).and_return(true)
-        MediaCollection.should_receive(:create_default).and_return(mock("MediaCollection"))
+        @role.should_receive(:invalid?).and_return(false)
+        MediaCollection.should_receive(:create_quickshow)
+        MediaCollection.should_receive(:create_headshot)
         @role.should_receive(:save)
         post :create, {:role => {:role_type => "lol"}}
+        flash[:notice].should == "Role created successfully."
         response.should redirect_to custom_role_path("kunal", "lol")
       end
       
-      it 'should flash successful creation message and redirect to new role page'  
+
       
     end
     
@@ -123,41 +121,24 @@ describe RolesController do
       @role.stub!(:update_attributes).and_return(nil)
     end
     
-    it 'should update the attributes' do
-      @role.should_receive(:update_attributes)
-      post :update, :id => 1, :role => {}
-    end
-    
     describe 'if role is valid' do
-      it 'should update role'
-      it 'should flash successful update and redirect to updated role page'
+      it 'should update role' do
+        @role.should_receive(:valid?).and_return(true)
+        post :update, :id => "1", :role => {:id => 1, :role_type => "talent", :user => @current_user}
+        flash[:notice].should == "Talent was successfully updated."
+        response.should redirect_to custom_role_path("kunal", "talent")
+        
+      end
     end
     
     describe 'if role is not valid' do
-      it 'should not update role'
-      it 'should flash error and redirect to edit role page'
+      it 'should not update role' do
+        @role.should_receive(:valid?).and_return(false)
+        post :update, :id => "1", :role => {:id => 1, :role_type => "talent", :user => @current_user}
+        flash[:error].should == "There were some errors in updating your role."
+        response.should redirect_to custom_edit_role_path("kunal", "talent")
+      end      
     end
-    
-=begin
-    it 'should set a flash error if the resultant role is invalid' do ############
-      post :update, :id => 1, :role => {}
-      flash[:error].should == "There were some errors in updating your role..."
-      flash[:notice].should == nil
-    end
-    
-    it 'should not set a flash error if the resultant role is valid' do ############
-      @role.should_receive(:valid?).and_return(true)
-      @role.should_receive(:invalid?).and_return(false)
-      post :update, :id => 1, :role => {}
-      flash[:error].should == nil
-      flash[:notice].should == "talent was successfully updated."
-    end
-    
-    it 'should redirect to the role route' do #############
-      post :update, :id => 1, :role => {}
-      response.should redirect_to custom_role_path("kunal", "talent")
-    end
-=end
   end
   
   describe 'destroy' do

@@ -19,29 +19,4 @@ Background:
     | 4           | Media Collection 2 |
 
   And I am on the "tester" Portfolio page for the "talent" role
-  And my "quickshow" album is empty #not implemented yet
-  
-
-Scenario: Go create a MC
-  When I press "Add Collection?" #not yet implemented
-  Then I should be on the "talent" new media collection page #not yet implemented
-
-Scenario: Go delete an MC
-  When I press "Delete" within the "Media Collection 1" section #not yet implemented
-  Then I should be on my "talent" portfolio page #not yet implemented
-  And I should not see "Media Collection 1" #not yet implemented
-  But I should see "Media Collection 2" #not yet implemented
-  
-Scenario: Access an MC page
-  When I follow "View Collection" within the "Media Collection 1" section #not yet implemented
-  Then I should be on my "talent" album "1" page #not yet implemented
-  
-Scenario: Access an MC edit page
-  When I press "Edit" within the "Media Collection 1" section #not yet implemented
-  Then I should be on my "talent" album "1" "edit" page #not yet implemented
-
-Scenario: Go back to role page #A user should be able to access portfolio page through the role it corresponds to
-  When I follow "Back to your talent page" #not implemented yet
-  Then I should be on my talent page #not implemented yet
-  And I should see my media collections in the portfolio section #not implemented yet
-
+  #And my "quickshow" album is empty #not implemented yet

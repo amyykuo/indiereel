@@ -7,6 +7,17 @@ class User < ActiveRecord::Base
   validates :uid, :uniqueness => true
   validates :username, :uniqueness => true
   
+  # Search
+=begin
+  searchable do
+    string :username
+    string :name
+    string :email #not too sure about this
+    string :gender
+    string :identifier
+  end
+=end
+  
   def role_list
     self.roles.map{|role| role.role_type }
   end

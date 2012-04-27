@@ -33,12 +33,18 @@ module HtmlSelectorsHelpers
     # web steps:
     when /^"(.+)"$/
       $1
+    
       
     when /(Talent|Director|Producer|Crew|Projects|Portfolio)/
       "##{$1.downcase}"
-      
+    
     when /Navigation Bar/
       ".navbar-inner"
+      
+    when /^(.*)/
+      "##{$1}"
+      
+    
 
     else
       raise "Can't find mapping from \"#{scope}\" to a selector.\n" +
