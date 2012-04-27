@@ -222,21 +222,16 @@
 			      <% elsif @portfolio_album.nil? %>
 			        This user doesn't have a portfolio yet.
 			      <% else %>
+			        
+			      
 			        <div class="row-fluid">
 			        <% for asset in @portfolio_album.media_assets.first(4) %>
 			          <div class="span3">
-					        <div class="well ir-media-thumbnail">
-					          <% if asset.image? %>
-						          <%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
-					          <% elsif asset.video? %>
-						          <%= link_to image_tag("video_thumb.png"), media_route(asset) %>
-					          <% elsif asset.audio? %>
-					            <%= link_to image_tag("audio_thumb.png"), media_route(asset) %>
-					          <% end %>
-					        </div>
-				        </div>
+			            <%= render "shared/thumbnail", :asset => asset %>
+			        	</div>
 			        <% end %>
 			        </div>
+			        
 			      <% end %>
 			      <hr />
 	      </section>

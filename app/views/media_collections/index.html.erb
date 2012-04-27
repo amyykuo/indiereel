@@ -35,15 +35,7 @@ $(function(){
 		<div class="row-fluid">
 			<% for asset in album.media_assets.first(6) %>
 				<div class="span2">
-					<div class="well ir-media-thumbnail">
-					<% if asset.image? %>
-						<%= link_to image_tag(asset.media.url(:thumb)), media_route(asset) %>
-					<% elsif asset.video? %>
-						<%= link_to image_tag("video_thumb.png"), media_route(asset) %>
-					<% elsif asset.audio? %>
-					  <%= link_to image_tag("audio_thumb.png"), media_route(asset) %>
-					<% end %>
-					</div>
+				  <%= render "shared/thumbnail", :asset => asset %>
 				</div>
 			<% end %>
 			<% if album.media_assets.count > 6 %>
