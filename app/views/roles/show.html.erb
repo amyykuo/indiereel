@@ -2,12 +2,7 @@
   <% current_user.uid == @user.uid %>
 <% end %>
 
-<%
-=begin %>
-<%= @role.physical_attributes_filled? %> | <%= @role.contact_attributes_filled? %> | <%= @role.living_attributes_filled? %> | <%= @role.agency_attributes_filled? %>
-<%
-=end %>
-
+<h1><%= @attbool %></h1>
 
 <div class='container'>
   <% if private_mode_conditional %>
@@ -132,24 +127,29 @@
       
       <div class="row-fluid">
         <div class="span6">
-	        <section id="attributes">
-        	  <h3>Attributes</h3>
+          <section id="attributes">
+            <% if !@attbool[:physical] %>
+          	  <h3>Attributes</h3>
+        	  <% end %>
         	  
-		        <ul class="unstyled">
-		          <% for symbolVar, varName in Role.physical_attributes %>
-		            <% if private_mode_conditional && !@preview %>
-		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-		            <% else %>
-		              <% unless @role[symbolVar].empty? %>
+	          <ul class="unstyled">
+	            <% for symbolVar, varName in Role.physical_attributes %>
+	              <% if private_mode_conditional && !@preview %>
+	                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	              <% else %>
+	                <% unless @role[symbolVar].empty? %>
     		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-		              <% end %>
-		            <% end %>
-	            <% end %>
-		        </ul>
-	        </section>
+	                <% end %>
+	              <% end %>
+              <% end %>
+	          </ul>
+          </section>
+	        
 	        
 	        <section id="living">
-	          <h3>Living</h3>
+	          <% if !@attbool[:living] %>
+  	          <h3>Living</h3>
+	          <% end %>
 	          
             <ul class="unstyled">
               <% for symbolVar, varName in Role.living_attributes %>
@@ -168,7 +168,9 @@
 	      
 	      <div class="span6">
 	        <section id="contact-info">
-	          <h3>Contact Information</h3>
+	          <% if !@attbool[:contact] %>
+	            <h3>Contact Information</h3>
+            <% end %>
 	          
 	          <ul class="unstyled">
 		          <% for symbolVar, varName in Role.contact_attributes %>
@@ -184,7 +186,9 @@
 	        </section>
 	        
 	        <section id="agency-info">
-	          <h3>Agency Information</h3>
+	          <% if !@attbool[:agency] %>
+	            <h3>Agency Information</h3>
+            <% end %>
 	          
 	          <ul class="unstyled">
 	            <% for symbolVar, varName in Role.agency_attributes %>

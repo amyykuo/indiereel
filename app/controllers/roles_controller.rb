@@ -5,6 +5,19 @@ class RolesController < ApplicationController
     @preview = params[:preview] rescue false
     @headshot = @role.headshots
     @portfolio_album = @role.portfolio_album rescue nil
+    
+    @att = Role.role_attributes
+    @attbool = {}
+    
+    for k, v in @att
+      @attbool[k] = false
+      for val in v
+        #if !@role[v].empty?
+        #  @attbool[k] = true
+        #end
+      end
+    end
+    
     render_not_found if @role.nil?
   end
   
@@ -44,6 +57,19 @@ class RolesController < ApplicationController
     
     if @role.valid?
       flash[:notice] = "#{@role.role_type.capitalize} was successfully updated."
+      
+      @attbool = {}
+      
+      @attributes = Role.role_attributes
+      
+      for cat in @attributes
+        for att in attributes[cat]
+          if !@role[attributes[cat][att]].empty?
+            @attbool[cat] = true
+          end
+        end
+      end
+      
       redirect_to role_route(@role)
     else
       flash[:error] = "There were some errors in updating your role."

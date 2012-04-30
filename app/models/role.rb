@@ -37,7 +37,7 @@ class Role < ActiveRecord::Base
   end
   
   def self.legacy_options
-    ['Talent', 'Director', 'Producer', 'Crew', 'Actor']
+    ['Talent', 'Director', 'Producer', 'Actor', 'Crew']
   end
   
   def self.ages
@@ -60,52 +60,11 @@ class Role < ActiveRecord::Base
     {:agency_name => 'Agency Name', :agency_email => 'Agency Email', :agency_phone_number => 'Agency Phone'}
   end
   
-  def self.attribute_super_structure
-    {:physical => self.physical_attributes,
-     :contact => self.contact_attributes,
-     :living => self.living_attributes,
-     :agency => self.agency_attributes} #fill in later
-  end
-  
-  #temporary methods to just fix the issue with hiding sections. unoptimal and disgusting but functional. DISGUSTING.
-  def self.physical_attributes_filled?
-    for att, att_name in self.physical_attributes
-      if !self[att].empty?
-        return true
-      end
-    end
-    
-    return false
-  end
-  
-  def self.contact_attributes_filled?
-    for att, att_name in self.contact_attributes
-      if !self[att].empty?
-        return true
-      end
-    end
-    
-    return false
-  end
-  
-  def self.living_attributes_filled?
-    for att, att_name in self.living_attributes
-      if !self[att].empty?
-        return true
-      end
-    end
-    
-    return false
-  end
-  
-  def self.agency_attributes_filled?
-    for att, att_name in self.agency_attributes
-      if !self[att].empty?
-        return true
-      end
-    end
-    
-    return false
+  def self.role_attributes
+    {:physical => [:age_range, :eyes, :hair, :height, :weight],
+    :contact => [:email, :phone_number, :website], 
+    :living => [:location],
+    :agency => [:agency_name, :agency_email, :agency_phone_number]}
   end
   
   
