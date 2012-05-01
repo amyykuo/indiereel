@@ -1,12 +1,27 @@
 <div align="center">
   <h3>You have no roles. </h3>
-  <p><%= link_to "CREATE ONE?", new_role_path, :class => "btn btn-info btn-large" %></p>
+  <p><%= link_to "CREATE ONE", new_role_path, :class => "btn btn-info btn-large" %></p>
 </div>
       
 <br>
-      
-<div class="well">
-  <h4>What are roles? </h4>    
-  <p>A role is the position that you would take in a film production. You can choose between 4 main roles, and elaborate on details in your role profile. For more information, visit the <%= link_to "help page", help_path %>. </p>
 
+<div class="row-fluid">
+  <div class="span6">
+    <div class="well">
+      <h4 align="center">What are roles? </h4>    
+      <p>A role is the position that you would take in a film production. You can choose between 4 main roles, and elaborate on details in your role profile.</p>
+    </div>
+  </div>
+  
+  <div class="span6">
+    <div class="well">
+      <h4 align="center">Why create one? </h4>    
+      <p></p>
+    </div>
+  </div>
 </div>
+
+<div class="row-fluid" align="center">
+  <p>For more information, please visit the <%= link_to "help page", help_path %>.</p>
+</div>
+
