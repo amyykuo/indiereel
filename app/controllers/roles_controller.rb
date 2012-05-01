@@ -12,9 +12,9 @@ class RolesController < ApplicationController
     for k, v in @att
       @attbool[k] = false
       for val in v
-        #if !@role[v].empty?
-        #  @attbool[k] = true
-        #end
+        if !@role[val].empty?
+          @attbool[k] = true
+        end
       end
     end
     
@@ -57,19 +57,6 @@ class RolesController < ApplicationController
     
     if @role.valid?
       flash[:notice] = "#{@role.role_type.capitalize} was successfully updated."
-      
-      @attbool = {}
-      
-      @attributes = Role.role_attributes
-      
-      for cat in @attributes
-        for att in attributes[cat]
-          if !@role[attributes[cat][att]].empty?
-            @attbool[cat] = true
-          end
-        end
-      end
-      
       redirect_to role_route(@role)
     else
       flash[:error] = "There were some errors in updating your role."
@@ -89,5 +76,8 @@ class RolesController < ApplicationController
 	  
     redirect_to home_route(current_user)
     
+  end
+  
+  def search
   end
 end
