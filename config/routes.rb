@@ -52,4 +52,7 @@ Indiereel::Application.routes.draw do
   match "/meet" => "index#meet", :as => "meet"
   match "/contact" => "index#contact", :as => "contact"
   
+  # Search routes
+  match "/search" => "roles#search", :as => "search"
+  
 end

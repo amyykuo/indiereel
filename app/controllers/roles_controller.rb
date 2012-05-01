@@ -77,4 +77,7 @@ class RolesController < ApplicationController
     redirect_to home_route(current_user)
     
   end
+  
+  def search
+  end
 end
