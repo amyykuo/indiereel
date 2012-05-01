@@ -56,17 +56,8 @@
 		      <% end %>
 	      </div>
 	    <% end %>
-
     <% else %>
-      <p>You have no roles. <%= link_to "Create one?", new_role_path, :class => "btn btn-info btn-small" %></p>
-      <br>
-      <div class="well">
-        <h4>What are roles? </h4>    
-        <p>A role is the position that you would take in a film production. You can choose between 4 main roles, and elaborate on details in your role profile. For more information, visit the <%= link_to "help page", help_path %>. </p>
-      </div>
+      <%= render "no_roles" %>
     <% end %>
-  <% else %>
-    <!-- redirect_to role_routes(@default_role) -->
-	  <!-- link to default profile here, or if there's a parameter to a specific profile, do that instead -->
   <% end %>
 </div>
