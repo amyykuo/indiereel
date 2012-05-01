@@ -2,6 +2,8 @@
   <% current_user.uid == @user.uid %>
 <% end %>
 
+<h1><%= @attbool %></h1>
+
 <div class='container'>
   <% if private_mode_conditional %>
     <div class='row-fluid'>
@@ -88,10 +90,14 @@
 	        
 		      <% if private_mode_conditional and !@preview %>
 		        <h3>
-		          <em>Headshots</em><small class="pull-right"><%= link_to "Edit Photos", mc_route(@headshot) %></small>
+		          <em>Headshots</em>
+		          
+		          <small class="pull-right"><%= link_to "Edit Photos", mc_route(@headshot) %></small>
 	          </h3>
+	          
 	          <hr>
 		      <% end %>
+		      
 		      <% if @headshot.media_assets.empty? and private_mode_conditional and !@preview %>
     	      You have no headshots. Add some photos and show off yourself!
     	    <% else %>
@@ -105,9 +111,11 @@
 		          </div>
 		        <% end %>
 		      <% end %>
-		      <hr />
+		      
+		      <hr>
         </section>
       </div>
+      
 	    <h3>
 	      <em>Basic Info</em>
 	      <% if private_mode_conditional && !@preview %>
@@ -119,24 +127,29 @@
       
       <div class="row-fluid">
         <div class="span6">
-	        <section id="attributes">
-        	  <h3>Attributes</h3>
+          <section id="attributes">
+            <% if !@attbool[:physical] %>
+          	  <h3>Attributes</h3>
+        	  <% end %>
         	  
-		        <ul class="unstyled">
-		          <% for symbolVar, varName in Role.physical_attributes %>
-		            <% if private_mode_conditional && !@preview %>
-		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-		            <% else %>
-		              <% unless @role[symbolVar].empty? %>
+	          <ul class="unstyled">
+	            <% for symbolVar, varName in Role.physical_attributes %>
+	              <% if private_mode_conditional && !@preview %>
+	                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	              <% else %>
+	                <% unless @role[symbolVar].empty? %>
     		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-		              <% end %>
-		            <% end %>
-	            <% end %>
-		        </ul>
-	        </section>
+	                <% end %>
+	              <% end %>
+              <% end %>
+	          </ul>
+          </section>
+	        
 	        
 	        <section id="living">
-	          <h3>Living</h3>
+	          <% if !@attbool[:living] %>
+  	          <h3>Living</h3>
+	          <% end %>
 	          
             <ul class="unstyled">
               <% for symbolVar, varName in Role.living_attributes %>
@@ -155,7 +168,9 @@
 	      
 	      <div class="span6">
 	        <section id="contact-info">
-	          <h3>Contact Information</h3>
+	          <% if !@attbool[:contact] %>
+	            <h3>Contact Information</h3>
+            <% end %>
 	          
 	          <ul class="unstyled">
 		          <% for symbolVar, varName in Role.contact_attributes %>
@@ -171,7 +186,9 @@
 	        </section>
 	        
 	        <section id="agency-info">
-	          <h3>Agency Information</h3>
+	          <% if !@attbool[:agency] %>
+	            <h3>Agency Information</h3>
+            <% end %>
 	          
 	          <ul class="unstyled">
 	            <% for symbolVar, varName in Role.agency_attributes %>
@@ -240,24 +257,27 @@
 	    <div class="row-fluid">
 	      <section id="portfolio">
 			      <h3><em>Portfolio</em><small class="pull-right"><%= link_to "View full portfolio", portfolio_route(@role) %></small></h3>
+			      
 			      <hr>
+			      
 			      <% if @portfolio_album.nil? and private_mode_conditional and !@preview %>
 			        You have no albums. <%= link_to "Create one?", new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
 			      <% elsif @portfolio_album.nil? %>
 			        This user doesn't have a portfolio yet.
 			      <% else %>
-			        
-			      
 			        <div class="row-fluid">
+			        
 			        <% for asset in @portfolio_album.media_assets.first(4) %>
 			          <div class="span3">
 			            <%= render "shared/thumbnail", :asset => asset %>
 			        	</div>
 			        <% end %>
+			        
 			        </div>
 			        
 			      <% end %>
-			      <hr />
+			      
+			      <hr>
 	      </section>
 	      
 	      <section id="projects">

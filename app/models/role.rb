@@ -37,7 +37,7 @@ class Role < ActiveRecord::Base
   end
   
   def self.legacy_options
-    ['Talent', 'Director', 'Producer', 'Crew', 'Actor']
+    ['Talent', 'Director', 'Producer', 'Actor', 'Crew']
   end
   
   def self.ages
@@ -60,11 +60,11 @@ class Role < ActiveRecord::Base
     {:agency_name => 'Agency Name', :agency_email => 'Agency Email', :agency_phone_number => 'Agency Phone'}
   end
   
-  def self.attribute_super_structure
-    {:physical => self.physical_attributes,
-     :contact => self.contact_attributes,
-     :living => self.living_attributes,
-     :agency => self.agency_attributes} #fill in later
+  def self.role_attributes
+    {:physical => [:age_range, :eyes, :hair, :height, :weight],
+    :contact => [:email, :phone_number, :website], 
+    :living => [:location],
+    :agency => [:agency_name, :agency_email, :agency_phone_number]}
   end
   
   
