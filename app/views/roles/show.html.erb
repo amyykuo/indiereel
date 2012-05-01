@@ -2,8 +2,6 @@
   <% current_user.uid == @user.uid %>
 <% end %>
 
-<h1><%= @attbool %></h1>
-
 <div class='container'>
   <% if private_mode_conditional %>
     <div class='row-fluid'>
@@ -128,7 +126,7 @@
       <div class="row-fluid">
         <div class="span6">
           <section id="attributes">
-            <% if !@attbool[:physical] %>
+            <% if @attbool[:physical] %>
           	  <h3>Attributes</h3>
         	  <% end %>
         	  
@@ -147,7 +145,7 @@
 	        
 	        
 	        <section id="living">
-	          <% if !@attbool[:living] %>
+	          <% if @attbool[:living] %>
   	          <h3>Living</h3>
 	          <% end %>
 	          
@@ -168,7 +166,7 @@
 	      
 	      <div class="span6">
 	        <section id="contact-info">
-	          <% if !@attbool[:contact] %>
+	          <% if @attbool[:contact] %>
 	            <h3>Contact Information</h3>
             <% end %>
 	          
@@ -186,7 +184,7 @@
 	        </section>
 	        
 	        <section id="agency-info">
-	          <% if !@attbool[:agency] %>
+	          <% if @attbool[:agency] %>
 	            <h3>Agency Information</h3>
             <% end %>
 	          
