@@ -14,23 +14,19 @@ class Role < ActiveRecord::Base
   before_create :check_for_default_role
   after_destroy :transfer_default_role
   
-  # Search
-=begin  
   searchable do
-    string :role_type
-    string :role_name
+    text :role_name
+    text :role_type
+    text :role_type_description
+    text :role_experience
+    text :objective
+    
     string :email
-    string :age_range
-    string :eyes
-    string :hair
-    string :height
-    string :weight
-    string :location
-    string :agency_name
+    string :website
+    text :location
+    text :agency_name
+    string :agency_string
   end
-=end
-  
-  # helper methods
   
   def self.options
     ['talent', 'director', 'producer', 'crew']
@@ -83,7 +79,8 @@ class Role < ActiveRecord::Base
     MediaCollection.find_by_role_id_and_headshot(self.id, true)
   end
   
-  private 
+  
+  private
   
   def check_for_default_role
     self.default_role_user = self.user if self.user.roles.empty?
@@ -97,5 +94,4 @@ class Role < ActiveRecord::Base
       user.save
     end
   end
-
 end
