@@ -121,7 +121,11 @@
         <% end %>
       </h3>
 	    
-	    <hr>
+	    <% if !@attbool.has_value?(true) %>
+        This user has not put in any basic information.
+      <% else %>
+        <hr>
+      <% end %>
       
       <div class="row-fluid">
         <div class="span6">
