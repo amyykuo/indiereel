@@ -209,6 +209,8 @@
 	    
 	    <div class="row-fluid">
 	      <section id="experience">
+		      <%= render "work_related", :work => "experience", :preview => @preview, :private_mode_conditional => private_mode_conditional, :role => @role %>
+		      <!--
 			      <h3>
 			        <em>Experience</em>
 			        
@@ -226,11 +228,13 @@
 		            <%= @role.role_experience %>
 		          <% end %>
 	          <% end %>
-			      
+			      -->
 			      <hr>
 	      </section>
 	      
 	      <section id="skills">
+	        <%= render "work_related", :work => "experience", :preview => @preview, :private_mode_conditional => private_mode_conditional, :role => @role %>
+			     <!-- 
 			      <h3>
 			        <em>Skills</em>
 			        
@@ -248,7 +252,7 @@
 		            <%= @role.role_skills %>
 		          <% end %>
 	          <% end %>
-			      
+			      -->
 			      <hr>
 			      
 	      </section>
