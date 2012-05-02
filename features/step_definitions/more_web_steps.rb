@@ -22,6 +22,7 @@ When /^(.*) within the "([^"]*)" section$/ do |step_def, scope|
   #puts page.body
   with_scope(scope) do
     step step_def
+    #puts page.body
   end
 end
 
