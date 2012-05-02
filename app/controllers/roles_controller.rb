@@ -79,6 +79,8 @@ class RolesController < ApplicationController
   end
   
   def search
+    @selected = []
+    @selected << params[:check3] << params[:check2] << params[:check1] << params[:check4]
     @search = Role.search do
       words = params[:query]
       params[:check3].nil? ? words = words : words = words +" "+ params[:check3]
