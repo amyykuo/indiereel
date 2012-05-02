@@ -53,9 +53,13 @@
         <div class="row-fluid">
           <div class="span6">
             <section id="attributes">
-              <% if @attbool[:physical] || !@preview %>
-            	  <h3>Attributes</h3>
-          	  <% end %>
+              <% if private_mode_conditional && !@preview %>
+    	          <h3>Attributes</h3>
+    	        <% elsif @attbool[:physical] && @preview%>
+    	          <h3>Attributes</h3>
+    	        <% elsif @attbool[:physical] && !@preview%>
+    	          <h3>Attributes</h3>        	     
+	            <% end %>
           	  
 	            <ul class="unstyled">
 	              <% for symbolVar, varName in Role.physical_attributes %>
@@ -78,7 +82,6 @@
     	          <h3>Living</h3>
     	        <% elsif @attbool[:living] && !@preview%>
     	          <h3>Living</h3>    
-    	        <% else %>
 	            <% end %>
 	            
               <ul class="unstyled">
@@ -98,9 +101,13 @@
 	        
 	        <div class="span6">
 	          <section id="contact-info">
-	            <% if @attbool[:contact] || !@preview %>
-	              <h3>Contact Information</h3>
-              <% end %>
+	            <% if private_mode_conditional && !@preview %>
+    	          <h3>Contact Information</h3>
+    	        <% elsif @attbool[:contact] && @preview%>
+    	          <h3>Contact Information</h3>
+    	        <% elsif @attbool[:contact] && !@preview%>
+    	          <h3>Contact Information</h3>    
+	            <% end %>
 	            
 	            <ul class="unstyled">
 		            <% for symbolVar, varName in Role.contact_attributes %>
@@ -116,9 +123,13 @@
 	          </section>
 	          
 	          <section id="agency-info">
-	            <% if @attbool[:agency] || !@preview %>
-	              <h3>Agency Information</h3>
-              <% end %>
+	            <% if private_mode_conditional && !@preview %>
+    	          <h3>Agency Information</h3>
+    	        <% elsif @attbool[:agency] && @preview%>
+    	          <h3>Agency Information</h3>
+    	        <% elsif @attbool[:agency] && !@preview%>
+    	          <h3>Agency Information</h3>    
+	            <% end %>
 	            
 	            <ul class="unstyled">
 	              <% for symbolVar, varName in Role.agency_attributes %>
