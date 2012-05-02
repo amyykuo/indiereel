@@ -1,7 +1,22 @@
 <div class="container">
   <%= form_tag search_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
-  </p>
+    
+    <hr/>
+    <h2>Search</h2>
+    <hr/>
+    
+    <p>
+      <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
+    </p>
+    
+    <% if !@query.nil? %>
+      <hr/>
+      <h2>Results</h2>
+      <hr/>
+
+      <p> stuff </p>
+
+    <% end %>
+    
   <% end %>
 </div>

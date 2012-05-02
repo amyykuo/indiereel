@@ -79,5 +79,7 @@ class RolesController < ApplicationController
   end
   
   def search
+    #@query = !params[:query].nil? ? params[:query] : ''
+    @query = params[:query].nil
   end
 end
