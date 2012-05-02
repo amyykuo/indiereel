@@ -4,32 +4,58 @@
   <h2>Search</h2>
   
   <p>
+    <!-- <label>Select a role to search for:</label> -->
+			<!-- 	<select name="filter"> -->
+				<!-- 	<option name="talent">Talent</option> -->
+				<!-- 	<option name="director">Director</option> -->
+				<!-- 	<option name="producer">Producer</option> -->
+				<!-- 	<option name="crew">Crew</option>				 -->	
+				<!-- </select> -->
+
+      <input type="checkbox" name = check1 value = talent> Talent
+
+
+      <input type="checkbox" name = check2 value = director> Director   
+
+
+      <input type="checkbox" name = check3 value = producer> Producer
+
+
+      <input type="checkbox" name = check4 value = crew> Crew   
+
     <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
   </p>
   <% end %> 
 
-  <% unless @search_results.empty? %>
+  <% unless @search_results.nil? %>
     <h2>Results</h2>
     
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Location</th>
-        <th>Email</th>
-      </tr>
-      <% for result_item in @search_results %>
-        <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= result_item.role_name %></td>
-          <td><%= result_item.role_type %></td>
-          <td><%= result_item.location %></td>
-          <td><%= result_item.email %></td>
-        </tr>
-      <% end %>
-    </table>
-  <% else %>
-    <h2>Results</h2>
-    <p>Your query returned no results.</p>
+    <% unless @search_results.empty? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Location</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for result_item in @search_results %>
+            <tr class="<%= cycle('odd', 'even') %>">
+              <td><%= image_tag result_item.profile_pic_url, :width => 50, :height => 50 %></td>
+              <td><%= link_to result_item.role_name, role_route(result_item) %></td>
+              <td><%= result_item.role_type.capitalize %></td>
+              <td><%= result_item.location %></td>
+              <td><%= result_item.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Your query returned no results.</p>
+    <% end %>
   <% end %>
 
 </div>

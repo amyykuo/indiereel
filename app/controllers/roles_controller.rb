@@ -79,8 +79,23 @@ class RolesController < ApplicationController
   
   def search
     @search = Role.search do
-      keywords params[:query]      
+      words = params[:query]
+      params[:check3].nil? ? words = words : words = words +" "+ params[:check3]
+      params[:check2].nil? ? words = words : words = words +" "+ params[:check2]
+      params[:check1].nil? ? words = words : words = words +" "+ params[:check1]
+      params[:check4].nil? ? words = words : words = words + " "+params[:check4]
+      keywords words do
+        minimum_match 2
+      end
+      #keywords params[:check3]
+      #keywords params[:check1]
+      #keywords params[:check2]
+      #keywords params[:check4]
     end
-    @search_results = @search.results
+    unless params[:query].nil?
+      @search_results = !params[:query].empty? ? @search.results : nil
+    else
+      @search_results = nil
+    end
   end
 end

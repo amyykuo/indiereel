@@ -1,0 +1,28 @@
+<section id="headshots">
+	        
+  <% if private_mode_conditional and !preview %>
+    <h3>
+      <em>Headshots</em>
+      
+      <small class="pull-right"><%= link_to "Edit Photos", mc_route(headshot) %></small>
+    </h3>
+    
+    <hr>
+  <% end %>
+  
+  <% if headshot.media_assets.empty? and private_mode_conditional and !preview %>
+    You have no headshots. Add some photos and show off yourself!
+  <% else %>
+    <% unless headshot.media_assets.empty? %>
+      <div class="row-fluid">
+        <% for asset in headshot.media_assets.first(4) %>
+          <div class="span3">
+            <%= render "shared/thumbnail", :asset => asset %>
+        	</div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <hr>
+</section>
