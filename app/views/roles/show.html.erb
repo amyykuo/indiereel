@@ -130,7 +130,7 @@
       <div class="row-fluid">
         <div class="span6">
           <section id="attributes">
-            <% if private_mode_conditional || @attbool[:physical] || !@preview %>
+            <% if @attbool[:physical] || !@preview %>
           	  <h3>Attributes</h3>
         	  <% end %>
         	  
@@ -149,7 +149,7 @@
 	        
 	        
 	        <section id="living">
-	          <% if private_mode_conditional || @attbool[:living] ||  !@preview %>
+	          <% if @attbool[:living] ||  !@preview %>
   	          <h3>Living</h3>
 	          <% end %>
 	          
@@ -170,7 +170,7 @@
 	      
 	      <div class="span6">
 	        <section id="contact-info">
-	          <% if private_mode_conditional || @attbool[:contact] || !@preview %>
+	          <% if @attbool[:contact] || !@preview %>
 	            <h3>Contact Information</h3>
             <% end %>
 	          
@@ -188,7 +188,7 @@
 	        </section>
 	        
 	        <section id="agency-info">
-	          <% if private_mode_conditional || @attbool[:agency] || !@preview %>
+	          <% if @attbool[:agency] || !@preview %>
 	            <h3>Agency Information</h3>
             <% end %>
 	          
