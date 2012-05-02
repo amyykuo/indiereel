@@ -7,7 +7,7 @@
       <small class="pull-right"><%= link_to "Edit", edit_role_route(role, "work-related") %></small>
     <% end %>
   </h3>
-
+  <hr/>
   <% if private_mode_conditional && !preview %>
     <%= role.role_experience %>
   <% else %>
