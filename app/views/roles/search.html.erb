@@ -1,28 +1,30 @@
 <div class="container">
   <%= form_tag search_path, :method => :get do %>
-
+  
+  <h2>Search</h2>
+  
   <p>
     <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
   </p>
   <% end %> 
 
-<h2>Results</h2>
+  <h2>Results</h2>
 
-<% unless @search_results.nil? %>
-  <table>
-    <tr>
-      <th>user</th>
-      <th>email</th>
-    </tr>
-    <% for result_item in @search_results %>
-      <tr class="<%= cycle('odd', 'even') %>">
-        <td><%= result_item.role_name %></td>
-        <td><%= result_item.email %></td>
+  <% unless @search_results.nil? %>
+    <table>
+      <tr>
+        <th>user</th>
+        <th>email</th>
       </tr>
-    <% end %>
-  </table>
-<% else %>
-  <p>Your query returned no results.</p>
-<% end %>
+      <% for result_item in @search_results %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= result_item.role_name %></td>
+          <td><%= result_item.email %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>Your query returned no results.</p>
+  <% end %>
 
 </div>
