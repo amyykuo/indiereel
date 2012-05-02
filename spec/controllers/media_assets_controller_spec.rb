@@ -43,6 +43,7 @@ describe MediaAssetsController do
       album = mock("Album", :role => role, :slug => "lol")
       MediaAsset.should_receive(:find).with("1").and_return(@asset = mock("Asset", :media_collection => album))
       @asset.should_receive(:destroy)
+      @asset.should_receive(:previous)
       delete :destroy, :id => "1"
       flash[:notice].should == "Media deleted."
       response.should redirect_to custom_mc_path("kunal", "talent", "lol")
