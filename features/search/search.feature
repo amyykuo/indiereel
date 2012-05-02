@@ -1,3 +1,4 @@
+@search
 Feature: profile search
   
   As a user
