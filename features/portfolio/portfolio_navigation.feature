@@ -12,11 +12,12 @@ Background:
     |   talent   |  1      |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
     
   And I have the following media collections:
-    | role_id | title      | description |
-    | 1       | QuickShow  | Wait?       |
-    | 2       | Headshots  | Where?      |
-    | 2       | What       | Wait?       |
-    | 2       | Who        | Where?      |
+    | role_id | title      | description | headshot |
+    | 1       | QuickShow  | Wait?       | false    |
+    | 2       | Headshots  | Where?      | true     |
+    | 2       | What       | Wait?       | false    |
+    | 2       | Who        | Where?      | false    |
+
 
   And I am on the "tester" Portfolio page for the "talent" role
 

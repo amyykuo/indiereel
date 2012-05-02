@@ -17,7 +17,15 @@ Background:
     |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | true         |
     |   talent   |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | false        |
     |   talent   |  2      |  Amy      | best@xxxx.com | I not awesome         | nothing         | some        | true         |
-    |    crew    |  3      |  Kunz     | kunz@xxxx.com | I suck dick literally | great           | a lot       | true         |
+    |    crew    |  2      |  kunz     | kunz@xxxx.com | I suck dick literally | great           | a lot       | true         |
+    
+  And I have the following albums:
+  | role_id | title       | description          | headshot |
+  | 2       | quickshow   | these are mine       | false    |
+  | 1       | headshots   | Where?               | true     |
+  | 3       | headshots   | Where?               | true     |
+  | 1       | What        | these are mine       | false    |
+  | 2       | Who         | Where?               | false    |
   
   
 Scenario: Viewing another person's role (public view)
@@ -42,4 +50,8 @@ Scenario: Viewing your own profile in preview mode (private view, preview mode)
   And I should not see "Agency Name:"
   Then I follow "View All Fields"
   And I should see "Agency Name:"
+  
+Scenario: Other user has no roles
+  When I am on the "kunz" home page
+  Then I should see " The page you were looking for doesn't exist"
 

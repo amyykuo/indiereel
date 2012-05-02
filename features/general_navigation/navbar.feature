@@ -12,6 +12,13 @@ Background:
   |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        |
   |   talent   |  1      |  Nguyen   | best@xxxx.com | I not awesome         | nothing         | some        |
     
+    And I have the following albums:
+  | role_id | title       | description          | headshot |
+  | 1       | quickshow   | these are mine       | false    |
+  | 2       | headshots   | Where?               | true     |
+  | 1       | What        | these are mine       | false    |
+  | 2       | Who         | Where?               | false    |
+    
   And I am on my "tester" home page
   
 

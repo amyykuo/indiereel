@@ -17,6 +17,13 @@ Background:
     | role_type  | user_id | role_name | email         | role_type_description | role_experience | role_skills | default_role |
     |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | true         |
     |   talent   |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | false        |
+    
+  And I have the following albums:
+  | role_id | title       | description          | headshot |
+  | 1       | quickshow   | these are mine       | false    |
+  | 2       | headshots   | Where?               | true     |
+  | 1       | What        | these are mine       | false    |
+  | 2       | Who         | Where?               | false    |
 
 # the testing for this is really sketch and it sucks. very unstable and not sure if it even tests it right
 
