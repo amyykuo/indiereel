@@ -1,44 +1,49 @@
-#Feature: profile search
+Feature: profile search
   
-#  As a user
-#  I want to see other users that I may want to collaborate with
-#  So that I can make good use of my time in interesting work
+  As a user
+  I want to see other users that I may want to collaborate with
+  So that I can make good use of my time in interesting work
 
-#Background: users have been added to database
-#  Given the following users exist:
-#  | name           | city             | position            |
-#  | Amy            | San Diego        | crew                |
-#  | Evan           | Huntington Beach | crew                |
-#  | John           | San Francisco    | talent              |
-#  | Kunal          | New Jersey       | talent              |
-#  | Sylvia         | Irvine           | producer            |
-#  | Jay            | Del Mar          | director            |
-#  | Unicorn        | Rainbow          | director            |
+Background: users have been added to database
 
-#  And I am on the Search page
+  Given I am signed in with provider "facebook"
   
-#Scenario: search for a user by name
-#    When I select the "Users" button
-#    And I type "Amy" in the text box
-#    And I press "Submit"
-#    Then I should see "Amy"
-#    And I should see "San Diego" 
-#    And I should see "crew"
+  And the following users exist:
+  | uid | provider | nickname | name | token |
+  | 12  | facebook | amyykuo  | Amy  | 00000 |
+  | 13  | facebook | kmehtaa  | Kol  | 11111 |
+  | 14  | facebook | johnguy  | jon  | 22222 |
+  
+  And I have the following roles:
+  | role_type  | user_id | role_name | email         | default_role | location      |
+  |   talent   |  2      |  Amy      | best@xxxx.com | true         | San Diego     |
+  |    crew    |  3      |  kunz     | kunz@xxxx.com | true         | New Jersy     |
+  |  director  |  4      |  John     | test@xxxx.com | true         | Berkeley      |
+  |   talent   |  4      |  John     | test@xxxx.com | false        | Berkeley      |
+
+  And I am on the Search page
+  
+  
+Scenario: no search input
+    When I uncheck the following roles: check1, check2, check3, check4
+    And I fill in "query" with ""
+    And I press "Search"
+    Then I should not see "Results"
     
-#Scenario: search for a user by city
-#    When I select the "Users" button
-#    And I type "San Francisco" in the text box
-#    And I press "Submit"
-#    Then I should see "John"
-#    And I should see "San Francisco" 
-#    And I should see "actor"
+Scenario: check boxes only
+    When I check the following roles: check1, check2, check3, check4
+    And I fill in "query" with ""
+    And I press "Search"
+    Then I should see "Results"
 
-#Scenario: search for a user by position
-#    When I select the "Users" button
-#    And I type "actor" in the text box
-#    And I press "Submit"
-#    Then I should see "John"
-#    And I should see "San Francisco" 
-#    And I should see "Kunal"
-#    And I should see "New Jersey"
-#    And I should see "actor"
+Scenario: query only
+    When I uncheck the following roles: check1, check2, check3, check4
+    And I fill in "query" with "Amy"
+    And I press "Search"
+    Then I should see "Results"
+
+Scenario: both check boxes and query
+    When I check the following roles: check1, check2, check3, check4
+    And I fill in "query" with "Amy"
+    And I press "Search"
+    Then I should see "Results"
