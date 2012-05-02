@@ -4,13 +4,25 @@
   <h2>Search</h2>
   
   <p>
-    <label>Select a role to search for:</label>
-				<select name="filter">
-					<option name="talent">Talent</option>
-					<option name="director">Director</option>
-					<option name="producer">Producer</option>
-					<option name="crew">Crew</option>					
-				</select>
+    <!-- <label>Select a role to search for:</label> -->
+			<!-- 	<select name="filter"> -->
+				<!-- 	<option name="talent">Talent</option> -->
+				<!-- 	<option name="director">Director</option> -->
+				<!-- 	<option name="producer">Producer</option> -->
+				<!-- 	<option name="crew">Crew</option>				 -->	
+				<!-- </select> -->
+
+      <input type="checkbox" name = check1 value = talent> Talent
+
+
+      <input type="checkbox" name = check2 value = director> Director   
+
+
+      <input type="checkbox" name = check3 value = producer> Producer
+
+
+      <input type="checkbox" name = check4 value = crew> Crew   
+
     <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
   </p>
   <% end %> 
@@ -22,7 +34,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Pictures</th>
+            <th>Profile</th>
             <th>Name</th>
             <th>Role</th>
             <th>Location</th>
