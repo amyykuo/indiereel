@@ -79,14 +79,9 @@ class RolesController < ApplicationController
   end
   
   def search
-<<<<<<< HEAD
-    #@query = !params[:query].nil? ? params[:query] : ''
-    @query = params[:query].nil
-=======
     @search = Role.search do
       keywords params[:query]      
     end
     @search_results = @search.results
->>>>>>> 9134b7245f717260a3e1408a4eff99b422b1711c
   end
 end
