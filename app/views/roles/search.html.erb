@@ -4,6 +4,13 @@
   <h2>Search</h2>
   
   <p>
+    <label>Select a role to search for:</label>
+				<select id="query">
+					<option name="talent">Talent</option>
+					<option name="director">Director</option>
+					<option name="producer">Producer</option>
+					<option name="crew">Crew</option>					
+				</select>
     <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
   </p>
   <% end %> 
