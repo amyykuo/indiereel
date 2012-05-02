@@ -13,7 +13,11 @@
   <% if headshot.media_assets.empty? and private_mode_conditional and !preview %>
     You have no headshots. Add some photos and show off yourself!
   <% else %>
+     
     <% unless headshot.media_assets.empty? %>
+      <h3>
+        <em>Headshots</em>
+      </h3>
       <div class="row-fluid">
         <% for asset in headshot.media_assets.first(4) %>
           <div class="span3">
