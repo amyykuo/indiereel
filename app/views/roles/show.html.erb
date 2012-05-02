@@ -121,7 +121,7 @@
         <% end %>
       </h3>
 	    
-	    <% if !@attbool.has_value?(true) %>
+	    <% if !@attbool.has_value?(true) && @preview %>
         This user has not put in any basic information.
       <% else %>
         <hr>
@@ -149,7 +149,7 @@
 	        
 	        
 	        <section id="living">
-	          <% if @attbool[:living] %>
+	          <% if @attbool[:living] ||  !@preview %>
   	          <h3>Living</h3>
 	          <% end %>
 	          
@@ -170,7 +170,7 @@
 	      
 	      <div class="span6">
 	        <section id="contact-info">
-	          <% if @attbool[:contact] %>
+	          <% if @attbool[:contact] || !@preview %>
 	            <h3>Contact Information</h3>
             <% end %>
 	          
@@ -188,7 +188,7 @@
 	        </section>
 	        
 	        <section id="agency-info">
-	          <% if @attbool[:agency] %>
+	          <% if @attbool[:agency] || !@preview %>
 	            <h3>Agency Information</h3>
             <% end %>
 	          

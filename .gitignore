@@ -32,3 +32,6 @@ coverage/*
 
 # Ignore the locally uploaded media files
 public/system
+
+# Ignore solr stuff
+solr/*
