@@ -82,6 +82,6 @@ class RolesController < ApplicationController
     @search = Role.search do
       keywords params[:query]      
     end
-    @search_results = @search.results
+    @search_results = !params[:query].empty? ? @search.results : nil
   end
 end

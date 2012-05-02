@@ -8,28 +8,29 @@
   </p>
   <% end %> 
 
-  <% unless @search_results.empty? %>
+  <% unless @search_results.nil? %>
     <h2>Results</h2>
     
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Location</th>
-        <th>Email</th>
-      </tr>
-      <% for result_item in @search_results %>
-        <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= result_item.role_name %></td>
-          <td><%= result_item.role_type %></td>
-          <td><%= result_item.location %></td>
-          <td><%= result_item.email %></td>
+    <% unless @search_results.empty? %>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Location</th>
+          <th>Email</th>
         </tr>
-      <% end %>
-    </table>
-  <% else %>
-    <h2>Results</h2>
-    <p>Your query returned no results.</p>
+        <% for result_item in @search_results %>
+          <tr class="<%= cycle('odd', 'even') %>">
+            <td><%= result_item.role_name %></td>
+            <td><%= result_item.role_type %></td>
+            <td><%= result_item.location %></td>
+            <td><%= result_item.email %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <p>Your query returned no results.</p>
+    <% end %>
   <% end %>
 
 </div>
