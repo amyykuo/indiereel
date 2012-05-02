@@ -72,7 +72,7 @@
 	          
 	          
 	          <section id="living">
-	            <% if @attbool[:living] && private_mode_conditional%>
+	            <% if private_mode_conditional && !@preview %>
     	          <h3>Living</h3>
     	        <% elsif @attbool[:living] && @preview%>
     	          <h3>Living</h3>
