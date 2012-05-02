@@ -72,8 +72,9 @@
 	          
 	          
 	          <section id="living">
-	            <% if @attbool[:living] ||  !@preview %>
+	            <% if @attbool[:living] %>
     	          <h3>Living</h3>
+    	        <% elsif @preview || !private_mode_conditional %>
 	            <% end %>
 	            
               <ul class="unstyled">
