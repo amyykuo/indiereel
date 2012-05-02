@@ -16,6 +16,13 @@ Background:
     |  director  |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | true         |
     |   talent   |  1      |  John     | test@xxxx.com | I am awesome!         | everything      | none        | false        |
     |   talent   |  2      |  Amy      | best@xxxx.com | I not awesome         | nothing         | some        | true         |
+    
+  And I have the following albums:
+  | role_id | title       | description          | headshot |
+  | 3       | quickshow   | these are mine       | false    |
+  | 3       | headshots   | Where?               | true     |
+  | 1       | What        | these are mine       | false    |
+  | 2       | Who         | Where?               | false    |
   
 Scenario: Current user goes to other user's homepage, Current user should be redirected to other user's default role page
   When I am on the "amyykuo" home page

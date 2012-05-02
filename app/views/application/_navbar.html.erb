@@ -9,7 +9,7 @@
 				<li><%= link_to role.role_type.capitalize, role_route(role), :class => "ir-#{role.role_type}-profile-link"%>
 				<% end %>
 				<li class="divider-vertical"></li>
-				<li><a href="#">Search for People</a></li>
+				<li><%= link_to "Search", search_path %><li>
 			</ul>
 			<ul class="nav pull-right">
 				<li><img src="<%= current_user.image %>" height="28" width="28" style="margin-top: 6px"></li>
