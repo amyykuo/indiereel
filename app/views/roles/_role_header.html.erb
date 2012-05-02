@@ -1,0 +1,40 @@
+<div class='span3'>
+  <h1><%= cur_role.role_name %></h1>
+</div>
+
+<div class='span3'>
+  <h2><%= cur_role.role_type.capitalize %></h2>
+  <dd><%= cur_role.role_type_description %></dd>
+</div>
+
+<div class='span4'>
+  <div class='objective'>
+    <% if private_mode_conditional && !preview %>
+      <h4>Objective: <%= cur_role.objective %></h4>
+    <% else %>
+      <% unless cur_role.objective.empty? %>
+        <h4>Objective: <%= cur_role.objective %></h4>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% if user.roles.length > 1 %>
+  <div class='span2'>
+    <div class="btn-group pull-right">
+      <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">Other Roles<span class="caret" /></a>
+      
+      <ul class="dropdown-menu">
+        <% if preview %>
+          <% for role in user.roles %>
+            <%= link_to "#{role.role_type.capitalize}", role_route(role) + '?preview=true' %>
+          <% end %>
+        <% else %>
+          <% for role in user.roles %>
+            <%= link_to "#{role.role_type.capitalize}", role_route(role) %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
