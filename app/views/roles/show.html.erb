@@ -46,6 +46,8 @@
 	    
 	    <% if !@attbool.has_value?(true) && @preview %>
         This user has not put in any basic information.
+      <% elsif !@attbool.has_value?(true) && !private_mode_conditional %>
+        This user has not put in any basic information.
       <% else %>
         <hr>
         <div class="row-fluid">
