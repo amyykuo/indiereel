@@ -1,3 +1,4 @@
+@search
 Feature: search by user
   
   As a user
@@ -32,8 +33,7 @@ Scenario: search for a user by stage name, with role specified
     Then I should see "John"
     And I should see "Talent"
     And I should see "San Francisco"
-    But I should not see "Director"
-    And I should not see "Berkeley"
+    But I should not see "Berkeley"
     
 Scenario: search for a user by stage name, with no role specified
     When I uncheck the following roles: check1, check2, check3, check4
