@@ -1,3 +1,8 @@
+<%= content_for :title do %>
+  Portfolio | IndieReel
+<% end%>
+
+
 <% if current_user.uid == @user.uid %>
   <div class="alert alert-info">
     <h4>This is your <%= @role.role_type %> portfolio , <%= current_user.first_name %>! <small>From here you can see your uploaded works</small></h4>

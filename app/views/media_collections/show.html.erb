@@ -1,3 +1,7 @@
+<%= content_for :title do %>
+  Album | IndieReel
+<% end%>
+
 <% if current_user.uid == @user.uid %>
 	<hr />
 		<h3> <%= @album.title %>
