@@ -78,5 +78,9 @@ class RolesController < ApplicationController
   end
   
   def search
+    @search = Role.search do
+      keywords params[:query]      
+    end
+    @search_results = @search.results
   end
 end
