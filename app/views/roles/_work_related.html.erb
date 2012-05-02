@@ -1,0 +1,41 @@
+<% if work == 'experience' %>
+
+  <h3>
+    <em>Experience</em>
+    
+    <% if private_mode_conditional && !preview %>
+      <small class="pull-right"><%= link_to "Edit", edit_role_route(role, "work-related") %></small>
+    <% end %>
+  </h3>
+
+  <% if private_mode_conditional && !preview %>
+    <%= role.role_experience %>
+  <% else %>
+    <% if role.role_experience.empty? %>
+      This user has not listed any experience.
+    <% else %>
+      <%= role.role_experience %>
+    <% end %>
+  <% end %>
+  
+<% else %>
+
+  <h3>
+    <em>Skills</em>
+    
+    <% if private_mode_conditional && !preview %>
+      <small class="pull-right"><%= link_to "Edit", edit_role_route(role, "work-related") %></small>
+    <% end %>
+  </h3>
+
+  <% if private_mode_conditional && !preview %>
+    <%= role.role_skills %>
+  <% else %>
+    <% if role.role_skills.empty? %>
+      This user has not listed any skills.
+    <% else %>  
+      <%= role.role_skills %>
+    <% end %>
+  <% end %>
+  
+<% end %>
