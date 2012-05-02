@@ -80,23 +80,14 @@ class RolesController < ApplicationController
   def search
     @selected = []
     
-      
     @selected << params[:check3] << params[:check2] << params[:check1] << params[:check4]
     @search = Role.search do
-      if params[:query] == "+"
-        words = ""
-      elsif params[:query] == "-"
-        words =""
-      elsif params[:query] =~ /"/
-        words = ""
-      else
-        words = params[:query]
-      end
-      params[:check3].nil? ? words = words : words = words +" "+ params[:check3]
-      params[:check2].nil? ? words = words : words = words +" "+ params[:check2]
-      params[:check1].nil? ? words = words : words = words +" "+ params[:check1]
-      params[:check4].nil? ? words = words : words = words +" "+params[:check4]
-      print words
+      words = (params[:query].nil? ? "" : params[:query]).gsub(/[-\+\"]{1}/, '').strip.downcase
+      words = params[:check1].nil? ? words : words + " " + params[:check1]
+      words = params[:check2].nil? ? words : words + " " + params[:check2]
+      words = params[:check3].nil? ? words : words + " " + params[:check3]
+      words = params[:check4].nil? ? words : words + " " + params[:check4]
+      
       if params[:query] == ""
         keywords words do
           minimum_match 1
@@ -106,18 +97,14 @@ class RolesController < ApplicationController
           minimum_match 2
         end
       end
-      
     end
+    
     if params[:query].nil? && params[:check3].nil? && params[:check2].nil? && params[:check1].nil? && params[:check4].nil?
       @search_results = nil
     elsif params[:query].empty? && params[:check3].nil? && params[:check2].nil? && params[:check1].nil? && params[:check4].nil?
       @search_results = nil
     else
       @search_results = @search.results
-    #unless params[:query].nil? && params[:check3].nil? && params[:check2].nil? && params[:check1].nil? && params[:check4].nil?
-     # @search_results = @search.results
-    #else
-      #@search_results = nil
     end
   end
 end

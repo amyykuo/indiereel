@@ -20,6 +20,7 @@ class Role < ActiveRecord::Base
     text :role_type_description
     text :role_experience
     text :objective
+    text :role_skills
     
     string :email
     string :website
