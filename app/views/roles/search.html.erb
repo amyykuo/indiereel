@@ -15,6 +15,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Pictures</th>
             <th>Name</th>
             <th>Role</th>
             <th>Location</th>
@@ -24,6 +25,7 @@
         <tbody>
           <% for result_item in @search_results %>
             <tr class="<%= cycle('odd', 'even') %>">
+              <td><%= image_tag result_item.profile_pic_url, :width => 50, :height => 50 %></td>
               <td><%= link_to result_item.role_name, role_route(result_item) %></td>
               <td><%= result_item.role_type.capitalize %></td>
               <td><%= result_item.location %></td>
