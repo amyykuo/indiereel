@@ -6,6 +6,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'sunspot/rails/spec_helper'
 
 def login_as(name)
   kunal = mock("Kunal", {:name => name, :uid => "123", :identifier => "kunal", :id => 1})
@@ -22,6 +23,16 @@ OmniAuth.config.add_mock(:facebook, {  :provider    => "facebook",
                                                       :nickname   => "K-Breezy",
                                                       :urls       => {:Facebook => "www.facebook.com/kbreezy"}},
                                   :credentials => {   :auth_token => "lk2j3lkjasldkjflk3ljsdf"} })
+
+Spec::Runner.configure do |config|
+  config.before(:each) do
+    ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
+  end
+
+  config.after(:each) do
+    ::Sunspot.session = ::Sunspot.session.original_session
+  end
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
