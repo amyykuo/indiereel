@@ -7,8 +7,9 @@
   <%= form_tag search_path, :method => :get do %>
   
   <h2>Search</h2>
-  
-  <p>
+  <div class="row-fluid">
+  <div class="span12">
+  <div class="well">
     <!-- <label>Select a role to search for:</label> -->
 			<!-- 	<select name="filter"> -->
 				<!-- 	<option name="talent">Talent</option> -->
@@ -16,7 +17,8 @@
 				<!-- 	<option name="producer">Producer</option> -->
 				<!-- 	<option name="crew">Crew</option>				 -->	
 				<!-- </select> -->
-
+				
+      <div class="row-fluid">
       <input type="checkbox" name = check1 value = talent <%= @selected.include?("talent") ? "checked" : "" %>> Talent
 
 
@@ -27,9 +29,16 @@
 
 
       <input type="checkbox" name = check4 value = crew <%= @selected.include?("crew") ? "checked" : "" %>> Crew   
+    </div>
+    <div class="row-fluid">
+    <%= text_field_tag :query, params[:query] %>
 
-    <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
-  </p>
+    <%= submit_tag "Search" %>
+    </div>
+
+  </div>
+  </div>
+  </div>
   <% end %> 
 
   <% unless @search_results.nil? %>

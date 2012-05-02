@@ -6,10 +6,10 @@
 	<hr />
 		<h3> <%= @album.title %>
 			<span class="pull-right">
-				<%= link_to content_tag(:strong, "Edit Album Info"), edit_mc_route(@album), :class => "btn btn-mini btn-info" %>
+				<%= link_to content_tag(:strong, "Edit Album Info"), edit_mc_route(@album), :class => "btn btn-mini btn-info" if @user.identifier == current_user.identifier %>
 				<%= link_to "Back to Portfolio", portfolio_route(@album.role), :class => "btn btn-mini btn-info" %>
 
-				<%= link_to("Delete", media_collection_path(@album), :method => :delete, :confirm => "Are you sure you want to delete this album?", :class => "btn btn-mini btn-danger") unless @album.quickshow or @album.headshot %>
+				<%= link_to("Delete", media_collection_path(@album), :method => :delete, :confirm => "Are you sure you want to delete this album?", :class => "btn btn-mini btn-danger") unless @album.quickshow or @album.headshot or @user.identifier != current_user.identifier %>
 
 				
 			</span>
@@ -20,6 +20,7 @@
 			<h4> Description </h4>
 			<p><%= @album.description %></p>
 		</div>
+		<% if @user == current_user %>
 		<div class="span4">
 			<%= form_for @media_asset, :html => {:class => "form well"} do |f| %>
 				<% unless @album.headshot %>
@@ -59,18 +60,20 @@
 				<%= f.submit "Upload file", :class => "btn btn-mini btn-info" %>
 			<% end %>
 		</div>
+		<script type="text/javascript">
+			$("#ir-upload-type-select").change(function(){
+				var selectedID = "#" + $(":selected", this).attr("name");
+				var currentID = "#" + $(".ir-upload-field:visible").attr("id");
+				if (selectedID !== currentID){
+					$(currentID).fadeOut(125, function(){
+						$(selectedID).fadeIn(125);
+					});
+				}
+			});
+		</script>
+		<% end %>
 	</div>
-	<script type="text/javascript">
-		$("#ir-upload-type-select").change(function(){
-			var selectedID = "#" + $(":selected", this).attr("name");
-			var currentID = "#" + $(".ir-upload-field:visible").attr("id");
-			if (selectedID !== currentID){
-				$(currentID).fadeOut(125, function(){
-					$(selectedID).fadeIn(125);
-				});
-			}
-		});
-	</script>		
+			
 
 	
 	<hr />
@@ -84,5 +87,3 @@
 			<% end %>
 		</div>
 	<% end %>
-		
-<% end %>

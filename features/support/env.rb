@@ -82,11 +82,6 @@ OmniAuth.config.add_mock(:facebook,
  
 # Test solr for Cucumber
 
-
-
-#require 'sunspot_test/cucumber'
- 
-=begin
 $original_sunspot_session = Sunspot.session
 
 Before("~@search") do
@@ -110,4 +105,4 @@ Before("@search") do
 
   Role.remove_all_from_index!
 end
-=end
+

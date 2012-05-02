@@ -1,3 +1,4 @@
+@search
 Feature: profile search
   
   As a user
@@ -34,6 +35,5 @@ Scenario: search for a user by role ONLY #talent, director, crew, producer
     And I should see "Amy"
     And I should see "San Diego"
     And I should see "Talent"
-    But I should not see "Director"
-    And I should not see "Crew"
+    But I should not see "kunz@xxxx.com"
     And I should not see "kunz"

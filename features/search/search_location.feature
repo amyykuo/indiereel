@@ -24,7 +24,6 @@ Background: users have been added to database
 
   And I am on the Search page
 
-
 Scenario: search for a user by city #talent, director, crew, producer
     When I check the following roles: check1, check2, check3, check4
     And I fill in "query" with "Berkeley"
