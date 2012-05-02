@@ -35,3 +35,4 @@ public/system
 
 # Ignore solr stuff
 solr/*
+config/sunspot.yml
