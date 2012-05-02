@@ -125,88 +125,86 @@
         This user has not put in any basic information.
       <% else %>
         <hr>
-      <% end %>
-      
-      <div class="row-fluid">
-        <div class="span6">
-          <section id="attributes">
-            <% if @attbool[:physical] || !@preview %>
-          	  <h3>Attributes</h3>
-        	  <% end %>
-        	  
-	          <ul class="unstyled">
-	            <% for symbolVar, varName in Role.physical_attributes %>
-	              <% if private_mode_conditional && !@preview %>
-	                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-	              <% else %>
-	                <% unless @role[symbolVar].empty? %>
-    		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+        <div class="row-fluid">
+          <div class="span6">
+            <section id="attributes">
+              <% if @attbool[:physical] || !@preview %>
+            	  <h3>Attributes</h3>
+          	  <% end %>
+          	  
+	            <ul class="unstyled">
+	              <% for symbolVar, varName in Role.physical_attributes %>
+	                <% if private_mode_conditional && !@preview %>
+	                  <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                <% else %>
+	                  <% unless @role[symbolVar].empty? %>
+      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                  <% end %>
 	                <% end %>
-	              <% end %>
-              <% end %>
-	          </ul>
-          </section>
-	        
-	        
-	        <section id="living">
-	          <% if @attbool[:living] ||  !@preview %>
-  	          <h3>Living</h3>
-	          <% end %>
+                <% end %>
+	            </ul>
+            </section>
 	          
-            <ul class="unstyled">
-              <% for symbolVar, varName in Role.living_attributes %>
-                <% if private_mode_conditional && !@preview %>
-	                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-	              <% else %>
-	                <% unless @role[symbolVar].empty? %>
-    		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	          
+	          <section id="living">
+	            <% if @attbool[:living] ||  !@preview %>
+    	          <h3>Living</h3>
+	            <% end %>
+	            
+              <ul class="unstyled">
+                <% for symbolVar, varName in Role.living_attributes %>
+                  <% if private_mode_conditional && !@preview %>
+	                  <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                <% else %>
+	                  <% unless @role[symbolVar].empty? %>
+      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                  <% end %>
 	                <% end %>
-	              <% end %>
+                <% end %>
+	            </ul>
+	          </section>
+	          
+	        </div>
+	        
+	        <div class="span6">
+	          <section id="contact-info">
+	            <% if @attbool[:contact] || !@preview %>
+	              <h3>Contact Information</h3>
               <% end %>
-	          </ul>
-	        </section>
-	        
-	      </div>
-	      
-	      <div class="span6">
-	        <section id="contact-info">
-	          <% if @attbool[:contact] || !@preview %>
-	            <h3>Contact Information</h3>
-            <% end %>
-	          
-	          <ul class="unstyled">
-		          <% for symbolVar, varName in Role.contact_attributes %>
-		            <% if private_mode_conditional && !@preview %>
-		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-		            <% else %>
-		              <% unless @role[symbolVar].empty? %>
-    		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	            
+	            <ul class="unstyled">
+		            <% for symbolVar, varName in Role.contact_attributes %>
+		              <% if private_mode_conditional && !@preview %>
+		                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		              <% else %>
+		                <% unless @role[symbolVar].empty? %>
+      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		                <% end %>
 		              <% end %>
-		            <% end %>
-	            <% end %>
-	          </ul>
-	        </section>
-	        
-	        <section id="agency-info">
-	          <% if @attbool[:agency] || !@preview %>
-	            <h3>Agency Information</h3>
-            <% end %>
+	              <% end %>
+	            </ul>
+	          </section>
 	          
-	          <ul class="unstyled">
-	            <% for symbolVar, varName in Role.agency_attributes %>
-		            <% if private_mode_conditional && !@preview %>
-		              <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
-		            <% else %>
-		              <% unless @role[symbolVar].empty? %>
-    		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	          <section id="agency-info">
+	            <% if @attbool[:agency] || !@preview %>
+	              <h3>Agency Information</h3>
+              <% end %>
+	            
+	            <ul class="unstyled">
+	              <% for symbolVar, varName in Role.agency_attributes %>
+		              <% if private_mode_conditional && !@preview %>
+		                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		              <% else %>
+		                <% unless @role[symbolVar].empty? %>
+      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		                <% end %>
 		              <% end %>
-		            <% end %>
-	            <% end %>
-	          </ul>
-	        </section>
+	              <% end %>
+	            </ul>
+	          </section>
+	        </div>
 	      </div>
-	    </div>
-	    
+	    <% end %>
 	    <hr>
 	    
 	    <div class="row-fluid">
