@@ -1,6 +1,7 @@
 <section id="headshots">
 	        
-  <% if private_mode_conditional and !preview %>
+  
+  <% if headshot.media_assets.empty? and private_mode_conditional and !preview %>
     <h3>
       <em>Headshots</em>
       
@@ -8,9 +9,6 @@
     </h3>
     
     <hr>
-  <% end %>
-  
-  <% if headshot.media_assets.empty? and private_mode_conditional and !preview %>
     You have no headshots. Add some photos and show off yourself!
   <% else %>
      
