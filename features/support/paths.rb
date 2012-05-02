@@ -77,6 +77,9 @@ module NavigationHelpers
     when /^the Meet page/
       meet_path
       
+    when /^the Search page/
+      search_path
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

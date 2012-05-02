@@ -41,3 +41,7 @@ Scenario: Click on Logout Link
   When I follow "Logout" within the "Navigation Bar" section
   Then I should be on the welcome page
   And I should see "Welcome to IndieReel!"
+  
+Scenario: Click on Search
+  When I follow "Search" within the "Navigation Bar" section
+  Then I should be on the search page
