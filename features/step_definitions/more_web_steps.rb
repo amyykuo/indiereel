@@ -32,3 +32,24 @@ end
 #    step %Q{I press "#{action}"}
 #  end
 #end
+
+When /I (un)?check the following roles: (.*)/ do |uncheck, role_list|
+  # HINT: use String#split to split up the rating_list, then
+  #   iterate over the ratings and reuse the "When I check..." or
+  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
+  #puts page.body
+  roles = role_list.split(', ')
+  #if ratings == []
+    # should I check if the rating list is empty?
+  if uncheck
+    # uncheck all rating_list
+    roles.each do |role|
+      step %Q{I uncheck "#{role}"}
+    end
+  elsif not uncheck
+    # check all rating_list
+    roles.each do |role|
+      step %Q{I check "#{role}"}
+    end
+  end   
+end

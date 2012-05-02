@@ -80,7 +80,13 @@ OmniAuth.config.add_mock(:facebook,
                              "gender" => "male"}},
  "credentials" => {"token" => "token12345"}})
  
- # Test solr for Cucumber
+# Test solr for Cucumber
+
+
+
+#require 'sunspot_test/cucumber'
+ 
+=begin
 $original_sunspot_session = Sunspot.session
 
 Before("~@search") do
@@ -102,5 +108,6 @@ Before("@search") do
   end
   Sunspot.session = $original_sunspot_session
 
-  MyModel.remove_all_from_index!
+  Role.remove_all_from_index!
 end
+=end

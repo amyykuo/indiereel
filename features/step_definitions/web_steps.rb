@@ -51,6 +51,7 @@ end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
+  #puts page.body
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|

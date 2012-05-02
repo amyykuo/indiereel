@@ -12,16 +12,16 @@
 				<!-- 	<option name="crew">Crew</option>				 -->	
 				<!-- </select> -->
 
-      <input type="checkbox" name = check1 value = talent> Talent
+      <input type="checkbox" name = check1 value = talent <%= @selected.include?("talent") ? "checked" : "" %>> Talent
 
 
-      <input type="checkbox" name = check2 value = director> Director   
+      <input type="checkbox" name = check2 value = director <%= @selected.include?("director") ? "checked" : "" %>> Director   
 
 
-      <input type="checkbox" name = check3 value = producer> Producer
+      <input type="checkbox" name = check3 value = producer <%= @selected.include?("producer") ? "checked" : "" %>> Producer
 
 
-      <input type="checkbox" name = check4 value = crew> Crew   
+      <input type="checkbox" name = check4 value = crew <%= @selected.include?("crew") ? "checked" : "" %>> Crew   
 
     <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search" %>
   </p>

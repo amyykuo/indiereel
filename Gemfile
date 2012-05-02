@@ -56,3 +56,6 @@ gem 'httparty'
 #for search
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+
+#for testing search with cucumber
+#gem 'sunspot_test'
