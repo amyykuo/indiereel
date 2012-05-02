@@ -12,21 +12,25 @@
     <h2>Results</h2>
     
     <% unless @search_results.empty? %>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Role</th>
-          <th>Location</th>
-          <th>Email</th>
-        </tr>
-        <% for result_item in @search_results %>
-          <tr class="<%= cycle('odd', 'even') %>">
-            <td><%= result_item.role_name %></td>
-            <td><%= result_item.role_type %></td>
-            <td><%= result_item.location %></td>
-            <td><%= result_item.email %></td>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Location</th>
+            <th>Email</th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% for result_item in @search_results %>
+            <tr class="<%= cycle('odd', 'even') %>">
+              <td><%= link_to result_item.role_name, role_route(result_item) %></td>
+              <td><%= result_item.role_type.capitalize %></td>
+              <td><%= result_item.location %></td>
+              <td><%= result_item.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     <% else %>
       <p>Your query returned no results.</p>
