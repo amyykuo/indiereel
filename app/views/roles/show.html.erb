@@ -166,6 +166,11 @@
 	        <% elsif @portfolio_album.nil? %>
 	          This user doesn't have a portfolio yet.
 	        <% else %>
+	        <div class="row-fluid">
+	        <div class="well">
+	        <h5>
+	        <%= link_to @portfolio_album.title, mc_route(@portfolio_album) %>
+	        </h5>
 	          <div class="row-fluid">
 	            <% for asset in @portfolio_album.media_assets.first(4) %>
 	              <div class="span3">
@@ -173,6 +178,7 @@
 	            	</div>
 	            <% end %>
 	          </div>
+	        </div>
 	        <% end %>
 	        
 	        <hr>
