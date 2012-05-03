@@ -10,10 +10,10 @@
 <div class='span4'>
   <div class='objective'>
     <% if private_mode && !preview %>
-      <h4>Objective: <%= cur_role.objective %></h4>
+      <h4>Objective: </h4> <dd><%= cur_role.objective %></dd>
     <% else %>
       <% unless cur_role.objective.empty? %>
-        <h4>Objective: <%= cur_role.objective %></h4>
+        <h4>Objective: </h4> <dd><%= cur_role.objective %></dd>
       <% end %>
     <% end %>
   </div>
