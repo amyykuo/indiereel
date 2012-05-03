@@ -61,8 +61,11 @@ $(function(){
       
 		  <div class="row-fluid">
 		    <div class="photo-upload">
-<%= link_to "Upload a Profile Picture on your Talent Page", role_route(@role) %>
-<br><small>Careful when you follow the above link, any new changes in all other fields will not be saved.</small>
+          <%= link_to "Upload a Profile Picture on your Talent Page", role_route(@role) %>
+          
+          <br>
+          
+          <small>Careful when you follow the above link, any new changes in all other fields will not be saved.</small>
 		    </div>
       </div>
 	  </div>
@@ -79,7 +82,7 @@ $(function(){
       <h3>Attributes</h3>
       
     	<%= label_tag "role[age_range]", "Choose an Age Range" %>
-      <%= select_tag "role[age_range]", options_for_select(@ages), :prompt => "Select one" %><br>
+      <%= select_tag "role[age_range]", options_for_select(@ages, @role[:age_range]), :prompt => "Select one" %><br>
       
       <%= label_tag "role[eyes]", "Eye Color:" %>
 	    <%= text_field_tag "role[eyes]", @role.eyes, {:placeholder => "What color are your eyes?"} %><br>
