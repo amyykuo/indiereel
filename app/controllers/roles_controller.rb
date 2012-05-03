@@ -3,21 +3,25 @@ class RolesController < ApplicationController
     @user = User.find_by_identifier params[:identifier]
     @role = Role.find_by_role_type_and_user_id(params[:role], @user.id) rescue nil
     render_not_found and return if @role.nil?
+    
+    @private_mode = current_user.uid == @user.uid
+    
     @preview = params[:preview] rescue false
     @headshot = @role.headshots
     @portfolio_album = @role.portfolio_album rescue nil
     
-    @att = Role.role_attributes
-    @attbool = {}
+    @att_filled = {}
     
-    for k, v in @att
-      @attbool[k] = false
+    for k, v in Role.role_attributes
+      @att_filled[k] = false
       for val in v
         if !@role[val].empty?
-          @attbool[k] = true
+          @att_filled[k] = true
         end
       end
     end
+    
+    @basic_info_filled = @att_filled.has_value?(true)
   end
   
   def new

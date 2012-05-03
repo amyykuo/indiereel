@@ -9,7 +9,7 @@
 
 <div class='span4'>
   <div class='objective'>
-    <% if private_mode_conditional && !preview %>
+    <% if private_mode && !preview %>
       <h4>Objective: <%= cur_role.objective %></h4>
     <% else %>
       <% unless cur_role.objective.empty? %>

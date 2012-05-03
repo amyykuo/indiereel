@@ -1,20 +1,16 @@
 <%= content_for :title do %>
   Profile | IndieReel
-<% end%>
-
-<% def private_mode_conditional %>
-  <% current_user.uid == @user.uid %>
 <% end %>
 
 <div class='container'>
-  <% if private_mode_conditional %>
+  <% if @private_mode %>
     <%= render "role_config", :preview => @preview, :role => @role %>
   <% end %>
   
   <hr>
   
   <div class='row-fluid'>
-    <%= render "role_header", :preview => @preview, :private_mode_conditional => private_mode_conditional, :cur_role => @role, :user => @user %>
+    <%= render "role_header", :preview => @preview, :private_mode => @private_mode, :cur_role => @role, :user => @user %>
   </div>
   
   <hr>
@@ -24,7 +20,7 @@
 	    <div class="well">
 		    <%= image_tag @role.profile_pic_url, :width => 180, :height => 180 %>
 		    
-		    <% if private_mode_conditional && !@preview %>
+		    <% if @private_mode && !@preview %>
 		      <hr>
 		      
 		      <%= form_for @role do |f| %>
@@ -38,63 +34,57 @@
     
     <div class="span9">
       <div class="row-fluid">
-         <%= render "headshots", :preview => @preview, :private_mode_conditional => private_mode_conditional, :headshot => @headshot %>
+         <%= render "headshots", :preview => @preview, :private_mode => @private_mode, :headshot => @headshot %>
       </div>
       
 	    <h3>
 	      <em>Basic Info</em>
-	      <% if private_mode_conditional && !@preview %>
+	      <% if @private_mode && !@preview %>
 	        <small class="pull-right"><%= link_to "Edit", edit_role_route(@role, "basic-info") %></small>
         <% end %>
       </h3>
+      
+      <hr>
 	    
-	    <% if !@attbool.has_value?(true) && @preview %>
-        This user has not put in any basic information.
-      <% elsif !@attbool.has_value?(true) && !private_mode_conditional %>
+	    <% if !@basic_info_filled && (@preview || !@private_mode) %>
         This user has not put in any basic information.
       <% else %>
-        <hr>
         <div class="row-fluid">
           <div class="span6">
             <section id="attributes">
-              <% if private_mode_conditional && !@preview %>
+              <% if @private_mode && !@preview %>
     	          <h3>Attributes</h3>
-    	        <% elsif @attbool[:physical] && @preview%>
+    	        <% elsif @att_filled[:physical] && @preview %>
     	          <h3>Attributes</h3>
-    	        <% elsif @attbool[:physical] && !@preview%>
-    	          <h3>Attributes</h3>        	     
 	            <% end %>
           	  
 	            <ul class="unstyled">
-	              <% for symbolVar, varName in Role.physical_attributes %>
-	                <% if private_mode_conditional && !@preview %>
-	                  <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	              <% for symbol, name in Role.physical_attributes %>
+	                <% if @private_mode && !@preview %>
+	                  <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 	                <% else %>
-	                  <% unless @role[symbolVar].empty? %>
-      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                  <% unless @role[symbol].empty? %>
+      		            <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 	                  <% end %>
 	                <% end %>
                 <% end %>
 	            </ul>
             </section>
 	          
-	          
 	          <section id="living">
-	            <% if private_mode_conditional && !@preview %>
+	            <% if @private_mode && !@preview %>
     	          <h3>Living</h3>
-    	        <% elsif @attbool[:living] && @preview%>
+    	        <% elsif @att_filled[:living] && @preview %>
     	          <h3>Living</h3>
-    	        <% elsif @attbool[:living] && !@preview%>
-    	          <h3>Living</h3>    
 	            <% end %>
 	            
               <ul class="unstyled">
-                <% for symbolVar, varName in Role.living_attributes %>
-                  <% if private_mode_conditional && !@preview %>
-	                  <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+                <% for symbol, name in Role.living_attributes %>
+                  <% if @private_mode && !@preview %>
+	                  <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 	                <% else %>
-	                  <% unless @role[symbolVar].empty? %>
-      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	                  <% unless @role[symbol].empty? %>
+      		            <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 	                  <% end %>
 	                <% end %>
                 <% end %>
@@ -105,21 +95,19 @@
 	        
 	        <div class="span6">
 	          <section id="contact-info">
-	            <% if private_mode_conditional && !@preview %>
+	            <% if @private_mode && !@preview %>
     	          <h3>Contact Information</h3>
-    	        <% elsif @attbool[:contact] && @preview%>
+    	        <% elsif @att_filled[:contact] && @preview%>
     	          <h3>Contact Information</h3>
-    	        <% elsif @attbool[:contact] && !@preview%>
-    	          <h3>Contact Information</h3>    
 	            <% end %>
 	            
 	            <ul class="unstyled">
-		            <% for symbolVar, varName in Role.contact_attributes %>
-		              <% if private_mode_conditional && !@preview %>
-		                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		            <% for symbol, name in Role.contact_attributes %>
+		              <% if @private_mode && !@preview %>
+		                <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 		              <% else %>
-		                <% unless @role[symbolVar].empty? %>
-      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		                <% unless @role[symbol].empty? %>
+      		            <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 		                <% end %>
 		              <% end %>
 	              <% end %>
@@ -127,21 +115,19 @@
 	          </section>
 	          
 	          <section id="agency-info">
-	            <% if private_mode_conditional && !@preview %>
+	            <% if @private_mode && !@preview %>
     	          <h3>Agency Information</h3>
-    	        <% elsif @attbool[:agency] && @preview%>
+    	        <% elsif @att_filled[:agency] && @preview%>
     	          <h3>Agency Information</h3>
-    	        <% elsif @attbool[:agency] && !@preview%>
-    	          <h3>Agency Information</h3>    
 	            <% end %>
 	            
 	            <ul class="unstyled">
-	              <% for symbolVar, varName in Role.agency_attributes %>
-		              <% if private_mode_conditional && !@preview %>
-		                <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+	              <% for symbol, name in Role.agency_attributes %>
+		              <% if @private_mode && !@preview %>
+		                <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 		              <% else %>
-		                <% unless @role[symbolVar].empty? %>
-      		            <li><strong><%= varName %>: </strong><%= @role[symbolVar] %></li>
+		                <% unless @role[symbol].empty? %>
+      		            <li><strong><%= name %>: </strong><%= @role[symbol] %></li>
 		                <% end %>
 		              <% end %>
 	              <% end %>
@@ -154,12 +140,14 @@
 	    
 	    <div class="row-fluid">
 	      <section id="experience">
-		      <%= render "work_related", :work => "experience", :preview => @preview, :private_mode_conditional => private_mode_conditional, :role => @role %>
+		      <%= render "work_related", :work => "experience", :preview => @preview, :private_mode => @private_mode, :role => @role %>
+		      
   	      <hr>
 	      </section>
 	      
 	      <section id="skills">
-	        <%= render "work_related", :work => "skills", :preview => @preview, :private_mode_conditional => private_mode_conditional, :role => @role %>
+	        <%= render "work_related", :work => "skills", :preview => @preview, :private_mode => @private_mode, :role => @role %>
+	        
   	      <hr>
 	      </section>
 	    </div>
@@ -173,7 +161,7 @@
 	        
 	        <hr>
 	        
-	        <% if @portfolio_album.nil? and private_mode_conditional and !@preview %>
+	        <% if @portfolio_album.nil? and @private_mode and !@preview %>
 	          You have no albums. <%= link_to "Create one?", new_media_collection_path(:role => @role.role_type), :class => "btn btn-info btn-mini" %>
 	        <% elsif @portfolio_album.nil? %>
 	          This user doesn't have a portfolio yet.

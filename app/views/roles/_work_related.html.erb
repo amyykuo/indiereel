@@ -1,15 +1,18 @@
 <% if work == 'experience' %>
-
   <h3>
     <em>Experience</em>
-    
-    <% if private_mode_conditional && !preview %>
+    <% if private_mode && !preview %>
       <small class="pull-right"><%= link_to "Edit", edit_role_route(role, "work-related") %></small>
     <% end %>
   </h3>
-  <hr/>
-  <% if private_mode_conditional && !preview %>
-    <%= role.role_experience %>
+  
+  <% if private_mode && !preview %>
+    <hr>
+    <% if !role.role_experience.empty? %>
+      <%= role.role_experience %>
+    <% else %>
+      You have no experience listed.
+    <% end %>
   <% else %>
     <% if role.role_experience.empty? %>
       This user has not listed any experience.
@@ -17,19 +20,21 @@
       <%= role.role_experience %>
     <% end %>
   <% end %>
-  
 <% else %>
-
   <h3>
     <em>Skills</em>
-    
-    <% if private_mode_conditional && !preview %>
+    <% if private_mode && !preview %>
       <small class="pull-right"><%= link_to "Edit", edit_role_route(role, "work-related") %></small>
     <% end %>
   </h3>
-  <hr/>
-  <% if private_mode_conditional && !preview %>
-    <%= role.role_skills %>
+  
+  <% if private_mode && !preview %>
+    <hr>
+    <% if !role.role_skills.empty? %>
+      <%= role.role_skills %>
+    <% else %>
+      You have no skills listed.
+    <% end %>
   <% else %>
     <% if role.role_skills.empty? %>
       This user has not listed any skills.
@@ -37,5 +42,4 @@
       <%= role.role_skills %>
     <% end %>
   <% end %>
-  
 <% end %>
