@@ -22,8 +22,8 @@ class Role < ActiveRecord::Base
     text :objective
     text :role_skills
     
-    string :email
-    string :website
+    text :email
+    text :website
     text :location
     text :agency_name
     string :agency_email
