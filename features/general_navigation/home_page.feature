@@ -40,7 +40,7 @@ Scenario: Go to Role's Edit Page
   Then I should be on my "tester talent" Edit Page
 
 Scenario: Go to Role's Profile Page
-  When I follow "View All Profile Fields" within the "Talent" section
+  When I follow "View Profile" within the "Talent" section
   Then I should be on my "tester talent" profile page
 
 Scenario: Go to Role's Portfolio Page
@@ -48,7 +48,9 @@ Scenario: Go to Role's Portfolio Page
   Then I should be on the "tester" Portfolio page for the "director" role
   And I should see "Portfolio"
 
-Scenario: Go to Role's Projects Page
-  When I follow "Projects" within the "Talent" section
-  Then I should be on the "tester" Projects page for the "talent" role
-  And I should see "projects"
+#We commented out this story b/c for the sake of not having our users be confused, we took out the projects page since it is currently an unimplemented feature. 
+#Scenario: Go to Role's Projects Page
+#  When I follow "Projects" within the "Talent" section
+#  Then I should be on the "tester" Projects page for the "talent" role
+#  And I should see "projects"
+
