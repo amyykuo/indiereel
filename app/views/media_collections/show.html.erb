@@ -104,21 +104,25 @@
 	</div>
 			
 	<hr />
-
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="well">
-	      <% for group in @grouped_media_assets %>
-		      <div class="row-fluid">
-			      <% for asset in group %>
-				      <div class="span2">
-        				<%= render "shared/thumbnail", :asset => asset %>
-				      </div>
-			      <% end %>
-		      </div>
-	      <% end %>
+  <% if !@grouped_media_assets.empty? %>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="well">
+	        <% for group in @grouped_media_assets %>
+		        <div class="row-fluid">
+			        <% for asset in group %>
+				        <div class="span2">
+          				<%= render "shared/thumbnail", :asset => asset %>
+				        </div>
+			        <% end %>
+		        </div>
+	        <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% else %>
+    <p>No Media Files</p>
+  <% end %>    
+  
 
 <% end %>
