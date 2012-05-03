@@ -47,11 +47,11 @@
 				              
 				              <div class="span7">
 			                  <ul class="nav">
-				                  <li><%= link_to "View All Profile Fields", role_route(role) %></li>
-				                  <li><%= link_to "Preview Profile", role_route(role) + "?preview=true" %></li>
+				                  <li><%= link_to "View Profile", role_route(role) %></li>
 				                  <li><%= link_to "Edit Profile", edit_role_route(role) %></li>
 				                  <li><%= link_to "Portfolio", portfolio_route(role) %></li>
 				                  <li><%= link_to "Projects", '#'%></li>
+				                  <li><%= link_to "Preview as Public Role", role_route(role) + "?preview=true" %></li>
 			                  </ul>
 				              </div>
 				            </div>
@@ -63,7 +63,8 @@
 							        <%= (role.default_role_user.nil?) ? submit_tag("Set Default Role", :class => "btn btn-mini") : content_tag(:span, "Currently the default role", :class => "ir-default-role-indicator") %>
 						        <% end %>
 						        
-		                <%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", :class => "btn btn-mini btn-danger pull-right" %>
+		                  <%= button_to "Delete", role_path(role), :method => :delete, :confirm => "Are you sure you want to delete your #{role.role_type.capitalize} role?", :class => "btn btn-mini btn-danger pull-right" %>
+
         					</div>
       					</div>
 		          </div>
