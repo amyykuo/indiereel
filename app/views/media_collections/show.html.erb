@@ -2,6 +2,13 @@
   Album | IndieReel
 <% end%>
 
+<script type="text/javascript">
+$(function(){
+  $("#youtubehelp").tooltip();
+
+})
+</script>
+
 <% if current_user.uid == @user.uid %>
 	<hr />
 		<h3> <%= @album.title %>
@@ -42,7 +49,10 @@
 				
 				<div id="ir-upload-video-field" class="ir-upload-field" style="display:none">
 					<hr style="margin:5px 0px 10px 0px"/>
+					<p>
 					<%= f.label "Paste a youtube link here: " %>
+					<a href="#" rel="tooltip" id="youtubehelp" data-original-title="Youtube links should be taken from the browser address bar, and should take the form of: http://www.youtube.com/watch?v=h5aSa4tmVNM"> [?] </a>
+					</p>			
 					<%= f.text_field :youtube_id%>
 					<hr style="margin:5px 0px 10px 0px"/>
 				</div>
