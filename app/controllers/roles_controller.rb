@@ -78,22 +78,28 @@ class RolesController < ApplicationController
     end
 	  
     redirect_to home_route(current_user)
-    
   end
   
   def search
     @selected = []
     
-    @selected << params[:check3] << params[:check2] << params[:check1] << params[:check4]
+    for role in Role.options
+      if !params[role.to_sym].nil?
+        @selected << params[role.to_sym]
+      end
+    end
     
     @search = Role.search do
-      words = (params[:query].nil? ? "" : params[:query]).gsub(/[-\+\"]{1}/, '').strip.downcase
-      words = params[:check1].nil? ? words : words + " " + params[:check1]
-      words = params[:check2].nil? ? words : words + " " + params[:check2]
-      words = params[:check3].nil? ? words : words + " " + params[:check3]
-      words = params[:check4].nil? ? words : words + " " + params[:check4]
+      search_terms = params[:query]
+      words = search_terms.gsub(/[-\+\"]{1}/, '').strip.downcase
       
-      if params[:query].empty?
+      for role in Role.options
+        if !params[role.to_sym].nil?
+          words = words + " " + params[role.to_sym]
+        end
+      end
+      
+      if search_terms.empty?
         keywords words do
           minimum_match 1
         end
@@ -102,12 +108,11 @@ class RolesController < ApplicationController
           minimum_match 2
         end
       end
+      
     end
     
-    if params[:query].nil? && params[:check3].nil? && params[:check2].nil? && params[:check1].nil? && params[:check4].nil?
-      @search_results = nil
-    elsif params[:query].empty? && params[:check3].nil? && params[:check2].nil? && params[:check1].nil? && params[:check4].nil?
-      @search_results = nil
+    if params[:query].empty? && @selected.empty?
+      @search_results = []
     else
       @search_results = @search.results
     end
