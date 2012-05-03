@@ -26,7 +26,7 @@ class Role < ActiveRecord::Base
     text :website
     text :location
     text :agency_name
-    string :agency_email
+    text :agency_email
   end
   
   def self.options
