@@ -89,8 +89,10 @@ class RolesController < ApplicationController
       end
     end
     
+    query = params[:query].nil? ? "" : params[:query]
+    
     @search = Role.search do
-      search_terms = params[:query]
+      search_terms = query
       words = search_terms.gsub(/[-\+\"]{1}/, '').strip.downcase
       
       for role in Role.options
@@ -111,7 +113,7 @@ class RolesController < ApplicationController
       
     end
     
-    if params[:query].empty? && @selected.empty?
+    if query.empty? && @selected.empty?
       @search_results = []
     else
       @search_results = @search.results

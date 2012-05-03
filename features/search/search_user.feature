@@ -26,8 +26,8 @@ Background: users have been added to database
   
   
 Scenario: search for a user by stage name, with role specified
-    When I check the following roles: check1
-    When I uncheck the following roles: check2, check3, check4
+    When I check the following roles: talent
+    When I uncheck the following roles: director, crew, producer
     And I fill in "query" with "John"
     And I press "Search"
     Then I should see "John"
@@ -36,7 +36,7 @@ Scenario: search for a user by stage name, with role specified
     But I should not see "Berkeley"
     
 Scenario: search for a user by stage name, with no role specified
-    When I uncheck the following roles: check1, check2, check3, check4
+    When I uncheck the following roles: talent, director, crew, producer
     And I fill in "query" with "John"
     And I press "Search"
     Then I should see "John"
@@ -46,14 +46,14 @@ Scenario: search for a user by stage name, with no role specified
     And I should see "Berkeley"
 
 Scenario: an inputted stage name does not exist, with role specified
-    When I check the following roles: check1
-    When I uncheck the following roles: check2, check3, check4
+    When I check the following roles: talent
+    When I uncheck the following roles: director, crew, producer
     And I fill in "query" with "Oversized Hippo"
     And I press "Search"
     Then I should see "Your query returned no results."
     
 Scenario: an inputted stage name does not exist, with no role specified
-    When I uncheck the following roles: check1, check2, check3, check4
+    When I uncheck the following roles: talent, director, crew, producer
     And I fill in "query" with "Oversized Hippo"
     And I press "Search"
     Then I should see "Your query returned no results."

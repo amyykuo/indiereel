@@ -25,9 +25,9 @@ Background: users have been added to database
   And I am on the Search page
 
 
-Scenario: search for a user by role ONLY #talent, director, crew, producer
-    When I check the following roles: check1
-    When I uncheck the following roles: check2, check3, check4
+Scenario: search for a user by role ONLY
+    When I check the following roles: talent
+    When I uncheck the following roles: director, crew, producer
     And I fill in "query" with ""
     And I press "Search"
     Then I should see "John"

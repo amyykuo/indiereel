@@ -25,7 +25,7 @@ Background: users have been added to database
   And I am on the Search page
 
 Scenario: search for a user by city #talent, director, crew, producer
-    When I check the following roles: check1, check2, check3, check4
+    When I check the following roles: talent, director, crew, producer
     And I fill in "query" with "Berkeley"
     And I press "Search"
     Then I should see "John"
@@ -36,7 +36,7 @@ Scenario: search for a user by city #talent, director, crew, producer
     And I should not see "kunz"
 
 Scenario: an inputted location does not exist #talent, director, crew, producer
-    When I check the following roles: check1, check2, check3, check4
+    When I check the following roles: talent, director, crew, producer
     And I fill in "query" with "Over the Rainbow"
     And I press "Search"
     Then I should see "Your query returned no results."

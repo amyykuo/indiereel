@@ -26,25 +26,25 @@ Background: users have been added to database
   
   
 Scenario: no search input
-    When I uncheck the following roles: check1, check2, check3, check4
+    When I uncheck the following roles: talent, director, crew, producer
     And I fill in "query" with ""
     And I press "Search"
     Then I should not see "Results"
     
 Scenario: check boxes only
-    When I check the following roles: check1, check2, check3, check4
+    When I check the following roles: talent, director, crew, producer
     And I fill in "query" with ""
     And I press "Search"
     Then I should see "Results"
 
 Scenario: query only
-    When I uncheck the following roles: check1, check2, check3, check4
+    When I uncheck the following roles: talent, director, crew, producer
     And I fill in "query" with "Amy"
     And I press "Search"
     Then I should see "Results"
 
 Scenario: both check boxes and query
-    When I check the following roles: check1, check2, check3, check4
+    When I check the following roles: talent, director, crew, producer
     And I fill in "query" with "Amy"
     And I press "Search"
     Then I should see "Results"
