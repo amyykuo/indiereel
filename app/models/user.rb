@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
       user.email = auth["info"]["email"]
       user.gender = auth["extra"]["raw_info"]["gender"]
       user.image = auth["info"]["image"] rescue nil
-      user.identifier = auth["info"]["nickname"] || auth["uid"]
+      unless !auth["info"]["nickname"].gsub(/[^.]/, "").empty?
+        user.identifier = auth["info"]["nickname"] || auth["uid"]
+      else
+        user.identifier = auth["uid"]
+      end
     end
   end
   
@@ -63,7 +67,12 @@ class User < ActiveRecord::Base
     self.email = auth["info"]["email"]
     self.gender = auth["extra"]["raw_info"]["gender"]
     self.image = auth["info"]["image"] rescue nil
-    self.identifier = auth["info"]["nickname"] || auth["uid"]
+    #self.identifier = auth["info"]["nickname"] || auth["uid"]
+    unless !auth["info"]["nickname"].gsub(/[^.]/, "").empty?
+      self.identifier = auth["info"]["nickname"] || auth["uid"]
+    else
+      self.identifier = auth["uid"]
+    end
     self.save!
   end
 end
