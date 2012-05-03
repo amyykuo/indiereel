@@ -23,9 +23,10 @@ describe RolesController do
       it 'should render show' do
         User.should_receive(:find_by_identifier).with("dude").and_return(@user)
         Role.should_receive(:find_by_role_type_and_user_id).with("talent", 1).and_return(@role)
+        @user.should_receive(:uid)
         @role.should_receive(:headshots)
         @role.should_receive(:portfolio_album)
-        @role.should_receive(:[]).exactly(4).times
+        @role.should_receive(:[]).exactly(12).times
         get :show, {:identifier => "dude", :role => "talent"}
         response.should render_template("show")
       end

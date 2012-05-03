@@ -15,7 +15,7 @@ class RolesController < ApplicationController
     for k, v in Role.role_attributes
       @att_filled[k] = false
       for val in v
-        if !@role[val].empty?
+        if !@role[val].nil? and !@role[val].empty?
           @att_filled[k] = true
         end
       end
