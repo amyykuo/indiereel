@@ -85,6 +85,7 @@ class RolesController < ApplicationController
     @selected = []
     
     @selected << params[:check3] << params[:check2] << params[:check1] << params[:check4]
+    
     @search = Role.search do
       words = (params[:query].nil? ? "" : params[:query]).gsub(/[-\+\"]{1}/, '').strip.downcase
       words = params[:check1].nil? ? words : words + " " + params[:check1]
@@ -92,7 +93,7 @@ class RolesController < ApplicationController
       words = params[:check3].nil? ? words : words + " " + params[:check3]
       words = params[:check4].nil? ? words : words + " " + params[:check4]
       
-      if params[:query] == ""
+      if params[:query].empty?
         keywords words do
           minimum_match 1
         end
