@@ -26,9 +26,10 @@ Scenario: Go to Role's Portfolio Page
   Then I should be on the "tester" Portfolio page for the "talent" role
   # need to test this more thoroughly
 
-Scenario: Go to Role's Projects Page
-  When I follow "View all projects" within the "Projects" section  
-  Then I should be on the "tester" Projects page for the "talent" role
+# not implementing this yet
+#Scenario: Go to Role's Projects Page
+  #When I follow "View all projects" within the "Projects" section  
+  #Then I should be on the "tester" Projects page for the "talent" role
   # need to test this more thoroughly
 
 Scenario: Go to Role's Edit this role Page

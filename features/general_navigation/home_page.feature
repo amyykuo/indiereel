@@ -40,7 +40,7 @@ Scenario: Go to Role's Edit Page
   Then I should be on my "tester talent" Edit Page
 
 Scenario: Go to Role's Profile Page
-  When I follow "View Profile" within the "Talent" section
+  When I follow "View All Profile Fields" within the "Talent" section
   Then I should be on my "tester talent" profile page
 
 Scenario: Go to Role's Portfolio Page
