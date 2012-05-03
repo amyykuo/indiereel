@@ -113,9 +113,7 @@ class RolesController < ApplicationController
       
     end
     
-    if query.empty? && @selected.empty?
-      @search_results = []
-    else
+    if !(query.empty? && @selected.empty?)
       @search_results = @search.results
     end
   end
